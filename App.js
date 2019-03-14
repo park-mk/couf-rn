@@ -1,3 +1,5 @@
+
+
 import React from 'react';
 import { Button,
    Text, 
@@ -19,15 +21,16 @@ import { Ionicons } from '@expo/vector-icons';
 
 import { YellowBox } from 'react-native';
 
-import  CategoryScreen from './screens/categoryscreen'
-import  TOLScreen from './screens/TOLscreen'
-import KORScreen from'./screens/KORScreen'
-import  AreaScreen from'./screens/areascreen'
-import Area1Screen from'./screens/area1'
-import Area2Screen from'./screens/area2'
-import Area3Screen from'./screens/area3'
-import Area4Screen from'./screens/area4'
-import LoginScreen from'./screens/loginscreen'
+import  CategoryScreen from './screens_category/categoryscreen'
+import  TOLScreen from './screens_category/TOLscreen'
+import KORScreen from'./screens_category/KORScreen'
+import KOR_explainScreen from'./screens_category/KOR_explain'
+import  AreaScreen from'./screens_area/areascreen'
+import Area1Screen from'./screens_area/area1'
+import Area2Screen from'./screens_area/area2'
+import Area3Screen from'./screens_area/area3'
+import Area4Screen from'./screens_area/area4'
+import LoginScreen from'./screens_login/loginscreen'
 
 
 //*****  in order to ignore the warning  *******//
@@ -66,7 +69,8 @@ class HomeScreen extends React.Component {
 const CategoryStack = createStackNavigator({
          Category: { screen: CategoryScreen },
          TOL:{screen:TOLScreen},
-         KOR:{screen:KORScreen}
+         KOR:{screen:KORScreen},
+         KORex:{screen:KOR_explainScreen},
 });
 
 const AreaStack= createStackNavigator({
