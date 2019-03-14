@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, FlatList, ActivityIndicator} from "react-native";
+import { View, FlatList, ActivityIndicator,Button} from "react-native";
 import { List, ListItem, SearchBar } from "react-native-elements";
 import  firebase,{storage}  from "../firebase";
 
@@ -105,7 +105,7 @@ usersRef.on('value', (snapshot) => {
 
   renderFooter = () => {
     if (!this.state.loading) return null;
-
+      this.state.loading=true;
     return (
       <View
         style={{
@@ -114,7 +114,10 @@ usersRef.on('value', (snapshot) => {
           borderColor: "#CED0CE"
         }}
       >
+       <Button  title="move "> </Button>
         <ActivityIndicator animating size="large" />
+       
+
       </View>
     );
   };
@@ -146,12 +149,15 @@ usersRef.on('value', (snapshot) => {
             onLongPress={() => {
               /* 1. Navigate to the Details route with params */
               this.props.navigation.navigate('KORex', {
-                itemId: 86,
-                otherParam: 'anything you want here',
+                 kor : item.kor,
+                 eng :item.eng,
+                 pro :item.pro,
+                 des : item.description ,
               });
             }}
-              rightAvatar
-             title={item.kor} 
+              rightAvatar={{ source: require('../assets/play.png') }}
+               
+             title={item.eng} 
               subtitle={item.pro}
              // avatar={{ uri: item.picture.thumbnail }}
               containerStyle={{ borderBottomWidth: 3 }}
@@ -163,11 +169,11 @@ usersRef.on('value', (snapshot) => {
         
           
          // ListHeaderComponent={this.renderHeader}
-        //  ListFooterComponent={this.renderFooter}
+         ListFooterComponent={this.renderFooter}
           onRefresh={this.handleRefresh}
           refreshing={this.state.refreshing}
           onEndReached={this.handleLoadMore}
-          onEndReachedThreshold={30}
+          onEndReachedThreshold={1}
         />
       
     );

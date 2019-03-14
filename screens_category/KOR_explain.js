@@ -6,14 +6,17 @@ class KOR_explainScreen extends React.Component {
     render() {
     
       const { navigation } = this.props;
-      const itemId = navigation.getParam('itemId', 'NO-ID');
-      const otherParam = navigation.getParam('otherParam', 'some default value');
-  
+      const kor = navigation.getParam('kor', 'NO-ID');
+      const description = navigation.getParam('description', 'some default value');
+      const eng  = navigation.getParam('eng', 'NO-ID');
+      const pro = navigation.getParam('pro', 'NO-ID');
       return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          <Text>Details Screen</Text>
-          <Text>itemId: {JSON.stringify(itemId)}</Text>
-          <Text>otherParam: {JSON.stringify(otherParam)}</Text>
+         
+          <Text> {JSON.stringify(kor)}</Text>
+          <Text> {JSON.stringify(pro)}</Text>
+          <Text> {JSON.stringify(eng)}</Text>
+          <Text> {JSON.stringify(description)}</Text>
         
           <Button
             title="Go to Home"

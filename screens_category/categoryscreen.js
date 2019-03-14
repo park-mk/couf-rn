@@ -12,7 +12,7 @@ class CategoryScreen extends React.Component {
           
                    <Category  imageURI={require('../assets/icon.png' )}
                            name='Exchange'
-                           onPress={()=>Linking.openURL("https://www.dollars2won.com/").catch((err) => console.error('An error occurred', err))}
+                          
                      />
                     <Category  imageURI={require('../assets/icon.png' )}
                           name='About us'
