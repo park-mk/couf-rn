@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { View, FlatList, ActivityIndicator,Button} from "react-native";
 import { List, ListItem, SearchBar } from "react-native-elements";
 import  firebase,{storage}  from "../firebase";
-
+import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
 
   database=firebase.database();
  
@@ -34,7 +34,7 @@ class KORScreen extends React.Component {
   async _play(){
     try {
       
-      const { sound: soundObject, status } = await Expo.Audio.Sound.create(
+      const { sound: soundObject, status } = await Expo.Audio.Sound.createAsync(
           
           {uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/sound%2Fk1.mp3?alt=media&token=c0c4a00f-cff9-4813-a182-2bba419dae71"},
           { shouldPlay: true }
@@ -56,10 +56,15 @@ class KORScreen extends React.Component {
      
 
     this.setState({ loading: true });
+    const { navigation } = this.props;
+    const move = navigation.getParam('move', 'NO-ID');
+     if(JSON.stringify(move).replace(/^"(.+)"$/,'$1')=='BASIC')
     var usersRef = firebase.database().ref('korean');
+     else
+     var usersRef = firebase.database().ref('tips');
     
 usersRef.on('value', (snapshot) => {
-    var array=[];
+    
     for(let i=0;i<2;i++){
         
     }
@@ -114,7 +119,7 @@ usersRef.on('value', (snapshot) => {
           borderColor: "#CED0CE"
         }}
       >
-       <Button  title="move "> </Button>
+      
         <ActivityIndicator animating size="large" />
        
 
@@ -152,7 +157,7 @@ usersRef.on('value', (snapshot) => {
                  kor : item.kor,
                  eng :item.eng,
                  pro :item.pro,
-                 des : item.description ,
+                 description : item.description ,
               });
             }}
               rightAvatar={{ source: require('../assets/play.png') }}
@@ -173,7 +178,7 @@ usersRef.on('value', (snapshot) => {
           onRefresh={this.handleRefresh}
           refreshing={this.state.refreshing}
           onEndReached={this.handleLoadMore}
-          onEndReachedThreshold={1}
+          onEndReachedThreshold={40}
         />
       
     );
