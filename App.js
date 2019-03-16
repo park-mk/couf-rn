@@ -25,12 +25,13 @@ import  CategoryScreen from './screens_category/categoryscreen'
 import  TOLScreen from './screens_category/TOLscreen'
 import KORScreen from'./screens_category/KORScreen'
 import KOR_explainScreen from'./screens_category/KOR_explain'
-import  AreaScreen from'./screens_area/areascreen'
+import AreaScreen from'./screens_area/areascreen'
 import Area1Screen from'./screens_area/area1'
 import Area2Screen from'./screens_area/area2'
 import Area3Screen from'./screens_area/area3'
 import Area4Screen from'./screens_area/area4'
 import LoginScreen from'./screens_login/loginscreen'
+import SignUpScreen from './screens_sign/signUpScreen'
 
 
 //*****  in order to ignore the warning  *******//
@@ -85,6 +86,7 @@ const AreaStack= createStackNavigator({
 
 const LoginStack=createStackNavigator({
         Login1: { screen: LoginScreen },
+        SignUp: { screen: SignUpScreen}
 });
 
 
