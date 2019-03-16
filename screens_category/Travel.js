@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, FlatList, ActivityIndicator,Button,styles,Image,Text} from "react-native";
+import { View, FlatList, ActivityIndicator,Button,StyleSheet,Image,Text} from "react-native";
 import { List, ListItem, SearchBar } from "react-native-elements";
 import  firebase,{storage}  from "../firebase";
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
@@ -9,6 +9,11 @@ import  someList from '../components/anylist'
  
   
   
+  const color = {
+    theme: '#06C1AE',
+    border: '#e0e0e0',
+    background: '#f3f3f3'
+  }
 
 
 class Travellist extends React.Component {
@@ -153,9 +158,15 @@ usersRef.on('value', (snapshot) => {
             <ListItem  
                title=  {     
                     <View  style={{  flex:1,  flexDirection:'row'}} >
-                  <Image  style={{width: 100, height: 100}}
+                  <Image  style={styles.icon}
+                      
                   source={require('../assets/mama.png')} />
-                  <Text >5 months ago</Text>
+                  <View  >
+                  <Text style={styles.h1}>LOTTE WORLD</Text>  
+                  <Text style={styles.p} >amusement park</Text>  
+                  <Text style={styles.price} >SEOUL JAMSIL</Text>  
+                  
+                  </View>
                   </View>
           }
             onPress={() => this._play()}
@@ -189,6 +200,46 @@ usersRef.on('value', (snapshot) => {
     );
   }
 }
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    padding: 10,
+    borderBottomWidth: 1  , /// PixelRatio.get(),
+   // borderColor: color.border,
+    backgroundColor: 'white',
+  },
+  icon: {
+    width: 120,
+    height: 120,
+    borderRadius: 5,
+    marginRight:10,
+  },
+  rightContainer: {
+    flex: 1,
+    paddingLeft: 20,
+    paddingRight: 10,
+  },
+  price: {
+    marginTop:30,
+    color: color.theme,
+    
+  },
+  h1: {
+    fontSize: 24,
+    
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#222222',
+    
+  },
+  p: {
+    fontSize: 15,
+    //marginLeft:30,
+    //textAlign: 'center',
+    color: 'grey',
+  },
+})
+
 
 export default Travellist;
 
