@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, FlatList, ActivityIndicator,Button} from "react-native";
+import { View, FlatList, ActivityIndicator,Button,Text} from "react-native";
 import { List, ListItem, SearchBar } from "react-native-elements";
 import  firebase,{storage}  from "../firebase";
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
@@ -105,7 +105,7 @@ usersRef.on('value', (snapshot) => {
   
 
   renderHeader = () => {
-    return <SearchBar placeholder="Type Here..." lightTheme round />;
+    return      <Text style={{textAlign:'center',fontSize: 15,fontWeight:'bold'}}>LONG PRESS FOR MORE INFO </Text>   //<SearchBar placeholder="Type Here..." lightTheme round />;
   };
 
   renderFooter = () => {
@@ -143,15 +143,16 @@ usersRef.on('value', (snapshot) => {
   render() {
      
     return (
-      
+        
         <FlatList
           data={this.state.datasource}
           
           renderItem={({ item }) => (
-              
-            <ListItem
-            onPress={() => this._play()}
-            onLongPress={() => {
+             
+            <ListItem 
+             
+            onLongPress={() => this._play()}
+            onPress={() => {
               /* 1. Navigate to the Details route with params */
               this.props.navigation.navigate('KORex', {
                  kor : item.kor,
@@ -173,7 +174,7 @@ usersRef.on('value', (snapshot) => {
           keyExtractor={item => item.kor}
         
           
-         // ListHeaderComponent={this.renderHeader}
+          ListHeaderComponent={this.renderHeader}
          ListFooterComponent={this.renderFooter}
           onRefresh={this.handleRefresh}
           refreshing={this.state.refreshing}

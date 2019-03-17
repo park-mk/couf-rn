@@ -4,7 +4,7 @@ import { List, ListItem, SearchBar } from "react-native-elements";
 import  firebase from "../firebase";
 
   //load the firebase.database in order to simplfy
-  //database=firebase.database();
+  database=firebase.database();
   
 
 class TOLScreen extends React.Component {
@@ -30,7 +30,7 @@ class TOLScreen extends React.Component {
   makeRemoteRequest = () => {
     
     this.setState({ loading: true });                    //because while this function is working = loading 
-    var usersRef ;//firebase.database().ref('tips');       //   bring the database tips
+    var usersRef =firebase.database().ref('tips');       //   bring the database tips
     usersRef.on('value', (snapshot) => {                     //    tips database resort
     
      var m=snapshot.val() 

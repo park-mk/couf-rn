@@ -20,7 +20,7 @@ class CategoryScreen extends React.Component {
 
   render() {
     return ( 
-    <View style={{flex:1}}>
+    <View style={{flex:1,marginTop:20}}>
          <ScrollView   onRefresh={this.handleRefresh} >
          { /*****  category sort  each view have 2 category  in row  *******/}
              <View   style={{  flex:1,  flexDirection:'row'}}>

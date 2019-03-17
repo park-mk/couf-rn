@@ -37,20 +37,7 @@ class Travellist extends React.Component {
 
 
   
-  async _play(){
-    try {
-      
-      const { sound: soundObject, status } = await Expo.Audio.Sound.createAsync(
-          
-          {uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/sound%2Fk1.mp3?alt=media&token=c0c4a00f-cff9-4813-a182-2bba419dae71"},
-          { shouldPlay: true }
-        );
-        // Your sound is playing!
-      } catch (error) {
-        // An error occurred!
-      }
-  
-   }
+
 
   componentDidMount() {
     
@@ -64,16 +51,13 @@ class Travellist extends React.Component {
     this.setState({ loading: true });
     const { navigation } = this.props;
     const move = navigation.getParam('move', 'NO-ID');
-     if(JSON.stringify(move).replace(/^"(.+)"$/,'$1')=='BASIC')
-    var usersRef = firebase.database().ref('korean');
-     else
-     var usersRef = firebase.database().ref('tips');
+
+    var usersRef = firebase.database().ref('travel');
+    
     
 usersRef.on('value', (snapshot) => {
     
-    for(let i=0;i<2;i++){
-        
-    }
+    
      var m=snapshot.val() 
      var keys= Object.values(m);
   this.setState({
@@ -162,21 +146,22 @@ usersRef.on('value', (snapshot) => {
                       
                   source={require('../assets/mama.png')} />
                   <View  >
-                  <Text style={styles.h1}>LOTTE WORLD</Text>  
-                  <Text style={styles.p} >amusement park</Text>  
-                  <Text style={styles.price} >SEOUL JAMSIL</Text>  
+                  <Text style={styles.h1}>{item.name}</Text>  
+                  <Text style={styles.p} >{item.devision}</Text>  
+                  <Text style={styles.price} >{item.location}</Text>  
                   
                   </View>
                   </View>
           }
-            onPress={() => this._play()}
-            onLongPress={() => {
-              /* 1. Navigate to the Details route with params */
-              this.props.navigation.navigate('KORex', {
-                 kor : item.kor,
-                 eng :item.eng,
-                 pro :item.pro,
-                 description : item.description ,
+           
+            onPress={() => {
+             
+              this.props.navigation.navigate('TTi', {
+                 name : item.name,
+                 description :item.description,
+                 location:item.location,
+                topimage : item.topimage,
+                 uri : item.uri ,  
               });
             }}
               
@@ -186,7 +171,7 @@ usersRef.on('value', (snapshot) => {
           )
           
         }
-          keyExtractor={item => item.kor}
+          keyExtractor={item => item.name}
         
           
          // ListHeaderComponent={this.renderHeader}

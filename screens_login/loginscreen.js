@@ -1,22 +1,49 @@
 import React from 'react';
-import {  Text, View ,TextInput} from 'react-native';
+import {  Text, View ,StyleSheet, Image} from 'react-native';
 import  firebase from "../firebase";
 import{FormLabel,FormInput} from 'react-native-elements'
+import {Container,Content,Header,Form,Input,Item,Label,Button} from 'native-base'
 
-
-
- import {Container,Content,Header,Form,Input,Item,Label,Button} from 'native-base'
- {/*
- var config = {
-  apiKey: "AIzaSyDaIX_KfCGuoNwvsZkMKZpjRTq9wket-G8",
-  authDomain: "react-nativedb-4eb41.firebaseapp.com",
-  databaseURL: "https://react-nativedb-4eb41.firebaseio.com",
-  projectId: "react-nativedb-4eb41",
-  storageBucket: "react-nativedb-4eb41.appspot.com",
-  messagingSenderId: "851136914068"
-
+const wrapper = {
+    padding: '5%'
 };
-firebase.initializeApp(config);*/}
+const styles = StyleSheet.create({
+    backgroundImage:{
+        position: 'absolute',
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+        width: null,
+        height: null,
+        opacity:0.5,
+        resizeMode: 'cover',
+    },
+    wrapper:{
+        display: 'flex',
+        paddingLeft: wrapper.padding,
+        paddingRight: wrapper.padding,
+    },
+    loginWrapper: {
+        display:'flex',
+        justifyContent:'center',
+        height:'30%',
+    },
+    loginLogo: {
+        textAlign:'center',
+        fontSize: 40,
+        fontWeight: 'bold',
+    },
+    titleText: {
+        fontSize: 20,
+        fontWeight: 'bold',
+    },
+    inputBox: {
+        borderRadius: 30,
+        borderBottomWidth: 0,
+    },
+});
+
 
  class LoginScreen extends React.Component {
 
@@ -61,48 +88,52 @@ firebase.initializeApp(config);*/}
   }
   render() {
     return (
-      <Container>
-        <Form>
-          <Item>
-            <Label>email </Label>
-             <Input 
-             autoCorrect={false}
-             autoCapitalize="none"
-             onChangeText={(email)=>this.setState({email})}
-             />
-            </Item>
-            <Item>
-            <Label>password </Label>
-             <Input 
-             secureTextEntry={true}
-             autoCorrect={false}
-             autoCapitalize="none"
-             onChangeText= {(password)=>this.setState({password})}
-             />
-            </Item>
+        <Container style={styles.wrapper}>
+            <Image style={styles.backgroundImage} source={require('../assets/images/soldier1.jpg')} />
+            <View style={styles.loginWrapper}>
+                <Text style={styles.loginLogo}>LOGO</Text>
+            </View>
+            <Form>
+                <Item>
+                    <Input
+                        style={styles.inputBox}
+                        placeholder="E-mail"
+                        autoCorrect={false}
+                        autoCapitalize="none"
+                        onChangeText={(email)=>this.setState({email})}
+                    />
+                </Item>
+                <Item>
+                    <Input
+                        placeholder="Password"
+                        secureTextEntry={true}
+                        autoCorrect={false}
+                        autoCapitalize="none"
+                        onChangeText= {(password)=>this.setState({password})}
+                    />
+                </Item>
 
-            <Button style={{marginTop:10}}
-            full
-            rounded
-            sucess
-            onPress={()=>this.loginUser(this.state.email,this.state.password)}
-            >
-            <Text>login</Text>
-            </Button>
+                <Button style={ {marginTop: 15, backgroundColor:'#bfb393' } }
+                        full
+                        rounded
+                        sucess
+                        onPress={()=>this.loginUser(this.state.email,this.state.password)}
+                >
+                    <Text style={ {color:'white', fontWeight:'bold'} }>Login</Text>
+                </Button>
+                <Button style={ { marginTop: 15, backgroundColor:'#d8d8d8' }}
+                        full
+                        rounded
+                        primary
+                        onPress={() => this.props.navigation.navigate('SignUp')}
+                    // onPress={()=>this.singUpUser(this.state.email,this.state.password)}
+                >
+                    <Text style={ {color:'black'} }>Sign Up</Text>
+                </Button>
 
-            <Button style={{marginTop:10}}
-            full
-            rounded
-            primary
-            onPress={()=>this.singUpUser(this.state.email,this.state.password)}
-            >
-            <Text>Sign Up</Text>
-            </Button>
-
-         </Form>
-       </Container>
+            </Form>
+        </Container>
     );
   }
 }
 export default LoginScreen; 
-

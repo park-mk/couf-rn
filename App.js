@@ -26,7 +26,7 @@ import  CategoryScreen from './screens_category/categoryscreen'
 
 import  TOLScreen from './screens_category/TOLscreen'
 import  KORcate from    './screens_category/KORcate'
-
+import Travelitem from './screens_category/Travel_ex'
 import KORScreen from'./screens_category/KORScreen'
 
 import KOR_explainScreen from'./screens_category/KOR_explain'
@@ -39,6 +39,7 @@ import Area2Screen from'./screens_area/area2'
 import Area3Screen from'./screens_area/area3'
 import Area4Screen from'./screens_area/area4'
 import LoginScreen from'./screens_login/loginscreen'
+import SignUpScreen from './screens_sign/signUpScreen'
 
 /////////////
 import {InteractionManager} from 'react-native';
@@ -122,27 +123,46 @@ class HomeScreen extends React.Component {
 });
   
 const CategoryStack = createStackNavigator({
-         Category: { screen: CategoryScreen },
+         Category: { screen: CategoryScreen   , navigationOptions: {
+          header: null,  
+
+        } },
          TOL:{screen:TOLScreen},
          KORca:{screen:KORcate},
         KOR:{screen:KORScreen},
         KORex:{screen:KOR_explainScreen},
-        TT:{screen:Travellist}
+        TT:{screen:Travellist},
+        TTi:{screen:Travelitem,
+          navigationOptions: {
+            header: null,       // HEADER DELETE
+          }},
       
 });
 
 const AreaStack= createStackNavigator({
-  Area: {screen: AreaScreen},
-  Area1: { screen: Area1Screen},
+  Area: {screen: AreaScreen ,  
+    
+  },
+  Area1: { screen: Area1Screen   },
   Area2: { screen: Area2Screen},
   Area3: { screen: Area3Screen},
   Area4: { screen: Area4Screen},
+  
 
-});
-
+} );
 
 const LoginStack=createStackNavigator({
-        Login1: { screen: LoginScreen },
+        Login1: { screen: LoginScreen 
+        , navigationOptions: {
+          header: null,  
+         
+        
+         
+           // HEADER DELETE
+        } 
+        },
+        SignUp: { screen: SignUpScreen 
+        }
 });
 
 
@@ -150,7 +170,7 @@ const LoginStack=createStackNavigator({
 export default createAppContainer(createBottomTabNavigator(
   {  
        
-    Home: { screen: HomeStack }, 
+    Home: { screen: HomeStack ,}, 
     Category: { screen: CategoryStack }, 
     Area:{ screen: AreaStack},
     Login1:{screen:LoginStack},
@@ -179,6 +199,9 @@ export default createAppContainer(createBottomTabNavigator(
     tabBarOptions: {
       activeTintColor: 'tomato',
       inactiveTintColor: 'gray',
+    },
+    navigationOptions:{
+      tabBarVisible: true
     },
   }
 ));

@@ -7493,6 +7493,11 @@ react-native-easy-grid@0.2.1:
   dependencies:
     lodash "4.17.11"
 
+react-native-elastic-image-slider@^1.0.0:
+  version "1.0.0"
+  resolved "http://r.cnpmjs.org/react-native-elastic-image-slider/download/react-native-elastic-image-slider-1.0.0.tgz#7d4686b2ac404680a3bca6c3365aee9405e471bf"
+  integrity sha1-fUaGsqxARoCjvKbDNlrulAXkcb8=
+
 react-native-elements@^1.1.0:
   version "1.1.0"
   resolved "http://r.cnpmjs.org/react-native-elements/download/react-native-elements-1.1.0.tgz#f99bcda4459a886f3ab4591c684c099d37aedf2b"

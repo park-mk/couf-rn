@@ -20,7 +20,7 @@ class AreaScreen extends React.Component {
          />
         </TouchableOpacity>
         <TouchableOpacity style={{flex :1, marginTop: 30 ,}}
-         >
+        onPress={() => this.props.navigation.navigate('Area2')}>
         
         <Image
         
