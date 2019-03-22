@@ -1,9 +1,9 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": null,
-  "packagerPort": null,
-  "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null
+  "expoServerPort": 19000,
+  "packagerPort": 19001,
+  "packagerPid": 20004,
+  "expoServerNgrokUrl": "https://mi-q58.anonymous.couf.exp.direct",
+  "packagerNgrokUrl": "https://packager.mi-q58.anonymous.couf.exp.direct",
+  "ngrokPid": 20027
 }

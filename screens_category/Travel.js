@@ -144,7 +144,8 @@ usersRef.on('value', (snapshot) => {
                     <View  style={{  flex:1,  flexDirection:'row'}} >
                   <Image  style={styles.icon}
                       
-                  source={require('../assets/mama.png')} />
+                 
+                 />
                   <View  >
                   <Text style={styles.h1}>{item.name}</Text>  
                   <Text style={styles.p} >{item.devision}</Text>  

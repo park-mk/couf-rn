@@ -151,7 +151,7 @@ usersRef.on('value', (snapshot) => {
              
             <ListItem 
              
-            onLongPress={() => this._play()}
+           // onLongPress={() => this._play()}
             onPress={() => {
               /* 1. Navigate to the Details route with params */
               this.props.navigation.navigate('KORex', {
