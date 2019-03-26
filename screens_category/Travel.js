@@ -143,7 +143,7 @@ usersRef.on('value', (snapshot) => {
                title=  {     
                     <View  style={{  flex:1,  flexDirection:'row'}} >
                   <Image  style={styles.icon}
-                      
+                         source={require('../assets/mama.png')} 
                  
                  />
                   <View  >
@@ -161,8 +161,11 @@ usersRef.on('value', (snapshot) => {
                  name : item.name,
                  description :item.description,
                  location:item.location,
+                 time:item.time,
                 topimage : item.topimage,
+                money:item.money,
                  uri : item.uri ,  
+                 date:item.date,
               });
             }}
               

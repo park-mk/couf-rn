@@ -10,7 +10,7 @@ class KOR_explainScreen extends React.Component {
       
       const { sound: soundObject, status } = await Expo.Audio.Sound.createAsync(
           
-          {uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/sound%2Fk1.mp3?alt=media&token=c0c4a00f-cff9-4813-a182-2bba419dae71"},
+          {uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/sound%2F%E1%84%8B%E1%85%A1%E1%86%AB%E1%84%82%E1%85%A7%E1%86%BC%E1%84%92%E1%85%A1%E1%84%89%E1%85%A6%E1%84%8B%E1%85%AD%20(online-audio-converter.com).mp3?alt=media&token=4706fe91-d38d-42fc-b29e-85f0e0a3cd38"},
           { shouldPlay: true }
         );
         // Your sound is playing!

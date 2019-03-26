@@ -1,29 +1,36 @@
 import React from 'react';
-import { Button, View, Text ,ScrollView,Image,Dimensions,ImageBackground,StyleSheet,TouchableHighlight,SafeAreaView} from 'react-native';
+import { Button, View, Text ,ScrollView,Image,Dimensions,ImageBackground,StyleSheet,TouchableHighlight,SafeAreaView,Linking} from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation'; 
 import ImageSlider from 'react-native-image-slider';
+import { Ionicons,MaterialIcons ,Entypo,Feather, FontAwesome } from '@expo/vector-icons';
+import Texteditor from  '../components/Textedit'
 
 class Travelitem extends React.Component {
     render() {
        let dimensions=Dimensions.get("window");
-       let imageheight =Math.round((dimensions.width*9)/16);
+       let imageheight =Math.round((dimensions.width*9)/12);
         let imagewidth =dimensions.width;
       const { navigation } = this.props;
       const name = navigation.getParam('name', 'NO-ID');
       const description = navigation.getParam('description', 'NO-ID');
+      const time=navigation.getParam('time', 'NO-ID');
       const location = navigation.getParam('location', 'NO-ID');
       const topimage = navigation.getParam('topimage', 'NO-ID');
       const uri = navigation.getParam('uri', 'NO-ID');
+      const money =navigation.getParam('money', 'NO-ID');
+      const date =navigation.getParam('date', 'NO-ID');
       const images = [
         'https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/91.jpeg?alt=media&token=7228f5ba-c6a2-4dc1-bac9-e4ee18068c13',
          'https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/WechatIMG190.jpeg?alt=media&token=7c3e77ae-a838-4e0d-80c5-bc923f0eb28e',
         'https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/91.jpeg?alt=media&token=7228f5ba-c6a2-4dc1-bac9-e4ee18068c13',
         'https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/91.jpeg?alt=media&token=7228f5ba-c6a2-4dc1-bac9-e4ee18068c13',
        'https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202019-03-22%20%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB%2010.28.49.png?alt=media&token=1ea8f8cf-ce25-404e-94ed-638004249a96'
-      ];
+      ];  
+       var vivid =JSON.stringify(description);
+       var res = vivid.substring(1, 4);
       return (
         <ScrollView>
-      
+         
 
         <View style={{ flex: 2}}>
         
@@ -36,15 +43,15 @@ class Travelitem extends React.Component {
        
               </View>
           <Text style={{textAlign:'center', fontSize:60,marginTop:30}}> {JSON.stringify(name).replace(/^"(.+)"$/,'$1')}</Text>
-          <Text style={{textAlign:'center', fontSize:30,color:'grey',marginBottom:50}}> [ {JSON.stringify(description).replace(/^"(.+)"$/,'$1')} ]</Text> 
+         
 
           <View style={{marginTop: 0,width:100}}>
           
-  
+          
           </View>
-          <Text style={{marginLeft:20,fontSize:40,marginBottom:6}}> {JSON.stringify(location).replace(/^"(.+)"$/,'$1')}</Text>
-          <Text style={{fontSize:20,marginLeft:10,marginRight:20,fontStyle:'italic'}}> {JSON.stringify(uri.uri1).replace(/^"(.+)"$/,'$1')}</Text>
-       
+          
+          
+          <Texteditor text={vivid}/>
  </View>
         <SafeAreaView style={styles.container}>
         <View style={styles.content1}>
@@ -54,14 +61,15 @@ class Travelitem extends React.Component {
           loopBothSides
           autoPlayWithInterval={3000}
           images={images}
-          style={{height:imageheight+30,width:imagewidth }}
+          style={{height:imageheight,width:imagewidth }}
           customButtons={(position, move) => (
             <View style={styles.buttons}>
+             
               {images.map((image, index) => {
                 return (
                   <TouchableHighlight
                     key={index}
-                    underlayColor="#ccc"
+                    underlayColor="#f00"
                     onPress={() => move(index)}
                     style={styles.button}
                   >
@@ -74,11 +82,33 @@ class Travelitem extends React.Component {
             </View>
           )}
         />
-        <View style={styles.content2}>
-          <Text style={styles.contentText}>Content 2</Text>
-        </View>
+       
       </SafeAreaView>
- 
+      <View  style={{   marginLeft:20, flexDirection:'row',marginRight:20}} >
+      <MaterialIcons name='date-range'  size={30}  color ="grey" /> 
+     <Text style={{textAlign:'left', fontSize:20,color:'grey'}}> {JSON.stringify(date).replace(/^"(.+)"$/,'$1')} </Text> 
+       </View>
+       <View  style={{   marginLeft:23, flexDirection:'row'}} >
+      <Ionicons name='md-time'  size={30}  color ="grey" /> 
+        
+      <Text style={{textAlign:'left', fontSize:20,color:'grey'}}>  {JSON.stringify(time).replace(/^"(.+)"$/,'$1').replace(/,.,/g, '\n')} </Text> 
+       </View>
+       <View  style={{   marginLeft:20, flexDirection:'row'}} >
+      < FontAwesome name='won'  size={30}  color ="grey" /> 
+      <Text style={{textAlign:'left', fontSize:14,color:'grey'}}> {JSON.stringify(money).replace(/^"(.+)"$/,'$1').replace(/,.,/g, '\n')}</Text> 
+       </View>
+       <View  style={{   marginLeft:20, flexDirection:'row'}} >
+      <Entypo name='location'  size={30}  color ="grey" />  
+      <Text   
+        
+           onPress={()=>  Linking.openURL("http://kko.to/3YRYTLyTB").catch((err) => console.error('An error occurred', err))}
+      style={{textAlign:'left', fontSize:20,color:'blue',  }}> [ {JSON.stringify(location).replace(/^"(.+)"$/,'$1')} ]</Text> 
+       </View>
+      
+       <View  style={{   marginLeft:20, flexDirection:'row'}} >
+      <Feather name='info'  size={30}  color ="grey" /> 
+      <Text style={{textAlign:'left', fontSize:20,color:'grey'}}> [ {JSON.stringify(description).replace(/^"(.+)"$/,'$1')} ]</Text> 
+       </View>
         </ScrollView>
       );
     }

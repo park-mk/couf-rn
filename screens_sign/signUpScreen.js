@@ -49,7 +49,7 @@ class SignUpScreen extends React.Component {
             }
             console.log(email, password);
             firebase.auth().createUserAndRetrieveDataWithEmailAndPassword(email.trim(),password).then(function(user){
-                alert("loginsuccess");
+                alert("signin success");
                 console.log(user);
             })
         }
