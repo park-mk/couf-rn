@@ -40,7 +40,7 @@ class Category extends React.Component {
                       
                   style={{flex:3,width :null,height:null,resizeMode:'cover'}}
              /> 
-              <Text style={{flex:1, textAlign: 'center',fontWeight: 'bold' }}>{this.props.name}</Text>
+              <Text style={{flex:1, textAlign: 'center',fontWeight: 'bold',fontStyle: 'italic', }}>{this.props.name}</Text>
             
            
       </TouchableOpacity>

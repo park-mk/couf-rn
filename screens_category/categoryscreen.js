@@ -44,11 +44,11 @@ class CategoryScreen extends React.Component {
              <View  style={{  flex:1,  flexDirection:'row'}}>
                     <Category  imageURI={require('../assets/icon.png' )}
                            name='food'
-                           onPress={()=> this.props.navigation.navigate('TT')}
+                          
                           
                        />
                     <Category  imageURI={require('../assets/icon.png' )}
-                          name='Tips of life'
+                          name='Recommendations on Culture'
                           onPress={()=> this.props.navigation.navigate('TOL')}
                       />
              </View> 
@@ -61,7 +61,7 @@ class CategoryScreen extends React.Component {
                       />
                     <Category  imageURI={require('../assets/icon.png' )}
                            name='Travel'
-                           onPress={()=> this.props.navigation.navigate('RR')}
+                           onPress={()=> this.props.navigation.navigate('TT')}
                       />
              </View>
        { /*****  category sort  each view have 2 category  in row  *******/}

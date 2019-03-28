@@ -25,14 +25,14 @@ import { YellowBox } from 'react-native';
 import  CategoryScreen from './screens_category/categoryscreen'
 
 import  TOLScreen from './screens_category/TOLscreen'
-import  KORcate from    './screens_category/KORcate'
-import Travelitem from './screens_category/Travel_ex'
-import KORScreen from'./screens_category/KORScreen'
+import  KORcate from    './screens_korean/KORcate'
+import Travelitem from './screens_travel/Travel_ex'
+import KORScreen from'./screens_korean/KORScreen'
 
-import KOR_explainScreen from'./screens_category/KOR_explain'
+import KOR_explainScreen from'./screens_korean/KOR_explain'
 import  AreaScreen from'./screens_area/areascreen'
 
-import   Travellist from './screens_category/Travel'
+import   Travellist from './screens_travel/Travel'
 
 import Area1Screen from'./screens_area/area1'
 import Area2Screen from'./screens_area/area2'
@@ -97,13 +97,14 @@ class HomeScreen extends React.Component {
     return (
 
       <SafeAreaView style={{flex:1}}>
-    
+          
           <View style={{ flex: 1}}>
               <Text>Home!</Text>
               <Button
-                  title="Go to Categaaory"
+                  title="Go to "
                   onPress={() => this.props.navigation.navigate('Category')}
               />
+          
           </View>
       </SafeAreaView>
     );

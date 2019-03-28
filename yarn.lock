@@ -7457,7 +7457,7 @@ prompts@^0.1.9:
     kleur "^2.0.1"
     sisteransi "^0.1.1"
 
-prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2:
+prop-types@^15.5.0, prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2:
   version "15.7.2"
   resolved "http://r.cnpmjs.org/prop-types/download/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha1-UsQedbjIfnK52TYOAga5ncv/psU=
@@ -7820,6 +7820,13 @@ react-native-view-shot@2.5.0:
   version "2.5.0"
   resolved "http://r.cnpmjs.org/react-native-view-shot/download/react-native-view-shot-2.5.0.tgz#428a997f470d3148d0067c5b46abd988ef1aa4c0"
   integrity sha1-QoqZf0cNMUjQBnxbRqvZiO8apMA=
+
+react-native-youtube@^1.1.0:
+  version "1.1.0"
+  resolved "http://r.cnpmjs.org/react-native-youtube/download/react-native-youtube-1.1.0.tgz#efa30c4f7385d1951af643188e30760efd6c0784"
+  integrity sha1-76MMT3OF0ZUa9kMYjjB2Dv1sB4Q=
+  dependencies:
+    prop-types "^15.5.0"
 
 "react-native@https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz":
   version "0.57.1"

@@ -1,9 +1,9 @@
 import React from 'react';
-import { Button, Text, View ,Image,Dimensions,TouchableOpacity,Linking} from 'react-native';
+import { Button, Text, View ,Image,TouchableOpacity,Linking} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { createStackNavigator, createBottomTabNavigator, createAppContainer ,StyleSheet} from 'react-navigation';
 import { withNavigation } from 'react-navigation';
-
+import Sorttype from './Sortype'
 
 
 
@@ -13,25 +13,11 @@ class Texteditor extends React.Component {
 
 
 
-    renderFooter = () => {
-     
-        return (
-          <View
-           
-          >
-          
-           
-           
-    
-          </View>
-        );
-      };
-
       
      
 
   render() { 
-    let dimensions=Dimensions.get("window");
+   
    
     var number_of_pagraph=0;
     var sentence= this.props.text.substring(1,this.props.text.length);
@@ -47,14 +33,15 @@ class Texteditor extends React.Component {
             fontstyle: 'normal',
             textDecorationLine: 'normal',
             uri: "http",
-            imageheight :0,
-            imagewidth :0,
+            urimove:"http",
+            type:0,
             
      }
     var term= sentence.indexOf("/*/");
     if(sentence.substring(term+3,term+4)=='0'){
           
         info.text=" ";
+        info.type=0;
     }
     if(sentence.substring(term+3,term+4)=='1'){
      
@@ -74,20 +61,22 @@ class Texteditor extends React.Component {
         if (sentence.substring(term+6,term+7)=='1')
         info.textDecorationLine= "underline";
 
-         
+        info.type=1;
        }
     if(sentence.substring(term+3,term+4)=='2'){
-        info.imageheight =Math.round((dimensions.width*9)/16);
-        info.imagewidth =dimensions.width;
-        info.uri=sentence.substring(0,term);
        
+        info.uri=sentence.substring(0,term);
+        info.type=2;
       
         }
+        if(sentence.substring(term+3,term+4)=='3'){
+            
+            info.uri=sentence.substring(0,term);
+            info.type=3;
+          
+            }
 
-        else {
-            imageheight =0;
-            imagewidth =0;
-        }
+        
         
     article.push(info);
     sentence=sentence.substring(term+10,sentence.length);
@@ -99,24 +88,29 @@ class Texteditor extends React.Component {
      
     return (
         
-      <View >   
-          <Text>LIST</Text>
-         
+      <View >      
+         <Text>a</Text>
           { article.map((item, key)=>(  
              <View key={key}>
-         <Text  style={{fontSize:item.size ,fontWeight:item.fontweight, fontStyle:item.fontstyle}} > {item.text}</Text>
-         
+            
+           < Sorttype   typeof={item.type}   size={item.size} fontweight={item.fontweight} 
+                        fontstyle={item.fontstyle}     text={item.text}  
+                        uri={item.uri}
+          />  
+             
+    {/*     <Text  style={{fontSize:item.size ,fontWeight:item.fontweight, fontStyle:item.fontstyle}} > {item.text}</Text>
+             
          <Image
           style={{height:item.imageheight,width:item.imagewidth }}
           source={{uri:item.uri.toString()}}
         />
+   */}
          
             </View>
          )  
        
          )}
          
-        <Text>LIST</Text>
       </View>
       
     );
