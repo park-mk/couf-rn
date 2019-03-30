@@ -30,4 +30,5 @@
     "jest-expo": "^32.0.0"
   },
   "private": true
+  
 }

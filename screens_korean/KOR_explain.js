@@ -26,6 +26,7 @@ class KOR_explainScreen extends React.Component {
       const description = navigation.getParam('description', 'NO-ID');
       const eng  = navigation.getParam('eng', 'NO-ID');
       const pro = navigation.getParam('pro', 'NO-ID');
+     
       return (
         <ScrollView style={{ flex: 1 }}>
            

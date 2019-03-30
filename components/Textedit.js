@@ -35,6 +35,7 @@ class Texteditor extends React.Component {
             uri: "http",
             urimove:"http",
             type:0,
+            margin:0,
             
      }
     var term= sentence.indexOf("/*/");
@@ -50,6 +51,10 @@ class Texteditor extends React.Component {
         var number = parseInt(sentence.substring(term+7,term+9) , 10 ) ;
         info.size=number;
          
+        var number1 = parseInt(sentence.substring(term+9,term+11) , 10 ) ;
+        info.margin=number1; 
+        
+
        if (sentence.substring(term+4,term+5)=='1'){
         info.fontweight="bold";
         
@@ -79,7 +84,7 @@ class Texteditor extends React.Component {
         
         
     article.push(info);
-    sentence=sentence.substring(term+10,sentence.length);
+    sentence=sentence.substring(term+12,sentence.length);
     }
 
      
@@ -95,7 +100,7 @@ class Texteditor extends React.Component {
             
            < Sorttype   typeof={item.type}   size={item.size} fontweight={item.fontweight} 
                         fontstyle={item.fontstyle}     text={item.text}  
-                        uri={item.uri}
+                        uri={item.uri}   margin={item.margin}
           />  
              
     {/*     <Text  style={{fontSize:item.size ,fontWeight:item.fontweight, fontStyle:item.fontstyle}} > {item.text}</Text>

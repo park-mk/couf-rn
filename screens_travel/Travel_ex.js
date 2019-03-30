@@ -20,6 +20,7 @@ class Travelitem extends React.Component {
       const money =navigation.getParam('money', 'NO-ID');
       const date =navigation.getParam('date', 'NO-ID');
       const imagelist=navigation.getParam('imagelist', 'NO-ID');
+      const tips = navigation.getParam('tips', 'NO-ID');
       var number_of_pagraph=0; 
       var sentence= imagelist.substring(1,imagelist.length);
      
@@ -54,7 +55,7 @@ class Travelitem extends React.Component {
         <View >
        
               </View>
-          <Text style={{textAlign:'center', fontSize:60,marginTop:30}}> {JSON.stringify(name).replace(/^"(.+)"$/,'$1')}</Text>
+          <Text style={{textAlign:'center', fontSize:30,marginTop:30}}> {JSON.stringify(name).replace(/^"(.+)"$/,'$1')}</Text>
          
 
           <View style={{marginTop: 0,width:100}}>
@@ -119,7 +120,7 @@ class Travelitem extends React.Component {
       
        <View  style={{   marginLeft:20, flexDirection:'row'}} >
       <Feather name='info'  size={30}  color ="grey" /> 
-      <Text style={{textAlign:'left', fontSize:20,color:'grey'}}> [ {JSON.stringify(description).replace(/^"(.+)"$/,'$1')} ]</Text> 
+      <Text style={{textAlign:'left', fontSize:20,color:'grey'}}> [ {JSON.stringify(tips).replace(/^"(.+)"$/,'$1')} ]</Text> 
        </View>
         </ScrollView>
       );

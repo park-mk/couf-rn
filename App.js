@@ -99,12 +99,15 @@ class HomeScreen extends React.Component {
       <SafeAreaView style={{flex:1}}>
           
           <View style={{ flex: 1}}>
-              <Text>Home!</Text>
+            
               <Button
                   title="Go to "
                   onPress={() => this.props.navigation.navigate('Category')}
               />
-          
+             
+            
+             <Text     >Home!</Text>
+
           </View>
       </SafeAreaView>
     );

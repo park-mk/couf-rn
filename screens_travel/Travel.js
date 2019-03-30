@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, FlatList, ActivityIndicator,Button,StyleSheet,Image,Text} from "react-native";
+import { View, FlatList, ActivityIndicator,Button,StyleSheet,Image,Text,ImageBackground} from "react-native";
 import { List, ListItem, SearchBar } from "react-native-elements";
 import  firebase,{storage}  from "../firebase";
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
@@ -133,13 +133,19 @@ usersRef.on('value', (snapshot) => {
   render() {
      
     return (
-      
-        <FlatList
+      <View>
+   
+    <FlatList 
           data={this.state.datasource}
           
           renderItem={({ item }) => (
-              
+             
             <ListItem  
+             linearGradientProps={{
+    colors: ['#a764db', '#ead9f7'],
+    start: [1, 0],
+    end: [0.2, 0],
+  }}
                title=  {     
                     <View  style={{  flex:1,  flexDirection:'row'}} >
                   <Image  style={styles.icon}
@@ -150,11 +156,15 @@ usersRef.on('value', (snapshot) => {
                   <Text style={styles.h1}>{item.name}</Text>  
                   <Text style={styles.p} >{item.devision}</Text>  
                   <Text style={styles.price} >{item.location}</Text>  
+                
+                  </View>
+                 
+                  </View>
+                
                   
-                  </View>
-                  </View>
           }
-           
+         
+            
             onPress={() => {
              
               this.props.navigation.navigate('TTi', {
@@ -167,8 +177,11 @@ usersRef.on('value', (snapshot) => {
                  uri : item.uri ,  
                  date:item.date,
                  imagelist:item.images,
+                 tips:item.tips,
               });
-            }}
+            }
+          
+          }
               
              // avatar={{ uri: item.picture.thumbnail }}
               containerStyle={{ borderBottomWidth: 3 }}
@@ -186,7 +199,7 @@ usersRef.on('value', (snapshot) => {
           onEndReached={this.handleLoadMore}
           onEndReachedThreshold={40}
         />
-      
+       </View>
     );
   }
 }
@@ -215,7 +228,7 @@ const styles = StyleSheet.create({
     
   },
   h1: {
-    fontSize: 24,
+    fontSize: 15,
     
     fontWeight: 'bold',
     textAlign: 'center',
@@ -228,6 +241,17 @@ const styles = StyleSheet.create({
     //textAlign: 'center',
     color: 'grey',
   },
+  backgroundImage:{
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    width: null,
+    height: null,
+    opacity:0.5,
+    resizeMode: 'cover',
+},
 })
 
 
