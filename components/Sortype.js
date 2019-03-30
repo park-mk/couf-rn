@@ -22,7 +22,7 @@ class Sorttype extends React.Component {
      
         return (
            <View>
-               <Text  style={{fontSize:this.props.size ,fontWeight:this.props.fontweight, fontStyle:this.props.fontstyle}} > {this.props.text}</Text>
+               <Text  style={{fontSize:this.props.size , lineHeight: 30,fontWeight:this.props.fontweight, fontStyle:this.props.fontstyle}} > {this.props.text}</Text>
           </View>
          
         );}

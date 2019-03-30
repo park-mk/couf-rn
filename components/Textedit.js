@@ -89,7 +89,7 @@ class Texteditor extends React.Component {
     return (
         
       <View >      
-         <Text>a</Text>
+        
           { article.map((item, key)=>(  
              <View key={key}>
             
