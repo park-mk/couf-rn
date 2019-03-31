@@ -2,8 +2,8 @@
   "expoServerPort": 19000,
   "expoServerNgrokUrl": "https://3g-m5m.anonymous.couf-rn.exp.direct",
   "packagerNgrokUrl": "https://packager.3g-m5m.anonymous.couf-rn.exp.direct",
-  "ngrokPid": 5444,
+  "ngrokPid": 14424,
   "packagerPort": 19001,
-  "packagerPid": 3360,
+  "packagerPid": 6160,
   "devToolsPort": 19002
 }

@@ -14,7 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: EPERM: operation not permitted, unlink 'C:\Workspace\couf-rn\node_modules\.cache\@babel\register'
+  Error: EPERM: operation not permitted, unlink 'C:\Workspace\initProject\couf-rn\node_modules\.cache\@babel\register'
 
 npm manifest: 
   {
