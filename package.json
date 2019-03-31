@@ -23,7 +23,8 @@
     "react-native-image-slider": "^2.0.3",
     "react-native-youtube": "^1.1.0",
     "react-navigation": "^3.0.9",
-    "watchman": "^1.0.0"
+    "watchman": "^1.0.0",
+    "styled-components": "latest"
   },
   "devDependencies": {
     "babel-preset-expo": "^5.0.0",
