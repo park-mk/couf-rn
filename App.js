@@ -40,6 +40,13 @@ import Area3Screen from'./screens_area/area3'
 import Area4Screen from'./screens_area/area4'
 import LoginScreen from'./screens_login/loginscreen'
 import SignUpScreen from './screens_sign/signUpScreen'
+import SignUp1 from './screens_sign/sign1'
+import SignUp2 from './screens_sign/sign2'
+
+import Profile from './screens_login/afterloginscreen'
+import Loginc from './screens_login/beforelogin'
+import SuggestionScreen from './screens_suggestion/suggestionScreen'
+import SuggestionModify from './screens_suggestion/suggestionModify'
 
 /////////////
 import {InteractionManager} from 'react-native';
@@ -156,17 +163,32 @@ const AreaStack= createStackNavigator({
 } );
 
 const LoginStack=createStackNavigator({
+  Loginc: { screen: Loginc  
+  },
         Login1: { screen: LoginScreen 
         , navigationOptions: {
           header: null,  
          
         
          
-           // HEADER DELETE
+          
         } 
+         
         },
-        SignUp: { screen: SignUpScreen 
+       
+        SignUp: { screen: SignUpScreen  
+        },
+        SignUp1: { screen: SignUp1
+        },
+        SignUp2: { screen: SignUp2
+        },
+        Profile: { screen: Profile
         }
+});
+
+const SuggestionStack=createStackNavigator({
+    SuggestionScreen: { screen: SuggestionScreen},
+    SuggestionModify: { screen: SuggestionModify},
 });
 
 
@@ -178,7 +200,8 @@ export default createAppContainer(createBottomTabNavigator(
     Category: { screen: CategoryStack }, 
     Area:{ screen: AreaStack},
     Login1:{screen:LoginStack},
-    
+    Suggestion:{screen:SuggestionStack},
+
   },
 {
    defaultNavigationOptions: ({ navigation }) => ({
@@ -197,6 +220,9 @@ export default createAppContainer(createBottomTabNavigator(
            if (routeName === 'Login1') {
           iconName = `ios-contact`;
            } 
+           if (routeName === 'Suggestion') {
+          iconName = `ios-contact`;
+           }
         return <Ionicons name={iconName} size={25} color={tintColor} />;
       },
     }),

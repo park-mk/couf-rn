@@ -2,6 +2,7 @@ import React from 'react';
 import {  Text, View ,StyleSheet, Image} from 'react-native';
 import  firebase from "../firebase";
 import{FormLabel,FormInput} from 'react-native-elements'
+import { createStackNavigator, createBottomTabNavigator, createAppContainer,withNavigation } from 'react-navigation';
 import {Container,Content,Header,Form,Input,Item,Label,Button} from 'native-base'
 
 const wrapper = {
@@ -79,6 +80,7 @@ const styles = StyleSheet.create({
     try{
       firebase.auth().signInWithEmailAndPassword(email,password).then(function(user){
         alert("loginsuccess")
+      
         
       })
     }
@@ -86,7 +88,13 @@ const styles = StyleSheet.create({
       console.log(error.toString())
     }
   }
+
+
+
+ 
+
   render() {
+    const { navigation } = this.props;
     return (
         <Container style={styles.wrapper}>
             <Image style={styles.backgroundImage} source={require('../assets/images/soldier1.jpg')} />
@@ -118,6 +126,7 @@ const styles = StyleSheet.create({
                         rounded
                         sucess
                         onPress={()=>this.loginUser(this.state.email,this.state.password)}
+                        onPress={() => this.props.navigation.navigate('Profile')}
                 >
                     <Text style={ {color:'white', fontWeight:'bold'} }>Login</Text>
                 </Button>
@@ -130,10 +139,12 @@ const styles = StyleSheet.create({
                 >
                     <Text style={ {color:'black'} }>Sign Up</Text>
                 </Button>
+              
 
             </Form>
         </Container>
     );
   }
 }
-export default LoginScreen; 
+export default withNavigation(LoginScreen);
+

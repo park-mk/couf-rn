@@ -65,9 +65,7 @@ class KORScreen extends React.Component {
     
 usersRef.on('value', (snapshot) => {
     
-    for(let i=0;i<2;i++){
-        
-    }
+   
      var m=snapshot.val() 
      var keys= Object.values(m);
   this.setState({
