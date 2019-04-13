@@ -19,14 +19,12 @@ class SuggestionScreen extends React.Component {
     createData=(suggestion)=> {
         let userId = firebase.auth().currentUser.uid;
         let newPostKey = firebase.database().ref().child('suggestion').push().key;
-        console.log(newPostKey);
         firebase.database().ref('suggestion/'+ newPostKey).set({
             content: suggestion,
             user: userId,
             uid: newPostKey,
             useremail:firebase.auth().currentUser.email,
-            
-
+            timestamp:Date.now(),
         });
     }
     deleteData= (key) => {
@@ -40,9 +38,12 @@ class SuggestionScreen extends React.Component {
             })
         }.bind(this));
     }
+    getDate = (timestamp) => {
 
+        let date = new Date(timestamp);
+        return `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}`;
+    }
     render(url) {
-        const {navigation} =this.props.navigation;
         return (
             <View>
                 
@@ -70,22 +71,23 @@ class SuggestionScreen extends React.Component {
                     <SuggestionList >
                         <TitleHeader>
                             <Title>
-                                <Name>{firebase.auth().currentUser.email}</Name>
-                                <Date>2020.03.31</Date>
+                                <Name>{item.useremail}</Name>
+                                <DateForm>{this.getDate(item.timestamp)}</DateForm>
                             </Title>
-                            <Buttons>
-                                <Button type="clear" buttonStyle={ { width: 30 } }
-                                        icon={ <Icon name="trash" size={15}  color="black" /> }
-                                        onPress={()=>this.deleteData(item.uid)}
-                                />
-
-                                <Button type="clear" buttonStyle={ { width: 30 } }
-                                        icon={<Icon name="edit" size={15} color="black" /> }
-                                        onPress={() => this.props.navigation.navigate('SuggestionModify', {
-                                            item: item
-                                        })}
-                                />
-                            </Buttons>
+                            {
+                                item.useremail !== firebase.auth().currentUser.email ? <Text> </Text> : <Buttons>
+                                    <Button type="clear" buttonStyle={{width: 30}}
+                                            icon={<Icon name="trash" size={15} color="black"/>}
+                                            onPress={() => this.deleteData(item.uid)}
+                                    />
+                                    <Button type="clear" buttonStyle={ { width: 30 } }
+                                            icon={<Icon name="edit" size={15} color="black" /> }
+                                            onPress={() => this.props.navigation.navigate('SuggestionModify', {
+                                                item: item
+                                            })}
+                                    />
+                                </Buttons>
+                            }
                         </TitleHeader>
                         {
                             this.state.modify.uid === item.uid ? <EditInput
@@ -137,7 +139,7 @@ const Buttons = styled.View`
 const Name = styled.Text`
     font-weight : 600;
 `
-const Date = styled.Text`
+const DateForm = styled.Text`
     font-size: 12;
     color: #ccc;
 `
