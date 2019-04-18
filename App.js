@@ -11,6 +11,7 @@ import { Button,
    Platform,
    StatusBar,
    ScrollView,
+   ART,
 } from 'react-native';
 
 import { createStackNavigator, 
@@ -38,6 +39,9 @@ import Area1Screen from'./screens_area/area1'
 import Area2Screen from'./screens_area/area2'
 import Area3Screen from'./screens_area/area3'
 import Area4Screen from'./screens_area/area4'
+import TMC from './screens_bus/area1_tmc'
+import YS from './screens_bus/area1_yongsan'
+import Red from './screens_bus/area3_red'
 import LoginScreen from'./screens_login/loginscreen'
 import SignUpScreen from './screens_sign/signUpScreen'
 import SignUp1 from './screens_sign/sign1'
@@ -54,6 +58,8 @@ import {InteractionManager} from 'react-native';
 const _setTimeout = global.setTimeout;
 const _clearTimeout = global.clearTimeout;
 const MAX_TIMER_DURATION_MS = 60 * 1000;
+
+
 if (Platform.OS === 'android') {
 // Work around issue `Setting a timer for long time`
 // see: https://github.com/firebase/firebase-js-sdk/issues/97
@@ -101,20 +107,30 @@ YellowBox.ignoreWarnings(['Remote debugger']);
 //YellowBox.ignoreWarnings(['Failed prop']);
 class HomeScreen extends React.Component {
   render() {
+  
     return (
+     
+    
+ 
 
       <SafeAreaView style={{flex:1}}>
+           <View style={{ flex: 1}}>
+             
           
-          <View style={{ flex: 1}}>
             
               <Button
                   title="Go to "
                   onPress={() => this.props.navigation.navigate('Category')}
               />
-             
             
-             <Text     >Home!</Text>
-
+            
+             <Text     >Hom</Text>
+            
+        
+             <Button
+                  title="Go to "
+                  onPress={() => this.props.navigation.navigate('YS')}
+              />
           </View>
       </SafeAreaView>
     );
@@ -158,6 +174,9 @@ const AreaStack= createStackNavigator({
   Area2: { screen: Area2Screen},
   Area3: { screen: Area3Screen},
   Area4: { screen: Area4Screen},
+  TMC:{screen:TMC},
+  YS:{screen:YS},
+  Red:{screen:Red},
   
 
 } );
