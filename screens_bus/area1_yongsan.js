@@ -23,7 +23,8 @@ class YS extends React.Component {
           
             xvalue1:new Animated.Value(0),
           
-            
+            timeofcircle:24,
+            circlelength:1584,
             time:Date(Date.now()).toString(),
             currentTime: null,
              currentDay: null ,
@@ -105,7 +106,7 @@ class YS extends React.Component {
 
 /////////// bus1  
        
-             for(let i=0;i<18;i++){
+             for(let i=0;i<17;i++){
                 if(number>=this.state.bus1h[i]&&number<=this.state.bus1h[i]+25){
                        
                     var h= (hour-parseInt(this.state.bus1h[i]/100));
@@ -113,7 +114,7 @@ class YS extends React.Component {
                      
                     
                     var long=h*60+m+seconds/60
-                     this.state.yvalue1=((h+m+(seconds/60))/23)*1584;    
+                     this.state.yvalue1=((h+m+(seconds/60))/this.state.timeofcircle)*this.state.circlelength;    
                       this.state.xvalue1=20; 
                       break;
                 }
@@ -157,7 +158,7 @@ class YS extends React.Component {
                               
                              
                              var long=h*60+m+seconds/60
-                              this.state.yvalue1=((h+m+(seconds/60))/23)*1584;
+                              this.state.yvalue1=((h+m+(seconds/60))/this.state.timeofcircle)*this.state.circlelength;
                              
                                this.state.xvalue1=0; 
                              

@@ -1,7 +1,7 @@
 import React from 'react';
-import {Image, Text, TextInput, View, FlatList} from 'react-native';
+import {Image, Text, TextInput, View, FlatList, ButtonGroup} from 'react-native';
 import styled from 'styled-components'
-import { Button } from 'react-native-elements'
+import { List, ListItem, Button, Avatar  } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import firebase from "../firebase";
 
@@ -10,23 +10,25 @@ class SuggestionScreen extends React.Component {
     constructor(props){
         super(props)
         this.state=({
+            page:0,
+            listSize:10,
             suggestion:'',
             lists:[],
             modify:{},
+            isFetching: true,
         })
         this.getData();
     }
     createData=(suggestion)=> {
+        this.setState({suggestion:  ''});
         let userId = firebase.auth().currentUser.uid;
         let newPostKey = firebase.database().ref().child('suggestion').push().key;
-        console.log(newPostKey);
         firebase.database().ref('suggestion/'+ newPostKey).set({
             content: suggestion,
             user: userId,
             uid: newPostKey,
             useremail:firebase.auth().currentUser.email,
-            
-
+            timestamp:Date.now(),
         });
     }
     deleteData= (key) => {
@@ -36,66 +38,97 @@ class SuggestionScreen extends React.Component {
     getData = () => {
         firebase.database().ref('suggestion').on('value', function(snapshot) {
             this.setState({
-                lists:  Object.values(snapshot.val())
+                lists:  Object.values(snapshot.val()),
+                isFetching: false,
             })
         }.bind(this));
     }
+    getDate = (timestamp) => {
 
+        let date = new Date(timestamp);
+        return `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}`;
+    }
+    onRefresh() {
+        console.log('refreshing');
+        this.setState({ isFetching: true }, function() {
+            this.getData()
+        });
+    }
+    onEndReached = () => {
+        firebase.database().ref('suggestion').limitToFirst(1).on('value', function(snapshot) {
+            console.log(snapshot);
+        });
+    };
     render(url) {
-        const {navigation} =this.props.navigation;
         return (
-            <View>
-                
+            <View style={{flex:1}}>
                 <Form>
                     <SuggestionInput
                         {...this.props}
+                        multiline = {true}
                         editable = {true}
                         onChangeText={(suggestion) => this.setState({suggestion})}
                         value={this.state.suggestion}
                         placeholder='Input your suggestion'
                     />
-                    <Button buttonStyle={ { width: 50 } } icon={
-                        <Icon
-                            name="check"
-                            size={15}
-                            color="white"
-                        /> }
-                        onPress={()=>this.createData(this.state.suggestion)}
-                    />
+                    <Buttons style={{alignSelf: 'flex-end'}}>
+                        <Button type="clear" buttonStyle={{width: 50, marginRight: 10}}
+                                icon={<Icon name="close" size={15} color="grey"/>}
+                                onPress={() => this.deleteData(item.uid)}
+                        />
+                        <Button type="solid" buttonStyle={{width: 50}}
+                                icon={<Icon name="check" size={15} color="white"/>}
+                                onPress={()=>this.createData(this.state.suggestion)}
+                        />
+                    </Buttons>
                 </Form>
                 <FlatList data={this.state.lists}
-                          extraData={this.state}
+                          onRefresh={() => this.onRefresh()}
+                          refreshing={this.state.isFetching}
                           keyExtractor={item => item.uid}
+                          ListEmptyComponent={<Text>Empty</Text>}
+/*
+                          onEndReachedThreshold={1}
+                          onEndReached={this.onEndReached}
+*/
                           renderItem={({item}) => (
-                    <SuggestionList >
-                        <TitleHeader>
-                            <Title>
-                                <Name>{firebase.auth().currentUser.email}</Name>
-                                <Date>2020.03.31</Date>
-                            </Title>
-                            <Buttons>
-                                <Button type="clear" buttonStyle={ { width: 30 } }
-                                        icon={ <Icon name="trash" size={15}  color="black" /> }
-                                        onPress={()=>this.deleteData(item.uid)}
-                                />
+                              <ListItem
+                                  key={item.uid}
+                                  title={
+                                      <View>
+                                          <Text>{item.useremail}</Text>
+                                          <DateForm>{this.getDate(item.timestamp)}</DateForm>
+                                      </View>
+                                  }
+                                  leftAvatar={
+                                      <Avatar
+                                          containerStyle={{alignSelf: 'flex-start'}}
+                                          rounded
+                                          source={{
+                                              uri:'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+                                          }}
+                                      />
+                                  }
+                                  subtitle={
+                                      <Content>{item.content}</Content>
+                                  }
+                                  rightElement={
+                                      item.useremail !== firebase.auth().currentUser.email ? <Text> </Text> : <Buttons style={{alignSelf: 'flex-start'}}>
+                                          <Button type="clear" buttonStyle={{width: 30}}
+                                                  icon={<Icon name="trash" size={15} color="black"/>}
+                                                  onPress={() => this.deleteData(item.uid)}
+                                          />
+                                          <Button type="clear" buttonStyle={ { width: 30 } }
+                                                  icon={<Icon name="edit" size={15} color="black" /> }
+                                                  onPress={() => this.props.navigation.navigate('SuggestionModify', {
+                                                      item: item
+                                                  })}
+                                          />
+                                      </Buttons>
+                                  }
+                              />
 
-                                <Button type="clear" buttonStyle={ { width: 30 } }
-                                        icon={<Icon name="edit" size={15} color="black" /> }
-                                        onPress={() => this.props.navigation.navigate('SuggestionModify', {
-                                            item: item
-                                        })}
-                                />
-                            </Buttons>
-                        </TitleHeader>
-                        {
-                            this.state.modify.uid === item.uid ? <EditInput
-                                editable = {true}
-                                onChangeText={(suggestion) => this.setState({suggestion})}
-                                value={item.content}
-                            /> : <Content>{item.content}</Content>
-                        }
-                    </SuggestionList>
-                )}/>
+                          )}/>
             </View>
         );
     }
@@ -104,40 +137,17 @@ class SuggestionScreen extends React.Component {
 const Form = styled.View`
   padding : 10px
   margin-bottom: 10px;
-  display: flex;
-  flex-direction: row;
 `
 const SuggestionInput = styled.TextInput`
-  flex:1;
-  margin-right:5px;
   border-bottom-width: 3px;
   border-bottom-color: green;
+  margin-bottom: 5px;
 `
-const EditInput = styled.TextInput`
-    border:1px solid blue;
-`
-const SuggestionList = styled.View`
-  border:1px solid #ccc;
-  margin: 10px;
-  padding: 10px 0;
-`
-
-const TitleHeader = styled.View`
-  display:flex;
-  flex-direction: row;
-`
-const Title = styled.View`
-  flex:1;
-`
-
 const Buttons = styled.View`
   display:flex;
   flex-direction: row;
 `
-const Name = styled.Text`
-    font-weight : 600;
-`
-const Date = styled.Text`
+const DateForm = styled.Text`
     font-size: 12;
     color: #ccc;
 `
