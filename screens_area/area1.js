@@ -17,7 +17,7 @@ class Area1Screen extends React.Component {
          />
         </TouchableOpacity>
         <TouchableOpacity style={{ flex :3, marginTop: 0 ,}}
-         onPress={() => this.props.navigation.navigate('Area2')}>
+         onPress={() => this.props.navigation.navigate('TMC')}>
         
         <Image  
           
