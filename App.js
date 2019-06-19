@@ -12,6 +12,7 @@ import { Button,
    StatusBar,
    ScrollView,
    ART,
+   ActivityIndicator, 
 } from 'react-native';
 
 import { createStackNavigator, 
@@ -40,8 +41,12 @@ import Area2Screen from'./screens_area/area2'
 import Area3Screen from'./screens_area/area3'
 import Area4Screen from'./screens_area/area4'
 import TMC from './screens_bus/area1_tmc'
+import H221 from './screens_bus/area1_h221'
 import YS from './screens_bus/area1_yongsan'
+
 import Red from './screens_bus/area3_red'
+import GREEN from './screens_bus/area3_green'
+import BLUE from './screens_bus/area3_blue'
 import LoginScreen from'./screens_login/loginscreen'
 import SignUpScreen from './screens_sign/signUpScreen'
 import SignUp1 from './screens_sign/sign1'
@@ -52,6 +57,8 @@ import Loginc from './screens_login/beforelogin'
 import SuggestionScreen from './screens_suggestion/suggestionScreen'
 import SuggestionModify from './screens_suggestion/suggestionModify'
 
+
+import {Font} from 'expo'
 /////////////
 import {InteractionManager} from 'react-native';
 
@@ -106,31 +113,46 @@ if (Platform.OS === 'android') {
 YellowBox.ignoreWarnings(['Remote debugger']);
 //YellowBox.ignoreWarnings(['Failed prop']);
 class HomeScreen extends React.Component {
+   constructor(){
+     super()
+     this.state={
+       fontLoaded:false
+     }
+   }
+  
+   
+   async componentDidMount(){
+    await Font.loadAsync({
+
+       'Raley-balck':require('./assets/fonts/33676382891.ttf'),
+       
+     });
+     this.setState({fontLoaded:true})
+   }
   render() {
   
     return (
-     
-    
- 
-
       <SafeAreaView style={{flex:1}}>
            <View style={{ flex: 1}}>
-             
-          
             
+          
+             
               <Button
                   title="Go to "
                   onPress={() => this.props.navigation.navigate('Category')}
               />
+              {this.state.fontLoaded?(
             
-            
-             <Text     >Hom</Text>
-            
-        
+             <Text   style={{fontFamily:'Raley-balck'}}  >Home and also for checking the font</Text>
+              ) 
+              :( <ActivityIndicator size="large"      />
+              )}
              <Button
                   title="Go to "
-                  onPress={() => this.props.navigation.navigate('YS')}
+                  onPress={() => this.props.navigation.navigate('H221')}
               />
+            
+      
           </View>
       </SafeAreaView>
     );
@@ -176,7 +198,10 @@ const AreaStack= createStackNavigator({
   Area4: { screen: Area4Screen},
   TMC:{screen:TMC},
   YS:{screen:YS},
+  H221:{screen:H221},
   Red:{screen:Red},
+  GREEN:{screen:GREEN},
+  BLUE:{screen:BLUE},
   
 
 } );

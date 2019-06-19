@@ -5,23 +5,22 @@ import { createStackNavigator, createBottomTabNavigator, createAppContainer } fr
 import Circle from '../components/circle'
 
 
-
-
-
-
-
 const {Surface, Shape, Path} = ART;
 
 class Red extends React.Component {
 
     constructor(props) {
-        super(props);
-    
+        super(props);    
         this.state={
-            timeofcircle:66,
-            circlelength:4356,
+            timeofcircle:66,   // 32+34 =66  일분을 길이 66으로 치환 한다 
+            // 한바퀴 돌때 걸리는 시간 
+            circlelength:4356,//  한바퀴 다돌려면 66 분 걸림 66 분 * 66 길이 즉 총길이는 4356임 
+            //  한바퀴 총길이 
             springVal: new Animated.Value(1),
             moveAnimation : new Animated.ValueXY({ x: 10, y: 450 }),
+
+
+
             yvalue1:new Animated.Value(0),
             yvalue2:new Animated.Value(0),
             yvalue3:new Animated.Value(0),
@@ -51,6 +50,11 @@ class Red extends React.Component {
              bus4:[100,615,730,845,1000,1115,1230,1345,1500,1615,1730,1845,2000,2115,2230,2345],
              bus5:[630,745,900,1015,1130,1245,1400,1515,1630,1745,1900,2015,2130,2245,2400],
              order:[15,30,45,100,530,545,600,615,630,645,700,715,730,745,800,815,830,845,900,915,930,945,1000,1015,1030,1045,1100,1115,1130,1145,1200,1215,1230,1245,1300,1315,1330,1345,1400,1415,1430,1445,1500,1515,1530,1545,1600,1615,1630,1645,1700,1715,1730,1745,1800,1815,1830,1845,1900,1915,1930,1945,2000,2015,2030,2045,2100,2115,2130,2145,2200,2215,2230,2245,2300,2315,2330,2345,2400],
+             bus1h:[30,800,930,1100,1230,1400,1530,1700,1830,2000,2130,2300],
+             bus2h:[100,830,1000,1130,1300,1430,1600,1730,1900,2030,2200,2330],
+             bus3h:[730,900,1030,1200,1330,1500,1630,1800,1930,2100,2230,2400],
+             orderh:[30,100,730,800,830,900,930,1000,1030,1100,1130,1200,1230,1300,1330,1400,1430,1500,1530,1600,1630,1700,1730,1800,1830,1900,1930,2000,2030,2100,2130,2200,2230,2300,2330,2400],
+
             
              
               nextbus:"loading....",
@@ -63,32 +67,12 @@ class Red extends React.Component {
 
     Animated.spring(this.state.springVal, {
         toValue: 1,
-
         friction:1,
       }).start(); 
-     
-   }
-
-   _move=( )=>{
-         
-     
-    Animated.timing(this.state.yvalue1,{
-      
-         toValue:700,
-         duration:30000,   
-
-    }
-        ).start(); 
-
-
    }
 
    _check=()=>{
      
-       if(this.state.yvalue1._value>600){
-       this.state.xvalue._value=100;
-       } 
-       
        let hour = new Date().getHours();
        let minutes = new Date().getMinutes();
        let seconds = new Date().getSeconds();
@@ -97,10 +81,9 @@ class Red extends React.Component {
         ////////// next bus  weekend
           if(this.state.day==false){
            
-
-       var number=hour*100+minutes;
+       var number=hour*100+minutes; // 왜냐면 시간을 6시반 이면 630 이렇게 표현 하니까  number 사실상 시간의 백단위 표기법 
        var next;
-         for(let i =0;i<82;i++){
+         for(let i =0;i<35;i++){
               if(number>this.state.orderh[i]&&number<=this.state.orderh[i+1]){
 
                    next=this.state.orderh[i+1]; 
@@ -108,34 +91,70 @@ class Red extends React.Component {
               }
 
               if(i==81)
-              next=530;
+              next="00:30";
          }      
  
          
-         this.state.nextbus=next;
+         this.state.nextbus=next; // 다음날 출발 날짜 
          let day=new Date().getDay();
-         if(this.state.nextbus==730&&(day==7||day==0))
-         this.state.nextbus=730;
+         if(this.state.nextbus=="00:30"&&(day==7||day==0))// 만약 주말의 마지막 날이라면 다음 첫날의 출발 날짜 
+         this.state.nextbus="00:15";
         
             
 
 /////////// bus1  
        
-             for(let i=0;i<16;i++){
-                if(number>=this.state.bus1h[i]&&number<=this.state.bus1h[i]+25){
+             for(let i=0;i<12;i++){
+                if(number>=this.state.bus1h[i]&&number<=this.state.bus1h[i]+106){
                        
                     var h= (hour-parseInt(this.state.bus1h[i]/100));
                     var m= minutes-(this.state.bus1h[i]%100);
                      
                     
                     var long=h*60+m+seconds/60
-                     this.state.yvalue1=((h+m+(seconds/60))/23)*2112;
+                    this.state.yvalue1=(long/this.state.timeofcircle)*this.state.circlelength-50;
                       this.state.xvalue1=0; 
                     
                       break;
                 }
+                else this.state.yvalue1=-300;
              }
-        
+
+             for(let i=0;i<12;i++){
+                if(number>=this.state.bus2h[i]&&number<=this.state.bus2h[i]+106){
+                       
+                    var h= (hour-parseInt(this.state.bus2h[i]/100));
+                    var m= minutes-(this.state.bus2h[i]%100);
+                     
+                    
+                    var long=h*60+m+seconds/60
+                    this.state.yvalue2=(long/this.state.timeofcircle)*this.state.circlelength-50;
+                      this.state.xvalue2=-50; 
+                    
+                      break;
+                }
+                else this.state.yvalue2=-300;
+             }
+
+
+             for(let i=0;i<12;i++){
+                if(number>=this.state.bus3h[i]&&number<=this.state.bus3h[i]+106){
+                       
+                    var h= (hour-parseInt(this.state.bus3h[i]/100));
+                    var m= minutes-(this.state.bus3h[i]%100);
+                     
+                    
+                    var long=h*60+m+seconds/60
+                    this.state.yvalue3=(long/this.state.timeofcircle)*this.state.circlelength-50;
+                      this.state.xvalue3=0; 
+                    
+                      break;
+                }
+             }
+             this.state.yvalue4=-200;
+             this.state.yvalue5=-200;
+
+
          
             }
      
@@ -145,21 +164,21 @@ class Red extends React.Component {
 
                 var number=hour*100+minutes;
                 var next;
-                  for(let i =0;i<82;i++){
+                  for(let i =0;i<78;i++){
                        if(number>this.state.order[i]&&number<=this.state.order[i+1]){
          
                             next=this.state.order[i+1]; 
                               break;
                        }
          
-                       if(i==81)
-                       next="00:10";
+                       if(i==77)
+                       next="00:15";
                   }      
           
                   
                   this.state.nextbus=next;
                   let day=new Date().getDay();
-                  if(this.state.nextbus==530&&day==5)
+                  if(this.state.nextbus=="00:15"&&day==5)
                   this.state.nextbus="00:30";
                      
          
@@ -174,12 +193,13 @@ class Red extends React.Component {
                               
                              
                              var long=h*60+m+seconds/60
-                              this.state.yvalue1=((h+m+(seconds/60))/this.state.timeofcircle)*this.state.circlelength-50;
-                              console(this.state.yvalue1);
+                              this.state.yvalue1=(long/this.state.timeofcircle)*this.state.circlelength-50;
+                            
                                this.state.xvalue1=0; 
                              
                                break;
                          }
+                         else this.state.yvalue1=-300;
                       }
 
 
@@ -191,11 +211,12 @@ class Red extends React.Component {
                              
                             
                             var long=h*60+m+seconds/60
-                             this.state.yvalue2=((h+m+(seconds/60))/this.state.timeofcircle)*this.state.circlelength-50;
+                             this.state.yvalue2=(long/this.state.timeofcircle)*this.state.circlelength-50;
                               this.state.xvalue2=0; 
                             
                               break;
                         }
+                        else this.state.yvalue2=-300;
                      }
 
 
@@ -208,11 +229,12 @@ class Red extends React.Component {
                              
                             
                             var long=h*60+m+seconds/60
-                             this.state.yvalue3=((h+m+(seconds/60))/this.state.timeofcircle)*this.state.circlelength-50;
+                             this.state.yvalue3=(long/this.state.timeofcircle)*this.state.circlelength-50;
                               this.state.xvalue3=0; 
                             
                               break;
                         }
+                        else this.state.yvalue3=-300;
                      }
 
 
@@ -223,13 +245,15 @@ class Red extends React.Component {
                             var h= (hour-parseInt(this.state.bus4[i]/100));
                             var m= minutes-(this.state.bus4[i]%100);
                              
-                            
+                           
                             var long=h*60+m+seconds/60
-                             this.state.yvalue4=((h+m+(seconds/60))/this.state.timeofcircle)*this.state.circlelength-50;
+                             this.state.yvalue4=(long/this.state.timeofcircle)*this.state.circlelength-50;
+                            
                               this.state.xvalue4=0; 
                             
                               break;
                         }
+                        else this.state.yvalue4=-300;
                      }
 
 
@@ -242,13 +266,14 @@ class Red extends React.Component {
                             
                             
                             var long=h*60+m+seconds/60
-                             this.state.yvalue5=((h+m+(seconds/60))/this.state.timeofcircle)*this.state.circlelength-50;
+                             this.state.yvalue5=(long/this.state.timeofcircle)*this.state.circlelength-50;
                               //console.log(this.state.yvalue5);
-                              console.log(this.state.yvalue5);
+                             
                               this.state.xvalue5=0; 
                             
                               break;
                         }
+                        else this.state.yvalue5=-300;
                      }
                  
                   
@@ -362,8 +387,9 @@ getCurrentTime = () =>
     
     return ( 
         <ScrollView >
-         <View   style={{  flex:10}}>
-           
+      
+        <View   style={{  flex:10}}>
+            
           <Text style={{fontSize:30,textAlign:'center'}}>{this.state.currentTime }</Text>
 
           <Text  style={{fontSize:20,textAlign:'right',fontStyle:'italic'}}>{this.state.currentDay }</Text>
@@ -389,416 +415,590 @@ getCurrentTime = () =>
                   <Text style={{fontSize:20}}>next bus departing : </Text>
                   <Text style={{fontSize:20,color:'blue'}}>{this.state.nextbus} </Text>
              </View >
+
+
              <View   style={{  flexDirection:'row'}}>
-                       <Animated.Image  
+
+
+              
+
+
+
+
+             <Animated.Image  
               source={require('../assets/bus_v.png')}
               style={[styles.animation ,{transform:[{scale:this.state.springVal}],},{top: this.state.yvalue1},{left: this.state.xvalue1}]}           
              >  
-             </Animated.Image> 
-            
-                      
+             </Animated.Image>          
              <Animated.Image  
               source={require('../assets/bus_v.png')}
-              style={[styles.animation ,{transform:[{scale:this.state.springVal}],},{top: this.state.yvalue2},{left: this.state.xvalue2}]}           
+              style={[styles.animation ,{transform:[{scale:this.state.springVal}],},{top: this.state.yvalue2},{left: -70}]}           
              >  
              </Animated.Image>
              <Animated.Image  
               source={require('../assets/bus_v.png')}
-              style={[styles.animation ,{transform:[{scale:this.state.springVal}],},{top: this.state.yvalue3},{left: this.state.xvalue3}]}           
+              style={[styles.animation ,{transform:[{scale:this.state.springVal}],},{top: this.state.yvalue3},{left: -140}]}//140          
              >  
              </Animated.Image>
              <Animated.Image  
               source={require('../assets/bus_v.png')}
-              style={[styles.animation ,{transform:[{scale:this.state.springVal}],},{top: this.state.yvalue4},{left: this.state.xvalue4}]}           
+              style={[styles.animation ,{transform:[{scale:this.state.springVal}],},{top: this.state.yvalue4},{left: -210}]}  //210         
              >  
              </Animated.Image>
              <Animated.Image  
               source={require('../assets/bus_v.png')}
-              style={[styles.animation ,{transform:[{scale:this.state.springVal}],},{top: this.state.yvalue5},{left: this.state.xvalue5}]}           
+              style={[styles.animation ,{transform:[{scale:this.state.springVal}],},{top: this.state.yvalue5},{left: -280}]}   //280        
              >  
              </Animated.Image>
             
+
+
+
+
+
+
             
              </View>
             
              <View   style={{  height:32, flexDirection:'row',marginTop :-40}}>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
-                </Surface>
-               
+                </Surface> 
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >Walk thrugate</Text>
-               </View> 
+             </View> 
+
                 <Surface width={100} height={166}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
-               
-               
-                <View   style={{  height:32, flexDirection:'row'}}>
+
+
+
+
+
+             <View   style={{  height:32, flexDirection:'row'}}>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-               
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >AV/CPX gate</Text>
-               </View> 
+             </View> 
+
                 <Surface width={100} height={34}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
-                <View   style={{  height:32, flexDirection:'row'}}>
+
+
+
+
+
+             <View   style={{  height:32, flexDirection:'row'}}>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-               
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >Bldg S-712</Text>
-               </View> 
+            </View> 
+
                 <Surface width={100} height={100}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
-                <View   style={{  height:32, flexDirection:'row'}}>
+
+
+
+
+
+             <View   style={{  height:32, flexDirection:'row'}}>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
-                </Surface>
-               
+                </Surface>  
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >Lodging S-121</Text>
-               </View> 
+             </View> 
+
                 <Surface width={100} height={34}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
-                <View   style={{  height:32, flexDirection:'row'}}>
+
+
+
+
+
+             <View   style={{  height:32, flexDirection:'row'}}>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-               
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >USO S-375</Text>
-               </View> 
+             </View>  
+
                 <Surface width={100} height={166}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
-                <View   style={{  height:32, flexDirection:'row'}}>
+
+
+
+
+
+             <View   style={{  height:32, flexDirection:'row'}}>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-               
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >Quarry gate</Text>
-               </View> 
+            </View> 
+
                 <Surface width={100} height={34}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
-                <View   style={{  height:32, flexDirection:'row'}}>
+
+
+
+
+
+             <View   style={{  height:32, flexDirection:'row'}}>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
-                </Surface>
-               
+                </Surface>  
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >2nd CAB/CDC</Text>
-               </View> 
+             </View> 
+
                 <Surface width={100} height={34}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
-                <View   style={{  height:32, flexDirection:'row'}}>
+
+
+
+
+
+             <View   style={{  height:32, flexDirection:'row'}}>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
-                </Surface>
-               
+                </Surface> 
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >Medical Dental Clinic</Text>
-               </View> 
+             </View> 
+
                 <Surface width={100} height={100}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
-                <View   style={{  height:32, flexDirection:'row'}}>
+
+
+
+
+
+             <View   style={{  height:32, flexDirection:'row'}}>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-               
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >Super Gym</Text>
-               </View> 
+             </View> 
+
                 <Surface width={100} height={34}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
-                <View   style={{  height:32, flexDirection:'row'}}>
+
+
+
+
+
+             <View   style={{  height:32, flexDirection:'row'}}>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-               
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >School  </Text>
-               </View> 
+             </View> 
                 <Surface width={100} height={34}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
-                <View   style={{  height:32, flexDirection:'row'}}>
+
+
+
+
+
+             <View   style={{  height:32, flexDirection:'row'}}>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-               
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >Talon DFAC</Text>
-               </View > 
+             </View > 
+
                 <Surface width={100} height={34}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
-                <View   style={{  height:32, flexDirection:'row'}}>
+
+
+
+
+
+             <View   style={{  height:32, flexDirection:'row'}}>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-               
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >New 3rd Ml Bn</Text>
-               </View> 
+             </View> 
+
                 <Surface width={100} height={100}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
-                <View   style={{  height:32, flexDirection:'row'}}>
+
+
+
+
+
+             <View   style={{  height:32, flexDirection:'row'}}>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-               
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >New Barracks</Text>
-               </View> 
+             </View> 
+
                <Surface width={100} height={100}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
-                <View   style={{  height:32, flexDirection:'row'}}>
+
+
+
+
+
+             <View   style={{  height:32, flexDirection:'row'}}>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-               
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >Bldg #P-6315</Text>
-               </View> 
+             </View> 
+
                 <Surface width={100} height={32}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
-                <View   style={{  height:32, flexDirection:'row'}}>
+
+
+
+
+
+             <View   style={{  height:32, flexDirection:'row'}}>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-               
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >Chapel P-6350</Text>
                </View> 
               
-
                  <Surface width={100} height={34}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
-                </Surface>
-                <View   style={{  height:32, flexDirection:'row'}}>
+                 </Surface>
+
+
+
+
+
+             <View   style={{  height:32, flexDirection:'row'}}>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-               
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} > Spartan DFAC</Text>
-               </View> 
+             </View> 
+
                <Surface width={100} height={100}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
-                <View   style={{  height:32, flexDirection:'row'}}>
+
+
+
+
+
+             <View   style={{  height:32, flexDirection:'row'}}>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-               
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >TMP S-7320</Text>
-               </View> 
+             </View> 
+
                <Surface width={100} height={100}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
-                <View   style={{  height:32, flexDirection:'row'}}>
+
+
+
+
+
+             <View   style={{  height:32, flexDirection:'row'}}>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-               
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >VMF S-7412</Text>
-               </View> 
+             </View> 
+
                <Surface width={100} height={100}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
-                <View   style={{  height:32, flexDirection:'row'}}>
+
+
+
+
+
+             <View   style={{  height:32, flexDirection:'row'}}>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-               
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >VMF S-7515</Text>
-               </View> 
+             </View> 
+
                <Surface width={100} height={100}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
-                <View   style={{  height:32, flexDirection:'row'}}>
+             
+             
+             
+             
+             
+             <View   style={{  height:32, flexDirection:'row'}}>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-               
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >HQs P-7621</Text>
-               </View> 
+             </View> 
+             
                <Surface width={100} height={100}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
-                <View   style={{  height:32, flexDirection:'row'}}>
+             
+             
+             
+             
+             
+             <View   style={{  height:32, flexDirection:'row'}}>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-               
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >VMF S-7515</Text>
-               </View> 
+             </View> 
+             
                <Surface width={100} height={100}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
-                <View   style={{  height:32, flexDirection:'row'}}>
+             
+             
+             
+             
+             
+             <View   style={{  height:32, flexDirection:'row'}}>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-               
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >TMP S-7320</Text>
-               </View> 
+             </View> 
+             
                <Surface width={100} height={100}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
-                <View   style={{  height:32, flexDirection:'row'}}>
+             
+             
+             
+             
+             
+             <View   style={{  height:32, flexDirection:'row'}}>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-               
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >Spartan  DFAC</Text>
-               </View> 
+             </View> 
+             
                <Surface width={100} height={100}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
-                <View   style={{  height:32, flexDirection:'row'}}>
+             
+             
+             
+             
+             
+             <View   style={{  height:32, flexDirection:'row'}}>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-               
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >Bldg #P-6315</Text>
-               </View> 
+             </View> 
+             
                <Surface width={100} height={32}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
-                <View   style={{  height:32, flexDirection:'row'}}>
+             
+             
+             
+             
+             
+             <View   style={{  height:32, flexDirection:'row'}}>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-               
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >Chapel P-6360</Text>
-               </View> 
+             </View> 
+             
                <Surface width={100} height={166}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
-                <View   style={{  height:32, flexDirection:'row'}}>
+             
+             
+             
+             
+             
+             <View   style={{  height:32, flexDirection:'row'}}>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-               
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >New Barracks ,Bldg P-6003</Text>
-               </View> 
+             </View> 
+             
                <Surface width={100} height={100}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
-                <View   style={{  height:32, flexDirection:'row'}}>
+            
+            
+            
+            
+            
+             <View   style={{  height:32, flexDirection:'row'}}>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-               
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >3rd MI Bn</Text>
-               </View> 
+             </View> 
+            
                <Surface width={100} height={100}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
-                <View   style={{  height:32, flexDirection:'row'}}>
+            
+            
+            
+            
+            
+             <View   style={{  height:32, flexDirection:'row'}}>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-               
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >Talon DFAC</Text>
-               </View> 
+             </View> 
+            
                <Surface width={100} height={34}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
-                <View   style={{  height:32, flexDirection:'row'}}>
+            
+            
+            
+            
+            
+             <View   style={{  height:32, flexDirection:'row'}}>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-               
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >School</Text>
-               </View> 
+             </View> 
+            
                <Surface width={100} height={232}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
-                <View   style={{  height:32, flexDirection:'row'}}>
+            
+            
+            
+            
+            
+             <View   style={{  height:32, flexDirection:'row'}}>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-               
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >1-17 CAV</Text>
-               </View> 
+             </View> 
+            
                <Surface width={100} height={100}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
-                <View   style={{  height:32, flexDirection:'row'}}>
+            
+            
+            
+            
+            
+             <View   style={{  height:32, flexDirection:'row'}}>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-               
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >4-2 ARB</Text>
-               </View> 
+             </View> 
                <Surface width={100} height={34}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
-                <View   style={{  height:32, flexDirection:'row'}}>
+            
+            
+            
+            
+            
+             <View   style={{  height:32, flexDirection:'row'}}>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-               
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >CPX</Text>
-               </View> 
+             </View> 
                <Surface width={100} height={166}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
-                <View   style={{  height:32, flexDirection:'row'}}>
+            
+            
+            
+            
+            
+             <View   style={{  height:32, flexDirection:'row'}}>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-               
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >RED Walkthru gate</Text>
-               </View>  
-
+             </View>  
                <Surface width={100} height={100}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
-                <View   style={{  height:32, flexDirection:'row'}}>
+            
+            
+            
+            
+            
+             <View   style={{  height:32, flexDirection:'row'}}>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-               
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} > Zoeckler station S-1210</Text>
-               </View> 
-                
+             </View> 
                <Surface width={100} height={100}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
-                <View   style={{  height:32, flexDirection:'row'}}>
+            
+            
+            
+            
+            
+             <View   style={{  height:32, flexDirection:'row'}}>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-               
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >Provider Grill DFAC</Text>
-               </View> 
-
-               
-              
+             </View> 
                 <Surface width={100} height={100}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
-                <View   style={{  height:32, flexDirection:'row'}}>
+            
+            
+            
+            
+            
+             <View   style={{  height:32, flexDirection:'row'}}>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-               
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >Zoeckler station S-1210</Text>
-               </View> 
-
-              
+             </View> 
                 <Surface width={100} height={100}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
-                <View   style={{  height:32, flexDirection:'row'}}>
+            
+            
+            
+            
+            
+             <View   style={{  height:32, flexDirection:'row'}}>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-               
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >RED Walkthru gate </Text>
-               </View>  
+             </View>  
                 
 
 
