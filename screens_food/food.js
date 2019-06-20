@@ -4,7 +4,7 @@ import { List, ListItem, SearchBar } from "react-native-elements";
 import  firebase,{storage}  from "../firebase";
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import  someList from '../components/anylist'
-
+import {Font} from 'expo'
   database=firebase.database();
  
   
@@ -16,16 +16,17 @@ import  someList from '../components/anylist'
   }
 
 
-class Travellist extends React.Component {
+class Foodlist extends React.Component {
   constructor(props) {
     super(props);
-
+     
     this.state = {
       loading: false,
       datasource: [],
       pause:false,
       error: null,
-      refreshing: false
+      refreshing: false,
+      fontLoaded:true,
     };
   }
 
@@ -34,13 +35,16 @@ class Travellist extends React.Component {
   
 
 
-
-
   
 
 
   componentDidMount() {
-    
+     Font.loadAsync({
+
+      'Raley-balck':require('../assets/fonts/33676382891.ttf'),
+      'Name-font':require('../assets/fonts/Nickainley-Normal_2.ttf'),
+      
+    });
     this.makeRemoteRequest();
   }
 
@@ -50,12 +54,11 @@ class Travellist extends React.Component {
 
     this.setState({ loading: true });
     const { navigation } = this.props;
-    const move = navigation.getParam('move', 'NO-ID');
-
-    var usersRef = firebase.database().ref('travel');
+   
+    var usersRef = firebase.database().ref('food');
     
     
-usersRef.on('value', (snapshot) => {
+     usersRef.on('value', (snapshot) => {
     
     
      var m=snapshot.val() 
@@ -141,50 +144,57 @@ usersRef.on('value', (snapshot) => {
           renderItem={({ item }) => (
              
             <ListItem  
-             linearGradientProps={{
-    colors: ['#a764db', '#ead9f7'],
-    start: [1, 0],
-    end: [0.2, 0],
-  }}
+         //    linearGradientProps={{
+            //  colors: ['#f45a5a', '#f45a5a'],
+   // colors: ['#ea3807', '#e5bcb0'],
+   // start: [1, 0],
+    //end: [0.2, 0],
+ // }}
+ 
+ 
                title=  {     
-                    <View  style={{  flex:1,  flexDirection:'row'}} >
+                    <View  style={{  flex:1,   alignContent:'center',marginLeft:30,marginRight:34, borderWidth:2,borderColor:'##050505',borderRadius:5}}
+                    
+                    >
                   <Image  style={styles.icon}
                         source={{uri:item.topimage.toString()}}
                  
                  />
-                  <View  >
-                  <Text style={styles.h1}>{item.name}</Text>  
-                  <Text style={styles.p} >{item.devision}</Text>  
-                  <Text style={styles.price} >{item.location}</Text>  
-                
-                  </View>
-                 
+                    <Text>   </Text>
+                 {  this.state.fontLoaded?(
+              
+              <Text   style={{fontFamily:'Raley-balck' ,fontSize:35,textAlign:'center'}}  
+                           
+                           >{item.name}</Text>
+               ) 
+               :( <ActivityIndicator size="large"      />
+               ) }
                   </View>
                 
                   
           }
-         
+          
+            
             
             onPress={() => {
              
-              this.props.navigation.navigate('TTi', {
+              this.props.navigation.navigate('FOODi', {
                  name : item.name,
                  description :item.description,
-                 location:item.location,
-                 time:item.time,
-                topimage : item.topimage,
-                money:item.money,
-                 uri : item.uri ,  
-                 date:item.date,
+                
+                 topimage : item.topimage,
+               
+                
+               
                  imagelist:item.images,
-                 tips:item.tips,
+                 //tips:item.tips,
               });
             }
           
           }
               
              // avatar={{ uri: item.picture.thumbnail }}
-              containerStyle={{ borderBottomWidth: 3 }}
+             
             />
           )
           
@@ -212,10 +222,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   icon: {
-    width: 120,
-    height: 120,
+    width: 260,
+    height: 160,
     borderRadius: 5,
-    marginRight:10,
+   
+   // alignContent:'center',
   },
   rightContainer: {
     flex: 1,
@@ -228,8 +239,8 @@ const styles = StyleSheet.create({
     
   },
   h1: {
-    fontSize: 15,
-    
+    fontSize: 40,
+    fontFamily:'Raley-balck',
     fontWeight: 'bold',
     textAlign: 'center',
     color: '#222222',
@@ -255,7 +266,7 @@ const styles = StyleSheet.create({
 })
 
 
-export default Travellist;
+export default Foodlist;
 
 
 

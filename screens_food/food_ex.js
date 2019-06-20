@@ -5,7 +5,12 @@ import ImageSlider from 'react-native-image-slider';
 import { Ionicons,MaterialIcons ,Entypo,Feather, FontAwesome } from '@expo/vector-icons';
 import Texteditor from  '../components/Textedit'
 
-class Travelitem extends React.Component {
+class Fooditem extends React.Component {
+
+
+ 
+
+
     render() {
        let dimensions=Dimensions.get("window");
        let imageheight =Math.round((dimensions.width*9)/12);
@@ -13,12 +18,10 @@ class Travelitem extends React.Component {
       const { navigation } = this.props;
       const name = navigation.getParam('name', 'NO-ID');
       const description = navigation.getParam('description', 'NO-ID');
-      const time=navigation.getParam('time', 'NO-ID');
-      const location = navigation.getParam('location', 'NO-ID');
+      
       const topimage = navigation.getParam('topimage', 'NO-ID');
-      const uri = navigation.getParam('uri', 'NO-ID');
-      const money =navigation.getParam('money', 'NO-ID');
-      const date =navigation.getParam('date', 'NO-ID');
+     
+     
       const imagelist=navigation.getParam('imagelist', 'NO-ID');
       const tips = navigation.getParam('tips', 'NO-ID');
       var number_of_pagraph=0; 
@@ -55,7 +58,8 @@ class Travelitem extends React.Component {
         <View >
        
               </View>
-          <Text style={{textAlign:'center', fontSize:30,marginTop:30}}> {JSON.stringify(name).replace(/^"(.+)"$/,'$1')}</Text>
+         {// <Text style={{textAlign:'center', fontSize:30,marginTop:30}}> {JSON.stringify(name).replace(/^"(.+)"$/,'$1')}</Text>
+         }
          
 
           <View style={{marginTop: 0,width:100}}>
@@ -65,7 +69,8 @@ class Travelitem extends React.Component {
           
           
           <Texteditor text={vivid}/>
- </View>
+         
+          </View>
         <SafeAreaView style={styles.container}>
         <View style={styles.content1}>
           
@@ -98,29 +103,16 @@ class Travelitem extends React.Component {
        
       </SafeAreaView>
       <View  style={{   marginLeft:20, flexDirection:'row',marginRight:20}} >
-      <MaterialIcons name='date-range'  size={30}  color ="grey" /> 
-     <Text style={{textAlign:'left', fontSize:20,color:'grey'}}> {JSON.stringify(date).replace(/^"(.+)"$/,'$1')} </Text> 
+      
        </View>
        <View  style={{   marginLeft:23, flexDirection:'row'}} >
-      <Ionicons name='md-time'  size={30}  color ="grey" /> 
-        
-      <Text style={{textAlign:'left', fontSize:20,color:'grey'}}>  {JSON.stringify(time).replace(/^"(.+)"$/,'$1').replace(/,.,/g, '\n')} </Text> 
-       </View>
-       <View  style={{   marginLeft:20, flexDirection:'row'}} >
-      < FontAwesome name='won'  size={30}  color ="grey" /> 
-      <Text style={{textAlign:'left', fontSize:14,color:'grey'}}> {JSON.stringify(money).replace(/^"(.+)"$/,'$1').replace(/,.,/g, '\n')}</Text> 
-       </View>
-       <View  style={{   marginLeft:20, flexDirection:'row'}} >
-      <Entypo name='location'  size={30}  color ="grey" />  
-      <Text   
-        
-           onPress={()=>  Linking.openURL("http://kko.to/3YRYTLyTB").catch((err) => console.error('An error occurred', err))}
-      style={{textAlign:'left', fontSize:20,color:'blue',  }}> [ {JSON.stringify(location).replace(/^"(.+)"$/,'$1')} ]</Text> 
+     
        </View>
       
        <View  style={{   marginLeft:20, flexDirection:'row'}} >
       <Feather name='info'  size={30}  color ="grey" /> 
-      <Text style={{textAlign:'left', fontSize:20,color:'grey'}}> [ {JSON.stringify(tips).replace(/^"(.+)"$/,'$1')} ]</Text> 
+      {//<Text style={{textAlign:'left', fontSize:20,color:'grey'}}> [ {JSON.stringify(tips).replace(/^"(.+)"$/,'$1')} ]</Text> 
+      }
        </View>
         </ScrollView>
       );
@@ -161,4 +153,4 @@ class Travelitem extends React.Component {
       backgroundColor: '#fff',
     },
   });
-  export default  Travelitem;
+  export default  Fooditem;

@@ -6,7 +6,7 @@ import  firebase from "../firebase";
   //load the firebase.database in order to simplfy
   database=firebase.database();
   
-
+//tip of liFE
 class TOLScreen extends React.Component {
 
     //constuct  the state first in order to show which state i am in  certain function

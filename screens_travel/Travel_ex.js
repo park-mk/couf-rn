@@ -4,7 +4,7 @@ import { createStackNavigator, createAppContainer } from 'react-navigation';
 import ImageSlider from 'react-native-image-slider';
 import { Ionicons,MaterialIcons ,Entypo,Feather, FontAwesome } from '@expo/vector-icons';
 import Texteditor from  '../components/Textedit'
-
+import  firebase,{storage}  from "../firebase";
 class Travelitem extends React.Component {
     render() {
        let dimensions=Dimensions.get("window");
@@ -41,9 +41,12 @@ class Travelitem extends React.Component {
     
        var vivid =JSON.stringify(description);
        var res = vivid.substring(1, 4);
+       var storage = firebase.storage();
+        const imageRef = storage.ref('images').child(`WechatIMG190.jpeg`);
       return (
         <ScrollView>
-         
+           
+          
 
         <View style={{ flex: 2}}>
         

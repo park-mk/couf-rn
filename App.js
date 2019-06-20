@@ -28,6 +28,7 @@ import  CategoryScreen from './screens_category/categoryscreen'
 
 import  TOLScreen from './screens_category/TOLscreen'
 import  KORcate from    './screens_korean/KORcate'
+import Fooditem from './screens_food/food_ex'
 import Travelitem from './screens_travel/Travel_ex'
 import KORScreen from'./screens_korean/KORScreen'
 
@@ -35,6 +36,8 @@ import KOR_explainScreen from'./screens_korean/KOR_explain'
 import  AreaScreen from'./screens_area/areascreen'
 
 import   Travellist from './screens_travel/Travel'
+
+import   Foodlist from './screens_food/food'
 
 import Area1Screen from'./screens_area/area1'
 import Area2Screen from'./screens_area/area2'
@@ -185,6 +188,15 @@ const CategoryStack = createStackNavigator({
           navigationOptions: {
             header: null,       // HEADER DELETE
           }},
+          Food:{screen:Foodlist,  navigationOptions: {
+            header: null,       // HEADER DELETE
+          }
+          },
+          FOODi:{screen:Fooditem,
+            navigationOptions: {
+              header: null,       // HEADER DELETE
+            }},
+
       
 });
 

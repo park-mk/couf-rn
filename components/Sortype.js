@@ -3,9 +3,22 @@ import { Button, Text, View ,Image,TouchableOpacity,Dimensions,Linking} from 're
 import { Ionicons } from '@expo/vector-icons';
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import { withNavigation } from 'react-navigation';
-
+import {Font} from 'expo'
 class Sorttype extends React.Component {
   
+
+
+  async componentDidMount(){
+    await Font.loadAsync({
+
+       'Raley-balck':require('../assets/fonts/33676382891.ttf'),
+       
+     });
+     this.setState({fontLoaded:true})
+   }
+      
+
+
   render() {
     let dimensions=Dimensions.get("window");
     imageheight =Math.round((dimensions.width*9)/16);
@@ -21,8 +34,12 @@ class Sorttype extends React.Component {
     if(this.props.typeof==1){
      
         return (
-           <View>
-               <Text  style={{fontSize:this.props.size , lineHeight: 30,fontWeight:this.props.fontweight, fontStyle:this.props.fontstyle,marginLeft:this.props.margin, marginRight:this.props.margin}} > {this.props.text}</Text>
+           <View style={{marginLeft:15}} >
+              
+               <Text  style={{fontSize:this.props.size , lineHeight: 30,
+               marginLeft:0, 
+               marginRight:this.props.margin,fontFamily:'Raley-balck'}} > {this.props.text}</Text>
+              {console.log("12/n       ")}
           </View>
          
         );}
