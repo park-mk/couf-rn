@@ -23,10 +23,10 @@ import SignUpScreen from '../screens_sign/signUpScreen';
  
     renderScreen() {
         if(firebase.auth().currentUser!=null){
-            if(firebase.auth().currentUser.emailVerified==true){
+           
               
               return  <Profile/>;
-        } 
+        
     }
 
         return <LoginScreen/>;

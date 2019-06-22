@@ -138,12 +138,7 @@ class SignUp1 extends  React.Component {
     }
       else alert("current user is null ")
    }
-   /*
-   if(firebase.auth().currentUser.emailVerified==true){
-    alert("singup success!!")
-  this.props.navigation.navigate('Profile')
-  }
-   else  alert ("you have not verified your email yet ")*/
+
    singUpUser1=(email,password)=>{ 
            
     try{

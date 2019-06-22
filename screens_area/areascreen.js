@@ -79,7 +79,7 @@ class AreaScreen extends React.Component {
         </TouchableOpacity>
 
         <TouchableOpacity style={{ width:screenwidth-10, marginTop: 20 ,}}
-         onPress={() => this.props.navigation.navigate('H221')}>
+         onPress={() => this.props.navigation.navigate('A1WTE')}>
         
          <Text style={{fontSize:20,textAlign:'center',fontFamily:'Raley-balck'}}>  WHAT TO EAT</Text>
          
@@ -87,7 +87,7 @@ class AreaScreen extends React.Component {
         </TouchableOpacity>
 
         <TouchableOpacity style={{ width:screenwidth-10, marginTop: 20 ,}}
-         onPress={() => this.props.navigation.navigate('H221')}>
+         onPress={() => this.props.navigation.navigate('A1WTD')}>
         
          <Text style={{fontSize:20,textAlign:'center',fontFamily:'Raley-balck'}}> WHAT TO DO</Text>
          

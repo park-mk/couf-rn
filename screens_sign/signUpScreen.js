@@ -56,17 +56,7 @@ class SignUpScreen extends React.Component {
             email: '',
             password: '',
             password2:'',
-            firstname:'',
-            lastname:'',
-            age:'',
-            male:false,
-            female:false,
-            checked: false,
-            verify:0, 
-            year:0,
-            month:0,
-            day:0,
-            vvv:'verify',
+           displayname:'',
             
            
 
@@ -84,9 +74,9 @@ class SignUpScreen extends React.Component {
        this.state.vvv="verified";
     
     }
-    BackHandler.addEventListener('hardwareBackPress',function(){
+  /*  BackHandler.addEventListener('hardwareBackPress',function(){
         return true;
-    });
+    });*/
 
    } 
 
@@ -124,7 +114,10 @@ class SignUpScreen extends React.Component {
       
     }
 
-    singUpUser1=(email,password)=>{ 
+    singUpUser1=(email,password,displayname)=>{ 
+
+
+        const { navigation } = this.props;
         console.log(email);
      
   
@@ -133,32 +126,35 @@ class SignUpScreen extends React.Component {
             
           if(this.state.password==this.state.password2){
        
-         if(this.state.year!=0){
-        if(this.state.male^this.state.female){
+       
 
 
-            try {
+           // try {
                 if(this.state.password.length<6){
                     alert("longer than 6 please")
                     return
                 } 
              
                 console.log(email, password);
-                firebase.auth().createUserWithEmailAndPassword(email.trim(),password).then(function(user){
-                    alert("create success");
-                    console.log(user);
-                })
+                firebase.auth().createUserWithEmailAndPassword(email.trim(),password).then(function () {
+                    user = firebase.auth().currentUser;
+                  
+                  })
+                  .then(function () {
+                    user.updateProfile({
+                    //  displayName: this.state.displayname,
+                      displayName: displayname,
+                    //console.log("a");
+                    });
+                  }).then(function(){
+                    navigation.navigate('Profile');
+
+                  })
+                  .catch(function(error) {
+                    console.log(error.message);
+                  });
                 
-              
-                 
-            }
-    
-            catch(error){
-                console.log(error.toString())
-            }
-
-
-            this.props.navigation.navigate('SignUp1', {
+         /*   this.props.navigation.navigate('SignUp1', {
                 email : email,
                 password: password,
                 firstname: this.state.firstname,
@@ -169,12 +165,10 @@ class SignUpScreen extends React.Component {
                 month:this.state.month,
                 day:this.state.day,
         
-             });
+             });*/
          
         }
-        else alert("please check your gender ");}
-        else
-        alert("please check your birthday")}
+     
 
        
         else alert("confirming password is different with your password")
@@ -187,7 +181,7 @@ class SignUpScreen extends React.Component {
        
     
      
-    Out=(email,password)=>{
+    Out=(email,password)=>{/*
         try {
             var user = firebase.auth().currentUser;
              
@@ -208,14 +202,14 @@ class SignUpScreen extends React.Component {
         }
 
         this.props.navigation.navigate('Login1')
-    }
+    */}
 
     render() {
         return (
             <Container style={styles.wrapper}>
                 <Image style={styles.backgroundImage} source={require('../assets/images/soldier1.jpg')} />
                 <Form> 
-                     <Item>
+                {/*     <Item>
                         <Input
                             placeholder="First Name"
                            // secureTextEntry={true}
@@ -269,7 +263,7 @@ class SignUpScreen extends React.Component {
 />
  
 
-                    </Item>
+                </Item>*/}
                     <Item>
                         <Input
                             style={styles.inputBox}
@@ -303,6 +297,17 @@ class SignUpScreen extends React.Component {
 
                         />
                     </Item>
+
+                    <Item>
+                        <Input
+                            placeholder="Display Name"
+                           
+                            autoCorrect={false}
+                            autoCapitalize="none"
+                            onChangeText= {(displayname)=>this.setState({displayname})}
+
+                        />
+                    </Item>
                   
                     <Button style={ { marginTop: 15, backgroundColor:'#d8d8d8' }}
                             full
@@ -311,10 +316,11 @@ class SignUpScreen extends React.Component {
                            
                            onPress={
                                
-                            ()=>this.singUpUser1(this.state.email,this.state.password)}
+                            ()=>this.singUpUser1(this.state.email,this.state.password,this.state.displayname)}
                     >
-                        <Text style={ {color:'black'} }>NEXT</Text>
+                        <Text style={ {color:'black'} }>DONE</Text>
                     </Button>
+                   
                     <Button style={ { marginTop: 15, backgroundColor:'#d8d8d8' }}
                             full
                             rounded
@@ -322,7 +328,7 @@ class SignUpScreen extends React.Component {
                            
                            onPress={
                                
-                            ()=>this.Out(this.state.email,this.state.password)}
+                            ()=>this.navigation.navigate('Login')}
                     >
                         <Text style={ {color:'black'} }>quit</Text>
                     </Button>

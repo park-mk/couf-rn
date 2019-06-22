@@ -76,13 +76,15 @@ const styles = StyleSheet.create({
   }
     
   loginUser=(email,password)=>{
-    
+    const { navigation } = this.props;
     try{
       firebase.auth().signInWithEmailAndPassword(email,password).then(function(user){
         alert("loginsuccess")
-      
-        
+        navigation.navigate('Profile')
+       
       })
+
+     
     }
     catch(error){
       console.log(error.toString())
@@ -126,7 +128,7 @@ const styles = StyleSheet.create({
                         rounded
                         sucess
                         onPress={()=>this.loginUser(this.state.email,this.state.password)}
-                        onPress={() => this.props.navigation.navigate('Profile')}
+                       
                 >
                     <Text style={ {color:'white', fontWeight:'bold'} }>Login</Text>
                 </Button>

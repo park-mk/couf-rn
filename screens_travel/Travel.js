@@ -129,7 +129,34 @@ usersRef.on('value', (snapshot) => {
       />
     );
   };
+   
 
+   renderItem =({item})=>{
+
+         return(
+  
+          <View  style={{  flex:1,  flexDirection:'row',marginBottom:6}} >
+                  <Image  style={styles.icon}
+                        source={{uri:item.topimage}}
+                 
+                 />
+                  <View  >
+                  <Text style={styles.h1}>{item.name}</Text>  
+                  <Text style={styles.p} >{item.devision}</Text>   
+                  <Text style={styles.price} >{item.location}</Text>  
+                
+                  </View>
+                 
+                  </View>
+
+
+
+
+         )
+
+
+
+   }
   render() {
      
     return (
@@ -138,57 +165,9 @@ usersRef.on('value', (snapshot) => {
     <FlatList 
           data={this.state.datasource}
           
-          renderItem={({ item }) => (
-             
-            <ListItem  
-             linearGradientProps={{
-    colors: ['#a764db', '#ead9f7'],
-    start: [1, 0],
-    end: [0.2, 0],
-  }}
-               title=  {     
-                    <View  style={{  flex:1,  flexDirection:'row'}} >
-                  <Image  style={styles.icon}
-                        source={{uri:item.topimage.toString()}}
-                 
-                 />
-                  <View  >
-                  <Text style={styles.h1}>{item.name}</Text>  
-                  <Text style={styles.p} >{item.devision}</Text>  
-                  <Text style={styles.price} >{item.location}</Text>  
-                
-                  </View>
-                 
-                  </View>
-                
-                  
-          }
-         
-            
-            onPress={() => {
-             
-              this.props.navigation.navigate('TTi', {
-                 name : item.name,
-                 description :item.description,
-                 location:item.location,
-                 time:item.time,
-                topimage : item.topimage,
-                money:item.money,
-                 uri : item.uri ,  
-                 date:item.date,
-                 imagelist:item.images,
-                 tips:item.tips,
-              });
-            }
+          renderItem={this.renderItem}
           
-          }
-              
-             // avatar={{ uri: item.picture.thumbnail }}
-              containerStyle={{ borderBottomWidth: 3 }}
-            />
-          )
-          
-        }
+        
           keyExtractor={item => item.name}
         
           

@@ -109,41 +109,21 @@ const styles = StyleSheet.create({
                         sucess
                        
                 >
-                    <Text style={ {color:'white', fontWeight:'bold'} }>Nickname:{this.state.data.nickname}</Text>
+                    <Text style={ {color:'white', fontWeight:'bold'} }>Disply Name:{firebase.auth().currentUser.displayName
+                    }</Text>
                 </Button>
+               
                 <Button style={ {marginTop: 10, backgroundColor:'#bfb393' } }
                         full
                         rounded
                         sucess
                        
                 >
-                    <Text style={ {color:'white', fontWeight:'bold'} }>Age:</Text>
-                </Button>
-                <Button style={ {marginTop: 10, backgroundColor:'#bfb393' } }
-                        full
-                        rounded
-                        sucess
-                       
-                >
-                    <Text style={ {color:'white', fontWeight:'bold'} }>Phone:</Text>
+                    <Text style={ {color:'white', fontWeight:'bold'} }>Email:{firebase.auth().currentUser.email
+                    }</Text>
                     
                 </Button>
-                <Button style={ {marginTop: 10, backgroundColor:'#bfb393' } }
-                        full
-                        rounded
-                        sucess
-                       
-                >
-                    <Text style={ {color:'white', fontWeight:'bold'} }>DEROS:</Text>
-                </Button>
-                <Button style={ {marginTop: 10, backgroundColor:'#bfb393' } }
-                        full
-                        rounded
-                        sucess
-                       
-                >
-                    <Text style={ {color:'white', fontWeight:'bold'} }>DEROS:</Text>
-                </Button>
+              
                    
 
                 </View>
