@@ -32,8 +32,8 @@ class CategoryScreen extends React.Component {
                           
                      />
              
-                    <Category  imageURI={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2F%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202019-06-20%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%204.25.02.png?alt=media&token=9a39eeb2-752c-430a-8848-759745b34ee2"}}
-                          name='About us'
+                    <Category  imageURI={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2F%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202019-06-24%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%2010.32.26.png?alt=media&token=6ae5fd71-f2b3-4a04-a5f8-0ad58157ccb8"}}
+                          name='Festivals & Concerts'
                         
                       />
            </View>
@@ -60,7 +60,7 @@ class CategoryScreen extends React.Component {
                            onPress={()=> this.props.navigation.navigate('KORca')}
                       />
                     <Category  imageURI={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2F%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202019-06-20%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%204.50.09.png?alt=media&token=dc61de11-4862-429d-8796-6e58cc521ae7"}}
-                           name='Travel'
+                           name='TOUR'
                            onPress={()=> this.props.navigation.navigate('TT')}
                       />
              </View>
@@ -72,7 +72,7 @@ class CategoryScreen extends React.Component {
                            
                     />
                    <Category  imageURI={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2F%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202019-06-20%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%204.28.18.png?alt=media&token=40708640-b14f-4b14-84c0-f3db10ddd142"}}
-                           name='Q & A'
+                           name='Q & A / Suggestion for APP'
                           
                     />
              </View>
@@ -80,12 +80,13 @@ class CategoryScreen extends React.Component {
              <View   style={{  flex:1,  flexDirection:'row'}}>
           
                    <Category  imageURI={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2F%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202019-06-20%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%204.28.37.png?alt=media&token=bfa1bc54-fcb2-42a0-bb21-917184e050d8"}}
-                           name='Suggestions for app'
+                           name='BUY & SELL'
                          
                      />
-                    <Category  imageURI={require('../assets/icon.png' )}
+                   
+                   <Category  imageURI={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2F%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202019-06-20%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%204.25.02.png?alt=media&token=9a39eeb2-752c-430a-8848-759745b34ee2"}}
                           name='About us'
-                         
+                        
                       />
            </View>
 

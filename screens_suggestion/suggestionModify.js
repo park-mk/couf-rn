@@ -32,8 +32,11 @@ class SuggestionModify extends React.Component {
             <View>
                 <SuggestionList >
                     <TitleHeader>
-                        <Title>
+                        <Title> 
+                        {//if current user != null
+                        }
                             <Name>{firebase.auth().currentUser.email}</Name>
+                          
                             <Date>2020.03.3w</Date>
                         </Title>
                         <Buttons>

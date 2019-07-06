@@ -3,8 +3,23 @@ import { Button, Text, View ,Image,TouchableOpacity,Linking} from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import { withNavigation } from 'react-navigation';
-
+import {Font} from 'expo'
 class Category extends React.Component {
+
+ async componentDidMount() {
+    await Font.loadAsync({
+
+     'Raley-balck':require('../assets/fonts/33676382891.ttf'),
+     'Name-font':require('../assets/fonts/Nickainley-Normal_2.ttf'),
+     
+   });
+  
+ }
+
+
+
+
+
   render() {
     var  go;
      if(this.props.name=='Tips of life'){
@@ -40,7 +55,7 @@ class Category extends React.Component {
                       
                   style={{flex:3,width :null,height:null,resizeMode:'cover'}}
              /> 
-              <Text style={{flex:1, textAlign: 'center',fontWeight: 'bold',fontStyle: 'italic',fontSize:17,marginTop:10 }}>{this.props.name}</Text>
+              <Text style={{flex:1,fontFamily:'Raley-balck', textAlign: 'center',fontSize:17,marginTop:10 }}>{this.props.name}</Text>
             
            
       </TouchableOpacity>

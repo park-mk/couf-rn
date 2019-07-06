@@ -13,6 +13,9 @@ import {
   StatusBar,
   ScrollView,
   ART,
+  Dimensions,
+  Image,
+  TouchableOpacity,
   ActivityIndicator,
 } from 'react-native';
 
@@ -63,7 +66,7 @@ import Profile from './screens_login/afterloginscreen'
 import Loginc from './screens_login/beforelogin'
 import SuggestionScreen from './screens_suggestion/suggestionScreen'
 import SuggestionModify from './screens_suggestion/suggestionModify'
-
+import Home from'./screens_home/Home'
 
 
 import { Font } from 'expo'
@@ -127,42 +130,31 @@ class HomeScreen extends React.Component {
       fontLoaded: false
     }
   }
-
+  
 
   async componentDidMount() {
     await Font.loadAsync({
 
       'Raley-balck': require('./assets/fonts/33676382891.ttf'),
+      'title-font': require('./assets/fonts/BebasNeue-Regular.ttf'),
+
 
     });
     this.setState({ fontLoaded: true })
   }
   render() {
-
+    let dimensions = Dimensions.get("window");
+    let imageheight = dimensions.height/5;
+    let imagewidth = dimensions.width;
     return (
-      <SafeAreaView style={{ flex: 1 }}>
-        <View style={{ flex: 1 }}>
-
-
-
-          <Button
-            title="Go to "
-            onPress={() => this.props.navigation.navigate('Category')}
-          />
-          {this.state.fontLoaded ? (
-
-            <Text style={{ fontFamily: 'Raley-balck' }}  >Home and also for checking the font</Text>
-          )
-            : (<ActivityIndicator size="large" />
-            )}
-          <Button
-            title="Go to "
-            onPress={() => this.props.navigation.navigate('H221')}
-          />
-
-
-        </View>
-      </SafeAreaView>
+     // <SafeAreaView style={{ flex: 1 }}>
+    
+       
+      <View>
+    
+    <Home></Home>
+      </View>
+      
     );
   }
 }
@@ -174,8 +166,11 @@ const HomeStack = createStackNavigator({
 
   Home: {
     screen: HomeScreen,
-    navigationOptions: {
-      header: null,       // HEADER DELETE
+   navigationOptions: {
+    title: 'Home',    // HEADER DELETE
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
     }
   },
 });
@@ -200,7 +195,13 @@ const CategoryStack = createStackNavigator({
   },
   Food: {
     screen: Foodlist, navigationOptions: {
-      header: null,       // HEADER DELETE
+      title: 'FOOD',
+   
+      headerTintColor: '#63d8eb',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      
+      },   // HEADER DELETE
     }
   },
   FOODi: {
@@ -276,6 +277,8 @@ export default createAppContainer(createBottomTabNavigator(
 
     Home: { screen: HomeStack, },
     Category: { screen: CategoryStack },
+
+    
     Area: { screen: AreaStack },
     Login1: { screen: LoginStack },
     Suggestion: { screen: SuggestionStack },
@@ -286,11 +289,12 @@ export default createAppContainer(createBottomTabNavigator(
       tabBarIcon: ({ focused, tintColor }) => {
         const { routeName } = navigation.state;
         let iconName;
-        if (routeName === 'Home') {
-          iconName = `ios-home`;
-        }
+      
         if (routeName === 'Category') {
           iconName = `ios-list`;
+        }
+        if (routeName === 'Home') {
+          iconName = `ios-home`;
         }
         if (routeName === 'Area') {
           iconName = `ios-subway`;
@@ -305,11 +309,13 @@ export default createAppContainer(createBottomTabNavigator(
       },
     }),
     tabBarOptions: {
-      activeTintColor: 'tomato',
+      activeTintColor: 'skyblue',
       inactiveTintColor: 'gray',
+      showLabel:false,
     },
     navigationOptions: {
-      tabBarVisible: true
+      tabBarVisible: true,
+     
     },
   }
 ));

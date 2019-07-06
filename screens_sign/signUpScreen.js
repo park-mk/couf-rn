@@ -134,7 +134,7 @@ class SignUpScreen extends React.Component {
                     alert("longer than 6 please")
                     return
                 } 
-             
+                   
                 console.log(email, password);
                 firebase.auth().createUserWithEmailAndPassword(email.trim(),password).then(function () {
                     user = firebase.auth().currentUser;
@@ -146,6 +146,20 @@ class SignUpScreen extends React.Component {
                       displayName: displayname,
                     //console.log("a");
                     });
+                  }).then(function(){
+                   
+                        var code=email.substring(0,4)+"_"+displayname;
+                       
+                        firebase.database().ref('userinfo/'+ code).update({
+                            email:email,
+                            user_like_history:"",
+                            displayName:displayname,
+
+                        }, function(){
+                            alert('Success');
+                        });
+                
+                    
                   }).then(function(){
                     navigation.navigate('Profile');
 

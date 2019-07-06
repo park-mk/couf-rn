@@ -1,8 +1,9 @@
 import React from 'react';
-import { Button, Text, View ,TouchableOpacity,Image,ScrollView,Linking,Dimensions} from 'react-native';
+import { Button, Text, View ,TouchableOpacity,Image,ScrollView,Linking,Dimensions,StyleSheet} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import {Font} from 'expo'
+import {Container,Content,Header,Form,Input,Item,Label} from 'native-base'
  //*****  AREA SCREEN : CONNECT TO THE 4 AREA ZONE  *******//
 class AreaScreen extends React.Component {
   constructor(props) {
@@ -33,207 +34,50 @@ class AreaScreen extends React.Component {
   }
   
   render() {
-
+       
     let screenwidth=Dimensions.get('window').width;
     let screenheight=Dimensions.get('window').height; 
     return (
-      <View> 
-      <ScrollView style={{height:1500, marginTop:0}}
-         horizontal={true}
-      
-      >
-           
-          <View style={flex=1}>
-        <TouchableOpacity style={{ width:screenwidth-10, marginTop: 0 ,}}
-         onPress={() => this.props.navigation.navigate('Area1')}>
-        
-        <Image  
-          
-        source={require('../assets/ar1.png')}
-       style={{resizeMode:'cover'}}
-         />  
-
-
-        </TouchableOpacity>
-
-        <TouchableOpacity style={{ width:screenwidth-10, marginTop: 100 ,}}
-         onPress={() => this.props.navigation.navigate('TMC')}>
-        
-         <Text style={{fontSize:20,textAlign:'center'}}>  TMC BUS TIME TELLER</Text>
-         
-
-        </TouchableOpacity>
-        <TouchableOpacity style={{ width:screenwidth-10, marginTop: 20 ,}}
-         onPress={() => this.props.navigation.navigate('H221')}>
-        
-         <Text style={{fontSize:20,textAlign:'center'}}>  H221 BUS TIME TELLER</Text>
-         
-
-        </TouchableOpacity>
-        <TouchableOpacity style={{ width:screenwidth-10, marginTop: 20 ,}}
-         onPress={() => this.props.navigation.navigate('H221')}>
-        
-         <Text style={{fontSize:20,textAlign:'center',}}>  HOVEY BUS TIME TELLER</Text>
-         
-
-        </TouchableOpacity>
-
-        <TouchableOpacity style={{ width:screenwidth-10, marginTop: 20 ,}}
-         onPress={() => this.props.navigation.navigate('A1WTE')}>
-        
-         <Text style={{fontSize:20,textAlign:'center',fontFamily:'Raley-balck'}}>  WHAT TO EAT</Text>
-         
-
-        </TouchableOpacity>
-
-        <TouchableOpacity style={{ width:screenwidth-10, marginTop: 20 ,}}
-         onPress={() => this.props.navigation.navigate('A1WTD')}>
-        
-         <Text style={{fontSize:20,textAlign:'center',fontFamily:'Raley-balck'}}> WHAT TO DO</Text>
-         
-
-        </TouchableOpacity>
-        </View> 
-
-          <ScrollView>
-  
-        <TouchableOpacity style={{flex :1,marginLeft:-20}}
-        onPress={() => this.props.navigation.navigate('Area2')}>
-        
-        <Image
-        
-        source={require('../assets/ar2.png')}
-         />
-        </TouchableOpacity>
-       
-
-
-
-        <TouchableOpacity style={{  marginTop: 100 ,}}
-         onPress={() => this.props.navigation.navigate('YS')}>
-        
-         <Text style={{fontSize:20,textAlign:'center'}}>  BUS TIME TELLER</Text>
-         
-
-        </TouchableOpacity>
-          
-        <TouchableOpacity style={{ marginTop: 20 ,}}
-         onPress={() => this.props.navigation.navigate('H221')}>
-        
-         <Text style={{fontSize:20,textAlign:'center',fontFamily:'Raley-balck'}}>  WHAT TO EAT</Text>
-         
-
-        </TouchableOpacity>
-
-        <TouchableOpacity style={{ marginTop: 20 ,}}
-         onPress={() => this.props.navigation.navigate('H221')}>
-        
-         <Text style={{fontSize:20,textAlign:'center',fontFamily:'Raley-balck'}}> WHAT TO DO</Text>
-         
-
-        </TouchableOpacity>
-
-        </ScrollView>
-       
-
-
-
-        <ScrollView>
-  
-  <TouchableOpacity style={{flex :1,marginLeft:-20}}
-  onPress={() => this.props.navigation.navigate('Area3')}>
-  
-  <Image
-  
-  source={require('../assets/ar3.png')}
-   />
-  </TouchableOpacity>
- 
-
-
-
-  <TouchableOpacity style={{  marginTop: 100 ,}}
-   onPress={() => this.props.navigation.navigate('GREEN')}>
-  
-   <Text style={{fontSize:20,textAlign:'center'}}>  GREEN  BUS TIME TELLER</Text>
-   
-
-  </TouchableOpacity>
-
-  <TouchableOpacity style={{  marginTop: 20 ,}}
-   onPress={() => this.props.navigation.navigate('Red')}>
-  
-   <Text style={{fontSize:20,textAlign:'center'}}>  RED  BUS TIME TELLER</Text>
-   
-
-  </TouchableOpacity>
-
-  <TouchableOpacity style={{  marginTop: 20 ,}}
-   onPress={() => this.props.navigation.navigate('BLUE')}>
-  
-   <Text style={{fontSize:20,textAlign:'center'}}>  BLUE BUS TIME TELLER</Text>
-   
-
-  </TouchableOpacity>
     
-  <TouchableOpacity style={{ marginTop: 20 ,}}
-   onPress={() => this.props.navigation.navigate('H221')}>
-  
-   <Text style={{fontSize:20,textAlign:'center',fontFamily:'Raley-balck'}}>  WHAT TO EAT</Text>
-   
-
-  </TouchableOpacity>
-
-  <TouchableOpacity style={{ marginTop: 20 ,}}
-   onPress={() => this.props.navigation.navigate('H221')}>
-  
-   <Text style={{fontSize:20,textAlign:'center',fontFamily:'Raley-balck'}}> WHAT TO DO</Text>
-   
-
-  </TouchableOpacity>
-
-  </ScrollView>
-      < ScrollView>
-        <TouchableOpacity style={{flex :1,}}
-         onPress={() => this.props.navigation.navigate('Area4')}>
+         <Container style={styles.wrapper} >
+           
+           <Image style={styles.backgroundImage} source={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202019-07-04%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%201.45.30.png?alt=media&token=483f1553-bb47-4545-a86c-d1c9b6950b2d"}} />
+           <View    style={ { justifyContent: 'center', alignItems: 'center',marginTop:30}} >
+      
+           
         
-        <Image
+         
         
-        source={require('../assets/ar4.png')}
-         />
-        </TouchableOpacity>
+             
+                  
 
-        <TouchableOpacity style={{ marginTop: 100 ,}}
-   onPress={() => this.props.navigation.navigate('H221')}>
-  
-   <Text style={{fontSize:20,textAlign:'center',fontFamily:'Raley-balck'}}>  WHAT TO EAT</Text>
-   
-
-  </TouchableOpacity>
-
-  <TouchableOpacity style={{ marginTop: 20 ,}}
-   onPress={() => this.props.navigation.navigate('H221')}>
-  
-   <Text style={{fontSize:20,textAlign:'center',fontFamily:'Raley-balck'}}> WHAT TO DO</Text>
-   
-
-  </TouchableOpacity>
-
-        </ScrollView>
-     </ScrollView>
-     </View>
+               </View>
+          
+       </Container>
+    
     );
   }
 }
 export default AreaScreen;
 
-/*
+const wrapper = {
+  padding: '5%'
+};
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    
-    alignItems: 'center',
-    justifyContent: 'center',
+  backgroundImage:{
+      position: 'absolute',
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+      width: null,
+      height: null,
+      opacity:0.5,
+      resizeMode: 'cover',
+  },
+  wrapper:{
+      display: 'flex',
+      paddingLeft: wrapper.padding,
+      paddingRight: wrapper.padding,
   },
 });
- */
