@@ -1,10 +1,12 @@
 import React, { Component } from "react";
-import { View, FlatList, ActivityIndicator,Button,StyleSheet,Image,Text,ImageBackground} from "react-native";
+import { View, FlatList, ActivityIndicator,Button,StyleSheet,Image,Text,ImageBackground,TouchableOpacity,} from "react-native";
 import { List, ListItem, SearchBar } from "react-native-elements";
 import  firebase,{storage}  from "../firebase";
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import  someList from '../components/anylist'
 import {Font} from 'expo'
+import { ScrollView } from "react-native-gesture-handler";
+import {Container,Content} from 'native-base'
   database=firebase.database();
  
   
@@ -23,6 +25,7 @@ class Foodlist extends React.Component {
     this.state = {
       loading: false,
       datasource: [],
+      datasource1: [],
       pause:false,
       error: null,
       refreshing: false,
@@ -40,8 +43,8 @@ class Foodlist extends React.Component {
 
   componentDidMount() {
      Font.loadAsync({
-
-      'Raley-balck':require('../assets/fonts/33676382891.ttf'),
+      'title-font':require('../assets/fonts/BebasNeue-Regular.ttf'),
+      'Raley-balck':require('../assets/fonts/BebasNeue-Regular.ttf'),
       'Name-font':require('../assets/fonts/Nickainley-Normal_2.ttf'),
       
     });
@@ -55,9 +58,9 @@ class Foodlist extends React.Component {
     this.setState({ loading: true });
     const { navigation } = this.props;
    
-    var usersRef = firebase.database().ref('food');
-    
-    
+    var usersRef = firebase.database().ref('food/soup');
+ 
+
      usersRef.on('value', (snapshot) => {
     
     
@@ -66,7 +69,22 @@ class Foodlist extends React.Component {
   this.setState({
     datasource:  keys
   })
-});
+}); 
+usersRef = firebase.database().ref('food/dessert');
+
+
+usersRef.on('value', (snapshot) => {
+    
+    
+  var m=snapshot.val() 
+  var keys= Object.values(m);
+this.setState({
+ datasource1:  keys
+})
+}); 
+
+    
+
     
   };
 
@@ -131,18 +149,122 @@ class Foodlist extends React.Component {
         }}
       />
     );
-  };
+  }; 
+
+  _keyExtractor = (item, index) => item.key; 
+
+   gogo=(iname,idescription,itopimage,icate)=>{
+             
+    this.props.navigation.navigate('FOODi', {
+       name : iname,
+       description :idescription,
+      
+       topimage : itopimage,
+       cate:icate,
+      
+     
+     //  imagelist:item.images,
+       //tips:item.tips,
+    });
+  }
 
   render() {
      
     return (
+
+    
+        
+      <ScrollView>   
+
+<Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'#56B8FF'}}  
+                           
+                           >SOUP</Text>
+
       <View>
    
     <FlatList 
           data={this.state.datasource}
-          
+          keyExtractor={this._keyExtractor}
+          horizontal={true}
           renderItem={({ item }) => (
+              
+            <ListItem  
+         //    linearGradientProps={{
+            //  colors: ['#f45a5a', '#f45a5a'],
+   // colors: ['#ea3807', '#e5bcb0'],
+   // start: [1, 0],
+    //end: [0.2, 0],
+ // }}
+ 
+           
+               title=  {    
+               
+                    <View  style={{  flex:1,   alignContent:'center',marginRight:-3, borderWidth:2,borderColor:'#56B8FF'}}
+                    
+                    >
+                  <ImageBackground   style={styles.icon}
+                        source={{uri:item.topimage}}
+                 
+                 >
+                  
              
+            <View style={{flexDirection:'row',justifyContent:'flex-end',alignItems:'flex-end'}}>
+         
+          <Image
+            style={ { width: 35,
+              height: 30,marginTop:200}}
+            source={require('../assets/likewhithe.png')}
+          /> 
+          <Text style={{marginLeft:3,fontSize:30,color:'white',fontFamily:'title-font'}}>{item.upvote}</Text>
+         
+            
+          </View>
+                 
+                  </ImageBackground>
+                  </View>
+                
+                  
+          }
+          
+            
+            
+            onPress={() => this.gogo(item.name,item.description,item.topimage,item.cate)
+          
+          }
+        
+             // avatar={{ uri: item.picture.thumbnail }}
+             
+            />
+          )
+          
+        }
+          keyExtractor={item => item.name}
+        
+          
+         // ListHeaderComponent={this.renderHeader}
+         ListFooterComponent={this.renderFooter}
+          onRefresh={this.handleRefresh}
+          refreshing={this.state.refreshing}
+          onEndReached={this.handleLoadMore}
+          onEndReachedThreshold={40}
+        />
+
+
+        
+       </View>
+
+       <Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'#56B8FF'}}  
+                           
+                           >DESSERT</Text>
+
+      <View>
+   
+    <FlatList 
+          data={this.state.datasource1}
+          keyExtractor={this._keyExtractor}
+          horizontal={true}
+          renderItem={({ item }) => (
+              
             <ListItem  
          //    linearGradientProps={{
             //  colors: ['#f45a5a', '#f45a5a'],
@@ -153,23 +275,31 @@ class Foodlist extends React.Component {
  
  
                title=  {     
-                    <View  style={{  flex:1,   alignContent:'center',marginLeft:30,marginRight:34, borderWidth:2,borderColor:'##050505',borderRadius:5}}
-                    
-                    >
-                  <Image  style={styles.icon}
-                        source={{uri:item.topimage.toString()}}
                  
-                 />
-                    <Text>   </Text>
-                 {  this.state.fontLoaded?(
+                <View  style={{  flex:1,   alignContent:'center',marginRight:-3, borderWidth:2,borderColor:'#56B8FF'}}
+                    
+                >
+              <ImageBackground   style={styles.icon}
+                    source={{uri:item.topimage}}
+             
+             >
               
-              <Text   style={{fontFamily:'Raley-balck' ,fontSize:35,textAlign:'center'}}  
-                           
-                           >{item.name}</Text>
-               ) 
-               :( <ActivityIndicator size="large"      />
-               ) }
-                  </View>
+         
+        <View style={{flexDirection:'row',justifyContent:'flex-end',alignItems:'flex-end'}}>
+     
+      <Image
+        style={ { width: 35,
+          height: 30,marginTop:200}}
+        source={require('../assets/likewhithe.png')}
+      /> 
+      <Text style={{marginLeft:3,fontSize:30,color:'white',fontFamily:'title-font'}}>{item.upvote}</Text>
+     
+        
+      </View>
+             
+              </ImageBackground>
+              </View>
+            
                 
                   
           }
@@ -181,7 +311,7 @@ class Foodlist extends React.Component {
               this.props.navigation.navigate('FOODi', {
                  name : item.name,
                  description :item.description,
-                
+                 cate:item.cate,
                  topimage : item.topimage,
                
                 
@@ -209,7 +339,12 @@ class Foodlist extends React.Component {
           onEndReached={this.handleLoadMore}
           onEndReachedThreshold={40}
         />
+
+
+        
        </View>
+
+       </ScrollView>
     );
   }
 }
@@ -222,9 +357,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   icon: {
-    width: 260,
-    height: 160,
+    width: 300,
+    height: 230,
     borderRadius: 5,
+    resizeMode: 'cover',
    
    // alignContent:'center',
   },

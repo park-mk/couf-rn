@@ -1,7 +1,11 @@
 import React from 'react';
-import {   View , FlatList,Image} from 'react-native';
+import {   View , FlatList,Image,Button,TouchableOpacity,Text} from 'react-native';
 import { List, ListItem, SearchBar } from "react-native-elements";
 import  firebase from "../firebase";
+import call from 'react-native-phone-call';
+
+
+
 
   //load the firebase.database in order to simplfy
   database=firebase.database();
@@ -17,20 +21,21 @@ class TOLScreen extends React.Component {
       datasource: [],
       pause:false,
       error: null,
-      refreshing: false
+      refreshing: false,
+      search: '',
     };
   }
 
   // this function  refresh everytime information is changed 
   componentDidMount() {
-    
+    console.log(this.state.search);
     this.makeRemoteRequest();
   }
  // real refresh function 
   makeRemoteRequest = () => {
     
     this.setState({ loading: true });                    //because while this function is working = loading 
-    var usersRef =firebase.database().ref('tips');       //   bring the database tips
+    var usersRef =firebase.database().ref('Phonebook');       //   bring the database tips
     usersRef.on('value', (snapshot) => {                     //    tips database resort
     
      var m=snapshot.val() 
@@ -68,9 +73,45 @@ class TOLScreen extends React.Component {
 
   
  //   header not used yet but im gonna use it as searching 
-  renderHeader = () => {
-    return <SearchBar placeholder="Type Here..." lightTheme round />;
-  };
+ renderHeader = () => {    
+  return (      
+    <SearchBar        
+     // placeholder="Type Here..."        
+      lightTheme        
+      round        
+    //  onChangeText={(text) => this.searchFilterFunction(text)}
+      onChangeText={this.updateSearch}
+      autoCorrect={false}             
+      value={this.state.search}
+    />    
+  );  
+};
+
+
+updateSearch = search => {
+  this.setState({ search });
+  
+};
+
+
+searchFilterFunction = text => {    
+  this.setState({
+    search: text,
+  });
+  console.log(this.state.search)
+
+ const newData = this.state.datasource.filter(item => {      
+    const itemData = `${item.name.toUpperCase()} ${item.number.toUpperCase()}   `;
+    
+     const textData = text.toUpperCase();
+      
+     return itemData.indexOf(textData) > -1;    
+  });
+
+  this.setState({ datasource: newData });  
+
+  //this.makeRemoteRequest();
+};
  // not used also but gonna use when there is more info 
   renderFooter = () => {
     if (!this.state.loading) return null;
@@ -89,6 +130,16 @@ class TOLScreen extends React.Component {
     );
   };
 
+  call = (number1) => {
+    //handler to make a call
+    const args = {
+      number: number1,
+      prompt: false,
+    };
+
+    call(args).catch(console.error);
+  };
+
   // don't use also 
   renderSeparator = () => {
    
@@ -102,37 +153,83 @@ class TOLScreen extends React.Component {
         }}
       />
     );
-  };
+  }; 
+
+  renderagain = () => {
+    this.setState({
+      search: '',
+    });
+    this.makeRemoteRequest();
+  }; 
+
+
+
    // start to draw whole screen 
   render() {
      
     return (
         // flat list data= datasoucr= firebase.tips        details please look upper 
+          
+    <View> 
+     <View  horizontal={true}> 
+        <SearchBar        
+        // placeholder="Type Here..." 
+          
+         lightTheme        
+         round        
+         onChangeText={(text) => this.searchFilterFunction(text)}
+        // onChangeText={this.updateSearch}
+         autoCorrect={false}             
+         value={this.state.search}
+       />    
+             <TouchableOpacity
+             onPress={  ()=> this.renderagain()}
+             >
+             <View
+              style={{
+                width:300, 
+                height: 40, 
+              }}
+             
+              
+            >
+             <Text  style={{fontFamily:'title-font' ,fontSize:23,textAlign:'center'}} > REFRESH FOR UNCORRECT TYPING</Text>
+            </View>
+             </TouchableOpacity>
+         </View> 
      <FlatList
           data={this.state.datasource}
             // (item =  tips ) here
           renderItem={({ item }) => (
               
             <ListItem
-                onPress={() => this.props.navigation.navigate('Category')}
-                rightAvatar
-                title={item.title} 
-                subtitle={item.name}
+                onPress={() => this.call(item.number)}
+               // rightAvatar
+                title={item.name} 
+                subtitle={item.number}
              // avatar={{ uri: item.picture.thumbnail }}
                 containerStyle={{ borderBottomWidth: 3 }}
             />
           )
           
         }
-              keyExtractor={item => item.title}         
-           // ListHeaderComponent={this.renderHeader}
+              keyExtractor={item => item.number}         
+          //  ListHeaderComponent={this.renderHeader}
           //  ListFooterComponent={this.renderFooter}
-             onRefresh={this.handleRefresh}
-             refreshing={this.state.refreshing}
-             onEndReached={this.handleLoadMore}
-             onEndReachedThreshold={30}
-      />
+          //   onRefresh={this.handleRefresh}
+            // refreshing={this.state.refreshing}
+            // onEndReached={this.handleLoadMore}
+            // onEndReachedThreshold={30}
+      /> 
       
+     <Button
+  title="Refresh"
+  type="outline"
+  onPress={  ()=> this.renderagain()}
+        />
+
+<Button title="Make a Call" onPress={this.call} />
+       </View>
     );
   }
 }

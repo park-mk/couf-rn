@@ -7975,6 +7975,11 @@ react-native-maps@expo/react-native-maps#v0.22.1-exp.0:
   version "0.22.1"
   resolved "https://codeload.github.com/expo/react-native-maps/tar.gz/e6f98ff7272e5d0a7fe974a41f28593af2d77bb2"
 
+react-native-phone-call@^1.0.9:
+  version "1.0.9"
+  resolved "http://r.cnpmjs.org/react-native-phone-call/download/react-native-phone-call-1.0.9.tgz#4468ec6f95856557fbff9bd69a0db04b54c35e1d"
+  integrity sha1-RGjsb5WFZVf7/5vWmg2wS1TDXh0=
+
 react-native-platform-touchable@^1.1.1:
   version "1.1.1"
   resolved "http://r.cnpmjs.org/react-native-platform-touchable/download/react-native-platform-touchable-1.1.1.tgz#fde4acc65eea585d28b164d0c3716a42129a68e4"

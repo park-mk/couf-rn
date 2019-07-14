@@ -11,7 +11,7 @@ class Sorttype extends React.Component {
   async componentDidMount(){
     await Font.loadAsync({
 
-       'Raley-balck':require('../assets/fonts/33676382891.ttf'),
+       'content-font':require('../assets/fonts/Bayon.ttf'),
        
      });
      this.setState({fontLoaded:true})
@@ -38,7 +38,7 @@ class Sorttype extends React.Component {
               
                <Text  style={{fontSize:this.props.size , lineHeight: 30,
                marginLeft:0, 
-               marginRight:this.props.margin,fontFamily:'Raley-balck'}} > {this.props.text}</Text>
+               marginRight:this.props.margin,fontFamily:'content-font'}} > {this.props.text}</Text>
               {console.log("12/n       ")}
           </View>
          

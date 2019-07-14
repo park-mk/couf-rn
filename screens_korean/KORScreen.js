@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { View, FlatList, ActivityIndicator,Button,Text,Fragmen} from "react-native";
-import { List, ListItem, SearchBar } from "react-native-elements";
+import { View, FlatList, ActivityIndicator,Button,Text,Fragmen,TouchableOpacity,Image} from "react-native";
+import { List, ListItem, SearchBar,Header } from "react-native-elements";
 import  firebase,{storage}  from "../firebase";
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
 
@@ -59,10 +59,15 @@ class KORScreen extends React.Component {
     const { navigation } = this.props;
     const move = navigation.getParam('move', 'NO-ID');
      if(JSON.stringify(move).replace(/^"(.+)"$/,'$1')=='BASIC')
-    var usersRef = firebase.database().ref('korean');
+    var usersRef = firebase.database().ref('korean/basic');
      else
      var usersRef = firebase.database().ref('tips');
+
+     if(JSON.stringify(move).replace(/^"(.+)"$/,'$1')=='SHOPPING')
+    var usersRef = firebase.database().ref('korean/shopping'); 
     
+    if(JSON.stringify(move).replace(/^"(.+)"$/,'$1')=='DATE')
+    var usersRef = firebase.database().ref('korean/date'); 
 usersRef.on('value', (snapshot) => {
     
    
@@ -114,7 +119,7 @@ usersRef.on('value', (snapshot) => {
         style={{
           paddingVertical: 20,
           borderTopWidth: 1,
-          borderColor: "#CED0CE"
+          borderColor: "#56B8FF"
         }}
       >
       
@@ -131,7 +136,7 @@ usersRef.on('value', (snapshot) => {
         style={{
           height: 1,
           width: "86%",
-          backgroundColor: "#CED0CE",
+          backgroundColor: "#56B8FF",
           marginLeft: "14%"
         }}
       />
@@ -141,14 +146,28 @@ usersRef.on('value', (snapshot) => {
   render() {
      
     return (
-        
+      <View style={{flex:1}}>
+      <Header
+      leftComponent={  <TouchableOpacity 
+       onPress={()=> this.props.navigation.navigate('Category')}
+       >
+       <Image source={require('../assets/back.png')}
+                   
+      style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
+ /> 
+ </TouchableOpacity>} 
+     backgroundColor={'#fff'}
+    borderBottomColor={'#fff'}
+      centerComponent={{ text: 'LEARNING KOREAN', style: {fontFamily:'title-font' ,fontSize:30,marginLeft:10,color:'#56B8FF' } }}
+     
+       />
         <FlatList
           data={this.state.datasource}
           
-          renderItem={({ item }) => (
-             
+          renderItem={({ item}) => (
+            
             <ListItem 
-             
+           
            // onLongPress={() => this._play()}
             onPress={() => {
               /* 1. Navigate to the Details route with params */
@@ -160,10 +179,18 @@ usersRef.on('value', (snapshot) => {
                 
               });
             }}
-            rightAvatar={{ source: require('../assets/info.png') }}
+           
                
-             title={item.eng} 
+             title={item.eng } 
+             titleStyle={{ 
+              fontFamily:'content-font'
+               
+             }}
               subtitle={item.pro}
+              subtitleStyle={{ 
+                fontFamily:'content-font'
+                 
+               }}
              // avatar={{ uri: item.picture.thumbnail }}
               containerStyle={{ borderBottomWidth: 3 }}
             />
@@ -174,12 +201,17 @@ usersRef.on('value', (snapshot) => {
         
           
           //ListHeaderComponent={this.renderHeader}
-         ListFooterComponent={this.renderFooter}
-          onRefresh={this.handleRefresh}
-          refreshing={this.state.refreshing}
-          onEndReached={this.handleLoadMore}
-          onEndReachedThreshold={40}
+      //   ListFooterComponent={this.renderFooter}
+          //onRefresh={this.handleRefresh}
+         // refreshing={this.state.refreshing}
+        //  onEndReached={this.handleLoadMore}
+          maxToRenderPerBatch={1}
+          initialNumToRender={1}
+        
+          onEndReachedThreshold={3000000000000000000000090909090909090}
+
         />
+        </View>
         
 
        
