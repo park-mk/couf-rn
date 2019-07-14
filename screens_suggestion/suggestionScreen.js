@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import firebase from "../firebase";
 // import ImagePicker from 'react-native-image-picker';
 import { ImagePicker } from 'expo';
+import CommentList from './commentList'
 
 class SuggestionScreen extends React.Component {
     constructor(props){
@@ -16,9 +17,9 @@ class SuggestionScreen extends React.Component {
             suggestion:'',
             lists:[],
             modify:{},
-            isFetching: true,
+            fetching: true,
         })
-        this.getData();
+        // this.setData();
         this.base64Data = '';
     }
     createData=(suggestion)=> {
@@ -41,21 +42,23 @@ class SuggestionScreen extends React.Component {
         firebase.database().ref().child('suggestion/'+key).set(null);
     };
     getData = () => {
-        firebase.database().ref('suggestion').on('value', function(snapshot) {
-            this.setState({
-                lists:  Object.values(snapshot.val()),
-                isFetching: false,
-            })
-        }.bind(this));
+        return new Promise((resolve, reject) => {
+            firebase.database().ref('suggestion').on('value', function (snapshot) {
+                resolve(Object.values(snapshot.val()));
+            }.bind(this),function(error){
+                reject(error);
+            });
+        });
     };
+
     getDate = (timestamp) => {
         let date = new Date(timestamp);
         return `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}`;
     };
     onRefresh() {
-        console.log('refreshing');
+        console.log('refreshing 되는중???');
         this.setState({ isFetching: true }, function() {
-            this.getData()
+            // this.setData();
         });
     }
     onEndReached = () => {
@@ -177,15 +180,18 @@ class SuggestionScreen extends React.Component {
                     {this.state.image &&
                     <Image source={{ uri: this.state.image }} style={{ width: 200, height: 200 }} />}
                 </Form>
+
+                <CommentList refreshing={this.state.isFetching}
+                             getData={this.getData}
+                />
+
+
+{/*
                 <FlatList data={this.state.lists}
                           onRefresh={() => this.onRefresh()}
                           refreshing={this.state.isFetching}
                           keyExtractor={item => item.uid}
                           ListEmptyComponent={<Text>Empty</Text>}
-                    /*
-                                              onEndReachedThreshold={1}
-                                              onEndReached={this.onEndReached}
-                    */
                           renderItem={({item}) => (
                               <ListItem
                                   key={item.uid}
@@ -224,6 +230,7 @@ class SuggestionScreen extends React.Component {
                               />
 
                           )}/>
+*/}
             </View>
         );
     }
