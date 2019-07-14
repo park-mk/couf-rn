@@ -335,7 +335,7 @@ class SignUpScreen extends React.Component {
                         <Text style={ {color:'black'} }>DONE</Text>
                     </Button>
                    
-                    <Button style={ { marginTop: 15, backgroundColor:'#d8d8d8' }}
+                    <Button style={ { marginTop: 15, backgroundColor:'#d8d8d8', }}
                             full
                             rounded
                             primary

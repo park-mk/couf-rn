@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, View, Text ,Image,TouchableOpacity,ScrollView} from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation'; 
-
+import { List, ListItem, SearchBar ,Header} from "react-native-elements";
 class KOR_explainScreen extends React.Component {
 
 
@@ -28,12 +28,27 @@ class KOR_explainScreen extends React.Component {
       const pro = navigation.getParam('pro', 'NO-ID');
      
       return (
+        <View style={{flex:1}}>
+        <Header
+        leftComponent={  <TouchableOpacity 
+         onPress={()=> this.props.navigation.navigate('KORca')}
+         >
+         <Image source={require('../assets/back.png')}
+                     
+        style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
+   /> 
+   </TouchableOpacity>} 
+       backgroundColor={'#fff'}
+      borderBottomColor={'#fff'}
+        centerComponent={{ text: 'LEARNING KOREAN', style: {fontFamily:'title-font' ,fontSize:30,marginLeft:10,color:'#56B8FF' } }}
+       
+         />
         <ScrollView style={{ flex: 1 }}>
            
           <Text style={{textAlign:'center', fontSize:60,marginTop:30}}> {JSON.stringify(kor).replace(/^"(.+)"$/,'$1')}</Text>
           <Text style={{textAlign:'center', fontSize:30,color:'grey',marginBottom:50}}> [ {JSON.stringify(pro).replace(/^"(.+)"$/,'$1')} ]</Text>
-          <Text style={{marginLeft:20,fontSize:40,marginBottom:6}}> {JSON.stringify(eng).replace(/^"(.+)"$/,'$1')}</Text>
-          <Text style={{fontSize:20,marginLeft:10,marginRight:20,fontStyle:'italic'}}> {JSON.stringify(description).replace(/^"(.+)"$/,'$1')}</Text>
+          <Text style={{marginLeft:20,fontFamily:'content-font',fontSize:40,marginBottom:6}}> {JSON.stringify(eng).replace(/^"(.+)"$/,'$1')}</Text>
+          <Text style={{fontSize:20,marginLeft:10,fontFamily:'content-font',marginRight:20}}> {JSON.stringify(description).replace(/^"(.+)"$/,'$1')}</Text>
 
           <TouchableOpacity
          
@@ -55,6 +70,7 @@ class KOR_explainScreen extends React.Component {
             onPress={() => this.props.navigation.goBack()}
           />*/}
         </ScrollView>
+        </View>
       );
     }
   }

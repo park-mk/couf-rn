@@ -6,6 +6,7 @@ import { createStackNavigator, createBottomTabNavigator, createAppContainer } fr
 import  someList from '../components/anylist'
 import {Font} from 'expo'
 import { ScrollView } from "react-native-gesture-handler";
+import {Container,Content} from 'native-base'
   database=firebase.database();
  
   
@@ -150,7 +151,22 @@ this.setState({
     );
   }; 
 
-  _keyExtractor = (item, index) => item.key;
+  _keyExtractor = (item, index) => item.key; 
+
+   gogo=(iname,idescription,itopimage,icate)=>{
+             
+    this.props.navigation.navigate('FOODi', {
+       name : iname,
+       description :idescription,
+      
+       topimage : itopimage,
+       cate:icate,
+      
+     
+     //  imagelist:item.images,
+       //tips:item.tips,
+    });
+  }
 
   render() {
      
@@ -160,7 +176,7 @@ this.setState({
         
       <ScrollView>   
 
-<Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'#63d8eb'}}  
+<Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'#56B8FF'}}  
                            
                            >SOUP</Text>
 
@@ -180,39 +196,31 @@ this.setState({
     //end: [0.2, 0],
  // }}
  
- 
-               title=  {     
-                    <View  style={{  flex:1,   alignContent:'center',marginLeft:30,marginRight:34, borderWidth:2,borderColor:'#63d8eb',borderRadius:5}}
+           
+               title=  {    
+               
+                    <View  style={{  flex:1,   alignContent:'center',marginRight:-3, borderWidth:2,borderColor:'#56B8FF'}}
                     
                     >
-                  <Image  style={styles.icon}
+                  <ImageBackground   style={styles.icon}
                         source={{uri:item.topimage}}
                  
-                 />
-                   <View  style={{flex: 1, flexDirection: 'row'}}>
-                    
-                 {  this.state.fontLoaded?(
-              
-              <Text   style={{fontFamily:'title-font' ,fontSize:35,marginLeft:10,color:'#63d8eb'}}  
-                           
-                           >{item.name}</Text>
-               ) 
-               :( <ActivityIndicator size="large"      />
-               ) }
-
+                 >
+                  
              
-            <View style={{flexDirection:'row'}}>
+            <View style={{flexDirection:'row',justifyContent:'flex-end',alignItems:'flex-end'}}>
          
           <Image
-            style={ { width: 30,
-              height: 30,}}
-            source={require('../assets/like.png')}
+            style={ { width: 35,
+              height: 30,marginTop:200}}
+            source={require('../assets/likewhithe.png')}
           /> 
-          <Text>{item.upvote}</Text>
+          <Text style={{marginLeft:3,fontSize:30,color:'white',fontFamily:'title-font'}}>{item.upvote}</Text>
          
             
           </View>
-                  </View>
+                 
+                  </ImageBackground>
                   </View>
                 
                   
@@ -220,23 +228,10 @@ this.setState({
           
             
             
-            onPress={() => {
-             
-              this.props.navigation.navigate('FOODi', {
-                 name : item.name,
-                 description :item.description,
-                
-                 topimage : item.topimage,
-                 cate:item.cate,
-                
-               
-               //  imagelist:item.images,
-                 //tips:item.tips,
-              });
-            }
+            onPress={() => this.gogo(item.name,item.description,item.topimage,item.cate)
           
           }
-              
+        
              // avatar={{ uri: item.picture.thumbnail }}
              
             />
@@ -258,7 +253,7 @@ this.setState({
         
        </View>
 
-       <Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'#63d8eb'}}  
+       <Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'#56B8FF'}}  
                            
                            >DESSERT</Text>
 
@@ -280,40 +275,31 @@ this.setState({
  
  
                title=  {     
-                    <View  style={{  flex:1,   alignContent:'center',marginLeft:30,marginRight:34, borderWidth:2,borderColor:'#63d8eb',borderRadius:5}}
-                    
-                    >
-                  <Image  style={styles.icon}
-                        source={{uri:item.topimage}}
                  
-                 />
-                   <View  style={{flex: 1, flexDirection: 'row'}}>
+                <View  style={{  flex:1,   alignContent:'center',marginRight:-3, borderWidth:2,borderColor:'#56B8FF'}}
                     
-                 {  this.state.fontLoaded?(
-              
-              <Text   style={{fontFamily:'title-font' ,fontSize:35,marginLeft:10,color:'#63d8eb'}}  
-                           
-                           >{item.name} </Text> 
-               ) 
-               :( <ActivityIndicator size="large"      />
-               ) }
-
+                >
+              <ImageBackground   style={styles.icon}
+                    source={{uri:item.topimage}}
              
-            <View style={{flexDirection:'row'}}>
+             >
+              
          
-          <Image
-            style={ { width: 30,
-              height: 30,}}
-            source={require('../assets/like.png')}
-          /> 
-          <Text>{item.upvote}</Text>
-          <Text>{item.cate}</Text>
-
-         
+        <View style={{flexDirection:'row',justifyContent:'flex-end',alignItems:'flex-end'}}>
+     
+      <Image
+        style={ { width: 35,
+          height: 30,marginTop:200}}
+        source={require('../assets/likewhithe.png')}
+      /> 
+      <Text style={{marginLeft:3,fontSize:30,color:'white',fontFamily:'title-font'}}>{item.upvote}</Text>
+     
+        
+      </View>
+             
+              </ImageBackground>
+              </View>
             
-          </View>
-                  </View>
-                  </View>
                 
                   
           }
@@ -371,9 +357,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   icon: {
-    width: 260,
-    height: 160,
+    width: 300,
+    height: 230,
     borderRadius: 5,
+    resizeMode: 'cover',
    
    // alignContent:'center',
   },

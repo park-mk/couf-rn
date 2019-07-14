@@ -32,7 +32,7 @@ class Category extends React.Component {
      
     return (
       <View style={{ height:180 ,width:150,marginLeft:20,marginTop:20, 
-       borderWidth: 0.5,borderColor:'#dddddd' 
+        borderWidth: 3,borderColor:'#dddddd' ,borderRadius:10,
       }}>  
     
             
@@ -53,9 +53,9 @@ class Category extends React.Component {
           
              <Image source={this.props.imageURI}
                       
-                  style={{flex:3,width :null,height:null,resizeMode:'cover'}}
+                  style={{flex:4,width :null,height:null,resizeMode:'cover'}}
              /> 
-              <Text style={{flex:1,fontFamily:'Raley-balck', textAlign: 'center',fontSize:17,marginTop:10 }}>{this.props.name}</Text>
+             
             
            
       </TouchableOpacity>

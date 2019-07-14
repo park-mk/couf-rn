@@ -41,7 +41,7 @@ class AreaScreen extends React.Component {
     
          <Container style={styles.wrapper} >
            
-           <Image style={styles.backgroundImage} source={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202019-07-04%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%201.45.30.png?alt=media&token=483f1553-bb47-4545-a86c-d1c9b6950b2d"}} />
+           <Image style={styles.backgroundImage} source={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2Farea%20back.png?alt=media&token=b9095cde-5fd3-4c89-be28-0ce4d0defee5"}} />
            <View    style={ { justifyContent: 'center', alignItems: 'center',marginTop:30}} >
       
            
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
       left: 0,
       width: null,
       height: null,
-      opacity:0.5,
+     // opacity:0.5,
       resizeMode: 'cover',
   },
   wrapper:{

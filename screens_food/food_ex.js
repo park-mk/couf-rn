@@ -248,7 +248,7 @@ class Fooditem extends React.Component {
                 height: 30, alignContent: 'center',
               }}
               resizeMode={'contain'}
-              source={require('../assets/like_b.png')}
+              source={require('../assets/place_lo.png')}
             />
           
 
@@ -264,10 +264,10 @@ class Fooditem extends React.Component {
                 
               }} 
               resizeMode={'contain'}
-              source={require('../assets/like_b.png')}
+              source={require('../assets/Vector.png')}
             />
             <View style={{ flex: 1 ,marginRight:-10}}>
-            <Text style={{ textAlign: 'left', fontSize: 20,color:'#63d8eb',marginBottom:3}}>{this.state.up}</Text>
+            <Text style={{ textAlign: 'left', fontSize: 20,color:'#56B8FF',marginBottom:3}}>{this.state.up}</Text>
             </View>
            
             <Image
@@ -276,10 +276,10 @@ class Fooditem extends React.Component {
                 height: 30, alignContent: 'center'
               }}
               resizeMode={'contain'}
-              source={require('../assets/like_b.png')}
+              source={require('../assets/baseline-chat-24px.png')}
             />
             <View style={{ flex: 1 }}>
-            <Text style={{ textAlign: 'left', fontSize: 20,color:'#63d8eb',marginBottom:2 }}>{this.state.up}</Text>
+            <Text style={{ textAlign: 'left', fontSize: 20,color:'#56B8FF',marginBottom:2 }}>{this.state.up}</Text>
             </View>
           
           </View>
@@ -290,7 +290,7 @@ class Fooditem extends React.Component {
                  </View> 
 
          
-            <Text style={{ textAlign: 'left', fontSize: 55,color:'#63d8eb',marginLeft:10 ,fontFamily:'title-font' }}>{name}</Text>
+            <Text style={{ textAlign: 'left', fontSize: 55,color:'#56B8FF',marginLeft:10 ,fontFamily:'title-font' }}>{name}</Text>
 
           </View>  
              

@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { View, FlatList, ActivityIndicator,Button,StyleSheet,Image,Text,ImageBackground} from "react-native";
+import { View, FlatList, ActivityIndicator,Button,StyleSheet,Image,Text,ImageBackground,TouchableHighlight,TouchableOpacity} from "react-native";
 import { List, ListItem, SearchBar } from "react-native-elements";
 import  firebase,{storage}  from "../firebase";
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import  someList from '../components/anylist'
+import { ScrollView } from "react-native-gesture-handler";
 
   database=firebase.database();
  
@@ -134,22 +135,41 @@ usersRef.on('value', (snapshot) => {
    renderItem =({item})=>{
 
          return(
-  
-          <View  style={{  flex:1,  flexDirection:'row',marginBottom:6}} >
+           <TouchableOpacity
+           onPress={() => {
+             
+            this.props.navigation.navigate('TTi', {
+               name : item.name,
+               description :item.description,
+              
+               topimage : item.topimage,
+               cate:item.cate,
+              
+             
+             //  imagelist:item.images,
+               //tips:item.tips,
+            });
+          }
+        
+        }
+           >
+          <View  style={{  flex:1,  flexDirection:'row',marginBottom:6,borderColor:'black'}} >
                   <Image  style={styles.icon}
                         source={{uri:item.topimage}}
                  
                  />
                   <View  >
-                  <Text style={styles.h1}>{item.name}</Text>  
-                  <Text style={styles.p} >{item.devision}</Text>   
-                  <Text style={styles.price} >{item.location}</Text>  
+              { //<Text style={styles.h1}>{item.name}</Text>  
+                 // <Text style={styles.p} >{item.devision}</Text>   
+                 //<Text style={styles.price} >{item.location}</Text> 
+                 }
                 
                   </View>
                  
-                  </View>
+                </View>
+                </TouchableOpacity>   
 
-
+    
 
 
          )
@@ -160,14 +180,54 @@ usersRef.on('value', (snapshot) => {
   render() {
      
     return (
-      <View>
-   
-    <FlatList 
+      <ScrollView> 
+         <View style={{flexDirection:'row'}} >
+    <Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'#56B8FF'}}  
+                           
+                           >SEOUL</Text> 
+                         <Text   style={{fontFamily:'title-font' ,fontSize:20, marginLeft:20,marginTop:50,color:'#56B8FF'}}  
+                           
+                           >   INDOOR</Text>     
+              </View>             
+                  
+        <View style={{flexDirection:'row'}} >
+        <View  style={{marginLeft:30}}>
+        </View>
+      <FlatList 
           data={this.state.datasource}
           
           renderItem={this.renderItem}
           
+          horizontal={true}
+          keyExtractor={item => item.name}
         
+          
+         // ListHeaderComponent={this.renderHeader}
+         ListFooterComponent={this.renderFooter}
+          onRefresh={this.handleRefresh}
+          refreshing={this.state.refreshing}
+          onEndReached={this.handleLoadMore}
+          onEndReachedThreshold={40} 
+           
+       
+        />
+
+      </View>
+
+      <Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'#56B8FF'}}  
+                           
+                           >SPECIAL TOUR</Text>    
+
+
+<View style={{flexDirection:'row'}} >
+        <View  style={{marginLeft:30}}>
+        </View>
+      <FlatList 
+          data={this.state.datasource}
+          
+          renderItem={this.renderItem}
+          
+          horizontal={true}
           keyExtractor={item => item.name}
         
           
@@ -178,7 +238,9 @@ usersRef.on('value', (snapshot) => {
           onEndReached={this.handleLoadMore}
           onEndReachedThreshold={40}
         />
-       </View>
+
+      </View>                 
+       </ScrollView>
     );
   }
 }
@@ -191,10 +253,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   icon: {
-    width: 120,
-    height: 120,
-    borderRadius: 5,
+    width: 240,
+    height: 400,
+    
     marginRight:10,
+    borderWidth:2,borderColor:'#56B8FF',borderRadius:5
   },
   rightContainer: {
     flex: 1,

@@ -47,6 +47,8 @@ import A1WTE from './screens_wte/area1_wte'
 import A1WTD from './screens_wtd/area1_wtd'
 
 import Area1Screen from './screens_area/area1'
+import Area1_1Screen from './screens_area/area1_1'
+import Area1_2Screen from './screens_area/area1_2'
 import Area2Screen from './screens_area/area2'
 import Area3Screen from './screens_area/area3'
 import Area4Screen from './screens_area/area4'
@@ -54,6 +56,8 @@ import TMC from './screens_bus/area1_tmc'
 import H221 from './screens_bus/area1_h221'
 import YS from './screens_bus/area1_yongsan'
 
+
+import BUSScreen from './screens_bus/bus'
 import Red from './screens_bus/area3_red'
 import GREEN from './screens_bus/area3_green'
 import BLUE from './screens_bus/area3_blue'
@@ -66,7 +70,7 @@ import Profile from './screens_login/afterloginscreen'
 import Loginc from './screens_login/beforelogin'
 import SuggestionScreen from './screens_suggestion/suggestionScreen'
 import SuggestionModify from './screens_suggestion/suggestionModify'
-import Home from'./screens_home/Home'
+import Home1 from'./screens_home/Home'
 
 
 import { Font } from 'expo'
@@ -137,7 +141,7 @@ class HomeScreen extends React.Component {
 
       'Raley-balck': require('./assets/fonts/33676382891.ttf'),
       'title-font': require('./assets/fonts/BebasNeue-Regular.ttf'),
-
+       'content-font':require('./assets/fonts/Bayon.ttf'),
 
     });
     this.setState({ fontLoaded: true })
@@ -146,13 +150,16 @@ class HomeScreen extends React.Component {
     let dimensions = Dimensions.get("window");
     let imageheight = dimensions.height/5;
     let imagewidth = dimensions.width;
+     //navigation.navigate('Home1')
     return (
      // <SafeAreaView style={{ flex: 1 }}>
     
        
       <View>
-    
-    <Home></Home>
+       <Home1
+           navigation={this.props.navigation}
+        ></Home1>
+  
       </View>
       
     );
@@ -168,11 +175,15 @@ const HomeStack = createStackNavigator({
     screen: HomeScreen,
    navigationOptions: {
     title: 'Home',    // HEADER DELETE
+    
+      header: null,       // HEADER DELETE
+    
     headerTitleStyle: {
       fontWeight: 'bold',
     },
     }
   },
+  Home1: { screen: Home1 },
 });
 
 const CategoryStack = createStackNavigator({
@@ -182,10 +193,25 @@ const CategoryStack = createStackNavigator({
 
     }
   },
+  BUS: {
+    screen: BUSScreen, navigationOptions: {
+      header: null,
+
+    }
+  },
   TOL: { screen: TOLScreen },
-  KORca: { screen: KORcate },
-  KOR: { screen: KORScreen },
-  KORex: { screen: KOR_explainScreen },
+  KORca: { screen: KORcate , navigationOptions: {
+    header: null,
+
+  }},
+  KOR: { screen: KORScreen , navigationOptions: {
+    header: null,
+
+  }},
+  KORex: { screen: KOR_explainScreen , navigationOptions: {
+    header: null,
+
+  }},
   TT: { screen: Travellist },
   TTi: {
     screen: Travelitem,
@@ -197,7 +223,7 @@ const CategoryStack = createStackNavigator({
     screen: Foodlist, navigationOptions: {
       title: 'FOOD',
    
-      headerTintColor: '#63d8eb',
+      headerTintColor: '#56B8FF',
       headerTitleStyle: {
         fontWeight: 'bold',
       
@@ -216,10 +242,24 @@ const CategoryStack = createStackNavigator({
 
 const AreaStack = createStackNavigator({
   Area: {
-    screen: AreaScreen,
+    screen: AreaScreen,navigationOptions: {
+      header: null,
+
+    }
 
   },
-  Area1: { screen: Area1Screen },
+  Area1: { screen: Area1Screen, navigationOptions: {
+    header: null,
+
+  } },
+  Area1_1: { screen: Area1_1Screen, navigationOptions: {
+    header: null,
+
+  } },
+  Area1_2: { screen: Area1_2Screen, navigationOptions: {
+    header: null,
+
+  } },
   Area2: { screen: Area2Screen },
   Area3: { screen: Area3Screen },
   Area4: { screen: Area4Screen },
@@ -281,7 +321,7 @@ export default createAppContainer(createBottomTabNavigator(
     
     Area: { screen: AreaStack },
     Login1: { screen: LoginStack },
-    Suggestion: { screen: SuggestionStack },
+   // Suggestion: { screen: SuggestionStack },
 
   },
   {
@@ -291,13 +331,13 @@ export default createAppContainer(createBottomTabNavigator(
         let iconName;
       
         if (routeName === 'Category') {
-          iconName = `ios-list`;
+          iconName = `md-list`;
         }
         if (routeName === 'Home') {
           iconName = `ios-home`;
         }
         if (routeName === 'Area') {
-          iconName = `ios-subway`;
+          iconName = `ios-pin`;
         }
         if (routeName === 'Login1') {
           iconName = `ios-contact`;
@@ -309,7 +349,7 @@ export default createAppContainer(createBottomTabNavigator(
       },
     }),
     tabBarOptions: {
-      activeTintColor: 'skyblue',
+      activeTintColor: '#56B8FF',
       inactiveTintColor: 'gray',
       showLabel:false,
     },

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, FlatList, ActivityIndicator,Button,StyleSheet,Image,Text,ImageBackground} from "react-native";
+import { View, FlatList, ActivityIndicator,Button,StyleSheet,Image,Text,ImageBackground,TouchableOpacity,Dimensions} from "react-native";
 import { List, ListItem, SearchBar } from "react-native-elements";
 import  firebase,{storage}  from "../firebase";
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
@@ -117,7 +117,7 @@ usersRef.on('value', (snapshot) => {
     );
   };
   renderSeparator = () => {
-   
+    
     return (
       <View
         style={{
@@ -158,9 +158,69 @@ usersRef.on('value', (snapshot) => {
 
    }
   render() {
-     
+      
+    let dimensions = Dimensions.get("window");
+    //  let imageheight = Math.round((dimensions.width * 9) / 12);
+      let imagewidth = dimensions.width;
+  
     return (
+      
       <View>
+         
+      <View>
+      <View style ={{ flexDirection:"row" ,flex:3}}>
+      <TouchableOpacity style={{flex:1}}>
+      <Text   style={{fontFamily:'title-font' ,fontSize:23,marginTop:20,marginLeft:10,color:'#56B8FF'}}  >THINGS TO EAT</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={{flex:1}}>
+      <Text style={{fontFamily:'title-font' ,fontSize:23, marginTop:20,marginLeft:15,color:'#7f8182'}}>WHAT TO DO</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={{flex:1}}>
+      <Text style={{fontFamily:'title-font' ,fontSize:23, marginTop:20,color:'#7f8182'}}>BUS SCHEDULE</Text>
+      </TouchableOpacity>
+    
+   </View> 
+     
+          <View>
+
+         
+            
+         
+      
+        
+        <View style={{
+    borderBottomColor: '#56B8FF',
+    borderBottomWidth: 1,
+    marginTop:3,
+         }}    />
+            <View style={{
+            width: imagewidth/3-5,
+            height:3,
+            backgroundColor: '#56B8FF',
+         }}    >
+             
+         </View>
+         
+<View style={{
+    borderBottomColor: '#56B8FF',
+    borderBottomWidth: 1,
+
+         }}    /> 
+
+   
+      </View >
+        
+ 
+      
+
+
+
+         
+   
+
+      </View>
+     
+    <View style={{marginTop:50}}>
    
     <FlatList 
           data={this.state.datasource}
@@ -178,6 +238,7 @@ usersRef.on('value', (snapshot) => {
           onEndReached={this.handleLoadMore}
           onEndReachedThreshold={40}
         />
+       </View>
        </View>
     );
   }
