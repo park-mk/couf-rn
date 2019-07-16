@@ -184,7 +184,7 @@ usersRef.on('value', (snapshot) => {
          <View style={{flexDirection:'row'}} >
     <Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'#56B8FF'}}  
                            
-                           >SEOUL</Text> 
+                           >SEOUL  +</Text> 
                          <Text   style={{fontFamily:'title-font' ,fontSize:20, marginLeft:20,marginTop:50,color:'#56B8FF'}}  
                            
                            >   INDOOR</Text>     

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Text, View ,TouchableOpacity,Image,ScrollView,Linking,Dimensions,StyleSheet} from 'react-native';
+import { Button, Text, View ,TouchableOpacity,Image,ScrollView,Linking,Dimensions,StyleSheet,ImageBackground} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import {Font} from 'expo'
@@ -40,20 +40,37 @@ class AreaScreen extends React.Component {
     return (
     
          <Container style={styles.wrapper} >
-           
-           <Image style={styles.backgroundImage} source={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2Farea%20back.png?alt=media&token=b9095cde-5fd3-4c89-be28-0ce4d0defee5"}} />
-           <View    style={ { justifyContent: 'center', alignItems: 'center',marginTop:30}} >
-      
-           
+            <ScrollView>
+           <ImageBackground style={styles.backgroundImage} source={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2Farea%20back.png?alt=media&token=b9095cde-5fd3-4c89-be28-0ce4d0defee5"}} />
+           <View    style={ { marginTop:30}} >
+            <TouchableOpacity
+               onPress={()=> this.props.navigation.navigate('Area1')}>
+           <Image  style={{ marginTop:2*screenheight/9,marginLeft:1*screenwidth/8,resizeMode:'cover', padding:0.5 ,width:3*screenwidth/5, height:screenheight/9, borderRadius:10 }} source={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2Farea%201.png?alt=media&token=71eadde1-f1b7-4ecd-b7c6-8ab0e62ab502"}} />
+           </TouchableOpacity>
+           <TouchableOpacity
+               onPress={()=> this.props.navigation.navigate('Area2')}>
+          
+           <Image  style={{ marginTop:2*screenheight/60,marginLeft:1*screenwidth/40, resizeMode:'cover', padding:0.5 ,width:3*screenwidth/5, height:screenheight/9, borderRadius:10 }} source={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2Farea%202.png?alt=media&token=364cf838-d93a-4183-bcbb-f456105f766d"}} />
+           </TouchableOpacity>
+           <TouchableOpacity
+               onPress={()=> this.props.navigation.navigate('Area3')}>
+          
+           <Image  style={{  marginTop:2*screenheight/60,marginLeft:1*screenwidth/16,resizeMode:'cover', padding:0.5 ,width:3*screenwidth/5, height:screenheight/9, borderRadius:10 }} source={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2Farea%203.png?alt=media&token=1b8a44d2-4dfc-437d-8e5a-9ff0d8a36f0a"}} />
+           </TouchableOpacity>
+               <TouchableOpacity
+                   onPress={()=> this.props.navigation.navigate('Area4')}>
+           <Image  style={{ marginTop:2*screenheight/60,marginLeft:1*screenwidth/6, resizeMode:'cover', padding:0.5 ,width:3*screenwidth/5, height:screenheight/9, borderRadius:10 }} source={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2Farea%204.png?alt=media&token=9f42a327-15cd-433f-9fe7-df89cb418525"}} />
+           </TouchableOpacity>
         
-         
+           
         
              
                   
 
                </View>
+               </ScrollView>
           
-       </Container>
+       </Container> 
     
     );
   }

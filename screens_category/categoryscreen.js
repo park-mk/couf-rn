@@ -28,8 +28,8 @@ class CategoryScreen extends React.Component {
                    <Category imageURI={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Fexchange%20rate.png?alt=media&token=0515b783-8ce0-4a60-ae00-40e078734daf"}}
                            name='Exchange'
                           
-                           onPress={()=>  Linking.openURL("https://www.dollars2won.com/").catch((err) => console.error('An error occurred', err))}
-                          
+                          // onPress={()=>  Linking.openURL("https://www.dollars2won.com/").catch((err) => console.error('An error occurred', err))}
+                          onPress={()=> this.props.navigation.navigate('EXCHANGE')}
                      />
              
                     <Category  imageURI={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Flearning%20korean.png?alt=media&token=1e0c7392-3338-4b93-b424-d1566bb43883"}}

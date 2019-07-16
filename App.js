@@ -71,7 +71,11 @@ import Loginc from './screens_login/beforelogin'
 import SuggestionScreen from './screens_suggestion/suggestionScreen'
 import SuggestionModify from './screens_suggestion/suggestionModify'
 import Home1 from'./screens_home/Home'
+import EXCHANGE from './screens_exchange/exchange'
 
+
+import NIGHT from './screens_night/seperate'
+import Clublist from './screens_night/nightlife'
 
 import { Font } from 'expo'
 /////////////
@@ -184,6 +188,11 @@ const HomeStack = createStackNavigator({
     }
   },
   Home1: { screen: Home1 },
+  NIGHT: { screen: NIGHT , navigationOptions: {
+    header: null,
+
+  }},
+
 });
 
 const CategoryStack = createStackNavigator({
@@ -195,6 +204,12 @@ const CategoryStack = createStackNavigator({
   },
   BUS: {
     screen: BUSScreen, navigationOptions: {
+      header: null,
+
+    }
+  },
+  EXCHANGE: {
+    screen: EXCHANGE, navigationOptions: {
       header: null,
 
     }
@@ -236,7 +251,10 @@ const CategoryStack = createStackNavigator({
       header: null,       // HEADER DELETE
     }
   },
+  CLUB: { screen: Clublist , navigationOptions: {
+    header: null,
 
+  }},
 
 });
 

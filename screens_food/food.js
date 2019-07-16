@@ -58,7 +58,7 @@ class Foodlist extends React.Component {
     this.setState({ loading: true });
     const { navigation } = this.props;
    
-    var usersRef = firebase.database().ref('food/soup');
+    var usersRef = firebase.database().ref('food/Meat');
  
 
      usersRef.on('value', (snapshot) => {

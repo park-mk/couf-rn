@@ -144,7 +144,7 @@ class Home1 extends React.Component {
                              style={{
                                 marginBottom:3,
                              }}
-                             onPress={()=> this.props.navigation.navigate('Area1')}
+                             onPress={()=> this.props.navigation.navigate('NIGHT')}
                     >
 
 
@@ -185,7 +185,7 @@ class Home1 extends React.Component {
                           style={{
                             marginBottom:3,
                          }}
-
+                      
                     >
 
 
