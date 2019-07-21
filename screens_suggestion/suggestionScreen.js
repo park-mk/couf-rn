@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import firebase from "../firebase";
 // import ImagePicker from 'react-native-image-picker';
 import { ImagePicker } from 'expo';
-import CommentList from './commentList'
+import CommentList from '../components/commentList'
 
 class SuggestionScreen extends React.Component {
     constructor(props){
@@ -25,42 +25,20 @@ class SuggestionScreen extends React.Component {
     createData=(suggestion)=> {
         this.setState({suggestion:  ''});
         let userId = firebase.auth().currentUser.uid;
-        let newPostKey = firebase.database().ref().child('suggestion').push().key;
-        firebase.database().ref('suggestion/'+ newPostKey).set({
+        let newPostKey = firebase.database().ref().child('comment/suggestion').push().key;
+        firebase.database().ref('comment/suggestion/'+ newPostKey).set({
             content: suggestion,
             user: userId,
             uid: newPostKey,
             useremail:firebase.auth().currentUser.email,
             timestamp:Date.now(),
         }).then(function(){
-            this.uploadImage(this.state.image, 'test-image');
-            // this.clearData();
+            console.log('넣었는감 ?');
+            // this.uploadImage(this.state.image, 'test-image');
+            this.clearData();
         }.bind(this));
     };
-    deleteData= (key) => {
-        console.log(key, 'user');
-        firebase.database().ref().child('suggestion/'+key).set(null);
-    };
-    getData = () => {
-        return new Promise((resolve, reject) => {
-            firebase.database().ref('suggestion').on('value', function (snapshot) {
-                resolve(Object.values(snapshot.val()));
-            }.bind(this),function(error){
-                reject(error);
-            });
-        });
-    };
 
-    getDate = (timestamp) => {
-        let date = new Date(timestamp);
-        return `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}`;
-    };
-    onRefresh() {
-        console.log('refreshing 되는중???');
-        this.setState({ isFetching: true }, function() {
-            // this.setData();
-        });
-    }
     onEndReached = () => {
         firebase.database().ref('suggestion').limitToFirst(1).on('value', function(snapshot) {
             console.log(snapshot);
@@ -181,56 +159,8 @@ class SuggestionScreen extends React.Component {
                     <Image source={{ uri: this.state.image }} style={{ width: 200, height: 200 }} />}
                 </Form>
 
-                <CommentList refreshing={this.state.isFetching}
-                             getData={this.getData}
-                />
+                <CommentList type={'suggestion'}/>
 
-
-{/*
-                <FlatList data={this.state.lists}
-                          onRefresh={() => this.onRefresh()}
-                          refreshing={this.state.isFetching}
-                          keyExtractor={item => item.uid}
-                          ListEmptyComponent={<Text>Empty</Text>}
-                          renderItem={({item}) => (
-                              <ListItem
-                                  key={item.uid}
-                                  title={
-                                      <View>
-                                          <Text>{item.useremail}</Text>
-                                          <DateForm>{this.getDate(item.timestamp)}</DateForm>
-                                      </View>
-                                  }
-                                  leftAvatar={
-                                      <Avatar
-                                          containerStyle={{alignSelf: 'flex-start'}}
-                                          rounded
-                                          source={{
-                                              uri:'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-                                          }}
-                                      />
-                                  }
-                                  subtitle={
-                                      <Content>{item.content}</Content>
-                                  }
-                                  rightElement={
-                                      item.useremail !== firebase.auth().currentUser.email ? <Text> </Text> : <Buttons style={{alignSelf: 'flex-start'}}>
-                                          <Button type="clear" buttonStyle={{width: 30}}
-                                                  icon={<Icon name="trash" size={15} color="black"/>}
-                                                  onPress={() => this.deleteData(item.uid)}
-                                          />
-                                          <Button type="clear" buttonStyle={ { width: 30 } }
-                                                  icon={<Icon name="edit" size={15} color="black" /> }
-                                                  onPress={() => this.props.navigation.navigate('SuggestionModify', {
-                                                      item: item
-                                                  })}
-                                          />
-                                      </Buttons>
-                                  }
-                              />
-
-                          )}/>
-*/}
             </View>
         );
     }
