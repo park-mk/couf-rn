@@ -61,19 +61,25 @@ class Area1_1Screen extends React.Component {
   this.setState({
     datasource:  keys
   })
-}); 
-usersRef = firebase.database().ref('food/dessert');
 
-
+  usersRef = firebase.database().ref('WTD');
+    
+    
 usersRef.on('value', (snapshot) => {
     
     
-  var m=snapshot.val() 
-  var keys= Object.values(m);
-this.setState({
- datasource1:  keys
-})
+     var m=snapshot.val() 
+     var keys= Object.values(m);
+  this.setState({
+    datasource1:  keys
+  })
+});
+
+
+
+
 }); 
+
 
     
 
@@ -118,7 +124,7 @@ this.setState({
       <TouchableOpacity style={{flex:1}}
       
       onPress={()=> this.props.navigation.navigate('Area1')}>
-      <Text   style={{fontFamily:'title-font' ,fontSize:23,marginTop:20,marginLeft:10,color:'#7f8182'}}  >THINGS TO EA</Text>
+      <Text   style={{fontFamily:'title-font' ,fontSize:23,marginTop:20,marginLeft:10,color:'#7f8182'}}  >THINGS TO EAT</Text>
       </TouchableOpacity>
       <TouchableOpacity style={{flex:1}}>
       <Text style={{fontFamily:'title-font' ,fontSize:23, marginTop:20,marginLeft:15,color:'#56B8FF'}}>WHAT TO DO</Text>
@@ -174,7 +180,7 @@ this.setState({
       <View>
    
     <FlatList 
-          data={this.state.datasource1}
+          data={this.state.datasource}
           keyExtractor={this._keyExtractor}
           horizontal={true}
           renderItem={({ item }) => (
@@ -286,20 +292,21 @@ this.setState({
                 >
               <ImageBackground   style={styles.icon}
                     source={{uri:item.topimage}}
-             
-             >
+                 
+             >    
+               <Text style={{marginLeft:3,fontSize:30,color:'#56B8FF',fontFamily:'title-font'}}>{item.name}</Text>
               
          
         <View style={{flexDirection:'row',justifyContent:'flex-end',alignItems:'flex-end'}}>
      
-      <Image
+     {/*  <Image
         style={ { width: 35,
           height: 30,marginTop:200}}
         source={require('../assets/likewhithe.png')}
       /> 
       <Text style={{marginLeft:3,fontSize:30,color:'white',fontFamily:'title-font'}}>{item.upvote}</Text>
      
-        
+        */}
       </View>
              
               </ImageBackground>
@@ -352,15 +359,20 @@ this.setState({
         
  
       
-
+     
 
 
          
    
 
       </View>
-     
+      <View
+                  
+                  style={{width:70,height:80,marginLeft:-15}}
+             /> 
       </ScrollView>   
+  
+    
       </View>
     );
   }

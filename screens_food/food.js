@@ -26,6 +26,8 @@ class Foodlist extends React.Component {
       loading: false,
       datasource: [],
       datasource1: [],
+      datasource_sea: [],
+      datasource_soup: [],
       pause:false,
       error: null,
       refreshing: false,
@@ -83,6 +85,34 @@ this.setState({
 })
 }); 
 
+
+usersRef = firebase.database().ref('food/Seafood');
+
+
+usersRef.on('value', (snapshot) => {
+    
+    
+  var m=snapshot.val() 
+  var keys= Object.values(m);
+this.setState({
+ datasource_sea:  keys
+})
+}); 
+usersRef = firebase.database().ref('food/soup');
+
+
+usersRef.on('value', (snapshot) => {
+    
+    
+  var m=snapshot.val() 
+  var keys= Object.values(m);
+this.setState({
+ datasource_soup:  keys
+})
+}); 
+
+
+    
     
 
     
@@ -175,10 +205,9 @@ this.setState({
     
         
       <ScrollView>   
-
 <Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'#56B8FF'}}  
                            
-                           >SOUP</Text>
+                           >Meat</Text>
 
       <View>
    
@@ -252,6 +281,162 @@ this.setState({
 
         
        </View>
+<Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'#56B8FF'}}  
+                           
+                           >SEAFOOD</Text>
+
+      <View>
+   
+    <FlatList 
+          data={this.state.datasource_sea}
+          keyExtractor={this._keyExtractor}
+          horizontal={true}
+          renderItem={({ item }) => (
+              
+            <ListItem  
+         //    linearGradientProps={{
+            //  colors: ['#f45a5a', '#f45a5a'],
+   // colors: ['#ea3807', '#e5bcb0'],
+   // start: [1, 0],
+    //end: [0.2, 0],
+ // }}
+ 
+           
+               title=  {    
+               
+                    <View  style={{  flex:1,   alignContent:'center',marginRight:-3, borderWidth:2,borderColor:'#56B8FF'}}
+                    
+                    >
+                  <ImageBackground   style={styles.icon}
+                        source={{uri:item.topimage}}
+                 
+                 >
+                  
+             
+            <View style={{flexDirection:'row',justifyContent:'flex-end',alignItems:'flex-end'}}>
+         
+          <Image
+            style={ { width: 35,
+              height: 30,marginTop:200}}
+            source={require('../assets/likewhithe.png')}
+          /> 
+          <Text style={{marginLeft:3,fontSize:30,color:'white',fontFamily:'title-font'}}>{item.upvote}</Text>
+         
+            
+          </View>
+                 
+                  </ImageBackground>
+                  </View>
+                
+                  
+          }
+          
+            
+            
+            onPress={() => this.gogo(item.name,item.description,item.topimage,item.cate)
+          
+          }
+        
+             // avatar={{ uri: item.picture.thumbnail }}
+             
+            />
+          )
+          
+        }
+          keyExtractor={item => item.name}
+        
+          
+         // ListHeaderComponent={this.renderHeader}
+         ListFooterComponent={this.renderFooter}
+          onRefresh={this.handleRefresh}
+          refreshing={this.state.refreshing}
+          onEndReached={this.handleLoadMore}
+          onEndReachedThreshold={40}
+        />
+
+
+        
+       </View>
+
+
+
+       <Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'#56B8FF'}}  
+                           
+                           >SOUP</Text>
+
+      <View>
+   
+    <FlatList 
+          data={this.state.datasource_soup}
+          keyExtractor={this._keyExtractor}
+          horizontal={true}
+          renderItem={({ item }) => (
+              
+            <ListItem  
+         //    linearGradientProps={{
+            //  colors: ['#f45a5a', '#f45a5a'],
+   // colors: ['#ea3807', '#e5bcb0'],
+   // start: [1, 0],
+    //end: [0.2, 0],
+ // }}
+ 
+           
+               title=  {    
+               
+                    <View  style={{  flex:1,   alignContent:'center',marginRight:-3, borderWidth:2,borderColor:'#56B8FF'}}
+                    
+                    >
+                  <ImageBackground   style={styles.icon}
+                        source={{uri:item.topimage}}
+                 
+                 >
+                  
+             
+            <View style={{flexDirection:'row',justifyContent:'flex-end',alignItems:'flex-end'}}>
+         
+          <Image
+            style={ { width: 35,
+              height: 30,marginTop:200}}
+            source={require('../assets/likewhithe.png')}
+          /> 
+          <Text style={{marginLeft:3,fontSize:30,color:'white',fontFamily:'title-font'}}>{item.upvote}</Text>
+         
+            
+          </View>
+                 
+                  </ImageBackground>
+                  </View>
+                
+                  
+          }
+          
+            
+            
+            onPress={() => this.gogo(item.name,item.description,item.topimage,item.cate)
+          
+          }
+        
+             // avatar={{ uri: item.picture.thumbnail }}
+             
+            />
+          )
+          
+        }
+          keyExtractor={item => item.name}
+        
+          
+         // ListHeaderComponent={this.renderHeader}
+         ListFooterComponent={this.renderFooter}
+          onRefresh={this.handleRefresh}
+          refreshing={this.state.refreshing}
+          onEndReached={this.handleLoadMore}
+          onEndReachedThreshold={40}
+        />
+
+
+        
+       </View>
+
 
        <Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'#56B8FF'}}  
                            

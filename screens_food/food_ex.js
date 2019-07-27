@@ -22,6 +22,7 @@ class Fooditem extends React.Component {
       up: 0,
       origin: " ",
       voted: false,
+      checkkk: false,
     };
   }
 
@@ -57,6 +58,7 @@ class Fooditem extends React.Component {
 
       if (found != undefined) {
         console.log("find");
+        this.setState({ voted: true })
 
       }
 
@@ -216,6 +218,7 @@ class Fooditem extends React.Component {
 
     var vivid = JSON.stringify(description);
     var res = vivid.substring(1, 4);
+
     return (
       <ScrollView>
 
@@ -255,9 +258,32 @@ class Fooditem extends React.Component {
             <View style={{ flex: 1 }}>
               
             </View>
+    
+            <View>
+            {this.state.voted ? (
 
-          
+<TouchableOpacity
+
+
+  onPress={() => this.check()}>
             <Image
+              style={{
+                width: 30, flex: 1,
+                height: 30, alignContent: 'center',
+                
+              }} 
+              resizeMode={'contain'}
+              source={require('../assets/Vector_f.png')}
+            />
+
+</TouchableOpacity>
+          )
+            : (<TouchableOpacity
+              // styles={{textAlign:'center'}}
+
+              onPress={() => this.check()} >
+
+     <Image
               style={{
                 width: 30, flex: 1,
                 height: 30, alignContent: 'center',
@@ -266,6 +292,9 @@ class Fooditem extends React.Component {
               resizeMode={'contain'}
               source={require('../assets/Vector.png')}
             />
+</TouchableOpacity>
+            )}
+            </View>
             <View style={{ flex: 1 ,marginRight:-10}}>
             <Text style={{ textAlign: 'left', fontSize: 20,color:'#56B8FF',marginBottom:3}}>{this.state.up}</Text>
             </View>
@@ -337,15 +366,7 @@ class Fooditem extends React.Component {
 
         </View>
 
-        <View style={{ marginLeft: 20, flexDirection: 'row' }} >
-          <Feather name='info' size={30} color="grey"
-            onPress={
-
-              () => this.analyze(name)}
-          />
-          {//<Text style={{textAlign:'left', fontSize:20,color:'grey'}}> [ {JSON.stringify(tips).replace(/^"(.+)"$/,'$1')} ]</Text> 
-          }
-        </View>
+      
 
 
 
@@ -353,7 +374,7 @@ class Fooditem extends React.Component {
 
 
         <View style={{ alignItems: 'center' }}>
-          {this.state.voted ? (
+          { /*this.state.voted ? (
 
             <TouchableOpacity
 
@@ -388,9 +409,9 @@ class Fooditem extends React.Component {
 
 
             </TouchableOpacity>
-            )}
+              )*/}
 
-          <Text style={{ textAlign: 'center', fontSize: 40 }}>{this.state.up}</Text>
+         
 
         </View>
       </ScrollView>

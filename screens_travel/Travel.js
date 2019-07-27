@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View, FlatList, ActivityIndicator,Button,StyleSheet,Image,Text,ImageBackground,TouchableHighlight,TouchableOpacity} from "react-native";
-import { List, ListItem, SearchBar } from "react-native-elements";
+import { List, ListItem, SearchBar ,Header} from "react-native-elements";
 import  firebase,{storage}  from "../firebase";
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import  someList from '../components/anylist'
@@ -53,7 +53,7 @@ class Travellist extends React.Component {
     const { navigation } = this.props;
     const move = navigation.getParam('move', 'NO-ID');
 
-    var usersRef = firebase.database().ref('travel');
+    var usersRef = firebase.database().ref('travel/seoul');
     
     
 usersRef.on('value', (snapshot) => {
@@ -141,11 +141,11 @@ usersRef.on('value', (snapshot) => {
             this.props.navigation.navigate('TTi', {
                name : item.name,
                description :item.description,
-              
+               location: item.location,
                topimage : item.topimage,
                cate:item.cate,
-              
-             
+               upvote:item.upvote,
+               imagelist:item.images,
              //  imagelist:item.images,
                //tips:item.tips,
             });
@@ -180,6 +180,23 @@ usersRef.on('value', (snapshot) => {
   render() {
      
     return (
+      <View>
+      <Header
+    leftComponent={  
+     <TouchableOpacity 
+     onPress={()=> this.props.navigation.navigate('Home')}
+     >
+     <Image source={require('../assets/back.png')}
+                 
+    style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
+/> 
+</TouchableOpacity>
+} 
+   backgroundColor={'#fff'}
+  borderBottomColor={'#fff'}
+    centerComponent={{ text: 'TRAVEL', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
+   
+     />
       <ScrollView> 
          <View style={{flexDirection:'row'}} >
     <Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'#56B8FF'}}  
@@ -216,6 +233,35 @@ usersRef.on('value', (snapshot) => {
 
       <Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'#56B8FF'}}  
                            
+                           >BUSAN</Text>    
+
+
+<View style={{flexDirection:'row'}} >
+        <View  style={{marginLeft:30}}>
+        </View>
+      <FlatList 
+          data={this.state.datasource}
+          
+          renderItem={this.renderItem}
+          
+          horizontal={true}
+          keyExtractor={item => item.name}
+        
+          
+         // ListHeaderComponent={this.renderHeader}
+         ListFooterComponent={this.renderFooter}
+          onRefresh={this.handleRefresh}
+          refreshing={this.state.refreshing}
+          onEndReached={this.handleLoadMore}
+          onEndReachedThreshold={40}
+        />
+
+      </View>                 
+
+
+
+      <Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'#56B8FF'}}  
+                           
                            >SPECIAL TOUR</Text>    
 
 
@@ -241,6 +287,7 @@ usersRef.on('value', (snapshot) => {
 
       </View>                 
        </ScrollView>
+       </View>
     );
   }
 }

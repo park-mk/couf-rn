@@ -47,11 +47,18 @@ import A1WTE from './screens_wte/area1_wte'
 import A1WTD from './screens_wtd/area1_wtd'
 
 import Area1Screen from './screens_area/area1'
+import WTEA1 from './screens_area/area1wte'
 import Area1_1Screen from './screens_area/area1_1'
 import Area1_2Screen from './screens_area/area1_2'
 import Area2Screen from './screens_area/area2'
+import Area2_1Screen from './screens_area/area2_1'
+import Area2_2Screen from './screens_area/area2_2'
 import Area3Screen from './screens_area/area3'
+import Area3_1Screen from './screens_area/area3_1'
+import Area3_2Screen from './screens_area/area3_2'
 import Area4Screen from './screens_area/area4'
+import Area4_1Screen from './screens_area/area4_1'
+import Area4_2Screen from './screens_area/area4_2'
 import TMC from './screens_bus/area1_tmc'
 import H221 from './screens_bus/area1_h221'
 import YS from './screens_bus/area1_yongsan'
@@ -192,6 +199,8 @@ const HomeStack = createStackNavigator({
     header: null,
 
   }},
+  SuggestionScreen: { screen: SuggestionScreen },
+  SuggestionModify: { screen: SuggestionModify },
 
 });
 
@@ -227,7 +236,10 @@ const CategoryStack = createStackNavigator({
     header: null,
 
   }},
-  TT: { screen: Travellist },
+  TT: { screen: Travellist , navigationOptions: {
+    header: null,
+
+  } },
   TTi: {
     screen: Travelitem,
     navigationOptions: {
@@ -278,9 +290,49 @@ const AreaStack = createStackNavigator({
     header: null,
 
   } },
-  Area2: { screen: Area2Screen },
-  Area3: { screen: Area3Screen },
-  Area4: { screen: Area4Screen },
+  WTEA1: { screen: WTEA1, navigationOptions: {
+    header: null,
+
+  } },
+
+
+
+  Area2: { screen: Area2Screen , navigationOptions: {
+    header: null,
+
+  } },
+  Area2_1: { screen: Area2_1Screen, navigationOptions: {
+    header: null,
+
+  } },
+  Area2_2: { screen: Area2_2Screen, navigationOptions: {
+    header: null,
+
+  } },
+  Area3: { screen: Area3Screen , navigationOptions: {
+    header: null,
+
+  } },
+  Area3_1: { screen: Area3_1Screen, navigationOptions: {
+    header: null,
+
+  } },
+  Area3_2: { screen: Area3_2Screen, navigationOptions: {
+    header: null,
+
+  } },
+  Area4: { screen: Area4Screen , navigationOptions: {
+    header: null,
+
+  } },
+  Area4_1: { screen: Area4_1Screen, navigationOptions: {
+    header: null,
+
+  } },
+  Area4_2: { screen: Area4_2Screen, navigationOptions: {
+    header: null,
+
+  } },
   TMC: { screen: TMC },
   YS: { screen: YS },
   H221: { screen: H221 },
@@ -323,10 +375,10 @@ const LoginStack = createStackNavigator({
   }
 });
 
-const SuggestionStack = createStackNavigator({
+/*const SuggestionStack = createStackNavigator({
   SuggestionScreen: { screen: SuggestionScreen },
   SuggestionModify: { screen: SuggestionModify },
-});
+});*/
 
 
 

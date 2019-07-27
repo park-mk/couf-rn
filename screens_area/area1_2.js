@@ -200,6 +200,10 @@ this.setState({
       </View>
      
       </ScrollView>   
+      <View
+                  
+      style={{width:70,height:80,marginLeft:-15}}
+ /> 
       </View>
     );
   }
