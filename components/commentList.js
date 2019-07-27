@@ -43,8 +43,9 @@ class CommentList extends React.Component {
     getData = () => {
         return new Promise((resolve, reject) => {
             firebase.database().ref('comment/'+this.props.type).on('value', function (snapshot) {
-                console.log('리스트',Object.values(snapshot.val()));
-                resolve(Object.values(snapshot.val()));
+                let returnVal =  snapshot.val() || {};
+                console.log('리스트2',Object.values(returnVal));
+                resolve(Object.values(returnVal));
             }.bind(this),function(error){
                 console.log('에러났는뎅',error);
                 reject(error);
@@ -103,15 +104,6 @@ class CommentList extends React.Component {
     }
 }
 
-const Form = styled.View`
-  padding : 10px
-  margin-bottom: 10px;
-`
-const SuggestionInput = styled.TextInput`
-  border-bottom-width: 3px;
-  border-bottom-color: green;
-  margin-bottom: 5px;
-`
 const Buttons = styled.View`
   display:flex;
   flex-direction: row;

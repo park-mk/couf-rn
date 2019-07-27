@@ -9,6 +9,7 @@ import {
 import Texteditor from '../components/Textedit'
 import firebase, { storage } from "../firebase";
 import {Font} from 'expo'
+import CommentList from "../components/commentList";
 
 
 class Fooditem extends React.Component {
@@ -393,6 +394,7 @@ class Fooditem extends React.Component {
           <Text style={{ textAlign: 'center', fontSize: 40 }}>{this.state.up}</Text>
 
         </View>
+        <CommentList type={'dessert'}/>
       </ScrollView>
     );
   }

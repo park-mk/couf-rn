@@ -7,10 +7,11 @@ import  someList from '../components/anylist'
 import {Font} from 'expo'
 import { ScrollView } from "react-native-gesture-handler";
 import {Container,Content} from 'native-base'
+import CommentList from '../components/commentList'
   database=firebase.database();
- 
-  
-  
+
+
+
   const color = {
     theme: '#06C1AE',
     border: '#e0e0e0',
@@ -21,7 +22,7 @@ import {Container,Content} from 'native-base'
 class Foodlist extends React.Component {
   constructor(props) {
     super(props);
-     
+
     this.state = {
       loading: false,
       datasource: [],
@@ -35,10 +36,10 @@ class Foodlist extends React.Component {
 
 
 
-  
 
 
-  
+
+
 
 
   componentDidMount() {
@@ -46,53 +47,53 @@ class Foodlist extends React.Component {
       'title-font':require('../assets/fonts/BebasNeue-Regular.ttf'),
       'Raley-balck':require('../assets/fonts/BebasNeue-Regular.ttf'),
       'Name-font':require('../assets/fonts/Nickainley-Normal_2.ttf'),
-      
+
     });
     this.makeRemoteRequest();
   }
 
   makeRemoteRequest = () => {
-    
-     
+
+
 
     this.setState({ loading: true });
     const { navigation } = this.props;
-   
+
     var usersRef = firebase.database().ref('food/Meat');
- 
+
 
      usersRef.on('value', (snapshot) => {
-    
-    
-     var m=snapshot.val() 
+
+
+     var m=snapshot.val()
      var keys= Object.values(m);
   this.setState({
     datasource:  keys
   })
-}); 
+});
 usersRef = firebase.database().ref('food/dessert');
 
 
 usersRef.on('value', (snapshot) => {
-    
-    
-  var m=snapshot.val() 
+
+
+  var m=snapshot.val()
   var keys= Object.values(m);
 this.setState({
  datasource1:  keys
 })
-}); 
+});
 
-    
 
-    
+
+
   };
 
   handleRefresh = () => {
-    
+
     this.setState(
       {
-      
+
         refreshing: false
       },
       () => {
@@ -102,7 +103,7 @@ this.setState({
   };
 
   handleLoadMore = () => {
-   
+
     this.setState(
       {
         loading: false
@@ -113,7 +114,7 @@ this.setState({
     );
   };
 
-  
+
 
   renderHeader = () => {
     return <SearchBar placeholder="Type Here..." lightTheme round />;
@@ -130,15 +131,15 @@ this.setState({
           borderColor: "#CED0CE"
         }}
       >
-      
+
         <ActivityIndicator animating size="large" />
-       
+
 
       </View>
     );
   };
   renderSeparator = () => {
-   
+
     return (
       <View
         style={{
@@ -149,98 +150,98 @@ this.setState({
         }}
       />
     );
-  }; 
+  };
 
-  _keyExtractor = (item, index) => item.key; 
+  _keyExtractor = (item, index) => item.key;
 
    gogo=(iname,idescription,itopimage,icate)=>{
-             
+
     this.props.navigation.navigate('FOODi', {
        name : iname,
        description :idescription,
-      
+
        topimage : itopimage,
        cate:icate,
-      
-     
+
+
      //  imagelist:item.images,
        //tips:item.tips,
     });
   }
 
   render() {
-     
+
     return (
 
-    
-        
-      <ScrollView>   
 
-<Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'#56B8FF'}}  
-                           
+
+      <ScrollView>
+
+<Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'#56B8FF'}}
+
                            >SOUP</Text>
 
       <View>
-   
-    <FlatList 
+
+    <FlatList
           data={this.state.datasource}
           keyExtractor={this._keyExtractor}
           horizontal={true}
           renderItem={({ item }) => (
-              
-            <ListItem  
+
+            <ListItem
          //    linearGradientProps={{
             //  colors: ['#f45a5a', '#f45a5a'],
    // colors: ['#ea3807', '#e5bcb0'],
    // start: [1, 0],
     //end: [0.2, 0],
  // }}
- 
-           
-               title=  {    
-               
+
+
+               title=  {
+
                     <View  style={{  flex:1,   alignContent:'center',marginRight:-3, borderWidth:2,borderColor:'#56B8FF'}}
-                    
+
                     >
                   <ImageBackground   style={styles.icon}
                         source={{uri:item.topimage}}
-                 
+
                  >
-                  
-             
+
+
             <View style={{flexDirection:'row',justifyContent:'flex-end',alignItems:'flex-end'}}>
-         
+
           <Image
             style={ { width: 35,
               height: 30,marginTop:200}}
             source={require('../assets/likewhithe.png')}
-          /> 
+          />
           <Text style={{marginLeft:3,fontSize:30,color:'white',fontFamily:'title-font'}}>{item.upvote}</Text>
-         
-            
+
+
           </View>
-                 
+
                   </ImageBackground>
                   </View>
-                
-                  
+
+
           }
-          
-            
-            
+
+
+
             onPress={() => this.gogo(item.name,item.description,item.topimage,item.cate)
-          
+
           }
-        
+
              // avatar={{ uri: item.picture.thumbnail }}
-             
+
             />
           )
-          
+
         }
           keyExtractor={item => item.name}
-        
-          
+
+
          // ListHeaderComponent={this.renderHeader}
          ListFooterComponent={this.renderFooter}
           onRefresh={this.handleRefresh}
@@ -250,88 +251,85 @@ this.setState({
         />
 
 
-        
+
        </View>
 
-       <Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'#56B8FF'}}  
-                           
+       <Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'#56B8FF'}}
+
                            >DESSERT</Text>
 
       <View>
-   
-    <FlatList 
+
+    <FlatList
           data={this.state.datasource1}
           keyExtractor={this._keyExtractor}
           horizontal={true}
           renderItem={({ item }) => (
-              
-            <ListItem  
+
+            <ListItem
          //    linearGradientProps={{
             //  colors: ['#f45a5a', '#f45a5a'],
    // colors: ['#ea3807', '#e5bcb0'],
    // start: [1, 0],
     //end: [0.2, 0],
  // }}
- 
- 
-               title=  {     
-                 
+
+
+               title=  {
+
                 <View  style={{  flex:1,   alignContent:'center',marginRight:-3, borderWidth:2,borderColor:'#56B8FF'}}
-                    
+
                 >
               <ImageBackground   style={styles.icon}
                     source={{uri:item.topimage}}
-             
+
              >
-              
-         
+
+
         <View style={{flexDirection:'row',justifyContent:'flex-end',alignItems:'flex-end'}}>
-     
+
       <Image
         style={ { width: 35,
           height: 30,marginTop:200}}
         source={require('../assets/likewhithe.png')}
-      /> 
+      />
       <Text style={{marginLeft:3,fontSize:30,color:'white',fontFamily:'title-font'}}>{item.upvote}</Text>
-     
-        
+
+
       </View>
-             
+
               </ImageBackground>
               </View>
-            
-                
-                  
           }
-          
-            
-            
+
+
+
             onPress={() => {
-             
+
               this.props.navigation.navigate('FOODi', {
                  name : item.name,
                  description :item.description,
                  cate:item.cate,
                  topimage : item.topimage,
-               
-                
-               
+
+
+
                  imagelist:item.images,
                  //tips:item.tips,
               });
             }
-          
+
           }
-              
+
              // avatar={{ uri: item.picture.thumbnail }}
-             
+
             />
           )
-          
+
         }
           keyExtractor={item => item.name}
-        
-          
+
+
          // ListHeaderComponent={this.renderHeader}
          ListFooterComponent={this.renderFooter}
           onRefresh={this.handleRefresh}
@@ -341,7 +339,7 @@ this.setState({
         />
 
 
-        
+
        </View>
 
        </ScrollView>
@@ -361,7 +359,7 @@ const styles = StyleSheet.create({
     height: 230,
     borderRadius: 5,
     resizeMode: 'cover',
-   
+
    // alignContent:'center',
   },
   rightContainer: {
@@ -372,7 +370,7 @@ const styles = StyleSheet.create({
   price: {
     marginTop:30,
     color: color.theme,
-    
+
   },
   h1: {
     fontSize: 40,
@@ -380,7 +378,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     color: '#222222',
-    
+
   },
   p: {
     fontSize: 15,

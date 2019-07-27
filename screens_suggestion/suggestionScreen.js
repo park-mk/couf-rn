@@ -14,7 +14,7 @@ class SuggestionScreen extends React.Component {
         this.state=({
             page:0,
             listSize:10,
-            suggestion:'',
+            suggestion:'엥....',
             lists:[],
             modify:{},
             fetching: true,
