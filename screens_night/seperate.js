@@ -96,7 +96,7 @@ class NIGHT extends React.Component {
                          
                             flex:1
                         }}
-                        onPress={()=> this.props.navigation.navigate('TT')}
+                        onPress={()=> this.props.navigation.navigate('FESTIVAL')}
                     >
 
                      <View  style={{flexDirection:'row'}}>
@@ -112,7 +112,11 @@ class NIGHT extends React.Component {
                             }}
                             source={{ uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2F%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202019-07-14%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%207.51.01.png?alt=media&token=5a47c649-aed4-4a05-bbbd-05c5ddcb64c9" }}
                         />
+                        <View>
                          <Text style={{fontFamily:'title-font' ,fontSize:50,marginLeft:15,color:'#56B8FF'}}>FESTIVAL </Text>
+                         <Text style={{fontFamily:'title-font' ,fontSize:50,marginLeft:15,color:'#56B8FF'}}>   AND   </Text>
+                         <Text style={{fontFamily:'title-font' ,fontSize:50,marginLeft:15,color:'#56B8FF'}}>CONCERT </Text>
+                         </View>
      
                      </View>
                     </TouchableOpacity>
@@ -124,7 +128,7 @@ class NIGHT extends React.Component {
                              }}
                              onPress={()=> this.props.navigation.navigate('CLUB')}
                     >
-                         <View  style={{flexDirection:'row'}}>
+                         <View  style={{flexDirection:'row',backgroundColor:"#1f2124"}}>
 
                         <Image
                             style={{

@@ -118,7 +118,7 @@ this.setState({
                     
     > 
     <TouchableOpacity
-         onPress={() => this.gogo(item.name,item.description,item.topimage,item.cate)}
+         onPress={() => this.gogo(item.name,item.description,item.topimage,item.cate,item.upvote)}
             
     >
   <ImageBackground   style={styles.icon}
@@ -131,7 +131,9 @@ this.setState({
 
 <Image
 style={ { width: 35,
-height: 30,marginTop:200}}
+height: 30,    marginTop:200  
+
+}}
 source={require('../assets/likewhithe.png')}
 /> 
 <Text style={{marginLeft:3,fontSize:30,color:'white',fontFamily:'title-font'}}>{item.upvote}</Text>
@@ -158,7 +160,7 @@ source={require('../assets/likewhithe.png')}
         style={{
           paddingVertical: 20,
          
-          borderColor: "#CED0CE"
+          borderColor: "#1f2124"
         }}
       >
       
@@ -173,9 +175,9 @@ source={require('../assets/likewhithe.png')}
     return (
       <View
         style={{
-          height: 1,
+          height: 0,
           width: "86%",
-          backgroundColor: "#CED0CE",
+          backgroundColor: "#1f2124",
           marginLeft: "14%"
         }}
       />
@@ -184,14 +186,15 @@ source={require('../assets/likewhithe.png')}
 
   _keyExtractor = (item, index) => item.key; 
 
-   gogo=(iname,idescription,itopimage,icate)=>{
+   gogo=(iname,idescription,itopimage,icate,iupvote)=>{
              
-    this.props.navigation.navigate('FOODi', {
+    this.props.navigation.navigate('CLUBEX', {
        name : iname,
        description :idescription,
       
        topimage : itopimage,
        cate:icate,
+       upvote:iupvote
       
      
      //  imagelist:item.images,
@@ -202,20 +205,22 @@ source={require('../assets/likewhithe.png')}
   render() {
      
     return (
-        <View>
+        <View
+        style={{ backgroundColor:"#1f2124"}}>
         <Header
       leftComponent={  <TouchableOpacity 
        onPress={()=> this.props.navigation.navigate('NIGHT')}
+      
        >
        <Image source={require('../assets/back.png')}
                    
       style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
  /> 
  </TouchableOpacity>} 
-     backgroundColor={'#fff'}
-    borderBottomColor={'#fff'}
+     backgroundColor={'#1f2124'}
+    borderBottomColor={'#1f2124'}
       centerComponent={{ text: 'CLUBS', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
-     
+       
        />
     
     
@@ -263,9 +268,9 @@ const styles = StyleSheet.create({
   },
   icon: {
     width: Dimensions.get("window").width,
-    marginTop:-1,
+   // marginTop:-1,
     height: 230,
-    borderRadius: 5,
+    //borderRadius: 5,
     resizeMode: 'cover',
    
    // alignContent:'center',

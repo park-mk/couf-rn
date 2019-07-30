@@ -83,6 +83,9 @@ import EXCHANGE from './screens_exchange/exchange'
 
 import NIGHT from './screens_night/seperate'
 import Clublist from './screens_night/nightlife'
+import CLUBEX from'./screens_night/club_ex'
+import FESTIVAL from'./screens_night/festival'
+import FESTIVALEX from'./screens_night/festival_ex'
 
 import { Font } from 'expo'
 /////////////
@@ -265,6 +268,22 @@ const CategoryStack = createStackNavigator({
   },
   CLUB: { screen: Clublist , navigationOptions: {
     header: null,
+   
+
+  }},
+  CLUBEX: { screen: CLUBEX , navigationOptions: {
+    header: null,
+   
+
+  }},
+  FESTIVAL: { screen: FESTIVAL , navigationOptions: {
+    header: null,
+   
+
+  }},
+  FESTIVALEX: { screen: FESTIVALEX , navigationOptions: {
+    header: null,
+   
 
   }},
 

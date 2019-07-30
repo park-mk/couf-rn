@@ -36,10 +36,10 @@ class Sorttype extends React.Component {
         return (
            <View style={{marginLeft:15}} >
               
-               <Text  style={{fontSize:this.props.size , lineHeight: 30,
+               <Text  style={{fontSize:this.props.size , lineHeight:this.props.size+12 ,
                marginLeft:0, 
                marginRight:this.props.margin,fontFamily:'content-font'}} > {this.props.text}</Text>
-              {console.log("12/n       ")}
+            
           </View>
          
         );}

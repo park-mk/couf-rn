@@ -24,6 +24,8 @@ class Travellist extends React.Component {
     this.state = {
       loading: false,
       datasource: [],
+      datasource1: [],
+      datasource2: [],
       pause:false,
       error: null,
       refreshing: false
@@ -65,8 +67,38 @@ usersRef.on('value', (snapshot) => {
     datasource:  keys
   })
 });
+  
+var usersRef = firebase.database().ref('travel/busan');
     
-  };
+    
+usersRef.on('value', (snapshot) => {
+    
+    
+     var m=snapshot.val() 
+     var keys= Object.values(m);
+  this.setState({
+    datasource1:  keys
+  })
+});
+
+var usersRef = firebase.database().ref('travel/special');
+    
+    
+usersRef.on('value', (snapshot) => {
+    
+    
+     var m=snapshot.val() 
+     var keys= Object.values(m);
+  this.setState({
+    datasource2:  keys
+  })
+});
+
+
+
+    
+  };   
+  
 
   handleRefresh = () => {
     
@@ -240,7 +272,7 @@ usersRef.on('value', (snapshot) => {
         <View  style={{marginLeft:30}}>
         </View>
       <FlatList 
-          data={this.state.datasource}
+          data={this.state.datasource1}
           
           renderItem={this.renderItem}
           
@@ -269,7 +301,7 @@ usersRef.on('value', (snapshot) => {
         <View  style={{marginLeft:30}}>
         </View>
       <FlatList 
-          data={this.state.datasource}
+          data={this.state.datasource2}
           
           renderItem={this.renderItem}
           
@@ -285,8 +317,12 @@ usersRef.on('value', (snapshot) => {
           onEndReachedThreshold={40}
         />
 
-      </View>                 
+      </View>           
+      <View style={{height:100}}>
+         <Text>   </Text>
+        </View>      
        </ScrollView>
+      
        </View>
     );
   }
