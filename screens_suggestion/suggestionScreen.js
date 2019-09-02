@@ -14,10 +14,11 @@ class SuggestionScreen extends React.Component {
         this.state=({
             page:0,
             listSize:10,
-            suggestion:'엥....',
+            suggestion:'',
             lists:[],
             modify:{},
             fetching: true,
+            isNeedReLoad: false,
         })
         // this.setData();
         this.base64Data = '';
@@ -33,15 +34,15 @@ class SuggestionScreen extends React.Component {
             useremail:firebase.auth().currentUser.email,
             timestamp:Date.now(),
         }).then(function(){
-            console.log('넣었는감 ?');
             // this.uploadImage(this.state.image, 'test-image');
+            this.setState({isNeedReLoad:  !this.state.isNeedReLoad});
             this.clearData();
         }.bind(this));
     };
 
     onEndReached = () => {
         firebase.database().ref('suggestion').limitToFirst(1).on('value', function(snapshot) {
-            console.log(snapshot);
+            // console.log(snapshot);
         });
     };
 
@@ -61,12 +62,12 @@ class SuggestionScreen extends React.Component {
     };
 
     uploadImage = async (uri, imageName) => {
-/*
+        /*
 
-        firebase.storage().ref().put(uri).then(function(snapshot) {
-            console.log('Uploaded a blob or file!');
-        });
-*/
+                firebase.storage().ref().put(uri).then(function(snapshot) {
+                    console.log('Uploaded a blob or file!');
+                });
+        */
 
         let base64Img = `${this.base64Data}`;
         this.urlToBlob(base64Img)
@@ -74,35 +75,35 @@ class SuggestionScreen extends React.Component {
                 console.log(blob);
                 firebase.storage().ref().put(blob,{contentType: 'image/jpeg'});
             });
-/*
-        let dataUrl = uri.toDataURL();
-        let blob = this.dataURItoBlob(dataUrl);
-        return firebase.storage().ref().put(blob,{contentType: 'image/jpeg'});
-*/
-/*
-        firebase.storage().ref().putString(uri, 'data_url').then(function(snapshot) {
-            console.log('Uploaded a data_url string!', snapshot);
-        });
-*/
-/*
-        const formData = new FormData();
-        formData.append('image',{
-            uri:uri,
-            mime:'image/jpeg',
-            name:`my-image`
-        })
+        /*
+                let dataUrl = uri.toDataURL();
+                let blob = this.dataURItoBlob(dataUrl);
+                return firebase.storage().ref().put(blob,{contentType: 'image/jpeg'});
+        */
+        /*
+                firebase.storage().ref().putString(uri, 'data_url').then(function(snapshot) {
+                    console.log('Uploaded a data_url string!', snapshot);
+                });
+        */
+        /*
+                const formData = new FormData();
+                formData.append('image',{
+                    uri:uri,
+                    mime:'image/jpeg',
+                    name:`my-image`
+                })
 
-        const config = {
-            method: 'POST',
-            body: formData,
-        };
+                const config = {
+                    method: 'POST',
+                    body: formData,
+                };
 
-        console.log('킁카킁카 화난다',uri);
-        const response = await fetch(uri, config);
-        const blob = await response.blob();
-        // let ref = firebase.storage().ref().child("my-image");
-        return firebase.storage().ref().put(blob,{contentType: 'image/jpeg'});
-*/
+                console.log('킁카킁카 화난다',uri);
+                const response = await fetch(uri, config);
+                const blob = await response.blob();
+                // let ref = firebase.storage().ref().child("my-image");
+                return firebase.storage().ref().put(blob,{contentType: 'image/jpeg'});
+        */
     };
 
     clearData = () => {
@@ -159,7 +160,9 @@ class SuggestionScreen extends React.Component {
                     <Image source={{ uri: this.state.image }} style={{ width: 200, height: 200 }} />}
                 </Form>
 
-                <CommentList type={'suggestion'}/>
+                <CommentList type={'suggestion'}
+                             reload={this.state.isNeedReLoad}
+                />
 
             </View>
         );

@@ -5,6 +5,8 @@ import { List, ListItem, Button, Avatar  } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import firebase from "../firebase";
 
+
+
 class CommentList extends React.Component {
     constructor(props){
         super(props)
@@ -20,6 +22,14 @@ class CommentList extends React.Component {
         })
         this.setData();
     }
+
+    async componentWillReceiveProps(nextProps){
+        if(nextProps.reload !== undefined && this.props.reload !== nextProps.reload){
+            this.onRefresh();
+        }
+    }
+
+
     setData = () => {
         this.getData().then(function(response){
             this.setState({
@@ -36,7 +46,6 @@ class CommentList extends React.Component {
     }
     deleteData= (key) => {
         /* TODO : 지울지 말지 확인창 띄우기 */
-        console.log(key, 'user');
         firebase.database().ref().child('comment/'+this.props.type+'/'+key).set(null);
         this.setData();
     };
@@ -48,10 +57,8 @@ class CommentList extends React.Component {
         return new Promise((resolve, reject) => {
             firebase.database().ref('comment/'+this.props.type).on('value', function (snapshot) {
                 let returnVal =  snapshot.val() || {};
-                console.log('리스트2',Object.values(returnVal));
-                resolve(Object.values(returnVal));
+                resolve(Object.values(returnVal).reverse());
             }.bind(this),function(error){
-                console.log('에러났는뎅',error);
                 reject(error);
             });
         });
@@ -71,13 +78,11 @@ class CommentList extends React.Component {
     };
 
     modifyData= () => {
-        console.log(this.state.modifyItem, 'modify item의 정보');
         firebase.database().ref('comment/'+this.props.type +'/'+ this.state.modifyItem.uid).update({
             content: this.state.modifyItem.content,
         }, function(){
             this.modifyModal(false);
             this.onRefresh();
-            console.log('히랴!');
         }.bind(this));
     };
 
