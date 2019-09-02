@@ -57,23 +57,29 @@ class CommentList extends React.Component {
         });
     };
 
-    onClickModifyButton = (visible, item) => {
+    onClickModifyButton = (item) => {
         this.setState({
-            modalVisible: visible,
             modifyItem: item || {},
         });
-    }
+        this.modifyModal(true);
+    };
+
+    modifyModal = (value) => {
+        this.setState({
+            modalVisible: value,
+        });
+    };
 
     modifyData= () => {
-        console.log(this.state, 'state  ');
-        console.log(this.state.modifyItem.uid, 'modifyItem');
+        console.log(this.state.modifyItem, 'modify item의 정보');
         firebase.database().ref('comment/'+this.props.type +'/'+ this.state.modifyItem.uid).update({
             content: this.state.modifyItem.content,
         }, function(){
-            alert('Success');
-        });
-
-    }
+            this.modifyModal(false);
+            this.onRefresh();
+            console.log('히랴!');
+        }.bind(this));
+    };
 
     render(url) {
         return (
@@ -120,6 +126,11 @@ class CommentList extends React.Component {
                                 title="Modify"
                                 color="#841584"
                             />
+                            <Button
+                                onPress={() => this.setState({modalVisible: false})}
+                                title="Cancel"
+                                color="#841584"
+                            />
                         </Buttons>
                     </ModifyList>
 
@@ -160,7 +171,7 @@ class CommentList extends React.Component {
                                           <Button type="clear" buttonStyle={ { width: 30 } }
                                                   icon={<Icon name="edit" size={15} color="black" /> }
                                                   onPress={() => {
-                                                      this.onClickModifyButton(!this.state.modalVisible, item);
+                                                      this.onClickModifyButton(item);
                                                   }}
                                               /*
                                                                                                 onPress={() => this.props.navigation.navigate('SuggestionModify', {
