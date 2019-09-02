@@ -250,15 +250,10 @@ const CategoryStack = createStackNavigator({
     }
   },
   Food: {
-    screen: Foodlist, navigationOptions: {
-      title: 'FOOD',
-   
-      headerTintColor: '#56B8FF',
-      headerTitleStyle: {
-        fontWeight: 'bold',
-      
-      },   // HEADER DELETE
-    }
+    screen: Foodlist,
+      navigationOptions: {
+        header: null,       // HEADER DELETE
+      }
   },
   FOODi: {
     screen: Fooditem,
@@ -359,7 +354,10 @@ const AreaStack = createStackNavigator({
   GREEN: { screen: GREEN },
   BLUE: { screen: BLUE },
   A1WTE:{ screen:A1WTE},
-  A1WTD:{ screen:A1WTD},
+  A1WTD:{ screen:A1WTD,  navigationOptions: {
+    header: null,
+
+  }},
 
 
 });

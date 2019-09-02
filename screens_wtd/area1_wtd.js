@@ -1,10 +1,14 @@
 import React, { Component } from "react";
-import { View, FlatList, ActivityIndicator,Button,StyleSheet,Image,Text,ImageBackground} from "react-native";
-import { List, ListItem, SearchBar } from "react-native-elements";
+import { Button, View, Text ,ScrollView,Image,Dimensions,ImageBackground,StyleSheet,TouchableHighlight,TouchableOpacity,SafeAreaView,Linking} from 'react-native';
+import { List, ListItem, SearchBar ,Header} from "react-native-elements";
 import  firebase,{storage}  from "../firebase";
+import LOCA from '../components/loca';
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
-import  someList from '../components/anylist'
+import  someList from '../components/anylist';
+import ImageSlider from 'react-native-image-slider';
 import {Font} from 'expo'
+
+
   database=firebase.database();
  
   
@@ -170,27 +174,140 @@ usersRef.on('value', (snapshot) => {
 
 
    }
+   renderList() {
+    
+       
+          
+          return <Text>   </Text> ;
+    
+}
+
+   
+
   render() {
+    let dimensions=Dimensions.get("window");
+    let imageheight=6*dimensions.height/10
+    //let imageheight =Math.round((dimensions.width*9)/12);
+     let imagewidth =dimensions.width;
+    const { navigation } = this.props;
+    const imagelist=navigation.getParam('imagelist', 'NO-ID');
+    const locas=navigation.getParam('locas', 'NO-ID');
+    const locass=navigation.getParam('locass', 'NO-ID');
+    const name=navigation.getParam('name', 'NO-ID');
+    var sentence= imagelist.substring(1,imagelist.length);
+    number_of_pagraph=sentence.split("/*/").length - 1;
+    var sentence1= locas.substring(1,locas.length);
+    number_of_locas=sentence1.split("/*/").length - 1;
+    var sentence2= locass.substring(1,locass.length);
+    number_of_locass=sentence2.split("/*/").length - 1;
+    const images = [
+      
+    ];  
+    const locaslist=
+     {  name:[],
+        loca:[], 
+     };
+    
+    const locasslist=[];
+     for(let i=0;i<number_of_pagraph;i++){
+      var term= sentence.indexOf("/*/");
+      let info=sentence.substring(0,term);
+      if(i!=0)
+      images.push(info);
      
+      sentence=sentence.substring(term+3,sentence.length);
+     
+      
+     }
+     for(let i=0;i<number_of_locas;i++){
+      var term= sentence1.indexOf("/*/");
+      let info1=sentence1.substring(0,term);
+      if(i!=0)
+      locaslist.name.push(info1);
+     
+      sentence1=sentence1.substring(term+3,sentence1.length);
+     
+      
+     }
+     for(let i=0;i<number_of_locass;i++){
+      var term= sentence2.indexOf("/*/");
+      let info2=sentence2.substring(0,term);
+      if(i!=0)
+      locaslist.loca.push(info2);
+     
+      sentence2=sentence2.substring(term+3,sentence2.length);
+     
+      console.log(locaslist);
+     }
     return (
       <View>
+       <Header
+      leftComponent={  
+       <TouchableOpacity 
+       onPress={()=> this.props.navigation.navigate('Area')}
+       >
+       <Image source={require('../assets/back.png')}
+                   
+      style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
+  /> 
+  </TouchableOpacity>
+  } 
+     backgroundColor={'#fff'}
+    borderBottomColor={'#fff'}
+      centerComponent={{ text: name, style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
+     
+       />
+       <ScrollView>
+
+     <SafeAreaView style={styles.container}>
+        <View >
+          
+        </View>
+     <ImageSlider
+          loopBothSides
+         // autoPlayWithInterval={3000}
+          images={images}
+          style={{height:imageheight,width:imagewidth }}
+          customButtons={(position, move) => (
+            <View style={styles.buttons}>
+             
+              {images.map((image, index) => {
+                return (
+                  <TouchableHighlight
+                    key={index}
+                    underlayColor="#f00"
+                    onPress={() => move(index)}
+                    style={styles.button}
+                  >
+                    <Text style={position === index && styles.buttonSelected}>
+                     
+                    </Text>
+                  </TouchableHighlight>
+                );
+              })}
+            </View>
+          )}
+        /> 
+      
+       
+      </SafeAreaView> 
+      {locaslist.name.map((contact, i) => {
+                        return (
+                        <LOCA name={locaslist.name[i]}
+                               loca={locaslist.loca[i]}
+                              
+
+                                              key={i}/>
+                                              
+                                              );
+                    })}
+
+        <View  style={{height: 120}}>
+       
+          </View>
+        
    
-    <FlatList 
-          data={this.state.datasource}
-          
-          renderItem={this.renderItem}
-          
-        
-          keyExtractor={item => item.name}
-        
-          
-         // ListHeaderComponent={this.renderHeader}
-         ListFooterComponent={this.renderFooter}
-          onRefresh={this.handleRefresh}
-          refreshing={this.state.refreshing}
-          onEndReached={this.handleLoadMore}
-          onEndReachedThreshold={40}
-        />
+          </ScrollView>
        </View>
     );
   }
@@ -198,8 +315,8 @@ usersRef.on('value', (snapshot) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    padding: 10,
-    borderBottomWidth: 1  , /// PixelRatio.get(),
+   // padding: 10,
+    //borderBottomWidth: 1  , /// PixelRatio.get(),
    // borderColor: color.border,
     backgroundColor: 'white',
   },
@@ -213,6 +330,26 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingLeft: 20,
     paddingRight: 10,
+  },
+  buttons: {
+    height: 15,
+    marginTop: 0,
+    marginBottom: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  button: {
+    margin: 3,
+    width: 8,
+    height: 8,
+    borderRadius: 8 / 2,
+    backgroundColor: '#ccc',
+    opacity: 0.9,
+  },
+  buttonSelected: {
+    opacity: 1,
+    backgroundColor: '#fff',
   },
   price: {
     marginTop:30,

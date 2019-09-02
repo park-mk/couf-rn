@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, View, Text, ScrollView, Image, Dimensions, ImageBackground, StyleSheet, TouchableOpacity, TouchableHighlight, SafeAreaView, Linking } from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import ImageSlider from 'react-native-image-slider';
+import { List, ListItem, SearchBar,Header } from "react-native-elements";
 import {
   Ionicons, MaterialIcons, Entypo, Feather, FontAwesome,
   AntDesign
@@ -221,6 +222,23 @@ class Fooditem extends React.Component {
     var res = vivid.substring(1, 4);
 
     return (
+      <View>
+      <Header
+      leftComponent={  
+       <TouchableOpacity 
+       onPress={()=> this.props.navigation.navigate('Food')}
+       >
+       <Image source={require('../assets/back.png')}
+                   
+      style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
+ /> 
+ </TouchableOpacity>
+ } 
+     backgroundColor={'#fff'}
+    borderBottomColor={'#fff'}
+      centerComponent={{ text: 'Food', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
+     
+       />
       <ScrollView>
 
 
@@ -417,6 +435,7 @@ class Fooditem extends React.Component {
         </View>
         <CommentList type={'dessert'}/>
       </ScrollView>
+      </View>
     );
   }
 }

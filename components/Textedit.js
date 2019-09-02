@@ -68,7 +68,7 @@ class Texteditor extends React.Component {
         info.textDecorationLine= "underline";
 
         info.type=1;
-   console.log("111");
+  
        }
     if(sentence.substring(term+3,term+4)=='2'){
        
@@ -82,6 +82,31 @@ class Texteditor extends React.Component {
             info.type=3;
           
             }
+            if(sentence.substring(term+3,term+4)=='4'){
+           
+              info.text=sentence.substring(0,term); //+9
+             
+              var number = parseInt(sentence.substring(term+7,term+9) , 10 ) ;
+              info.size=number;
+               
+              var number1 = parseInt(sentence.substring(term+9,term+11) , 10 ) ;
+              info.margin=number1; 
+              
+      
+             if (sentence.substring(term+4,term+5)=='1'){
+              info.fontweight="bold";
+              
+             }
+              if (sentence.substring(term+5,term+6)=='1'){
+              info.fontstyle=  'italic';
+              
+          }
+              if (sentence.substring(term+6,term+7)=='1')
+              info.textDecorationLine= "underline";
+      
+              info.type=4;
+        
+             }
 
         
         

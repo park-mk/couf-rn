@@ -71,7 +71,7 @@ class NIGHT extends React.Component {
             <View>
             <Header
           leftComponent={  <TouchableOpacity 
-           onPress={()=> this.props.navigation.navigate('Area')}
+           onPress={()=> this.props.navigation.navigate('Home')}
            >
            <Image source={require('../assets/back.png')}
                        
@@ -113,8 +113,9 @@ class NIGHT extends React.Component {
                             source={{ uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2F%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202019-07-14%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%207.51.01.png?alt=media&token=5a47c649-aed4-4a05-bbbd-05c5ddcb64c9" }}
                         />
                         <View>
+                        <Text style={{fontFamily:'title-font' ,fontSize:30,marginLeft:15,color:'#56B8FF'}}>    </Text>
                          <Text style={{fontFamily:'title-font' ,fontSize:50,marginLeft:15,color:'#56B8FF'}}>FESTIVAL </Text>
-                         <Text style={{fontFamily:'title-font' ,fontSize:50,marginLeft:15,color:'#56B8FF'}}>   AND   </Text>
+                         <Text style={{fontFamily:'title-font' ,fontSize:50,marginLeft:15,color:'#56B8FF'}}>     AND   </Text>
                          <Text style={{fontFamily:'title-font' ,fontSize:50,marginLeft:15,color:'#56B8FF'}}>CONCERT </Text>
                          </View>
      
@@ -141,8 +142,12 @@ class NIGHT extends React.Component {
                             }}
                             source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2F%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202019-07-14%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%207.50.40.png?alt=media&token=668c8ce9-6a35-40ce-8f18-94bf0b951590" }}
                         /> 
-
-                          <Text style={{fontFamily:'title-font' ,fontSize:50,marginLeft:15,color:'#56B8FF'}}>NIGHT LIFE </Text>
+                        <View>
+                            <Text style={{fontFamily:'title-font' ,fontSize:50,marginLeft:15,color:'#56B8FF'}}>  </Text>
+                            <Text style={{fontFamily:'title-font' ,fontSize:50,marginLeft:15,color:'#56B8FF'}}>   </Text>
+                            <Text style={{fontFamily:'title-font' ,fontSize:50,marginLeft:15,color:'#56B8FF'}}>NIGHT LIFE </Text>
+                            </View>
+                           
                     </View>
 
                     </TouchableOpacity>

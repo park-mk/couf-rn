@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View, FlatList, ActivityIndicator,Button,StyleSheet,Image,Text,ImageBackground,TouchableOpacity,} from "react-native";
-import { List, ListItem, SearchBar } from "react-native-elements";
+import { List, ListItem, SearchBar,Header } from "react-native-elements";
 import  firebase,{storage}  from "../firebase";
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import  someList from '../components/anylist'
@@ -201,7 +201,23 @@ this.setState({
   render() {
      
     return (
-
+      <View>
+      <Header
+      leftComponent={  
+       <TouchableOpacity 
+       onPress={()=> this.props.navigation.navigate('Home')}
+       >
+       <Image source={require('../assets/back.png')}
+                   
+      style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
+ /> 
+ </TouchableOpacity>
+ } 
+     backgroundColor={'#fff'}
+    borderBottomColor={'#fff'}
+      centerComponent={{ text: 'Food', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
+     
+       />
     
         
       <ScrollView>   
@@ -530,6 +546,7 @@ this.setState({
        </View>
 
        </ScrollView>
+       </View>
     );
   }
 }

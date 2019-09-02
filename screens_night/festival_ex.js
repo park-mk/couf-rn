@@ -62,7 +62,7 @@ class FESTIVALEX extends React.Component {
         <Header
       leftComponent={  
        <TouchableOpacity 
-       onPress={()=> this.props.navigation.navigate('Home')}
+       onPress={()=> this.props.navigation.navigate('FESTIVAL')}
        >
        <Image source={require('../assets/back.png')}
                    
@@ -93,7 +93,7 @@ class FESTIVALEX extends React.Component {
               onPress={()=>  Linking.openURL(JSON.stringify(loca).replace(/^"(.+)"$/,'$1')).catch((err) => console.error('An error occurred', err))}
               
             > 
-               <Text style={{fontFamily:'content-font' ,fontSize:20,marginLeft:10,color:'#56B8FF',textAlign:'center'}}> {JSON.stringify(location).replace(/^"(.+)"$/,'$1')}</Text>
+               <Text style={{fontFamily:'content-font' ,fontSize:20,marginLeft:10,color:'#56B8FF',textAlign:'center',textDecorationLine:'underline'}}> {JSON.stringify(location).replace(/^"(.+)"$/,'$1')}</Text>
              </TouchableOpacity>
        
               </View>

@@ -215,7 +215,7 @@ class Travelitem extends React.Component {
         images.push(info);
         
         sentence=sentence.substring(term+3,sentence.length);
-        console.log(sentence);
+       
         
        }
     

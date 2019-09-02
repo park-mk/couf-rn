@@ -178,7 +178,14 @@ usersRef.on('value', (snapshot) => {
                            >SHORT TOUR</Text>
 
       <View>
-   
+
+       <Text   style={{fontFamily:'title-font' ,fontSize:35, marginLeft:20,marginTop:30,color:'grey'}}  
+                           
+                           >PLZ WAIT FOR NEXT</Text>
+                            <Text   style={{fontFamily:'title-font' ,fontSize:35, marginLeft:20,marginTop:30,color:'grey'}}  
+                           
+                           >VERSION ....</Text>
+    {/*
     <FlatList 
           data={this.state.datasource}
           keyExtractor={this._keyExtractor}
@@ -259,7 +266,7 @@ usersRef.on('value', (snapshot) => {
           onEndReached={this.handleLoadMore}
           onEndReachedThreshold={40}
         />
-
+    */}
 
         
        </View>
@@ -320,12 +327,12 @@ usersRef.on('value', (snapshot) => {
             
             onPress={() => {
              
-              this.props.navigation.navigate('FOODi', {
+              this.props.navigation.navigate('A1WTD', {
                  name : item.name,
-                 description :item.description,
-                 cate:item.cate,
+                
                  topimage : item.topimage,
-               
+                locas:item.locas,
+                locass:item.locass,
                 
                
                  imagelist:item.images,

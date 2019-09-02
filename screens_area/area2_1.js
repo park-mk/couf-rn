@@ -173,8 +173,12 @@ this.setState({
 
       <View>
    
+      <Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'grey'}}  
+                           
+                           >PLZ WAIT FOR  THE NEXT VERSION.....</Text>
+    {/*
     <FlatList 
-          data={this.state.datasource1}
+          data={this.state.datasource}
           keyExtractor={this._keyExtractor}
           horizontal={true}
           renderItem={({ item }) => (
@@ -253,9 +257,7 @@ this.setState({
           onEndReached={this.handleLoadMore}
           onEndReachedThreshold={40}
         />
-
-
-        
+    */}
        </View>
 
        <Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30}}  
