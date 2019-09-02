@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, Text, TextInput, View, FlatList, CameraRoll} from 'react-native';
+import {Text, View, FlatList, Modal, TouchableHighlight, TextInput} from 'react-native';
 import styled from 'styled-components'
 import { List, ListItem, Button, Avatar  } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -15,6 +15,8 @@ class CommentList extends React.Component {
             modify:{},
             isFetching: true,
             lists:[],
+            modalVisible: false,
+            modifyItem:{},
         })
         this.setData();
     }
@@ -26,17 +28,19 @@ class CommentList extends React.Component {
             })
         }.bind(this));
     };
-    
+
     onRefresh() {
         this.setState({ isFetching: true }, function() {
             this.setData();
         }.bind(this));
     }
     deleteData= (key) => {
+        /* TODO : 지울지 말지 확인창 띄우기 */
         console.log(key, 'user');
         firebase.database().ref().child('comment/'+this.props.type+'/'+key).set(null);
+        this.setData();
     };
-   getDate = (timestamp) => {
+    getDate = (timestamp) => {
         let date = new Date(timestamp);
         return `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}`;
     };
@@ -53,9 +57,85 @@ class CommentList extends React.Component {
         });
     };
 
+    onClickModifyButton = (item) => {
+        this.setState({
+            modifyItem: item || {},
+        });
+        this.modifyModal(true);
+    };
+
+    modifyModal = (value) => {
+        this.setState({
+            modalVisible: value,
+        });
+    };
+
+    modifyData= () => {
+        console.log(this.state.modifyItem, 'modify item의 정보');
+        firebase.database().ref('comment/'+this.props.type +'/'+ this.state.modifyItem.uid).update({
+            content: this.state.modifyItem.content,
+        }, function(){
+            this.modifyModal(false);
+            this.onRefresh();
+            console.log('히랴!');
+        }.bind(this));
+    };
+
     render(url) {
         return (
             <View style={{flex:1}}>
+                {/* 수정 Form */}
+                <Modal
+                    animationType="slide"
+                    transparent={false}
+                    visible={this.state.modalVisible}
+                    onRequestClose={() => {
+                        console.log('Modal has been closed.');
+                    }}>
+                    <ModifyList >
+                        <ListItem
+                            key={this.state.modifyItem.uid}
+                            title={
+                                <View>
+                                    <Text>{this.state.modifyItem.useremail}</Text>
+                                    <DateForm>{this.getDate(this.state.modifyItem.timestamp)}</DateForm>
+                                </View>
+                            }
+                            leftAvatar={
+                                <Avatar
+                                    containerStyle={{alignSelf: 'flex-start'}}
+                                    rounded
+                                    source={{
+                                        uri:'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+                                    }}
+                                />
+                            }
+                            subtitle={
+                                <TextInput
+                                    editable = {true}
+                                    onChangeText={(text) => this.setState({modifyItem:{...this.state.modifyItem, content:text}})}
+                                    value={this.state.modifyItem.content}
+                                />
+
+                            }
+                        />
+
+                        <Buttons>
+                            <Button
+                                onPress={() => this.modifyData()}
+                                title="Modify"
+                                color="#841584"
+                            />
+                            <Button
+                                onPress={() => this.setState({modalVisible: false})}
+                                title="Cancel"
+                                color="#841584"
+                            />
+                        </Buttons>
+                    </ModifyList>
+
+                </Modal>
+
                 <FlatList data={this.state.lists}
                           onRefresh={() => this.onRefresh()}
                           refreshing={this.state.isFetching}
@@ -90,9 +170,14 @@ class CommentList extends React.Component {
                                           />
                                           <Button type="clear" buttonStyle={ { width: 30 } }
                                                   icon={<Icon name="edit" size={15} color="black" /> }
-                                                  onPress={() => this.props.navigation.navigate('SuggestionModify', {
-                                                      item: item
-                                                  })}
+                                                  onPress={() => {
+                                                      this.onClickModifyButton(item);
+                                                  }}
+                                              /*
+                                                                                                onPress={() => this.props.navigation.navigate('SuggestionModify', {
+                                                                                                    item: item
+                                                                                                })}
+                                              */
                                           />
                                       </Buttons>
                                   }
@@ -103,6 +188,20 @@ class CommentList extends React.Component {
         );
     }
 }
+
+const ModifyList = styled.View`
+  border:1px solid #ccc;
+  margin: 10px;
+  padding: 10px 0;
+`
+const ModifyTitleHeader = styled.View`
+  display:flex;
+  flex-direction: row;
+`
+const ModifyTitle = styled.View`
+  flex:1;
+`
+
 
 const Buttons = styled.View`
   display:flex;

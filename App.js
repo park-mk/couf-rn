@@ -392,10 +392,10 @@ const LoginStack = createStackNavigator({
   }
 });
 
-/*const SuggestionStack = createStackNavigator({
+const SuggestionStack = createStackNavigator({
   SuggestionScreen: { screen: SuggestionScreen },
   SuggestionModify: { screen: SuggestionModify },
-});*/
+});
 
 
 
@@ -408,7 +408,7 @@ export default createAppContainer(createBottomTabNavigator(
     
     Area: { screen: AreaStack },
     Login1: { screen: LoginStack },
-   // Suggestion: { screen: SuggestionStack },
+   Suggestion: { screen: SuggestionStack },
 
   },
   {
