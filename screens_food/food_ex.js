@@ -381,9 +381,11 @@ class Fooditem extends React.Component {
         <View style={{ marginLeft: 20, flexDirection: 'row', marginRight: 20 }} >
 
         </View>
-        <View style={{ marginLeft: 23, flexDirection: 'row' }} >
+        <View 
+        style={{height:100}}
+       >
+       </View>
 
-        </View>
 
       
 
