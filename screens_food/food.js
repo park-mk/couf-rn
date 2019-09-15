@@ -210,7 +210,7 @@ this.setState({
        <Image source={require('../assets/back.png')}
                    
       style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
- /> 
+        />
  </TouchableOpacity>
  } 
      backgroundColor={'#fff'}
@@ -316,7 +316,7 @@ this.setState({
    // start: [1, 0],
     //end: [0.2, 0],
  // }}
- 
+
            
                title=  {    
                
@@ -508,7 +508,7 @@ this.setState({
             
             
             onPress={() => {
-             
+
               this.props.navigation.navigate('FOODi', {
                  name : item.name,
                  description :item.description,
