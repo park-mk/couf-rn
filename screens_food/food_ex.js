@@ -381,13 +381,11 @@ class Fooditem extends React.Component {
             </SafeAreaView>
             <View style={{ marginLeft: 20, flexDirection: 'row', marginRight: 20 }} >
 
-            </View>
-            <View style={{ marginLeft: 23, flexDirection: 'row' }} >
-
-            </View>
-
-
-
+        </View>
+        <View 
+        style={{height:100}}
+       >
+       </View>
 
 
 

@@ -29,9 +29,9 @@ class LOCA extends React.Component {
             <View style={{flexDirection:'row'}}>
 
 
-    <Text  style={{fontSize:20 , 
+    <Text  style={{fontSize:30 , 
                          marginLeft:20,  color:'black',
-           marginRight:this.props.margin,fontFamily:'content-font'}} > {this.props.name} 
+           marginRight:this.props.margin,fontFamily:'title-font'}} > {this.props.name} 
        </Text>
        
             
