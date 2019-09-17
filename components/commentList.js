@@ -11,57 +11,16 @@ class CommentList extends React.Component {
     constructor(props){
         super(props)
         this.state=({
-            page:0,
-            listSize:10,
-            suggestion:'',
             modify:{},
-            isFetching: true,
-            lists:[],
             modalVisible: false,
             modifyItem:{},
-        })
-        this.setData();
+            lists:[],
+        });
     }
 
-    async componentWillReceiveProps(nextProps){
-        if(nextProps.reload !== undefined && this.props.reload !== nextProps.reload){
-            this.onRefresh();
-        }
-    }
-
-
-    setData = () => {
-        this.getData().then(function(response){
-            this.setState({
-                lists:  response,
-                isFetching: false,
-            })
-        }.bind(this));
-    };
-
-    onRefresh() {
-        this.setState({ isFetching: true }, function() {
-            this.setData();
-        }.bind(this));
-    }
-    deleteData= (key) => {
-        /* TODO : 지울지 말지 확인창 띄우기 */
-        firebase.database().ref().child('comment/'+this.props.type+'/'+key).set(null);
-        this.setData();
-    };
     getDate = (timestamp) => {
         let date = new Date(timestamp);
         return `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}`;
-    };
-    getData = () => {
-        return new Promise((resolve, reject) => {
-            firebase.database().ref('comment/'+this.props.type).on('value', function (snapshot) {
-                let returnVal =  snapshot.val() || {};
-                resolve(Object.values(returnVal).reverse());
-            }.bind(this),function(error){
-                reject(error);
-            });
-        });
     };
 
     onClickModifyButton = (item) => {
@@ -82,13 +41,13 @@ class CommentList extends React.Component {
             content: this.state.modifyItem.content,
         }, function(){
             this.modifyModal(false);
-            this.onRefresh();
+            this.props.onRefresh();
         }.bind(this));
     };
 
     render(url) {
         return (
-            <View style={{flex:1}}>
+            <View>
                 {/* 수정 Form */}
                 <Modal
                     animationType="slide"
@@ -140,10 +99,9 @@ class CommentList extends React.Component {
                     </ModifyList>
 
                 </Modal>
-
-                <FlatList data={this.state.lists}
-                          onRefresh={() => this.onRefresh()}
-                          refreshing={this.state.isFetching}
+                <FlatList data={this.props.lists}
+                          onRefresh={(e) => this.props.onRefresh(e)}
+                          refreshing={this.props.fetching}
                           keyExtractor={item => item.uid}
                           ListEmptyComponent={<Text>Empty</Text>}
                           renderItem={({item}) => (
@@ -171,7 +129,7 @@ class CommentList extends React.Component {
                                       item.useremail !== firebase.auth().currentUser.email ? <Text> </Text> : <Buttons style={{alignSelf: 'flex-start'}}>
                                           <Button type="clear" buttonStyle={{width: 30}}
                                                   icon={<Icon name="trash" size={15} color="black"/>}
-                                                  onPress={() => this.deleteData(item.uid)}
+                                                  onPress={() => this.props.deleteData(item.uid)}
                                           />
                                           <Button type="clear" buttonStyle={ { width: 30 } }
                                                   icon={<Icon name="edit" size={15} color="black" /> }

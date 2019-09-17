@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, View, Text, ScrollView, Image, Dimensions, ImageBackground, StyleSheet, TouchableOpacity, TouchableHighlight, SafeAreaView, Linking } from 'react-native';
+import { Button, View, Text, ScrollView, Image, Dimensions, ImageBackground, StyleSheet, TouchableOpacity, TouchableHighlight, SafeAreaView, Linking, Modal } from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import ImageSlider from 'react-native-image-slider';
 import { List, ListItem, SearchBar,Header } from "react-native-elements";
@@ -10,7 +10,7 @@ import {
 import Texteditor from '../components/Textedit'
 import firebase, { storage } from "../firebase";
 import {Font} from 'expo'
-import CommentList from "../components/commentList";
+import Comment from '../components/comment'
 
 
 class Fooditem extends React.Component {
@@ -25,6 +25,7 @@ class Fooditem extends React.Component {
       origin: " ",
       voted: false,
       checkkk: false,
+      commentVisible: false,
     };
   }
 
@@ -64,33 +65,9 @@ class Fooditem extends React.Component {
 
       }
 
-
-
-
-
-
     });
 
-
-
-
-
-
-
-
-
-
-
   }
-
-
-
-
-
-
-
-
-
 
   async componentDidMount() {
     const { navigation } = this.props;
@@ -138,7 +115,6 @@ class Fooditem extends React.Component {
 
   }
 
-
   check = () => {
     // add likes
     const { navigation } = this.props;
@@ -182,6 +158,12 @@ class Fooditem extends React.Component {
 
   }
 
+  onClickComment = (value) => {
+    this.setState({
+      commentVisible: value || !this.state.commentVisible,
+    });
+  };
+
 
 
 
@@ -222,6 +204,7 @@ class Fooditem extends React.Component {
     var res = vivid.substring(1, 4);
 
     return (
+<<<<<<< HEAD
       <View>
      
      <ScrollView
@@ -249,109 +232,156 @@ class Fooditem extends React.Component {
 
 
         <View style={{ flex: 10 ,marginTop:-80}}>
+=======
+        <View>
+          {/* Comment Modal TODO : 내용에서 slide 형식으로 바꿔도 이쁠거같당 */}
+          <Modal
+              animationType="slide"
+              transparent={false}
+              visible={this.state.commentVisible}
+              onRequestClose={() => {
+                console.log('Modal has been closed.');
+              }}>
+            <Header
+                leftComponent={
+                  <TouchableOpacity
+                      onPress={() => {
+                        this.onClickComment();
+                      }}
+                  >
+                    <Image source={require('../assets/back.png')}
 
-          <ImageBackground source={{ uri: topimage.toString() }} style={{ height: imageheight, width: imagewidth }}>
-            <View style={{ top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center' }}>
+                           style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
+                    />
+                  </TouchableOpacity>
+                }
+                backgroundColor={'#fff'}
+                borderBottomColor={'#fff'}
+                centerComponent={{ text: 'Food', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
+>>>>>>> ff05aff6b5c412df359cc804b29169152ad2e5aa
 
-            </View>
-          </ImageBackground>
+            />
+            <Comment
+                type={'food'}
+                tag={name}
+            />
+          </Modal>
+          <Header
+              leftComponent={
+                <TouchableOpacity
+                    onPress={()=> this.props.navigation.navigate('Food')}
+                >
+                  <Image source={require('../assets/back.png')}
 
-          <View style={{ marginTop:30}}>
+                         style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
+                  />
+                </TouchableOpacity>
+              }
+              backgroundColor={'#fff'}
+              borderBottomColor={'#fff'}
+              centerComponent={{ text: 'Food', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
 
-                    </View> 
-                    <View style={{ marginTop:0}}>
+          />
+          <ScrollView>
+            <View style={{ flex: 10 }}>
+              <ImageBackground source={{ uri: topimage.toString() }} style={{ height: imageheight, width: imagewidth }}>
+                <View style={{ top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center' }}></View>
+              </ImageBackground>
+              <View style={{ marginTop:30}}></View>
+              <View style={{ marginTop:0}}>
+                <View style={{ flexDirection: 'row', flex: 6 }} >
+                  <View style={{ flex: 0.3}}></View>
+                  <Image
+                      style={{
+                        width: 30, flex: 1,
+                        height: 30, alignContent: 'center',
+                      }}
+                      resizeMode={'contain'}
+                      source={require('../assets/place_lo.png')}
+                  />
+                  <View style={{ flex: 1 }}></View>
 
-       
-   
-          <View style={{ flexDirection: 'row', flex: 6 }} >
-            
-           
-          <View style={{ flex: 0.3}}>
-              
+                  <View>
+                    {this.state.voted ? (
+
+                            <TouchableOpacity
+
+
+                                onPress={() => this.check()}>
+                              <Image
+                                  style={{
+                                    width: 30, flex: 1,
+                                    height: 30, alignContent: 'center',
+
+                                  }}
+                                  resizeMode={'contain'}
+                                  source={require('../assets/Vector_f.png')}
+                              />
+
+                            </TouchableOpacity>
+                        )
+                        : (<TouchableOpacity
+                                // styles={{textAlign:'center'}}
+
+                                onPress={() => this.check()} >
+
+                              <Image
+                                  style={{
+                                    width: 30, flex: 1,
+                                    height: 30, alignContent: 'center',
+
+                                  }}
+                                  resizeMode={'contain'}
+                                  source={require('../assets/Vector.png')}
+                              />
+                            </TouchableOpacity>
+                    )}
+                  </View>
+
+                  <View style={{ flex: 1 ,marginRight:-10}}>
+                    <Text style={{ textAlign: 'left', fontSize: 20,color:'#56B8FF',marginBottom:3}}>{this.state.up}</Text>
+                  </View>
+
+                  <TouchableHighlight
+                      onPress={() => {
+                        this.onClickComment();
+                      }}
+                  >
+                    <Image
+                        style={{
+                          width: 30, flex: 1,
+                          height: 30, alignContent: 'center',
+                        }}
+                        resizeMode={'contain'}
+                        source={require('../assets/baseline-chat-24px.png')}
+                    />
+                  </TouchableHighlight>
+
+                  <View style={{ flex: 1 }}>
+                    <Text style={{ textAlign: 'left', fontSize: 20,color:'#56B8FF',marginBottom:2 }}>{this.state.up}</Text>
+                  </View>
+
+                </View>
+                {// <Text style={{textAlign:'center', fontSize:30,marginTop:30}}> {JSON.stringify(name).replace(/^"(.+)"$/,'$1')}</Text>
+                }
+                <View style={{ marginTop:30}}>
+
+                </View>
+
+
+                <Text style={{ textAlign: 'left', fontSize: 55,color:'#56B8FF',marginLeft:10 ,fontFamily:'title-font' }}>{name}</Text>
+
               </View>
-          
-            <Image
-              style={{
-                width: 30, flex: 1,
-                height: 30, alignContent: 'center',
-              }}
-              resizeMode={'contain'}
-              source={require('../assets/place_lo.png')}
-            />
-          
 
-            <View style={{ flex: 1 }}>
-              
+
+
+              <Texteditor text={vivid} />
+
             </View>
-    
-            <View>
-            {this.state.voted ? (
+            <SafeAreaView style={styles.container}>
+              <View style={styles.content1}>
 
-<TouchableOpacity
-
-
-  onPress={() => this.check()}>
-            <Image
-              style={{
-                width: 30, flex: 1,
-                height: 30, alignContent: 'center',
-                
-              }} 
-              resizeMode={'contain'}
-              source={require('../assets/Vector_f.png')}
-            />
-
-</TouchableOpacity>
-          )
-            : (<TouchableOpacity
-              // styles={{textAlign:'center'}}
-
-              onPress={() => this.check()} >
-
-     <Image
-              style={{
-                width: 30, flex: 1,
-                height: 30, alignContent: 'center',
-                
-              }} 
-              resizeMode={'contain'}
-              source={require('../assets/Vector.png')}
-            />
-</TouchableOpacity>
-            )}
-            </View>
-            <View style={{ flex: 1 ,marginRight:-10}}>
-            <Text style={{ textAlign: 'left', fontSize: 20,color:'#56B8FF',marginBottom:3}}>{this.state.up}</Text>
-            </View>
-           
-            <Image
-              style={{
-                width: 30, flex: 1,
-                height: 30, alignContent: 'center'
-              }}
-              resizeMode={'contain'}
-              source={require('../assets/baseline-chat-24px.png')}
-            />
-            <View style={{ flex: 1 }}>
-            <Text style={{ textAlign: 'left', fontSize: 20,color:'#56B8FF',marginBottom:2 }}>{this.state.up}</Text>
-            </View>
-          
-          </View>
-          {// <Text style={{textAlign:'center', fontSize:30,marginTop:30}}> {JSON.stringify(name).replace(/^"(.+)"$/,'$1')}</Text>
-          }
-              <View style={{ marginTop:30}}>
-
-                 </View> 
-
-         
-            <Text style={{ textAlign: 'left', fontSize: 55,color:'#56B8FF',marginLeft:10 ,fontFamily:'title-font' }}>{name}</Text>
-
-          </View>  
-             
-    
-
-          <Texteditor text={vivid} />
-
+<<<<<<< HEAD
         </View>
         {/*  <SafeAreaView style={styles.container}>
           <View style={styles.content1}>
@@ -379,12 +409,42 @@ class Fooditem extends React.Component {
                     </TouchableHighlight>
                   );
                 })}
+=======
+>>>>>>> ff05aff6b5c412df359cc804b29169152ad2e5aa
               </View>
-            )}
-          />
+              <ImageSlider
+                  loopBothSides
+                  autoPlayWithInterval={3000}
+                  images={images}
+                  style={{ height: imageheight, width: imagewidth }}
+                  customButtons={(position, move) => (
+                      <View style={styles.buttons}>
 
+                        {images.map((image, index) => {
+                          return (
+                              <TouchableHighlight
+                                  key={index}
+                                  underlayColor="#f00"
+                                  onPress={() => move(index)}
+                                  style={styles.button}
+                              >
+                                <Text style={position === index && styles.buttonSelected}>
+
+                                </Text>
+                              </TouchableHighlight>
+                          );
+                        })}
+                      </View>
+                  )}
+              />
+
+<<<<<<< HEAD
               </SafeAreaView>*/}
         <View style={{ marginLeft: 20, flexDirection: 'row', marginRight: 20 }} >
+=======
+            </SafeAreaView>
+            <View style={{ marginLeft: 20, flexDirection: 'row', marginRight: 20 }} >
+>>>>>>> ff05aff6b5c412df359cc804b29169152ad2e5aa
 
         </View>
         <View 
@@ -393,15 +453,11 @@ class Fooditem extends React.Component {
        </View>
 
 
-      
 
 
 
-
-
-
-        <View style={{ alignItems: 'center' }}>
-          { /*this.state.voted ? (
+            <View style={{ alignItems: 'center' }}>
+              { /*this.state.voted ? (
 
             <TouchableOpacity
 
@@ -438,12 +494,17 @@ class Fooditem extends React.Component {
             </TouchableOpacity>
               )*/}
 
-         
 
+
+            </View>
+          </ScrollView>
         </View>
+<<<<<<< HEAD
       
       </ScrollView>
       </View>
+=======
+>>>>>>> ff05aff6b5c412df359cc804b29169152ad2e5aa
     );
   }
 }
