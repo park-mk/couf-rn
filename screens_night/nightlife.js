@@ -289,7 +289,7 @@ source={require('../assets/likewhithe.png')}
        
           
          // ListHeaderComponent={this.renderHeader}
-         ListFooterComponent={this.renderFooter}
+      //   ListFooterComponent={this.renderFooter}
           onRefresh={this.handleRefresh}
           refreshing={this.state.refreshing}
           onEndReached={this.handleLoadMore}

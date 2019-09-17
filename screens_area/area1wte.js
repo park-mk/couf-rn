@@ -232,7 +232,7 @@ class WTEA1 extends React.Component {
         <Header
       leftComponent={  
        <TouchableOpacity 
-       onPress={()=> this.props.navigation.navigate('Home')}
+       onPress={()=> this.props.navigation.navigate('Area')}
        >
        <Image source={require('../assets/back.png')}
                    

@@ -1,11 +1,13 @@
 import React from 'react';
-import { Button, View, Text ,ScrollView,Image,Dimensions,ImageBackground,StyleSheet,TouchableHighlight,TouchableOpacity,SafeAreaView,Linking} from 'react-native';
+
+import { Button, View, Text, ScrollView, Image, Dimensions, ImageBackground, StyleSheet, TouchableOpacity, TouchableHighlight, SafeAreaView, Linking, Modal } from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation'; 
 import ImageSlider from 'react-native-image-slider';
 import { List, ListItem, SearchBar ,Header} from "react-native-elements";
 import { Ionicons,MaterialIcons ,Entypo,Feather, FontAwesome } from '@expo/vector-icons';
 import Texteditor from  '../components/Textedit'
 import  firebase,{storage}  from "../firebase";
+import Comment from '../components/comment'
 
 class Travelitem extends React.Component {
  
@@ -16,6 +18,7 @@ class Travelitem extends React.Component {
       keys: [],
       up: 0,
       voted: false,
+      commentVisible: false,
     
     };
   }
@@ -76,6 +79,11 @@ class Travelitem extends React.Component {
   }
 
 
+  onClickComment = (value) => {
+    this.setState({
+      commentVisible: value || !this.state.commentVisible,
+    });
+  };
 
 
  
@@ -226,6 +234,36 @@ class Travelitem extends React.Component {
       return ( 
 
         <View>
+            <Modal
+              animationType="slide"
+              transparent={false}
+              visible={this.state.commentVisible}
+              onRequestClose={() => {
+                console.log('Modal has been closed.');
+              }}>
+            <Header
+                leftComponent={
+                  <TouchableOpacity
+                      onPress={() => {
+                        this.onClickComment();
+                      }}
+                  >
+                    <Image source={require('../assets/back.png')}
+
+                           style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
+                    />
+                  </TouchableOpacity>
+                }
+                backgroundColor={'#fff'}
+                borderBottomColor={'#fff'}
+                centerComponent={{ text: name, style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
+
+            />
+            <Comment
+                type={'food'}
+                tag={name}
+            />
+            </Modal> 
        {/* <Header
       leftComponent={  
        <TouchableOpacity 
@@ -241,7 +279,7 @@ class Travelitem extends React.Component {
     borderBottomColor={'#fff'}
       centerComponent={{ text: 'TRAVEL', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
      
-/>*/}
+/>*/} 
         <ScrollView
         stickyHeaderIndices={[0]}
      
@@ -349,6 +387,12 @@ class Travelitem extends React.Component {
               <Text style={{ textAlign: 'left', fontSize: 20,color:'#56B8FF',marginBottom:3}}>{upvote}</Text>
               </View>
              
+          <TouchableOpacity 
+          
+          onPress={() => {
+            this.onClickComment();
+          }}
+          >
               <Image
                 style={{
                   width: 30, flex: 1,
@@ -357,8 +401,9 @@ class Travelitem extends React.Component {
                 resizeMode={'contain'}
                 source={require('../assets/baseline-chat-24px.png')}
               />
+              </TouchableOpacity>
               <View style={{ flex: 1 }}>
-              <Text style={{ textAlign: 'left', fontSize: 20,color:'#56B8FF',marginBottom:2 }}>{upvote}</Text>
+             
               </View>
             
             </View>

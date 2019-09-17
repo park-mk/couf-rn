@@ -250,7 +250,7 @@ usersRef.on('value', (snapshot) => {
         
           
          // ListHeaderComponent={this.renderHeader}
-         ListFooterComponent={this.renderFooter}
+      //   ListFooterComponent={this.renderFooter}
           onRefresh={this.handleRefresh}
           refreshing={this.state.refreshing}
           onEndReached={this.handleLoadMore}
@@ -279,7 +279,7 @@ usersRef.on('value', (snapshot) => {
         
           
          // ListHeaderComponent={this.renderHeader}
-         ListFooterComponent={this.renderFooter}
+    //     ListFooterComponent={this.renderFooter}
           onRefresh={this.handleRefresh}
           refreshing={this.state.refreshing}
           onEndReached={this.handleLoadMore}
@@ -308,7 +308,7 @@ usersRef.on('value', (snapshot) => {
         
           
          // ListHeaderComponent={this.renderHeader}
-         ListFooterComponent={this.renderFooter}
+   //      ListFooterComponent={this.renderFooter}
           onRefresh={this.handleRefresh}
           refreshing={this.state.refreshing}
           onEndReached={this.handleLoadMore}

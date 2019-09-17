@@ -1,11 +1,13 @@
 import React from 'react';
-import { Button, View, Text ,ScrollView,Image,Dimensions,ImageBackground,StyleSheet,TouchableHighlight,TouchableOpacity,SafeAreaView,Linking} from 'react-native';
+
+import { Button, View, Text, ScrollView, Image, Dimensions, ImageBackground, StyleSheet, TouchableOpacity, TouchableHighlight, SafeAreaView, Linking, Modal } from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation'; 
 import ImageSlider from 'react-native-image-slider';
 import { List, ListItem, SearchBar ,Header} from "react-native-elements";
 import { Ionicons,MaterialIcons ,Entypo,Feather, FontAwesome } from '@expo/vector-icons';
 import Texteditor from  '../components/Textedit'
 import  firebase,{storage}  from "../firebase";
+import Comment from '../components/comment'
 
 class CLUBEX extends React.Component {
  
@@ -16,7 +18,7 @@ class CLUBEX extends React.Component {
       keys: [],
       up: 0,
       voted: false,
-    
+      commentVisible: false,
     };
   }
 
@@ -115,6 +117,12 @@ class CLUBEX extends React.Component {
 
 
   }
+  onClickComment = (value) => {
+    this.setState({
+      commentVisible: value || !this.state.commentVisible,
+    });
+  };
+
 
   makeRemoteRequest = () => {
 
@@ -166,7 +174,7 @@ class CLUBEX extends React.Component {
     else {
       ///minus
 
-      alert("no cancle");
+      alert("you've already like it");
 
 
     }
@@ -226,12 +234,46 @@ class CLUBEX extends React.Component {
 
         <View
         style={{ backgroundColor:"#1f2124"}}
-        >
-        
+        > 
+       
+         
+
+       <Modal
+        animationType="slide"
+        transparent={false}
+        visible={this.state.commentVisible}
+        onRequestClose={() => {
+          console.log('Modal has been closed.');
+        }}>
+      <Header
+          leftComponent={
+            <TouchableOpacity
+                onPress={() => {
+                  this.onClickComment();
+                }}
+            >
+              <Image source={require('../assets/back.png')}
+
+                     style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
+              />
+            </TouchableOpacity>
+          }
+          backgroundColor={'#1f2124'}
+          borderBottomColor={'#fff'}
+          centerComponent={{ text: disname, style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
+
+      />
+      <Comment
+          type={'food'}
+          tag={disname}
+      />
+      </Modal> 
+
+
+
         <ScrollView
         stickyHeaderIndices={[0]}
      
-        
           >   
     
           <TouchableOpacity 
@@ -334,7 +376,12 @@ class CLUBEX extends React.Component {
               <View style={{ flex: 1 ,marginRight:-10}}>
               <Text style={{ textAlign: 'left', fontSize: 20,color:'#56B8FF',marginBottom:3}}>{upvote}</Text>
               </View>
-             
+              <TouchableOpacity 
+          
+          onPress={() => {
+            this.onClickComment();
+          }}
+          >
               <Image
                 style={{
                   width: 30, flex: 1,
@@ -343,8 +390,9 @@ class CLUBEX extends React.Component {
                 resizeMode={'contain'}
                 source={require('../assets/baseline-chat-24px.png')}
               />
+              </TouchableOpacity>
               <View style={{ flex: 1 }}>
-              <Text style={{ textAlign: 'left', fontSize: 20,color:'#56B8FF',marginBottom:2 }}>{upvote}</Text>
+             
               </View>
             
             </View>
@@ -385,7 +433,7 @@ class CLUBEX extends React.Component {
        
       </SafeAreaView>
       <View  style={{   marginLeft:20,marginTop:50, flexDirection:'row',marginRight:20}} >
-      <Text style={{textAlign:'left', fontSize:20,color:'grey'}}> a </Text> 
+      
     
    
        </View>

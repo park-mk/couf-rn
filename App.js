@@ -206,41 +206,6 @@ const HomeStack = createStackNavigator({
   }},
   SuggestionScreen: { screen: SuggestionScreen },
   SuggestionModify: { screen: SuggestionModify },
-
-});
-
-const CategoryStack = createStackNavigator({
-  Category: {
-    screen: CategoryScreen, navigationOptions: {
-      header: null,
-
-    }
-  },
-  BUS: {
-    screen: BUSScreen, navigationOptions: {
-      header: null,
-
-    }
-  },
-  EXCHANGE: {
-    screen: EXCHANGE, navigationOptions: {
-      header: null,
-
-    }
-  },
-  TOL: { screen: TOLScreen },
-  KORca: { screen: KORcate , navigationOptions: {
-    header: null,
-
-  }},
-  KOR: { screen: KORScreen , navigationOptions: {
-    header: null,
-
-  }},
-  KORex: { screen: KOR_explainScreen , navigationOptions: {
-    header: null,
-
-  }},
   TT: { screen: Travellist , navigationOptions: {
     header: null,
 
@@ -293,6 +258,42 @@ const CategoryStack = createStackNavigator({
    
 
   }},
+
+});
+
+const CategoryStack = createStackNavigator({
+  Category: {
+    screen: CategoryScreen, navigationOptions: {
+      header: null,
+
+    }
+  },
+  BUS: {
+    screen: BUSScreen, navigationOptions: {
+      header: null,
+
+    }
+  },
+  EXCHANGE: {
+    screen: EXCHANGE, navigationOptions: {
+      header: null,
+
+    }
+  },
+  TOL: { screen: TOLScreen },
+  KORca: { screen: KORcate , navigationOptions: {
+    header: null,
+
+  }},
+  KOR: { screen: KORScreen , navigationOptions: {
+    header: null,
+
+  }},
+  KORex: { screen: KOR_explainScreen , navigationOptions: {
+    header: null,
+
+  }},
+  
 
 });
 

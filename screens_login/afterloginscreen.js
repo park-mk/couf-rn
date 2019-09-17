@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
                         full
                         rounded
                         sucess
-                        onPress={() => firebase.auth().currentUser.metadata.push("ss")}
+                       // onPress={() => firebase.auth().currentUser.metadata.push("ss")}
                 >
                     <Text style={ {color:'white', fontWeight:'bold'} }>Email:{firebase.auth().currentUser.email
                     }</Text> 

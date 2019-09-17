@@ -250,7 +250,7 @@ class Home1 extends React.Component {
                              style={{
                                 marginBottom:3,
                              }}
-                             onPress={()=> this.props.navigation.navigate('CommentForm')}
+                             onPress={()=> this.props.navigation.navigate('SuggestionScreen')}
                     >
  
 

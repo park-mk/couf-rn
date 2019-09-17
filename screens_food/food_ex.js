@@ -204,38 +204,9 @@ class Fooditem extends React.Component {
     var res = vivid.substring(1, 4);
 
     return (
-<<<<<<< HEAD
-      <View>
-     
-     <ScrollView
-        stickyHeaderIndices={[0]}
-     
-        
-          >   
-    
-          <TouchableOpacity 
-          
-          onPress={()=> this.props.navigation.navigate('Food')}
-          >
-            <View
-             style={{flexDirection:'row', backgroundColor:["black", "#ffffff00"]
-           
-             }}>
-          <Image source={require('../assets/back.png')}
-                      
-         style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
-    />   
-    
-    </View>
-    </TouchableOpacity>
-        
-
-
-        <View style={{ flex: 10 ,marginTop:-80}}>
-=======
         <View>
           {/* Comment Modal TODO : 내용에서 slide 형식으로 바꿔도 이쁠거같당 */}
-          <Modal
+         <Modal
               animationType="slide"
               transparent={false}
               visible={this.state.commentVisible}
@@ -258,14 +229,13 @@ class Fooditem extends React.Component {
                 backgroundColor={'#fff'}
                 borderBottomColor={'#fff'}
                 centerComponent={{ text: 'Food', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
->>>>>>> ff05aff6b5c412df359cc804b29169152ad2e5aa
 
             />
             <Comment
                 type={'food'}
                 tag={name}
             />
-          </Modal>
+              </Modal> 
           <Header
               leftComponent={
                 <TouchableOpacity
@@ -358,7 +328,7 @@ class Fooditem extends React.Component {
                   </TouchableHighlight>
 
                   <View style={{ flex: 1 }}>
-                    <Text style={{ textAlign: 'left', fontSize: 20,color:'#56B8FF',marginBottom:2 }}>{this.state.up}</Text>
+               {/*     <Text style={{ textAlign: 'left', fontSize: 20,color:'#56B8FF',marginBottom:2 }}>{this.state.up}</Text>*/}
                   </View>
 
                 </View>
@@ -381,38 +351,8 @@ class Fooditem extends React.Component {
             <SafeAreaView style={styles.container}>
               <View style={styles.content1}>
 
-<<<<<<< HEAD
-        </View>
-        {/*  <SafeAreaView style={styles.container}>
-          <View style={styles.content1}>
-
-          </View>
-         <ImageSlider
-            loopBothSides
-            autoPlayWithInterval={3000}
-            images={images}
-            style={{ height: imageheight, width: imagewidth }}
-            customButtons={(position, move) => (
-              <View style={styles.buttons}>
-
-                {images.map((image, index) => {
-                  return (
-                    <TouchableHighlight
-                      key={index}
-                      underlayColor="#f00"
-                      onPress={() => move(index)}
-                      style={styles.button}
-                    >
-                      <Text style={position === index && styles.buttonSelected}>
-
-                      </Text>
-                    </TouchableHighlight>
-                  );
-                })}
-=======
->>>>>>> ff05aff6b5c412df359cc804b29169152ad2e5aa
               </View>
-              <ImageSlider
+         {/*     <ImageSlider
                   loopBothSides
                   autoPlayWithInterval={3000}
                   images={images}
@@ -436,15 +376,10 @@ class Fooditem extends React.Component {
                         })}
                       </View>
                   )}
-              />
+                      />*/}
 
-<<<<<<< HEAD
-              </SafeAreaView>*/}
-        <View style={{ marginLeft: 20, flexDirection: 'row', marginRight: 20 }} >
-=======
             </SafeAreaView>
             <View style={{ marginLeft: 20, flexDirection: 'row', marginRight: 20 }} >
->>>>>>> ff05aff6b5c412df359cc804b29169152ad2e5aa
 
         </View>
         <View 
@@ -499,12 +434,6 @@ class Fooditem extends React.Component {
             </View>
           </ScrollView>
         </View>
-<<<<<<< HEAD
-      
-      </ScrollView>
-      </View>
-=======
->>>>>>> ff05aff6b5c412df359cc804b29169152ad2e5aa
     );
   }
 }
