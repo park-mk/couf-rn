@@ -192,6 +192,7 @@ class WTEA1 extends React.Component {
       const description = navigation.getParam('description', 'NO-ID');
   
       const location = navigation.getParam('location', 'NO-ID');
+      const disname = navigation.getParam('disname', 'NO-ID');
       const topimage = navigation.getParam('topimage', 'NO-ID');
       const imagelist=navigation.getParam('imagelist', 'NO-ID');
       const loca =navigation.getParam('loca', 'NO-ID');
@@ -259,7 +260,7 @@ class WTEA1 extends React.Component {
         <View >
        
               </View>
-          <Text style={{fontFamily:'title-font' ,fontSize:60,marginLeft:10,color:'#56B8FF' }}> {JSON.stringify(name).replace(/^"(.+)"$/,'$1')}</Text>
+          <Text style={{fontFamily:'title-font' ,fontSize:60,marginLeft:10,color:'#56B8FF' }}> {JSON.stringify(disname).replace(/^"(.+)"$/,'$1')}</Text>
          
                
           <View style={{marginTop: 0,width:100}}>

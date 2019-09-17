@@ -191,6 +191,7 @@ class CLUBEX extends React.Component {
       const time=navigation.getParam('time', 'NO-ID');
       const location = navigation.getParam('location', 'NO-ID');
       const topimage = navigation.getParam('topimage', 'NO-ID');
+      const disname = navigation.getParam('disname', 'NO-ID');
       const uri = navigation.getParam('uri', 'NO-ID');
       const money =navigation.getParam('money', 'NO-ID');
       const date =navigation.getParam('date', 'NO-ID');
@@ -226,27 +227,33 @@ class CLUBEX extends React.Component {
         <View
         style={{ backgroundColor:"#1f2124"}}
         >
-        <Header
-      leftComponent={  
-       <TouchableOpacity 
-       onPress={()=> this.props.navigation.navigate('Home')}
-       >
-       <Image source={require('../assets/back.png')}
-                   
-      style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
-  /> 
-  </TouchableOpacity>
-  } 
-     backgroundColor={'#fff'}
-      borderBottomColor={'#fff'}
-      centerComponent={{ text: 'TRAVEL', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
+        
+        <ScrollView
+        stickyHeaderIndices={[0]}
      
-       />
-        <ScrollView>
+        
+          >   
+    
+          <TouchableOpacity 
+          
+          onPress={()=> this.props.navigation.navigate('CLUB')}
+          >
+            <View
+             style={{flexDirection:'row', backgroundColor:["black", "#ffffff00"]
+           
+             }}>
+          <Image source={require('../assets/back.png')}
+                      
+         style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
+    />   
+    
+    </View>
+    </TouchableOpacity>
+        
            
           
 
-        <View style={{ flex: 2}}>
+        <View style={{ flex: 2,marginTop:-80}}>
         
         <ImageBackground    source={{uri:topimage.toString()}} style={{height:imageheight,width:imagewidth }}>
         <View style={{ top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center'}}>
@@ -257,7 +264,7 @@ class CLUBEX extends React.Component {
         <View >
        
               </View>
-          <Text style={{fontFamily:'title-font' ,fontSize:60,marginLeft:10,color:'#56B8FF' }}> {JSON.stringify(name).replace(/^"(.+)"$/,'$1')}</Text>
+          <Text style={{fontFamily:'title-font' ,fontSize:60,marginLeft:10,color:'#56B8FF' }}> {JSON.stringify(disname).replace(/^"(.+)"$/,'$1')}</Text>
          
                
           <View style={{marginTop: 0,width:100}}>
@@ -271,7 +278,7 @@ class CLUBEX extends React.Component {
                 
                 </View>
             <TouchableOpacity
-             // onPress={()=>  Linking.openURL(JSON.stringify(location).replace(/^"(.+)"$/,'$1')).catch((err) => console.error('An error occurred', err))}
+              onPress={()=>  Linking.openURL(JSON.stringify(location).replace(/^"(.+)"$/,'$1')).catch((err) => console.error('An error occurred', err))}
                
             >
               <Image

@@ -18,15 +18,13 @@ class Area4Screen extends React.Component {
   
   constructor(props) {
     super(props);
-     
+
     this.state = {
       loading: false,
       datasource: [],
-      datasource1: [],
       pause:false,
       error: null,
-      refreshing: false,
-      fontLoaded:true,
+      refreshing: false
     };
   }
 
@@ -35,11 +33,13 @@ class Area4Screen extends React.Component {
   
 
 
+
+
   
 
 
   componentDidMount() {
-   
+    
     this.makeRemoteRequest();
   }
 
@@ -49,11 +49,12 @@ class Area4Screen extends React.Component {
 
     this.setState({ loading: true });
     const { navigation } = this.props;
-   
-    var usersRef = firebase.database().ref('food/soup');
- 
+    const move = navigation.getParam('move', 'NO-ID');
 
-     usersRef.on('value', (snapshot) => {
+    var usersRef = firebase.database().ref('A4WTE');
+    
+    
+usersRef.on('value', (snapshot) => {
     
     
      var m=snapshot.val() 
@@ -61,31 +62,104 @@ class Area4Screen extends React.Component {
   this.setState({
     datasource:  keys
   })
-}); 
-usersRef = firebase.database().ref('food/dessert');
-
-
-usersRef.on('value', (snapshot) => {
-    
-    
-  var m=snapshot.val() 
-  var keys= Object.values(m);
-this.setState({
- datasource1:  keys
-})
-}); 
-
-    
-
+});
     
   };
 
+  handleRefresh = () => {
+    
+    this.setState(
+      {
+      
+        refreshing: false
+      },
+      () => {
+        this.makeRemoteRequest();
+      }
+    );
+  };
+
+  handleLoadMore = () => {
+   
+    this.setState(
+      {
+        loading: false
+      },
+      () => {
+        this.makeRemoteRequest();
+      }
+    );
+  };
+
+  
+
+  renderHeader = () => {
+    return <SearchBar placeholder="Type Here..." lightTheme round />;
+  };
+
+ 
+  renderSeparator = () => {
+    
+    return (
+      <View
+        style={{
+          height: 1,
+          width: "86%",
+          backgroundColor: "#56B8FF",
+          marginLeft: "14%"
+        }}
+      />
+    );
+  };
+   
+
+   renderItem =({item})=>{
+
+         return(
+          <TouchableOpacity
+          onPress={() => {
+            
+           this.props.navigation.navigate('WTEA1', {
+              name : item.name,
+              description :item.description,
+              location: item.location,
+              loca: item.loca,
+              topimage : item.topimage,
+              imagelist: item.images,
+             // cate:item.cate,
+             // upvote:item.upvote,
+            
+            //  imagelist:item.images,
+              //tips:item.tips,
+           });
+         }
+       
+       }
+          >
+          <View  style={{  flex:1,  flexDirection:'row',marginBottom:0}} >
+                  <Image  style={{  width: 100,
+            height: 100,
+                 borderRadius: 5,}}
+                        source={{uri:item.topimage}}
+                 
+                 />
+                  <View  >
+                  <Text style={styles.h1}>{item.name}</Text>  
+                  <Text style={styles.p} >{item.type}</Text>   
+                  <Text style={styles.price} >{item.location}</Text>  
+                
+                  </View>
+                 
+                  </View>
+
+
+             </TouchableOpacity>
+
+         )
 
 
 
-
-  _keyExtractor = (item, index) => item.key;
-
+   }
   render() {
 
     let dimensions = Dimensions.get("window");
@@ -127,7 +201,7 @@ this.setState({
       <Text style={{fontFamily:'title-font' ,fontSize:23, marginTop:20,marginLeft:15,color:'#7f8182'}}>WHAT TO DO</Text>
       </TouchableOpacity>
       <TouchableOpacity style={{flex:1}}
-        onPress={()=> this.props.navigation.navigate('Area4_2')}
+      //  onPress={()=> this.props.navigation.navigate('Area4_2')}
       >
       <Text style={{fontFamily:'title-font' ,fontSize:23, marginTop:20,color:'#7f8182'}}>BUS SCHEDULE</Text>
       </TouchableOpacity>
@@ -135,12 +209,9 @@ this.setState({
    </View> 
      
           <View>
+ 
+   
 
-         
-            
-         
-      
-        
          <View style={{
      borderBottomColor: '#56B8FF',
      borderBottomWidth: 1,
@@ -162,6 +233,28 @@ this.setState({
 
    
       </View >
+
+
+      <View >
+   
+   <FlatList 
+         data={this.state.datasource}
+         
+         renderItem={this.renderItem}
+         
+       
+         keyExtractor={item => item.name}
+       
+         
+        // ListHeaderComponent={this.renderHeader}
+        ItemSeparatorComponent={this.renderSeparator}
+         onRefresh={this.handleRefresh}
+         refreshing={this.state.refreshing}
+         onEndReached={this.handleLoadMore}
+         onEndReachedThreshold={40}
+       />
+      </View>
+
       
         
  
@@ -173,9 +266,13 @@ this.setState({
    
 
       </View>
-     
+      <View
+                  
+                  style={{width:70,height:80,marginLeft:-15}}
+             /> 
       </ScrollView>   
       </View>
+      
     );
   }
 }
@@ -208,7 +305,7 @@ const styles = StyleSheet.create({
     
   },
   h1: {
-    fontSize: 40,
+    fontSize: 20,
     fontFamily:'Raley-balck',
     fontWeight: 'bold',
     textAlign: 'center',
@@ -233,5 +330,6 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
 },
 })
+
 
 export default Area4Screen;

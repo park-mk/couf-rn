@@ -61,19 +61,25 @@ class Area2_1Screen extends React.Component {
   this.setState({
     datasource:  keys
   })
-}); 
-usersRef = firebase.database().ref('food/dessert');
 
-
+  usersRef = firebase.database().ref('WTD');
+    
+    
 usersRef.on('value', (snapshot) => {
     
     
-  var m=snapshot.val() 
-  var keys= Object.values(m);
-this.setState({
- datasource1:  keys
-})
+     var m=snapshot.val() 
+     var keys= Object.values(m);
+  this.setState({
+    datasource1:  keys
+  })
+});
+
+
+
+
 }); 
+
 
     
 
@@ -134,10 +140,9 @@ this.setState({
 
          
             
-         
-      
+       
         
-        <View style={{
+          <View style={{
     borderBottomColor: '#56B8FF',
     borderBottomWidth: 1,
     marginTop:3,
@@ -172,10 +177,13 @@ this.setState({
                            >SHORT TOUR</Text>
 
       <View>
-   
-      <Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'grey'}}  
+
+       <Text   style={{fontFamily:'title-font' ,fontSize:35, marginLeft:20,marginTop:30,color:'grey'}}  
                            
-                           >PLZ WAIT FOR  THE NEXT VERSION.....</Text>
+                           >PLZ WAIT FOR NEXT</Text>
+                            <Text   style={{fontFamily:'title-font' ,fontSize:35, marginLeft:20,marginTop:30,color:'grey'}}  
+                           
+                           >VERSION ....</Text>
     {/*
     <FlatList 
           data={this.state.datasource}
@@ -258,6 +266,8 @@ this.setState({
           onEndReachedThreshold={40}
         />
     */}
+
+        
        </View>
 
        <Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30}}  
@@ -288,20 +298,21 @@ this.setState({
                 >
               <ImageBackground   style={styles.icon}
                     source={{uri:item.topimage}}
-             
-             >
+                 
+             >    
+               <Text style={{marginLeft:3,fontSize:30,color:'#56B8FF',fontFamily:'title-font'}}>{item.name}</Text>
               
          
         <View style={{flexDirection:'row',justifyContent:'flex-end',alignItems:'flex-end'}}>
      
-      <Image
+     {/*  <Image
         style={ { width: 35,
           height: 30,marginTop:200}}
         source={require('../assets/likewhithe.png')}
       /> 
       <Text style={{marginLeft:3,fontSize:30,color:'white',fontFamily:'title-font'}}>{item.upvote}</Text>
      
-        
+        */}
       </View>
              
               </ImageBackground>
@@ -315,12 +326,12 @@ this.setState({
             
             onPress={() => {
              
-              this.props.navigation.navigate('FOODi', {
+              this.props.navigation.navigate('A1WTD', {
                  name : item.name,
-                 description :item.description,
-                 cate:item.cate,
+                
                  topimage : item.topimage,
-               
+                locas:item.locas,
+                locass:item.locass,
                 
                
                  imagelist:item.images,
@@ -354,15 +365,20 @@ this.setState({
         
  
       
-
+     
 
 
          
    
 
       </View>
-     
+      <View
+                  
+                  style={{width:70,height:80,marginLeft:-15}}
+             /> 
       </ScrollView>   
+  
+    
       </View>
     );
   }

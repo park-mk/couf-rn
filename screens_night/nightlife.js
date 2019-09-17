@@ -24,6 +24,7 @@ class Clublist extends React.Component {
      
     this.state = {
       loading: false,
+      name:'gangnam',
       datasource: [],
       datasource1: [],
       pause:false,
@@ -118,7 +119,7 @@ this.setState({
                     
     > 
     <TouchableOpacity
-         onPress={() => this.gogo(item.name,item.description,item.topimage,item.cate,item.upvote)}
+         onPress={() => this.gogo(item.name,item.description,item.topimage,item.cate,item.upvote,item.disname,item.ilo)}
             
     >
   <ImageBackground   style={styles.icon}
@@ -127,7 +128,7 @@ this.setState({
  >
   
 
-<View style={{flexDirection:'row',justifyContent:'flex-end',alignItems:'flex-end'}}>
+<View style={{flexDirection:'row',justifyContent:'flex-end',alignItems:'flex-end',marginEnd:20}}>
 
 <Image
 style={ { width: 35,
@@ -183,18 +184,38 @@ source={require('../assets/likewhithe.png')}
       />
     );
   }; 
+  namechange =(e) =>{
+    let namebe=this.state.name;
+    if(e>770&&e<1450){
+      this.state.name='hongdae'
+    }
+    if(e<770){
+      this.state.name='gangnam'
+    }
+    if(e>1450){
+      this.state.name='itaewon'
+    }
+    if(namebe!=this.state.name){
+      console.log("change!change!change!");
+      this.makeRemoteRequest();
+    }
+    console.log(e);
+    console.log(this.state.name);
 
+
+  };
   _keyExtractor = (item, index) => item.key; 
 
-   gogo=(iname,idescription,itopimage,icate,iupvote)=>{
+   gogo=(iname,idescription,itopimage,icate,iupvote,idisname,ilo)=>{
              
     this.props.navigation.navigate('CLUBEX', {
        name : iname,
        description :idescription,
-      
+       disname:idisname,
        topimage : itopimage,
        cate:icate,
-       upvote:iupvote
+       upvote:iupvote,
+       location:ilo,
       
      
      //  imagelist:item.images,
@@ -206,8 +227,9 @@ source={require('../assets/likewhithe.png')}
      
     return (
         <View
-        style={{ backgroundColor:"#1f2124"}}>
-        <Header
+        style={{ backgroundColor:'#1f2124'}}>
+     
+     {/*  <Header
       leftComponent={  <TouchableOpacity 
        onPress={()=> this.props.navigation.navigate('NIGHT')}
       
@@ -216,28 +238,55 @@ source={require('../assets/likewhithe.png')}
                    
       style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
  /> 
- </TouchableOpacity>} 
-     backgroundColor={'#1f2124'}
+ </TouchableOpacity>
+ } 
+     backgroundColor={'rgba(52, 52, 52, alpha)'}
     borderBottomColor={'#1f2124'}
       centerComponent={{ text: 'CLUBS', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
        
-       />
-    
+       />*/}
+   
     
          
-      <ScrollView>   
+      <ScrollView
+     stickyHeaderIndices={[0]}
+     
+    onScroll={
+      (e) => this.namechange(e.nativeEvent.contentOffset.y)
+      
+    
+    }
+      >   
+
+      <TouchableOpacity 
+      
+      onPress={()=> this.props.navigation.navigate('NIGHT')}
+      >
+        <View
+         style={{flexDirection:'row', backgroundColor:["black", "#ffffff00"]
+       
+         }}>
+      <Image source={require('../assets/back.png')}
+                  
+     style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
+/>   
+<Text style={{fontFamily:'title-font' ,fontSize:40,marginLeft:60,marginTop:20,color:'#56B8FF'} }>{this.state.name}</Text>
+</View>
+</TouchableOpacity>
 
 
 
       <View>
    
     <FlatList 
+           style={{marginTop:-80}}
           data={this.state.datasource}
           keyExtractor={this._keyExtractor}
          
           renderItem={this._renderItem}
           keyExtractor={item => item.name}
-        
+       
+       
           
          // ListHeaderComponent={this.renderHeader}
          ListFooterComponent={this.renderFooter}

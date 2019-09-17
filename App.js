@@ -86,6 +86,8 @@ import Clublist from './screens_night/nightlife'
 import CLUBEX from'./screens_night/club_ex'
 import FESTIVAL from'./screens_night/festival'
 import FESTIVALEX from'./screens_night/festival_ex'
+import CONCERT from'./screens_night/concert'
+import CONCERTEX from'./screens_night/concert_ex'
 
 import { Font } from 'expo'
 /////////////
@@ -281,6 +283,16 @@ const CategoryStack = createStackNavigator({
    
 
   }},
+  CONCERT: { screen: CONCERT , navigationOptions: {
+    header: null,
+   
+
+  }},
+  CONCERTEX: { screen: CONCERTEX , navigationOptions: {
+    header: null,
+   
+
+  }},
 
 });
 
@@ -408,7 +420,7 @@ export default createAppContainer(createBottomTabNavigator(
     
     Area: { screen: AreaStack },
     Login1: { screen: LoginStack },
-   Suggestion: { screen: SuggestionStack },
+
 
   },
   {

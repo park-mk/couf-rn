@@ -226,7 +226,7 @@ class Travelitem extends React.Component {
       return ( 
 
         <View>
-        <Header
+       {/* <Header
       leftComponent={  
        <TouchableOpacity 
        onPress={()=> this.props.navigation.navigate('Home')}
@@ -241,12 +241,33 @@ class Travelitem extends React.Component {
     borderBottomColor={'#fff'}
       centerComponent={{ text: 'TRAVEL', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
      
-       />
-        <ScrollView>
+/>*/}
+        <ScrollView
+        stickyHeaderIndices={[0]}
+     
+        
+          >   
+    
+          <TouchableOpacity 
+          
+          onPress={()=> this.props.navigation.navigate('TT')}
+          >
+            <View
+             style={{flexDirection:'row', backgroundColor:["black", "#ffffff00"]
+           
+             }}>
+          <Image source={require('../assets/back.png')}
+                      
+         style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
+    />   
+    
+    </View>
+    </TouchableOpacity>
+        
            
           
 
-        <View style={{ flex: 2}}>
+        <View style={{ flex: 2 ,marginTop:-80}}>
         
         <ImageBackground    source={{uri:topimage.toString()}} style={{height:imageheight,width:imagewidth }}>
         <View style={{ top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center'}}>
@@ -378,7 +399,7 @@ class Travelitem extends React.Component {
        
       </SafeAreaView>
       <View  style={{   marginLeft:20,marginTop:50, flexDirection:'row',marginRight:20}} >
-      <Text style={{textAlign:'left', fontSize:20,color:'grey'}}> a </Text> 
+      <Text style={{textAlign:'left', fontSize:20,color:'grey'}}>     </Text> 
     
    
        </View>

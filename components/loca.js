@@ -28,7 +28,11 @@ class LOCA extends React.Component {
         
             <View style={{flexDirection:'row'}}>
 
-
+            <TouchableOpacity
+              onPress={()=>  Linking.openURL(JSON.stringify(this.props.loca).replace(/^"(.+)"$/,'$1')).catch((err) => console.error('An error occurred', err))}
+               
+            > 
+               <View style={{flexDirection:'row'}}>
     <Text  style={{fontSize:30 , 
                          marginLeft:20,  color:'black',
            marginRight:this.props.margin,fontFamily:'title-font'}} > {this.props.name} 
@@ -37,10 +41,7 @@ class LOCA extends React.Component {
             
       
           
-       <TouchableOpacity
-             // onPress={()=>  Linking.openURL(JSON.stringify(location).replace(/^"(.+)"$/,'$1')).catch((err) => console.error('An error occurred', err))}
-               
-            >
+       
               <Image
                 style={{
                   width: 30, 
@@ -49,6 +50,7 @@ class LOCA extends React.Component {
                 resizeMode={'contain'}
                 source={require('../assets/place_lo.png')}
               />
+              </View>
              </TouchableOpacity>
              
             

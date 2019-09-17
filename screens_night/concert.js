@@ -4,8 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { List, ListItem, SearchBar ,Header} from "react-native-elements";
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import  firebase,{storage}  from "../firebase";
-import A1WTD from '../screens_wtd/area1_wtd';
-import A1WTE from '../screens_wte/area1_wte'
+
 
 const color = {
   theme: '#06C1AE',
@@ -13,7 +12,7 @@ const color = {
   background: '#f3f3f3'
 }
 
-class Area1Screen extends React.Component {
+class CONCERT extends React.Component {
 
   constructor(props) {
     super(props);
@@ -50,7 +49,7 @@ class Area1Screen extends React.Component {
     const { navigation } = this.props;
     const move = navigation.getParam('move', 'NO-ID');
 
-    var usersRef = firebase.database().ref('A1WTE');
+    var usersRef = firebase.database().ref('FESCON');
     
     
 usersRef.on('value', (snapshot) => {
@@ -118,14 +117,14 @@ usersRef.on('value', (snapshot) => {
           <TouchableOpacity
           onPress={() => {
             
-           this.props.navigation.navigate('WTEA1', {
+           this.props.navigation.navigate('CONCERTEX', {
               name : item.name,
               description :item.description,
               location: item.location,
               loca: item.loca,
               topimage : item.topimage,
-              imagelist: item.images,
-              disname:item.disname
+              date:item.date,
+             
              // cate:item.cate,
              // upvote:item.upvote,
             
@@ -134,19 +133,19 @@ usersRef.on('value', (snapshot) => {
            });
          }
        
-       }
+       }    
           >
-          <View  style={{  flex:1,  flexDirection:'row',marginBottom:0}} >
-                  <Image  style={{  width: 100,
-            height: 100,
+          <View  style={{  flex:1,  flexDirection:'row',marginBottom:0,marginRight:20}} >
+                  <Image  style={{  width: 100, 
+            height: 140,
                  borderRadius: 5,}}
                         source={{uri:item.topimage}}
                  
                  />
-                  <View  >
-                  <Text style={styles.h1}>{item.disname}</Text>  
-                  <Text style={styles.p} >{item.type}</Text>   
-                  <Text style={styles.price} >{item.location}</Text>  
+                  <View style={{  }}  >
+                  <Text style={styles.h1}>{item.name}</Text>  
+                
+                  <Text style={styles.price} >{item.date}</Text>  
                 
                   </View>
                  
@@ -172,7 +171,7 @@ usersRef.on('value', (snapshot) => {
        <Header
      leftComponent={  
       <TouchableOpacity 
-      onPress={()=> this.props.navigation.navigate('Area')}
+      onPress={()=> this.props.navigation.navigate('NIGHT')}
       >
       <Image source={require('../assets/back.png')}
                   
@@ -182,57 +181,14 @@ usersRef.on('value', (snapshot) => {
 } 
     backgroundColor={'#fff'}
    borderBottomColor={'#fff'}
-     centerComponent={{ text: 'AREA1', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
+     centerComponent={{ text: 'FES&CON', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
     
       />
       <ScrollView>   
      
    
       <View>
-      <View style ={{ flexDirection:"row" ,flex:3}}>
-      <TouchableOpacity style={{flex:1}}
-      
-      >
-      <Text   style={{fontFamily:'title-font' ,fontSize:23,marginTop:20,marginLeft:10,color:'#56B8FF'}}  >THINGS TO EAT</Text>
-      </TouchableOpacity >
-      <TouchableOpacity style={{flex:1}}
-           onPress={()=> this.props.navigation.navigate('Area1_1')}
-      >
-      <Text style={{fontFamily:'title-font' ,fontSize:23, marginTop:20,marginLeft:15,color:'#7f8182'}}>WHAT TO DO</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={{flex:1}}
-        onPress={()=> this.props.navigation.navigate('Area1_2')}
-      >
-      <Text style={{fontFamily:'title-font' ,fontSize:23, marginTop:20,color:'#7f8182'}}>BUS SCHEDULE</Text>
-      </TouchableOpacity>
-    
-   </View> 
      
-          <View>
- 
-   
-
-         <View style={{
-     borderBottomColor: '#56B8FF',
-     borderBottomWidth: 1,
-     marginTop:3,
-          }}    />
-             <View style={{
-             width: imagewidth/3-5,
-             height:3,
-             backgroundColor: '#56B8FF',
-          }}    >
-             
-         </View>
-         
-<View style={{
-    borderBottomColor: '#56B8FF',
-    borderBottomWidth: 1,
-
-         }}    /> 
-
-   
-      </View >
 
 
       <View >
@@ -300,16 +256,19 @@ const styles = StyleSheet.create({
     paddingRight: 10,
   },
   price: {
-    marginTop:30,
-    color: color.theme,
-    
+    marginTop:40,
+   // color: color.theme,
+    fontSize:20,
+    color:'#56B8FF'
+     
   },
   h1: {
     fontSize: 20,
-    fontFamily:'Raley-balck',
+    fontFamily:'content-font',
     fontWeight: 'bold',
-    textAlign: 'center',
+    textAlign: 'left',
     color: '#222222',
+  
     
   },
   p: {
@@ -331,4 +290,4 @@ const styles = StyleSheet.create({
 },
 })
 
-export default Area1Screen;
+export default CONCERT;

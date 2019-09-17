@@ -178,15 +178,18 @@ this.setState({
       <View style ={{ flex:3}}>
       <TouchableOpacity style={{flex:1}}
       
-      onPress={()=> this.props.navigation.navigate('Area1')}>
-      <Text   style={{fontFamily:'title-font' ,fontSize:50,marginLeft:10,color:'#7f8182'}}  >H221</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={{flex:1}}>
-      <Text style={{fontFamily:'title-font' ,fontSize:50,marginLeft:15,color:'#56B8FF'}}>TMC</Text>
+      onPress={()=> this.props.navigation.navigate('GREEN')}>
+      <Text   style={{fontFamily:'title-font' ,fontSize:50,marginLeft:10,color:'#56B8FF'}}  >GREEN</Text>
       </TouchableOpacity>
       <TouchableOpacity style={{flex:1}}
-        onPress={()=> this.props.navigation.navigate('Area1_2')}>
-      <Text style={{fontFamily:'title-font' ,fontSize:50,color:'#7f8182'}}>HOVEY</Text>
+         onPress={()=> this.props.navigation.navigate('BLUE')}
+      >
+    
+      <Text style={{fontFamily:'title-font' ,fontSize:50,marginLeft:15,color:'#56B8FF'}}>BLUE</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={{flex:1}}
+        onPress={()=> this.props.navigation.navigate('Red')}>
+      <Text style={{fontFamily:'title-font' ,fontSize:50,color:'#56B8FF'}}>  RED</Text>
       </TouchableOpacity>
     
    </View> 

@@ -49,8 +49,8 @@ class Area3Screen extends React.Component {
     this.setState({ loading: true });
     const { navigation } = this.props;
     const move = navigation.getParam('move', 'NO-ID');
-
-    var usersRef = firebase.database().ref('A4WTE');
+// 수정부분 
+    var usersRef = firebase.database().ref('A3WTE');
     
     
 usersRef.on('value', (snapshot) => {
@@ -125,6 +125,7 @@ usersRef.on('value', (snapshot) => {
               loca: item.loca,
               topimage : item.topimage,
               imagelist: item.images,
+              disname:item.disname,
              // cate:item.cate,
              // upvote:item.upvote,
             
@@ -143,7 +144,7 @@ usersRef.on('value', (snapshot) => {
                  
                  />
                   <View  >
-                  <Text style={styles.h1}>{item.name}</Text>  
+                  <Text style={styles.h1}>{item.disname}</Text>  
                   <Text style={styles.p} >{item.type}</Text>   
                   <Text style={styles.price} >{item.location}</Text>  
                 
@@ -244,7 +245,6 @@ usersRef.on('value', (snapshot) => {
        
          keyExtractor={item => item.name}
        
-         
         // ListHeaderComponent={this.renderHeader}
         ItemSeparatorComponent={this.renderSeparator}
          onRefresh={this.handleRefresh}

@@ -7,7 +7,7 @@ import { Ionicons,MaterialIcons ,Entypo,Feather, FontAwesome } from '@expo/vecto
 import Texteditor from  '../components/Textedit'
 import  firebase,{storage}  from "../firebase";
 
-class FESTIVALEX extends React.Component {
+class CONCERTEX extends React.Component {
  
   constructor(props) {
     super(props);
@@ -37,7 +37,7 @@ class FESTIVALEX extends React.Component {
        let dimensions=Dimensions.get("window");
        let imageheight=140*dimensions.width/300
        //let imageheight =Math.round((dimensions.width*9)/12);
-        let imagewidth =dimensions.width;
+        let imagewidth =dimensions.width/3;
       const { navigation } = this.props;
       const name = navigation.getParam('name', 'NO-ID');
       const description = navigation.getParam('description', 'NO-ID');
@@ -59,45 +59,41 @@ class FESTIVALEX extends React.Component {
       return ( 
 
         <View>
+        <Header
+      leftComponent={  
+       <TouchableOpacity 
+       onPress={()=> this.props.navigation.navigate('FESTIVAL')}
+       >
+       <Image source={require('../assets/back.png')}
+                   
+      style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
+  /> 
+  </TouchableOpacity>
+  } 
+     backgroundColor={'#fff'}
+    borderBottomColor={'#fff'}
+      centerComponent={{ text: 'TRAVEL', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
      
-        <ScrollView
-         stickyHeaderIndices={[0]}
-        
-        >
-              <TouchableOpacity 
-          
-          onPress={()=> this.props.navigation.navigate('FESTIVAL')}
-          >
-            <View
-             style={{flexDirection:'row', backgroundColor:["black", "#ffffff00"]
+       />
+        <ScrollView>
            
-             }}>
-          <Image source={require('../assets/back.png')}
-                      
-         style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
-    />   
-    
-    </View>
-    </TouchableOpacity>
           
 
-        <View style={{ alignItems:'center',backgroundColor:'grey',marginTop:-80}}>
+        <View style={{ alignItems:'center',backgroundColor:'grey'}}>
         
-        <ImageBackground    source={{uri:topimage.toString()}} style={{height:imageheight*1.5,width:imagewidth }}>
+        <ImageBackground    source={{uri:topimage.toString()}} style={{height:imageheight*1.5,width:imagewidth*1.5 }}>
         
         </ImageBackground>  
         </View>
         <View>
         <Text style={{fontFamily:'title-font' ,fontSize:50,marginLeft:10,color:'#56B8FF',textAlign:'center' }}> {JSON.stringify(name).replace(/^"(.+)"$/,'$1')}</Text>
 
-        <Text style={{fontFamily:'content-font' ,fontSize:20,marginLeft:10,marginTop:20}}> {JSON.stringify(description).replace(/^"(.+)"$/,'$1')}</Text>
-       
-       
+        <Text style={{fontFamily:'content-font' ,fontSize:20,marginLeft:10,color:'#56B8FF',textAlign:'center'}}> {JSON.stringify(date).replace(/^"(.+)"$/,'$1')}</Text>
         <TouchableOpacity
               onPress={()=>  Linking.openURL(JSON.stringify(loca).replace(/^"(.+)"$/,'$1')).catch((err) => console.error('An error occurred', err))}
               
             > 
-               <Text style={{fontFamily:'title-font' ,fontSize:30,marginLeft:10,marginTop:30,color:'#56B8FF',textDecorationLine:'underline',textAlign:'center'}}> LEARN MORE</Text>
+               <Text style={{fontFamily:'content-font' ,fontSize:20,marginLeft:10,color:'#56B8FF',textAlign:'center',textDecorationLine:'underline'}}> {JSON.stringify(location).replace(/^"(.+)"$/,'$1')}</Text>
              </TouchableOpacity>
        
               </View>
@@ -155,4 +151,4 @@ class FESTIVALEX extends React.Component {
       backgroundColor: '#fff',
     },
   });
-  export default  FESTIVALEX;
+  export default  CONCERTEX;

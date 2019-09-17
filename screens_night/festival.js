@@ -1,28 +1,36 @@
-import React from 'react';
-import { Button, FlatList,Text, View ,TouchableOpacity,Image,StyleSheet,ScrollView,Linking,Dimensions} from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { List, ListItem, SearchBar ,Header} from "react-native-elements";
-import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
+import React, { Component } from "react";
+import { View, FlatList, ActivityIndicator,Button,StyleSheet,Image,Text,ImageBackground,TouchableOpacity,Dimensions} from "react-native";
+import { List, ListItem, SearchBar,Header } from "react-native-elements";
 import  firebase,{storage}  from "../firebase";
+import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
+import  someList from '../components/anylist'
+import {Font} from 'expo'
+import { ScrollView } from "react-native-gesture-handler";
+import {Container,Content} from 'native-base'
+  database=firebase.database();
+ 
+  
+  
+  const color = {
+    theme: '#06C1AE',
+    border: '#e0e0e0',
+    background: '#f3f3f3'
+  }
 
-
-const color = {
-  theme: '#06C1AE',
-  border: '#e0e0e0',
-  background: '#f3f3f3'
-}
-
+ 
 class FESTIVAL extends React.Component {
-
   constructor(props) {
     super(props);
-
+     
     this.state = {
       loading: false,
+      name:'gangnam',
       datasource: [],
+      datasource1: [],
       pause:false,
       error: null,
-      refreshing: false
+      refreshing: false,
+      fontLoaded:true,
     };
   }
 
@@ -31,13 +39,16 @@ class FESTIVAL extends React.Component {
   
 
 
-
-
   
 
 
   componentDidMount() {
-    
+     Font.loadAsync({
+      'title-font':require('../assets/fonts/BebasNeue-Regular.ttf'),
+      'Raley-balck':require('../assets/fonts/BebasNeue-Regular.ttf'),
+      'Name-font':require('../assets/fonts/Nickainley-Normal_2.ttf'),
+      
+    });
     this.makeRemoteRequest();
   }
 
@@ -47,12 +58,11 @@ class FESTIVAL extends React.Component {
 
     this.setState({ loading: true });
     const { navigation } = this.props;
-    const move = navigation.getParam('move', 'NO-ID');
+   
+    var usersRef = firebase.database().ref('FESTIVAL');
+ 
 
-    var usersRef = firebase.database().ref('FESCON');
-    
-    
-usersRef.on('value', (snapshot) => {
+     usersRef.on('value', (snapshot) => {
     
     
      var m=snapshot.val() 
@@ -60,7 +70,11 @@ usersRef.on('value', (snapshot) => {
   this.setState({
     datasource:  keys
   })
-});
+}); 
+
+
+    
+
     
   };
 
@@ -89,164 +103,189 @@ usersRef.on('value', (snapshot) => {
     );
   };
 
+  _renderItem = ({item}) => (
+    <View  style={{  flex:1,   alignContent:'center'}}
+                    
+    > 
+    <TouchableOpacity
+         onPress={() => this.gogo(item.name,item.description,item.topimage,item.loca,item.upvote,item.disname)}
+            
+    >
+  <ImageBackground   style={styles.icon}
+        source={{uri:item.topimage}}
+ 
+ >
   
+
+<View style={{flexDirection:'row',justifyContent:'flex-end',alignItems:'flex-end',marginEnd:20}}>
+
+<Image
+style={ { width: 35,
+height: 30,    marginTop:200  
+
+}}
+source={require('../assets/likewhithe.png')}
+/> 
+<Text style={{marginLeft:3,fontSize:30,color:'white',fontFamily:'title-font'}}>{item.upvote}</Text>
+
+
+</View>
+ 
+  </ImageBackground>
+  </TouchableOpacity>
+  </View>
+ 
+  );
+
 
   renderHeader = () => {
     return <SearchBar placeholder="Type Here..." lightTheme round />;
   };
 
- 
-  renderSeparator = () => {
-    
+  renderFooter = () => {
+    if (!this.state.loading) return null;
+      this.state.loading=true;
     return (
       <View
         style={{
-          height: 1,
+          paddingVertical: 20,
+         
+          borderColor: "#1f2124"
+        }}
+      >
+      
+        <ActivityIndicator animating size="large" />
+       
+
+      </View>
+    );
+  };
+  renderSeparator = () => {
+   
+    return (
+      <View
+        style={{
+          height: 0,
           width: "86%",
-          backgroundColor: "#56B8FF",
+          backgroundColor: "#1f2124",
           marginLeft: "14%"
         }}
       />
     );
-  };
-   
+  }; 
 
-   renderItem =({item})=>{
+  _keyExtractor = (item, index) => item.key; 
 
-         return(
-          <TouchableOpacity
-          onPress={() => {
-            
-           this.props.navigation.navigate('FESTIVALEX', {
-              name : item.name,
-              description :item.description,
-              location: item.location,
-              loca: item.loca,
-              topimage : item.topimage,
-              date:item.date,
+   gogo=(iname,idescription,itopimage,iloca,iupvote,idisname)=>{
              
-             // cate:item.cate,
-             // upvote:item.upvote,
-            
-            //  imagelist:item.images,
-              //tips:item.tips,
-           });
-         }
-       
-       }    
-          >
-          <View  style={{  flex:1,  flexDirection:'row',marginBottom:0,marginRight:20}} >
-                  <Image  style={{  width: 100, 
-            height: 140,
-                 borderRadius: 5,}}
-                        source={{uri:item.topimage}}
-                 
-                 />
-                  <View style={{  }}  >
-                  <Text style={styles.h1}>{item.name}</Text>  
-                
-                  <Text style={styles.price} >{item.date}</Text>  
-                
-                  </View>
-                 
-                  </View>
+    this.props.navigation.navigate('FESTIVALEX', {
+       name : iname,
+       description :idescription,
+       disname:idisname,
+       topimage : itopimage,
+        loca:iloca,
+       upvote:iupvote
+      
+     
+     //  imagelist:item.images,
+       //tips:item.tips,
+    });
+  }
 
-
-             </TouchableOpacity>
-
-         )
-
-
-
-   }
   render() {
-
-    let dimensions = Dimensions.get("window");
-  //  let imageheight = Math.round((dimensions.width * 9) / 12);
-    let imagewidth = dimensions.width;
-
-
+     
     return (
-      <View>
-       <Header
-     leftComponent={  
+        <View
+        style={{ backgroundColor:'#1f2124'}}>
+     
+     {/*  <Header
+      leftComponent={  <TouchableOpacity 
+       onPress={()=> this.props.navigation.navigate('NIGHT')}
+      
+       >
+       <Image source={require('../assets/back.png')}
+                   
+      style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
+ /> 
+ </TouchableOpacity>
+ } 
+     backgroundColor={'rgba(52, 52, 52, alpha)'}
+    borderBottomColor={'#1f2124'}
+      centerComponent={{ text: 'CLUBS', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
+       
+       />*/}
+   
+    
+         
+      <ScrollView
+     stickyHeaderIndices={[0]}
+     
+   
+      >   
+
       <TouchableOpacity 
+      
       onPress={()=> this.props.navigation.navigate('NIGHT')}
       >
+        <View
+         style={{flexDirection:'row', backgroundColor:["black", "#ffffff00"]
+       
+         }}>
       <Image source={require('../assets/back.png')}
                   
      style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
-/> 
+/>   
+<Text style={{fontFamily:'title-font' ,fontSize:40,marginLeft:60,marginTop:20,color:'#56B8FF'} }>FESTIVAL</Text>
+</View>
 </TouchableOpacity>
-} 
-    backgroundColor={'#fff'}
-   borderBottomColor={'#fff'}
-     centerComponent={{ text: 'FES&CON', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
-    
-      />
-      <ScrollView>   
-     
-   
+
+
+
       <View>
-     
-
-
-      <View >
    
-   <FlatList 
-         data={this.state.datasource}
+    <FlatList 
+           style={{marginTop:-80}}
+          data={this.state.datasource}
+          keyExtractor={this._keyExtractor}
          
-         renderItem={this.renderItem}
-         
+          renderItem={this._renderItem}
+          keyExtractor={item => item.name}
        
-         keyExtractor={item => item.name}
        
-         
-        // ListHeaderComponent={this.renderHeader}
-        ItemSeparatorComponent={this.renderSeparator}
-         onRefresh={this.handleRefresh}
-         refreshing={this.state.refreshing}
-         onEndReached={this.handleLoadMore}
-         onEndReachedThreshold={40}
-       />
-      </View>
+          
+         // ListHeaderComponent={this.renderHeader}
+         ListFooterComponent={this.renderFooter}
+          onRefresh={this.handleRefresh}
+          refreshing={this.state.refreshing}
+          onEndReached={this.handleLoadMore}
+          onEndReachedThreshold={40}
+        />
 
-      
+
         
- 
+       </View>
+
       
 
-
-
-         
-   
-
-      </View>
-      <View
-                  
-                  style={{width:70,height:80,marginLeft:-15}}
-             /> 
-      </ScrollView>   
-      </View>
-      
+       </ScrollView>
+       </View>
     );
   }
 }
-
-
-
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     padding: 10,
-    borderBottomWidth: 1  , /// PixelRatio.get(),
+    /// PixelRatio.get(),
    // borderColor: color.border,
     backgroundColor: 'white',
   },
   icon: {
-    width: 260,
-    height: 160,
-    borderRadius: 5,
+    width: Dimensions.get("window").width,
+   // marginTop:-1,
+    height: 230,
+    //borderRadius: 5,
+    resizeMode: 'cover',
    
    // alignContent:'center',
   },
@@ -256,19 +295,16 @@ const styles = StyleSheet.create({
     paddingRight: 10,
   },
   price: {
-    marginTop:40,
-   // color: color.theme,
-    fontSize:20,
-    color:'#56B8FF'
-     
+    marginTop:30,
+    color: color.theme,
+    
   },
   h1: {
-    fontSize: 20,
-    fontFamily:'content-font',
+    fontSize: 40,
+    fontFamily:'Raley-balck',
     fontWeight: 'bold',
-    textAlign: 'left',
+    textAlign: 'center',
     color: '#222222',
-  
     
   },
   p: {
@@ -290,4 +326,9 @@ const styles = StyleSheet.create({
 },
 })
 
+
 export default FESTIVAL;
+
+
+
+

@@ -223,26 +223,32 @@ class Fooditem extends React.Component {
 
     return (
       <View>
-      <Header
-      leftComponent={  
-       <TouchableOpacity 
-       onPress={()=> this.props.navigation.navigate('Food')}
-       >
-       <Image source={require('../assets/back.png')}
-                   
-      style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
- /> 
- </TouchableOpacity>
- } 
-     backgroundColor={'#fff'}
-    borderBottomColor={'#fff'}
-      centerComponent={{ text: 'Food', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
      
-       />
-      <ScrollView>
+     <ScrollView
+        stickyHeaderIndices={[0]}
+     
+        
+          >   
+    
+          <TouchableOpacity 
+          
+          onPress={()=> this.props.navigation.navigate('Food')}
+          >
+            <View
+             style={{flexDirection:'row', backgroundColor:["black", "#ffffff00"]
+           
+             }}>
+          <Image source={require('../assets/back.png')}
+                      
+         style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
+    />   
+    
+    </View>
+    </TouchableOpacity>
+        
 
 
-        <View style={{ flex: 10 }}>
+        <View style={{ flex: 10 ,marginTop:-80}}>
 
           <ImageBackground source={{ uri: topimage.toString() }} style={{ height: imageheight, width: imagewidth }}>
             <View style={{ top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center' }}>
@@ -347,11 +353,11 @@ class Fooditem extends React.Component {
           <Texteditor text={vivid} />
 
         </View>
-        <SafeAreaView style={styles.container}>
+        {/*  <SafeAreaView style={styles.container}>
           <View style={styles.content1}>
 
           </View>
-          <ImageSlider
+         <ImageSlider
             loopBothSides
             autoPlayWithInterval={3000}
             images={images}
@@ -377,7 +383,7 @@ class Fooditem extends React.Component {
             )}
           />
 
-        </SafeAreaView>
+              </SafeAreaView>*/}
         <View style={{ marginLeft: 20, flexDirection: 'row', marginRight: 20 }} >
 
         </View>
@@ -435,7 +441,7 @@ class Fooditem extends React.Component {
          
 
         </View>
-        <CommentList type={'dessert'}/>
+      
       </ScrollView>
       </View>
     );
