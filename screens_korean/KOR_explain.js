@@ -5,12 +5,12 @@ import { List, ListItem, SearchBar ,Header} from "react-native-elements";
 class KOR_explainScreen extends React.Component {
 
 
-  async _play(){
+  async _play(sound){
     try {
       
       const { sound: soundObject, status } = await Expo.Audio.Sound.createAsync(
           
-          {uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/sound%2F%E1%84%8B%E1%85%A1%E1%86%AB%E1%84%82%E1%85%A7%E1%86%BC%E1%84%92%E1%85%A1%E1%84%89%E1%85%A6%E1%84%8B%E1%85%AD%20(online-audio-converter.com).mp3?alt=media&token=4706fe91-d38d-42fc-b29e-85f0e0a3cd38"},
+          {uri:JSON.stringify(sound).replace(/^"(.+)"$/,'$1')},
           { shouldPlay: true }
         );
         // Your sound is playing!
@@ -23,6 +23,7 @@ class KOR_explainScreen extends React.Component {
          
       const { navigation } = this.props;
       const kor = navigation.getParam('kor', 'NO-ID');
+      const uri = navigation.getParam('uri', 'NO-ID');
       const description = navigation.getParam('description', 'NO-ID');
       const eng  = navigation.getParam('eng', 'NO-ID');
       const pro = navigation.getParam('pro', 'NO-ID');
@@ -31,7 +32,7 @@ class KOR_explainScreen extends React.Component {
         <View style={{flex:1}}>
         <Header
         leftComponent={  <TouchableOpacity 
-         onPress={()=> this.props.navigation.navigate('KORca')}
+         onPress={()=> this.props.navigation.navigate('KOR')}
          >
          <Image source={require('../assets/back.png')}
                      
@@ -52,7 +53,7 @@ class KOR_explainScreen extends React.Component {
 
           <TouchableOpacity
          
-             onPress={() => this._play()}
+             onPress={() => this._play(uri)}
           >
               <Image   style={{ height:100,width:100,resizeMode: 'contain' } }
               source={ require('../assets/play.png' )} />
@@ -60,6 +61,8 @@ class KOR_explainScreen extends React.Component {
               
              
           </TouchableOpacity>
+
+          <Text style={{fontSize:15,marginLeft:10,fontFamily:'content-font',marginRight:20}}> please wait for 2~3 seconds for the sound</Text>
        { /*
           <Button
             title="Go to Home"

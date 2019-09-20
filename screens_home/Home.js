@@ -14,6 +14,7 @@ import {
     Image,
     TouchableOpacity,
     ActivityIndicator,
+    Linking,
 } from 'react-native';
 import { List, ListItem, SearchBar } from "react-native-elements";
 import firebase, { storage } from "../firebase";
@@ -185,7 +186,7 @@ class Home1 extends React.Component {
                           style={{
                             marginBottom:3,
                          }}
-                      
+                         onPress={()=> this.props.navigation.navigate('UNDEVELOP')}
                     >
 
 
@@ -205,7 +206,7 @@ class Home1 extends React.Component {
                           style={{
                             marginBottom:3,
                          }}
-
+                         onPress={()=> this.props.navigation.navigate('UNDEVELOP')}
                     >
 
 
@@ -226,9 +227,12 @@ class Home1 extends React.Component {
                           style={{
                             marginBottom:3,
                          }}
-
-                    >
-
+                         onPress={()=>  Linking.openURL("https://www.youtube.com/channel/UCS8Wlr_B7CQkN53Fim20G2Q?view_as=subscriber").catch((err) => console.error('An error occurred', err))}
+                    > 
+                  
+                     
+                  
+        
 
                         <Image
                             style={{

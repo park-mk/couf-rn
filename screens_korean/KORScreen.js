@@ -149,7 +149,7 @@ usersRef.on('value', (snapshot) => {
       <View style={{flex:1}}>
       <Header
       leftComponent={  <TouchableOpacity 
-       onPress={()=> this.props.navigation.navigate('Category')}
+       onPress={()=> this.props.navigation.navigate('KORca')}
        >
        <Image source={require('../assets/back.png')}
                    
@@ -176,6 +176,7 @@ usersRef.on('value', (snapshot) => {
                  eng :item.eng,
                  pro :item.pro,
                  description : item.description ,
+                 uri:item.uri,
                 
               });
             }}

@@ -140,8 +140,11 @@ class CLUBEX extends React.Component {
   }
 
 
-  check = () => {
+  check = () => { 
     // add likes
+
+
+    if (firebase.auth().currentUser!=null){
     const { navigation } = this.props;
     const name = navigation.getParam('name', 'NO-ID');
     
@@ -179,7 +182,10 @@ class CLUBEX extends React.Component {
 
     }
 
+    }
+    else   alert("please login first");
 
+    
 
 
   }

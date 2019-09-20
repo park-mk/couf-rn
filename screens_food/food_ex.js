@@ -120,10 +120,13 @@ class Fooditem extends React.Component {
     const { navigation } = this.props;
     const name = navigation.getParam('name', 'NO-ID');
     const cate = navigation.getParam('cate', 'NO-ID');
+
+    if (firebase.auth().currentUser!=null){
+
     if (this.state.voted == false) {
 
 
-
+   
       console.log("dong");
 
       firebase.database().ref('food/' + cate + '/' + name).update({
@@ -152,7 +155,8 @@ class Fooditem extends React.Component {
 
 
     }
-
+  }
+  else   alert("please login first");
 
 
 

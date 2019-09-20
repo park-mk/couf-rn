@@ -32,6 +32,8 @@ import { YellowBox } from 'react-native';
 
 import CategoryScreen from './screens_category/categoryscreen'
 
+import UNDEVELOP from './undeveloped'
+
 import TOLScreen from './screens_category/TOLscreen'
 import KORcate from './screens_korean/KORcate'
 import Fooditem from './screens_food/food_ex'
@@ -254,6 +256,10 @@ const HomeStack = createStackNavigator({
 
   }},
   CONCERTEX: { screen: CONCERTEX , navigationOptions: {
+    header: null,
+   
+
+  }},UNDEVELOP: { screen: UNDEVELOP , navigationOptions: {
     header: null,
    
 

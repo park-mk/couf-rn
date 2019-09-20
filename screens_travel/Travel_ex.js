@@ -144,10 +144,15 @@ class Travelitem extends React.Component {
 
   check = () => {
     // add likes
-    const { navigation } = this.props;
+    const { navigation } = this.props; 
     const name = navigation.getParam('name', 'NO-ID');
-    const cate = navigation.getParam('cate', 'NO-ID');
-    if (this.state.voted == false) {
+    const cate = navigation.getParam('cate', 'NO-ID'); 
+
+        if (firebase.auth().currentUser!=null){
+   
+   
+   
+        if (this.state.voted == false) {
 
 
 
@@ -182,7 +187,8 @@ class Travelitem extends React.Component {
     }
 
 
-
+  } 
+  else   alert("please login first");
 
   }
 
@@ -350,10 +356,10 @@ class Travelitem extends React.Component {
               <View>
             {this.state.voted ? (
 
-<TouchableOpacity
+    <TouchableOpacity
 
 
-  onPress={() => this.check()}>
+       onPress={() => this.check()}>
             <Image
               style={{
                 width: 30, flex: 1,
