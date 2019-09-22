@@ -16,6 +16,7 @@ class CommentList extends React.Component {
             modifyItem:{},
             lists:[],
         });
+        console.log('현재 유저',firebase.auth().currentUser);
     }
 
     getDate = (timestamp) => {
@@ -126,7 +127,7 @@ class CommentList extends React.Component {
                                       <Content>{item.content}</Content>
                                   }
                                   rightElement={
-                                      item.useremail !== firebase.auth().currentUser.email ? <Text> </Text> : <Buttons style={{alignSelf: 'flex-start'}}>
+                                      (firebase.auth().currentUser && item.useremail == firebase.auth().currentUser.email) && <Buttons style={{alignSelf: 'flex-start'}}>
                                           <Button type="clear" buttonStyle={{width: 30}}
                                                   icon={<Icon name="trash" size={15} color="black"/>}
                                                   onPress={() => this.props.deleteData(item.uid)}

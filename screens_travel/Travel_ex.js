@@ -266,7 +266,7 @@ class Travelitem extends React.Component {
 
             />
             <Comment
-                type={'food'}
+                type={'travel'}
                 tag={name}
             />
             </Modal> 

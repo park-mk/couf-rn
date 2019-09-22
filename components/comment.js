@@ -168,13 +168,15 @@ class Comment extends React.Component {
     render(url) {
         return (
             <View>
-                <CommentForm
-                    comment={this.state.comment}
-                    image={this.state.image}
-                    createData={this.createData}
-                    clearData={this.clearData}
-                    changeComment={this.changeComment}
-                />
+                { firebase.auth().currentUser &&
+                    <CommentForm
+                        comment={this.state.comment}
+                        image={this.state.image}
+                        createData={this.createData}
+                        clearData={this.clearData}
+                        changeComment={this.changeComment}
+                    />
+                }
                 <CommentList
                     lists={this.state.lists}
                     onRefresh={this.onRefresh}

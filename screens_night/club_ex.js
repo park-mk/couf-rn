@@ -270,7 +270,7 @@ class CLUBEX extends React.Component {
 
       />
       <Comment
-          type={'food'}
+          type={'club'}
           tag={disname}
       />
       </Modal> 
