@@ -93,11 +93,11 @@ const styles = StyleSheet.create({
             <Image style={styles.backgroundImage} source={require('../assets/images/soldier1.jpg')} />
             <View    style={ { justifyContent: 'center', alignItems: 'center',marginTop:30}} >
             <TouchableHighlight 
-          style={ [styles.profileImgContainer, { borderColor: 'green', borderWidth:1 }]}
+          style={ [styles.profileImgContainer]}
          
         >
 
-        <Image source={{ uri:"https://www.t-nation.com/system/publishing/articles/10005529/original/6-Reasons-You-Should-Never-Open-a-Gym.png" }} style={styles.profileImg} />
+        <Image source={{ uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/display.jpeg?alt=media&token=798c01c6-4684-44f4-b662-79d1fbc65f97" }} style={styles.profileImg} />
             </TouchableHighlight>
             
             
