@@ -10,6 +10,7 @@ import Sorttype from './Sortype'
 
 
 
+
 class Texteditor extends React.Component {
 
 
@@ -19,7 +20,7 @@ class Texteditor extends React.Component {
 
   render() { 
    
-   
+     console.log("11");
     var number_of_pagraph=0;
     var sentence= this.props.text.substring(1,this.props.text.length);
     var sen;
@@ -116,7 +117,7 @@ class Texteditor extends React.Component {
 
      
    
-   
+     
      
     return (
         

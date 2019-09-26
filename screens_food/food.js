@@ -4,7 +4,7 @@ import { List, ListItem, SearchBar,Header } from "react-native-elements";
 import  firebase,{storage}  from "../firebase";
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import  someList from '../components/anylist'
-import {Font} from 'expo'
+import *  as Font from'expo-font'
 import { ScrollView } from "react-native-gesture-handler";
 import {Container,Content} from 'native-base'
   database=firebase.database();

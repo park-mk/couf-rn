@@ -334,7 +334,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   icon: {
-    width: 240,
+    width: 282,
     height: 400,
     
     marginRight:10,

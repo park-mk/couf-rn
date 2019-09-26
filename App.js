@@ -91,7 +91,7 @@ import FESTIVALEX from'./screens_night/festival_ex'
 import CONCERT from'./screens_night/concert'
 import CONCERTEX from'./screens_night/concert_ex'
 
-import { Font } from 'expo'
+import *  as Font from'expo-font'
 /////////////
 import { InteractionManager } from 'react-native';
 

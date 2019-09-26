@@ -9,7 +9,7 @@ import {
 } from '@expo/vector-icons';
 import Texteditor from '../components/Textedit'
 import firebase, { storage } from "../firebase";
-import {Font} from 'expo'
+import *  as Font from'expo-font'
 import Comment from '../components/comment'
 
 
@@ -174,6 +174,7 @@ class Fooditem extends React.Component {
 
 
   render() {
+    console.log("ce");
     let dimensions = Dimensions.get("window");
     let imageheight = Math.round((dimensions.width * 9) / 12);
     let imagewidth = dimensions.width;
@@ -209,7 +210,8 @@ class Fooditem extends React.Component {
 
     return (
         <View>
-          {/* Comment Modal TODO : 내용에서 slide 형식으로 바꿔도 이쁠거같당 */}
+        
+          {/* Comment Modal TODO : 내용에서 slide 형식으로 바꿔도 이쁠거같당 */  }
          <Modal
               animationType="slide"
               transparent={false}
@@ -336,8 +338,7 @@ class Fooditem extends React.Component {
                   </View>
 
                 </View>
-                {// <Text style={{textAlign:'center', fontSize:30,marginTop:30}}> {JSON.stringify(name).replace(/^"(.+)"$/,'$1')}</Text>
-                }
+                
                 <View style={{ marginTop:30}}>
 
                 </View>
@@ -347,12 +348,14 @@ class Fooditem extends React.Component {
 
               </View>
 
-
+               
 
               <Texteditor text={vivid} />
 
             </View>
-            <SafeAreaView style={styles.container}>
+          {
+             //<SafeAreaView style={styles.container}>
+              } 
               <View style={styles.content1}>
 
               </View>
@@ -382,7 +385,9 @@ class Fooditem extends React.Component {
                   )}
                       />*/}
 
-            </SafeAreaView>
+           {
+            //  </SafeAreaView>
+           }
             <View style={{ marginLeft: 20, flexDirection: 'row', marginRight: 20 }} >
 
         </View>
@@ -395,47 +400,7 @@ class Fooditem extends React.Component {
 
 
 
-            <View style={{ alignItems: 'center' }}>
-              { /*this.state.voted ? (
-
-            <TouchableOpacity
-
-
-              onPress={() => this.check()}>
-
-
-              <Image
-                style={{
-                  width: 50,
-                  height: 50,
-                }}
-                source={require('../assets/like.png')}
-              />
-
-
-            </TouchableOpacity>
-          )
-            : (<TouchableOpacity
-              // styles={{textAlign:'center'}}
-
-              onPress={() => this.check()} >
-
-
-              <Image
-                style={{
-                  width: 50,
-                  height: 50, alignContent: 'center'
-                }}
-                source={require('../assets/unlike.png')}
-              />
-
-
-            </TouchableOpacity>
-              )*/}
-
-
-
-            </View>
+          
           </ScrollView>
         </View>
     );

@@ -27,6 +27,10 @@ class SuggestionScreen extends React.Component {
     render(url) {
         return (
             <View style={{flex:1}}>
+                <Text
+                 style={{fontFamily:'title-font' ,fontSize:25,marginLeft:10, }}
+                  >please leave your suggestions  or the infromation you want to know for our app</Text>
+              
                 <Comment
                     type={'suggestion'}
                     tag={'suggestion'}

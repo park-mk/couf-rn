@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Text, View ,TouchableOpacity,Image,ScrollView,Linking,Dimensions,StyleSheet,ImageBackground} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
-import {Font} from 'expo'
+import *  as Font from'expo-font'
 import {Container,Content,Header,Form,Input,Item,Label} from 'native-base'
  //*****  AREA SCREEN : CONNECT TO THE 4 AREA ZONE  *******//
 class AreaScreen extends React.Component {

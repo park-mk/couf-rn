@@ -3,19 +3,11 @@ import { Button, Text, View ,Image,TouchableOpacity,Dimensions,Linking} from 're
 import { Ionicons } from '@expo/vector-icons';
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import { withNavigation } from 'react-navigation';
-import {Font} from 'expo'
+import *  as Font from'expo-font'
 class Sorttype extends React.Component {
   
 
 
-  async componentDidMount(){
-    await Font.loadAsync({
-
-       'content-font':require('../assets/fonts/Bayon.ttf'),
-       
-     });
-     this.setState({fontLoaded:true})
-   }
       
 
 

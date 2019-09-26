@@ -6,7 +6,7 @@ import LOCA from '../components/loca';
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import  someList from '../components/anylist';
 import ImageSlider from 'react-native-image-slider';
-import {Font} from 'expo'
+import *  as Font from'expo-font'
 
 
   database=firebase.database();

@@ -19,7 +19,7 @@ import { List, ListItem, SearchBar ,Header} from "react-native-elements";
 import firebase, { storage } from "../firebase";
 //import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import someList from '../components/anylist'
-import { Font } from 'expo'
+import *  as Font from'expo-font'
 
 
 

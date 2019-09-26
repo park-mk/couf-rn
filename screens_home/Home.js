@@ -20,7 +20,7 @@ import { List, ListItem, SearchBar } from "react-native-elements";
 import firebase, { storage } from "../firebase";
 //import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import someList from '../components/anylist'
-import { Font } from 'expo'
+import *  as Font from'expo-font'
 
 
 
@@ -114,8 +114,8 @@ class Home1 extends React.Component {
 
         return (
           
-            <ScrollView>
-                <View style={{ flex: 1 }}>
+            <ScrollView style={{marginTop:23}}>
+                <View style={{ flex: 1 ,marginTop:0}}>
 
 
                        

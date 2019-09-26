@@ -3,7 +3,7 @@ import { Button, Text, View ,Image,TouchableOpacity,Linking} from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import { withNavigation } from 'react-navigation';
-import {Font} from 'expo'
+import *  as Font from'expo-font'
 class LOCA extends React.Component {
 
  async componentDidMount() {
