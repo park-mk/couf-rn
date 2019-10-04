@@ -144,7 +144,11 @@ usersRef.on('value', (snapshot) => {
                  
                  />
                   <View  >
-                  <Text style={styles.h1}>{item.disname}</Text>  
+                  <Text style={{ fontSize: 30,
+    fontFamily:'title-font',
+    marginLeft:7,
+                  
+                   } }>{item.disname}</Text>  
                   <Text style={styles.p} >{item.type}</Text>   
                   <Text style={styles.price} >{item.location}</Text>  
                 

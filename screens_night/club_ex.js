@@ -303,7 +303,7 @@ class CLUBEX extends React.Component {
 
         <View style={{ flex: 2,marginTop:-80}}>
         
-        <ImageBackground    source={{uri:topimage.toString()}} style={{height:imageheight,width:imagewidth }}>
+        <ImageBackground    source={{uri:topimage.toString()}} style={{height:200,width:375 }}>
         <View style={{ top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center'}}>
       
          </View> 
@@ -319,12 +319,10 @@ class CLUBEX extends React.Component {
           
           
           </View>
-          <View style={{ flexDirection: 'row', flex: 6 ,marginTop:20}} >
+          <View style={{ flexDirection: 'row', flex: 3 ,marginTop:20}} >
             
            
-            <View style={{ flex: 0.3}}>
-                
-                </View>
+          <View style={{ flex: 1 ,alignItems:'center'}}>
             <TouchableOpacity
               onPress={()=>  Linking.openURL(JSON.stringify(location).replace(/^"(.+)"$/,'$1')).catch((err) => console.error('An error occurred', err))}
                
@@ -339,11 +337,12 @@ class CLUBEX extends React.Component {
               />
              </TouchableOpacity>
   
-              <View style={{ flex: 1 }}>
+            
                 
               </View>
   
-              <View>
+              <View style={{ flex: 1 ,alignItems:'center'}}>
+              <View style={{ flex: 1 ,flexDirection:'row'}}>
             {this.state.voted ? (
 
 <TouchableOpacity
@@ -378,10 +377,10 @@ class CLUBEX extends React.Component {
             />
 </TouchableOpacity>
             )}
-            </View>
-              <View style={{ flex: 1 ,marginRight:-10}}>
-              <Text style={{ textAlign: 'left', fontSize: 20,color:'#56B8FF',marginBottom:3}}>{upvote}</Text>
+           <Text style={{ textAlign: 'left', fontSize: 20,color:'#56B8FF',marginBottom:3}}>{upvote}</Text>
               </View>
+              </View>
+              <View style={{ flex: 1 ,alignItems:'center'}}>
               <TouchableOpacity 
           
           onPress={() => {
@@ -397,15 +396,17 @@ class CLUBEX extends React.Component {
                 source={require('../assets/baseline-chat-24px.png')}
               />
               </TouchableOpacity>
-              <View style={{ flex: 1 }}>
+            
              
               </View>
             
             </View>
           
           
-          <Texteditor text={vivid}/>
- </View>
+        {//  <Texteditor text={vivid}/>
+        }
+ </View>  
+ {/*
         <SafeAreaView style={styles.container}>
         <View style={styles.content1}>
           
@@ -438,7 +439,8 @@ class CLUBEX extends React.Component {
       
        
       </SafeAreaView>
-      <View  style={{   marginLeft:20,marginTop:50, flexDirection:'row',marginRight:20}} >
+            */}
+      <View  style={{   marginLeft:20,marginTop:10, flexDirection:'row',marginRight:20}} >
       
     
    

@@ -298,7 +298,12 @@ const CategoryStack = createStackNavigator({
   KORex: { screen: KOR_explainScreen , navigationOptions: {
     header: null,
 
-  }},
+  }}, TMC: { screen: TMC },
+  YS: { screen: YS },
+  H221: { screen: H221 },
+  Red: { screen: Red },
+  GREEN: { screen: GREEN },
+  BLUE: { screen: BLUE },
   
 
 });
@@ -366,12 +371,7 @@ const AreaStack = createStackNavigator({
     header: null,
 
   } },
-  TMC: { screen: TMC },
-  YS: { screen: YS },
-  H221: { screen: H221 },
-  Red: { screen: Red },
-  GREEN: { screen: GREEN },
-  BLUE: { screen: BLUE },
+ 
   A1WTE:{ screen:A1WTE},
   A1WTD:{ screen:A1WTD,  navigationOptions: {
     header: null,

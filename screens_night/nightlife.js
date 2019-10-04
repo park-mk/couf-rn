@@ -128,19 +128,7 @@ this.setState({
  >
   
 
-<View style={{flexDirection:'row',justifyContent:'flex-end',alignItems:'flex-end',marginEnd:20}}>
 
-<Image
-style={ { width: 35,
-height: 30,    marginTop:200  
-
-}}
-source={require('../assets/likewhithe.png')}
-/> 
-<Text style={{marginLeft:3,fontSize:30,color:'white',fontFamily:'title-font'}}>{item.upvote}</Text>
-
-
-</View>
  
   </ImageBackground>
   </TouchableOpacity>
@@ -227,9 +215,9 @@ source={require('../assets/likewhithe.png')}
      
     return (
         <View
-        style={{ backgroundColor:'#1f2124'}}>
+        style={{ backgroundColor:'white'}}>
      
-     {/*  <Header
+     <Header
       leftComponent={  <TouchableOpacity 
        onPress={()=> this.props.navigation.navigate('NIGHT')}
       
@@ -242,9 +230,9 @@ source={require('../assets/likewhithe.png')}
  } 
      backgroundColor={'rgba(52, 52, 52, alpha)'}
     borderBottomColor={'#1f2124'}
-      centerComponent={{ text: 'CLUBS', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
+      centerComponent={{ text: this.state.name, style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
        
-       />*/}
+       />
    
     
          
@@ -260,17 +248,17 @@ source={require('../assets/likewhithe.png')}
 
       <TouchableOpacity 
       
-      onPress={()=> this.props.navigation.navigate('NIGHT')}
+    
       >
         <View
          style={{flexDirection:'row', backgroundColor:["black", "#ffffff00"]
        
          }}>
-      <Image source={require('../assets/back.png')}
+      <View 
                   
      style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
 />   
-<Text style={{fontFamily:'title-font' ,fontSize:40,marginLeft:60,marginTop:20,color:'#56B8FF'} }>{this.state.name}</Text>
+<Text style={{fontFamily:'title-font' ,fontSize:40,marginLeft:60,marginTop:20,color:'#56B8FF'} }> </Text>
 </View>
 </TouchableOpacity>
 
@@ -299,6 +287,10 @@ source={require('../assets/likewhithe.png')}
 
         
        </View>
+       <View
+       style={{height:80}}
+       >
+         </View>
 
       
 
@@ -318,9 +310,9 @@ const styles = StyleSheet.create({
   icon: {
     width: Dimensions.get("window").width,
    // marginTop:-1,
-    height: 230,
+    height: 200,
     //borderRadius: 5,
-    resizeMode: 'cover',
+   // resizeMode: 'cover',
    
    // alignContent:'center',
   },

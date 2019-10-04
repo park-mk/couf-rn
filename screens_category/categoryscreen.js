@@ -25,15 +25,15 @@ class CategoryScreen extends React.Component {
          { /*****  category sort  each view have 2 category  in row  *******/}
              <View   style={{  flex:1,  flexDirection:'row'}}>
           
-                   <Category imageURI={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Fexchange%20rate.png?alt=media&token=0515b783-8ce0-4a60-ae00-40e078734daf"}}
+                   <Category imageURI={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Fexchange%20rate.png?alt=media&token=ab617188-a5ff-4f92-9f44-c381d655627a"}}
                            name='Exchange'
                           
                           // onPress={()=>  Linking.openURL("https://www.dollars2won.com/").catch((err) => console.error('An error occurred', err))}
                           onPress={()=> this.props.navigation.navigate('EXCHANGE')}
                      />
              
-                    <Category  imageURI={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Flearning%20korean.png?alt=media&token=1e0c7392-3338-4b93-b424-d1566bb43883"}}
-                          name='Festivals & Concerts'
+                    <Category  imageURI={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Flearning%20korea.png?alt=media&token=27b4bb03-956a-4af6-8026-4718f7d8eecf"}}
+                          name='korean'
                           onPress={()=> this.props.navigation.navigate('KORca')}
                       />
            </View>
@@ -42,21 +42,21 @@ class CategoryScreen extends React.Component {
       }      
           
              <View  style={{  flex:1,  flexDirection:'row'}}>
-                    <Category  imageURI={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Fbus%20schedule.png?alt=media&token=78b013c9-c972-49cc-9bdf-931f7de28113"}}
-                           name='food'
+                    <Category  imageURI={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Fbus%20schedule.png?alt=media&token=8f3279cd-2fa1-4d49-b603-85c9b9e6835d"}}
+                           name='bus'
                            onPress={()=> this.props.navigation.navigate('BUS')}
                           
                        />
-                    <Category  imageURI={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Fphone%20book.png?alt=media&token=bf72c6d4-71c0-4829-ae46-7e4f1a2a511b"}}
-                          name='Recommendations on Culture'
+                    <Category  imageURI={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Fphone%20book.png?alt=media&token=4cfb18e7-66bb-451f-804b-e866220440ef"}}
+                          name='phone'
                           onPress={()=> this.props.navigation.navigate('TOL')}
                       />
              </View> 
        { /*****  category sort  each view have 2 category  in row  *******/}
              <View  style={{  flex:1,  flexDirection:'row'}}>
           
-                    <Category  imageURI={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Fbuy%20%26%20sell.png?alt=media&token=8493fe71-30b6-4461-81d4-a385fa562d11"}}
-                           name='Learning Korean'
+                    <Category  imageURI={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Fbuy%20%26%20sell.png?alt=media&token=5c07704a-85e8-4381-a860-14f33f81f160"}}
+                           name='buy and sell'
                            onPress={()=> this.props.navigation.navigate('UNDEVELOP')}
                       />
                     <Category  imageURI={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2FQ%26A.png?alt=media&token=53b2c769-2dc1-437b-8454-4d99dab85827"}}
@@ -67,7 +67,7 @@ class CategoryScreen extends React.Component {
        { /*****  category sort  each view have 2 category  in row  *******/}
              <View  style={{  flex:1,  flexDirection:'row'}}>
           
-                   <Category  imageURI={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Fculture.png?alt=media&token=7be4add3-d5a5-44c4-9986-5004b8b6b134"}}
+                   <Category  imageURI={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Fculture.png?alt=media&token=49e680d1-059a-4cbb-8672-37997f328f90"}}
                            name='Shopping'
                            
                     />

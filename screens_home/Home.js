@@ -122,7 +122,7 @@ class Home1 extends React.Component {
 
                     <TouchableOpacity 
                          style={{
-                           marginBottom:0,
+                           marginBottom:1,
                         }}
                         onPress={()=> this.props.navigation.navigate('TT')}
                     >
@@ -133,9 +133,9 @@ class Home1 extends React.Component {
                                
                                 width: imagewidth,
                                 height: imageheight+imageheight/3,
-                                borderBottomWidth:3,
+                               
                             }}
-                            source={{ uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2FTRAVEL.png?alt=media&token=7a3c5f20-3f97-464c-995d-86f3c67cd5f0" }}
+                            source={{ uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2FTRAVEL.png?alt=media&token=4bfb56db-527a-449d-8a40-213751b0d53f" }}
                         />
            
 
@@ -143,7 +143,7 @@ class Home1 extends React.Component {
 
                     <TouchableOpacity
                              style={{
-                                marginBottom:3,
+                                marginBottom:1,
                              }}
                              onPress={()=> this.props.navigation.navigate('NIGHT')}
                     >
@@ -155,7 +155,7 @@ class Home1 extends React.Component {
                                 height: imageheight,
                                 borderBottomWidth:3,
                             }}
-                            source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2FPARTY%20_%20FESTIVAL.png?alt=media&token=4ef9806b-4049-4337-b66a-d3aa162b6c41" }}
+                            source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2FENTERTAINMENT.png?alt=media&token=cad30c80-491a-4404-ab34-2dd5ef069f37" }}
                         />
 
 
@@ -164,7 +164,7 @@ class Home1 extends React.Component {
 
                     <TouchableOpacity
                              style={{
-                                marginBottom:3,
+                                marginBottom:1,
                              }}
                              onPress={()=> this.props.navigation.navigate('Food')}
                     >
@@ -176,7 +176,7 @@ class Home1 extends React.Component {
                                 height: imageheight,
                                 
                             }}
-                            source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2FFOOD.png?alt=media&token=9682d54f-1ffb-44f7-8f4e-2fcc46d27804" }}
+                            source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2FFOOD.png?alt=media&token=14634ce6-4ff4-43d9-a385-4f17b61d7741" }}
                         />
 
                         
@@ -184,7 +184,7 @@ class Home1 extends React.Component {
 
                     <TouchableOpacity
                           style={{
-                            marginBottom:3,
+                            marginBottom:1,
                          }}
                          onPress={()=> this.props.navigation.navigate('UNDEVELOP')}
                     >
@@ -195,37 +195,20 @@ class Home1 extends React.Component {
                                 width: imagewidth,
                                 height: imageheight,
                             }}
-                            source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2FSHOPPING.png?alt=media&token=9c9bc149-4d2e-435e-aab0-5475759a40b5" }}
+                            source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2FSHOP.png?alt=media&token=841f58a9-4145-4b18-bf77-6a1a0ff523d2" }}
                         />
 
 
                     </TouchableOpacity>
 
 
-                    <TouchableOpacity
-                          style={{
-                            marginBottom:3,
-                         }}
-                         onPress={()=> this.props.navigation.navigate('UNDEVELOP')}
-                    >
-
-
-                        <Image
-                            style={{
-                                width: imagewidth,
-                                height: imageheight,
-                            }}
-                            source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2FComponent%204.png?alt=media&token=88b0c65f-a9d3-4814-9dd9-977764a9f812" }}
-                        />
-
-
-                    </TouchableOpacity>
+                 
 
 
 
                     <TouchableOpacity
                           style={{
-                            marginBottom:3,
+                            marginBottom:1,
                          }}
                          onPress={()=>  Linking.openURL("https://www.youtube.com/channel/UCS8Wlr_B7CQkN53Fim20G2Q?view_as=subscriber").catch((err) => console.error('An error occurred', err))}
                     > 
@@ -239,7 +222,7 @@ class Home1 extends React.Component {
                                 width: imagewidth,
                                 height: imageheight,
                             }}
-                            source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2FSubscribe%20to%20our%20youtube.png?alt=media&token=e2217731-0a8e-4069-b889-35bd2a55ac9d" }}
+                            source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2FYOUTUBE.png?alt=media&token=30d9eca6-38af-48b8-9e3b-1e7c4269cf88" }}
                         />
 
 
@@ -252,7 +235,7 @@ class Home1 extends React.Component {
 
                     <TouchableOpacity
                              style={{
-                                marginBottom:3,
+                                marginBottom:1,
                              }}
                              onPress={()=> this.props.navigation.navigate('SuggestionScreen')}
                     >
@@ -264,7 +247,7 @@ class Home1 extends React.Component {
                                 height: imageheight,
                                 
                             }}
-                            source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2FSUGGESTIONS.png?alt=media&token=6d761885-768e-4567-9a09-1212426beb1f" }}
+                            source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2FSUGGESTIONS.png?alt=media&token=a15872fe-c150-4b89-87f1-c786bda67aaf" }}
                         />
 
                         

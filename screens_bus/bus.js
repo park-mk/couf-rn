@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, FlatList,Text, View ,TouchableOpacity,Image,StyleSheet,ScrollView,Linking,Dimensions,ImageBackground } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { List, ListItem, SearchBar } from "react-native-elements";
+import { List, ListItem, SearchBar,Header } from "react-native-elements";
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import  firebase,{storage}  from "../firebase";
 import A1WTD from '../screens_wtd/area1_wtd';
@@ -96,47 +96,30 @@ this.setState({
     return (
       <ScrollView>   
       <View>
-   
+        
           <View>
 
-         
+          <Header
+    leftComponent={  
+     <TouchableOpacity 
+     onPress={()=> this.props.navigation.navigate('Category')}
+     >
+     <Image source={require('../assets/back.png')}
+                 
+    style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
+/> 
+</TouchableOpacity>
+} 
+   backgroundColor={'#fff'}
+  borderBottomColor={'#fff'}
+    centerComponent={{ text: 'BUS', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
+   
+     />
             
          
       
         
-        <View style={{
-    borderBottomColor: '#56B8FF',
-    borderBottomWidth: 1,
-    marginTop:3,
-         }}    />
-         <View  style={{flexDirection:'row'}}>
-            <View style={{
-            width:  imagewidth/3-5,
-            height:3,
-           
-         }}    >
-         
-           </View>
-           <View style={{
-            width:  imagewidth/3-5,
-            height:3,
-           
-         }}    >
-         
-           </View>
-               <View style={{
-            width:  imagewidth/3,
-            height:3,
-            backgroundColor: '#56B8FF',
-         }}    >
-         </View>
-         </View>
-         
-<View style={{
-    borderBottomColor: '#56B8FF',
-    borderBottomWidth: 1,
-
-         }}    /> 
+      
 
    
       </View > 
@@ -165,18 +148,18 @@ this.setState({
       </TouchableOpacity>
       <TouchableOpacity style={{flex:1}}
        onPress={()=> this.props.navigation.navigate('GREEN')}>
-      <Text style={{fontFamily:'title-font' ,fontSize:50,marginLeft:15,color:'#56B8FF'}}>GREEN (HUMPHREY)</Text>
+      <Text style={{fontFamily:'title-font' ,fontSize:50,marginLeft:15,color:'#56B8FF'}}>GREEN (HUMPHREYS)</Text>
       </TouchableOpacity>
       <TouchableOpacity style={{flex:1}}
         onPress={()=> this.props.navigation.navigate('BLUE')}>
-      <Text style={{fontFamily:'title-font' ,fontSize:50,marginLeft:15,color:'#56B8FF'}}>BLUE (HUMPHREY)</Text>
+      <Text style={{fontFamily:'title-font' ,fontSize:50,marginLeft:15,color:'#56B8FF'}}>BLUE (HUMPHREYS)</Text>
       </TouchableOpacity>
 
 
       <TouchableOpacity style={{flex:1}}
       
       onPress={()=> this.props.navigation.navigate('Red')}>
-      <Text   style={{fontFamily:'title-font' ,fontSize:50,marginLeft:10,color:'#56B8FF'}}  >RED (HUMPHREY)</Text>
+      <Text   style={{fontFamily:'title-font' ,fontSize:50,marginLeft:10,color:'#56B8FF'}}  >RED (HUMPHREYS)</Text>
       </TouchableOpacity>
     
    </View> 

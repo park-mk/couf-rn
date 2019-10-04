@@ -69,7 +69,7 @@ class NIGHT extends React.Component {
 
         return (
             <View >
-         {/*   <Header
+           <Header
           leftComponent={  <TouchableOpacity 
            onPress={()=> this.props.navigation.navigate('Home')}
            >
@@ -80,55 +80,44 @@ class NIGHT extends React.Component {
      </TouchableOpacity>} 
          backgroundColor={'#fff'}
         borderBottomColor={'#fff'}
-          centerComponent={{ text: 'F/N', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
+          centerComponent={{ text: 'ENTERTAINMENT', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:5,color:'#56B8FF' } }}
          
-          />*/}
+          />
            
             <ScrollView
-              stickyHeaderIndices={[0]}
+          //    stickyHeaderIndices={[0]}
             >
-                  <TouchableOpacity 
-      
-      onPress={()=> this.props.navigation.navigate('Home')}
-      >
-        <View
-         style={{flexDirection:'row', backgroundColor:["black", "#ffffff00"]
-       
-         }}>
-      <Image source={require('../assets/back.png')}
+                 
+                <View
+                 style={{
+                   
+                 
+                
                   
-     style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
-/>   
-<Text style={{fontFamily:'title-font' ,fontSize:40,marginLeft:60,marginTop:20,color:'#56B8FF'} }> </Text>
-</View>
-</TouchableOpacity>
-                <View >
+               }}
+                >
 
 
                        
 
                     <TouchableOpacity 
-                         style={{
-                             marginTop:-80,
-                          
-                         
-                           
-                        }}
+                        
                         onPress={()=> this.props.navigation.navigate('FESTIVAL')}
                     >
 
-                         <View>
+                         <View
+                         style={ { borderBottomWidth:1,borderColor:'white'}}>
                         <Image
                             style={{
                                 
                                 width: imagewidth,
                                 height:imageheight,
-                                borderBottomWidth:3,
+                              
                                
             
                                
                             }}
-                            source={{ uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Ffes%2Ccon%2Cclub%2Ffestivals.png?alt=media&token=2d709b73-fe29-401f-bf78-427153626838" }}
+                            source={{ uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2Ffestivals.png?alt=media&token=f71d2234-c51f-42ba-b136-8c03c46d982e" }}
                         />
                       
                       
@@ -145,18 +134,18 @@ class NIGHT extends React.Component {
                         onPress={()=> this.props.navigation.navigate('CONCERT')}
                     >
 
-                         <View>
+                         <View  style={ { borderBottomWidth:1,borderColor:'white'}}>
                         <Image
                             style={{
                                 
                                 width: imagewidth,
                                 height:imageheight,
-                                borderBottomWidth:3,
+                                borderBottomWidth:1,
                                
             
                                
                             }}
-                            source={{ uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Ffes%2Ccon%2Cclub%2Fconcerts.png?alt=media&token=422952c8-408c-4ef9-8eb2-255019b91cd3" }}
+                            source={{ uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2Fconcerts.png?alt=media&token=5a99e389-4bd6-4906-8b85-d610296f9e98" }}
                         />
                       
                       
@@ -172,18 +161,18 @@ class NIGHT extends React.Component {
                         onPress={()=> this.props.navigation.navigate('CLUB')}
                     >
 
-                         <View>
+                         <View   style={ { borderBottomWidth:1,borderColor:'white'}}>
                         <Image
                             style={{
                                 
                                 width: imagewidth,
                                 height:imageheight,
-                                borderBottomWidth:3,
+                                borderBottomWidth:1,
                                
             
                                
                             }}
-                            source={{ uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Ffes%2Ccon%2Cclub%2Fclubs.png?alt=media&token=79790273-1dff-4a0d-99e4-d21dc06bf3c8" }}
+                            source={{ uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2Fclubs.png?alt=media&token=d0a0a406-a028-41f5-a7fd-f92d3a8ed633" }}
                         />
                       
                       
@@ -191,9 +180,9 @@ class NIGHT extends React.Component {
                      </View>
                     </TouchableOpacity>
 
-                 
-
-                
+                  
+                    <View   style={ { height:80}}>
+                    </View>
 
 
 

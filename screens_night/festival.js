@@ -196,9 +196,9 @@ source={require('../assets/likewhithe.png')}
      
     return (
         <View
-        style={{ backgroundColor:'#1f2124'}}>
+        style={{ backgroundColor:'white'}}>
      
-     {/*  <Header
+     <Header
       leftComponent={  <TouchableOpacity 
        onPress={()=> this.props.navigation.navigate('NIGHT')}
       
@@ -211,40 +211,26 @@ source={require('../assets/likewhithe.png')}
  } 
      backgroundColor={'rgba(52, 52, 52, alpha)'}
     borderBottomColor={'#1f2124'}
-      centerComponent={{ text: 'CLUBS', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
+      centerComponent={{ text: 'FESTIVAL', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
        
-       />*/}
+       />
    
     
          
       <ScrollView
-     stickyHeaderIndices={[0]}
+    
      
    
       >   
 
-      <TouchableOpacity 
-      
-      onPress={()=> this.props.navigation.navigate('NIGHT')}
-      >
-        <View
-         style={{flexDirection:'row', backgroundColor:["black", "#ffffff00"]
-       
-         }}>
-      <Image source={require('../assets/back.png')}
-                  
-     style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
-/>   
-<Text style={{fontFamily:'title-font' ,fontSize:40,marginLeft:60,marginTop:20,color:'#56B8FF'} }>FESTIVAL</Text>
-</View>
-</TouchableOpacity>
+    
 
 
 
       <View>
    
     <FlatList 
-           style={{marginTop:-80}}
+          
           data={this.state.datasource}
           keyExtractor={this._keyExtractor}
          

@@ -72,7 +72,7 @@ class Sorttype extends React.Component {
                  if(this.props.typeof==4){
                       console.log("whiteh");
                   return (
-                     <View style={{marginLeft:15}} >
+                     <View style={{marginLeft:15,marginRight:10}} >
                         
                          <Text  style={{fontSize:this.props.size , lineHeight:this.props.size+12 ,
                          marginLeft:0,  color:'#e8e6e6',

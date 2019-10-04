@@ -193,7 +193,15 @@ class Travelitem extends React.Component {
   }
 
 
+  llink = () => {
+    const { navigation } = this.props;
+    const location = navigation.getParam('location', 'NO-ID');
+     if(JSON.stringify(location).replace(/^"(.+)"$/,'$1')!="NO")
+     {
 
+      Linking.openURL(JSON.stringify(location).replace(/^"(.+)"$/,'$1')).catch((err) => console.error('An error occurred', err))}
+ 
+  }
 
    
     render() {
@@ -270,10 +278,10 @@ class Travelitem extends React.Component {
                 tag={name}
             />
             </Modal> 
-       {/* <Header
+        <Header
       leftComponent={  
        <TouchableOpacity 
-       onPress={()=> this.props.navigation.navigate('Home')}
+       onPress={()=> this.props.navigation.navigate('TT')}
        >
        <Image source={require('../assets/back.png')}
                    
@@ -285,33 +293,19 @@ class Travelitem extends React.Component {
     borderBottomColor={'#fff'}
       centerComponent={{ text: 'TRAVEL', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
      
-/>*/} 
+/>
         <ScrollView
-        stickyHeaderIndices={[0]}
+   //     stickyHeaderIndices={[0]}
      
         
           >   
     
-          <TouchableOpacity 
-          
-          onPress={()=> this.props.navigation.navigate('TT')}
-          >
-            <View
-             style={{flexDirection:'row', backgroundColor:["black", "#ffffff00"]
-           
-             }}>
-          <Image source={require('../assets/back.png')}
-                      
-         style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
-    />   
-    
-    </View>
-    </TouchableOpacity>
+      
         
            
           
 
-        <View style={{ flex: 2 ,marginTop:-80}}>
+        <View style={{ flex: 2 ,marginTop:0}}>
         
         <ImageBackground    source={{uri:topimage.toString()}} style={{height:imageheight,width:imagewidth }}>
         <View style={{ top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center'}}>
@@ -329,15 +323,18 @@ class Travelitem extends React.Component {
           
           
           </View>
-          <View style={{ flexDirection: 'row', flex: 6 ,marginTop:20}} >
+          <View style={{ flexDirection: 'row', flex: 3,marginTop:20}} >
             
            
-            <View style={{ flex: 0.3}}>
+          <View style={{ flex: 1 ,alignItems:'center'}}>
                 
-                </View>
             <TouchableOpacity
-              onPress={()=>  Linking.openURL(JSON.stringify(location).replace(/^"(.+)"$/,'$1')).catch((err) => console.error('An error occurred', err))}
-               
+             
+      
+                onPress={()=>
+              
+                this.llink()}
+                
             >
               <Image
                 style={{
@@ -349,11 +346,12 @@ class Travelitem extends React.Component {
               />
              </TouchableOpacity>
   
-              <View style={{ flex: 1 }}>
+             
                 
               </View>
-  
-              <View>
+              <View style={{ flex: 1 ,alignItems:'center'}}>
+              <View style={{ flex: 1 ,flexDirection:'row'}}>
+                
             {this.state.voted ? (
 
     <TouchableOpacity
@@ -363,7 +361,7 @@ class Travelitem extends React.Component {
             <Image
               style={{
                 width: 30, flex: 1,
-                height: 30, alignContent: 'center',
+                height: 30, 
                 
               }} 
               resizeMode={'contain'}
@@ -380,7 +378,7 @@ class Travelitem extends React.Component {
      <Image
               style={{
                 width: 30, flex: 1,
-                height: 30, alignContent: 'center',
+                height: 30, 
                 
               }} 
               resizeMode={'contain'}
@@ -388,17 +386,20 @@ class Travelitem extends React.Component {
             />
 </TouchableOpacity>
             )}
-            </View>
-              <View style={{ flex: 1 ,marginRight:-10}}>
+           
               <Text style={{ textAlign: 'left', fontSize: 20,color:'#56B8FF',marginBottom:3}}>{upvote}</Text>
               </View>
-             
+              </View>
+
+
+              <View style={{ flex: 1 ,alignItems:'center'}}>
           <TouchableOpacity 
           
           onPress={() => {
             this.onClickComment();
           }}
           >
+           
               <Image
                 style={{
                   width: 30, flex: 1,
@@ -407,15 +408,16 @@ class Travelitem extends React.Component {
                 resizeMode={'contain'}
                 source={require('../assets/baseline-chat-24px.png')}
               />
+        
               </TouchableOpacity>
-              <View style={{ flex: 1 }}>
-             
               </View>
+       
             
             </View>
           
           
-          <Texteditor text={vivid}/>
+         {/* <Texteditor text={vivid}/>
+         */}
  </View>
         <SafeAreaView style={styles.container}>
         <View style={styles.content1}>
@@ -423,30 +425,30 @@ class Travelitem extends React.Component {
         </View>
      <ImageSlider
           loopBothSides
-         // autoPlayWithInterval={3000}
-          images={images}
-          style={{height:imageheight,width:imagewidth }}
-          customButtons={(position, move) => (
-            <View style={styles.buttons}>
-             
-              {images.map((image, index) => {
-                return (
-                  <TouchableHighlight
-                    key={index}
-                    underlayColor="#f00"
-                    onPress={() => move(index)}
-                    style={styles.button}
-                  >
-                    <Text style={position === index && styles.buttonSelected}>
-                     
-                    </Text>
-                  </TouchableHighlight>
-                );
-              })}
-            </View>
-          )}
-        /> 
-      
+          // autoPlayWithInterval={3000}
+           images={images}
+           style={{height:imageheight,width:imagewidth }}
+           customButtons={(position, move) => (
+             <View style={styles.buttons}>
+              
+               {images.map((image, index) => {
+                 return (
+                   <TouchableHighlight
+                     key={index}
+                     underlayColor= "black"//"#f00"
+                     onPress={() => move(index)}
+                     style={styles.button}
+                   >
+                     <Text style={position === index && styles.buttonSelected}>
+                      
+                     </Text>
+                   </TouchableHighlight>
+                 );
+               })}
+             </View>
+           )}
+         /> 
+       
        
       </SafeAreaView>
       <View  style={{   marginLeft:20,marginTop:50, flexDirection:'row',marginRight:20}} >
@@ -516,7 +518,11 @@ class Travelitem extends React.Component {
     },
     buttonSelected: {
       opacity: 1,
-      backgroundColor: '#fff',
+      backgroundColor: '#56B8FF',
+      borderRadius: 8 / 2,
+       marginRight:3,
+      width: 8,
+      height: 8,
     },
   });
   export default  Travelitem;

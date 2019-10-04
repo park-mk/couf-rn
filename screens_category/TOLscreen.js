@@ -1,5 +1,5 @@
 import React from 'react';
-import {   View , FlatList,Image,Button,TouchableOpacity,Text} from 'react-native';
+import {   View , FlatList,Image,Button,TouchableOpacity,Text,SafeAreaView,ScrollView} from 'react-native';
 import { List, ListItem, SearchBar } from "react-native-elements";
 import  firebase from "../firebase";
 import call from 'react-native-phone-call';
@@ -171,6 +171,7 @@ searchFilterFunction = text => {
         // flat list data= datasoucr= firebase.tips        details please look upper 
           
     <View> 
+      <ScrollView>
      <View  horizontal={true}> 
         <SearchBar        
         // placeholder="Type Here..." 
@@ -227,8 +228,11 @@ searchFilterFunction = text => {
   type="outline"
   onPress={  ()=> this.renderagain()}
         />
-
-<Button title="Make a Call" onPress={this.call} />
+      <View
+       style={{height:100}}
+      >
+      </View>
+      </ScrollView>
        </View>
     );
   }

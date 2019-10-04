@@ -294,29 +294,27 @@ usersRef.on('value', (snapshot) => {
  
                title=  {     
                  
-                <View  style={{  flex:1,   alignContent:'center',marginRight:-3, borderWidth:2,borderColor:'#56B8FF'}}
+                <View  style={{  justifyContent: 'center',
+                alignItems: 'center',  marginRight:-3, borderWidth:2,borderColor:'#56B8FF', width: 260,
+                height: 160,
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor:'grey',}
+                
+              }
                     
                 >
-              <ImageBackground   style={styles.icon}
-                    source={{uri:item.topimage}}
-                 
-             >    
-               <Text style={{marginLeft:3,fontSize:30,color:'#56B8FF',fontFamily:'title-font'}}>{item.name}</Text>
+            
+            <Text style={{fontSize:50,color:'#56B8FF',fontFamily:'title-font',justifyContent: 'center',
+                alignItems: 'center',}}>{item.name}</Text>
               
-         
-        <View style={{flexDirection:'row',justifyContent:'flex-end',alignItems:'flex-end'}}>
-     
-     {/*  <Image
-        style={ { width: 35,
-          height: 30,marginTop:200}}
-        source={require('../assets/likewhithe.png')}
-      /> 
-      <Text style={{marginLeft:3,fontSize:30,color:'white',fontFamily:'title-font'}}>{item.upvote}</Text>
-     
-        */}
-      </View>
+                 
              
-              </ImageBackground>
+             
+         
+    
+             
+            
               </View>
             
                 
@@ -398,7 +396,9 @@ const styles = StyleSheet.create({
   icon: {
     width: 260,
     height: 160,
-    borderRadius: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor:'grey',
    
    // alignContent:'center',
   },

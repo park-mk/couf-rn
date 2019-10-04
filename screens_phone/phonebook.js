@@ -1,5 +1,5 @@
 import React from 'react';
-import {   View , FlatList,Image,Button} from 'react-native';
+import {   View , FlatList,Image,Button, SafeAreaView} from 'react-native';
 import { List, ListItem, SearchBar } from "react-native-elements";
 import  firebase from "../firebase";
 
@@ -157,9 +157,13 @@ searchFilterFunction = text => {
      
     return (
         // flat list data= datasoucr= firebase.tips        details please look upper 
-          
+       
     <View> 
-    
+     <Button
+        title="Refresh"
+        type="outline"
+        onPress={  ()=> this.renderagain()}
+              />
         <SearchBar        
         // placeholder="Type Here..."        
          lightTheme        
@@ -200,7 +204,12 @@ searchFilterFunction = text => {
   type="outline"
   onPress={  ()=> this.renderagain()}
         />
+         <View
+          style={{height:10}}
+         > 
+         </View> 
        </View>
+       
     );
   }
 }

@@ -185,7 +185,7 @@ usersRef.on('value', (snapshot) => {
         
         }
            >
-          <View  style={{  flex:1,  flexDirection:'row',marginBottom:6,borderColor:'black'}} >
+          <View  style={{  flex:1,  marginLeft:10,flexDirection:'row',marginBottom:6,borderColor:'black'}} >
                   <Image  style={styles.icon}
                         source={{uri:item.topimage}}
                  
@@ -238,9 +238,10 @@ usersRef.on('value', (snapshot) => {
               </View>             
                   
         <View style={{flexDirection:'row'}} >
-        <View  style={{marginLeft:30}}>
+        <View  style={{marginLeft:0}}>
         </View>
       <FlatList 
+     
           data={this.state.datasource}
           
           renderItem={this.renderItem}
@@ -267,7 +268,7 @@ usersRef.on('value', (snapshot) => {
 
 
 <View style={{flexDirection:'row'}} >
-        <View  style={{marginLeft:30}}>
+        <View  style={{marginLeft:0}}>
         </View>
       <FlatList 
           data={this.state.datasource1}
@@ -296,7 +297,7 @@ usersRef.on('value', (snapshot) => {
 
 
 <View style={{flexDirection:'row'}} >
-        <View  style={{marginLeft:30}}>
+        <View  style={{marginLeft:0}}>
         </View>
       <FlatList 
           data={this.state.datasource2}

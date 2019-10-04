@@ -31,8 +31,8 @@ class Category extends React.Component {
      else go='KORca'
      
     return (
-      <View style={{ height:180 ,width:150,marginLeft:20,marginTop:20, 
-        borderWidth: 3,borderColor:'#dddddd' ,borderRadius:10,
+      <View style={{ height:170 ,width:160,marginLeft:10,marginTop:20, 
+       // borderWidth: 3,borderColor:'#dddddd' ,borderRadius:10,
       }}>  
     
             
@@ -53,7 +53,7 @@ class Category extends React.Component {
           
              <Image source={this.props.imageURI}
                       
-                  style={{flex:4,width :null,height:null,resizeMode:'cover'}}
+                  style={{flex:4,width :null,height:null,resizeMode:'contain'}}
              /> 
              
             

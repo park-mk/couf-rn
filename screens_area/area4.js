@@ -144,7 +144,11 @@ usersRef.on('value', (snapshot) => {
                  
                  />
                   <View  >
-                  <Text style={styles.h1}>{item.name}</Text>  
+                  <Text style={{ fontSize: 30,
+    fontFamily:'title-font',
+    marginLeft:7,
+                  
+                   } }>{item.disname}</Text>  
                   <Text style={styles.p} >{item.type}</Text>   
                   <Text style={styles.price} >{item.location}</Text>  
                 
@@ -300,7 +304,7 @@ const styles = StyleSheet.create({
     paddingRight: 10,
   },
   price: {
-    marginTop:30,
+    marginTop:20,
     color: color.theme,
     
   },

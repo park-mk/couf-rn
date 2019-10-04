@@ -141,7 +141,9 @@ usersRef.on('value', (snapshot) => {
                  
                  />
                   <View  >
-                  <Text style={styles.h1}>{item.name}</Text>  
+                  <Text style={styles.h1}
+                   
+                  >{item.name}</Text>  
                   <Text style={styles.p} >{item.type}</Text>   
                   <Text style={styles.price} >{item.location}</Text>  
                 
@@ -269,7 +271,7 @@ const styles = StyleSheet.create({
   },
   h1: {
     fontSize: 15,
-    
+    fontFamily:'title-font',
     fontWeight: 'bold',
     textAlign: 'center',
     color: '#222222',
