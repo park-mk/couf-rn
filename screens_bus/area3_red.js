@@ -12,9 +12,9 @@ class Red extends React.Component {
     constructor(props) {
         super(props);    
         this.state={
-            timeofcircle:66,   // 32+34 =66  일분을 길이 66으로 치환 한다 
+            timeofcircle:71,   // 32+34 =66  일분을 길이 66으로 치환 한다 
             // 한바퀴 돌때 걸리는 시간 
-            circlelength:4356,//  한바퀴 다돌려면 66 분 걸림 66 분 * 66 길이 즉 총길이는 4356임 
+            circlelength:4686,//  한바퀴 다돌려면 66 분 걸림 66 분 * 66 길이 즉 총길이는 4356임 
             //  한바퀴 총길이 
             springVal: new Animated.Value(1),
             moveAnimation : new Animated.ValueXY({ x: 10, y: 450 }),
@@ -467,7 +467,7 @@ getCurrentTime = () =>
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >Walk thrugate</Text>
              </View> 
 
-                <Surface width={100} height={166}>
+                <Surface width={100} height={232}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
 
@@ -482,7 +482,7 @@ getCurrentTime = () =>
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >AV/CPX gate</Text>
              </View> 
 
-                <Surface width={100} height={34}>
+                <Surface width={100} height={100}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
 
@@ -494,8 +494,23 @@ getCurrentTime = () =>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >Bldg S-712</Text>
+                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >1-17 CAV P-860</Text>
             </View> 
+
+                <Surface width={100} height={34}>
+                    <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
+                </Surface>
+
+
+
+
+
+             <View   style={{  height:32, flexDirection:'row'}}>
+                <Surface width={100} height={32}>
+                    <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
+                </Surface>  
+                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >4-2 ARB S-869</Text>
+             </View> 
 
                 <Surface width={100} height={100}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
@@ -508,7 +523,59 @@ getCurrentTime = () =>
              <View   style={{  height:32, flexDirection:'row'}}>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
+                </Surface>
+                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >New Dental Clinic</Text>
+             </View>  
+
+                <Surface width={100} height={100}>
+                    <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
+                </Surface>
+
+
+
+
+
+             <View   style={{  height:32, flexDirection:'row'}}>
+                <Surface width={100} height={32}>
+                    <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
+                </Surface>
+                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >AV/CPX gate</Text>
+            </View> 
+
+                <Surface width={100} height={100}>
+                    <Shape d={path2} stroke="#000000" fill="#d11f3f" strokeWidth={1} />
+                </Surface>
+                <Surface width={100} height={100}>
+                    <Shape d={path2} stroke="#000000" fill="#d11f3f" strokeWidth={1} />
+                </Surface>
+
+                <Surface width={100} height={164}>
+                    <Shape d={path2} stroke="#000000" fill="#d11f3f" strokeWidth={1} />
+                </Surface>
+
+
+
+
+
+             <View   style={{  height:32, flexDirection:'row'}}>
+                <Surface width={100} height={32}>
+                    <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>  
+                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >Bus Terminal</Text>
+             </View> 
+
+                <Surface width={100} height={100}>
+                    <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
+                </Surface>
+
+
+
+
+
+             <View   style={{  height:32, flexDirection:'row'}}>
+                <Surface width={100} height={32}>
+                    <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
+                </Surface> 
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >Lodging S-121</Text>
              </View> 
 
@@ -525,7 +592,7 @@ getCurrentTime = () =>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >USO S-375</Text>
-             </View>  
+             </View> 
 
                 <Surface width={100} height={166}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
@@ -539,23 +606,22 @@ getCurrentTime = () =>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >Quarry gate</Text>
-            </View> 
-
-                <Surface width={100} height={34}>
-                    <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
-                </Surface>
-
-
-
-
-
-             <View   style={{  height:32, flexDirection:'row'}}>
-                <Surface width={100} height={32}>
-                    <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
-                </Surface>  
-                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >2nd CAB/CDC</Text>
+                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >Quarry Gate </Text>
              </View> 
+                <Surface width={100} height={34}>
+                    <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
+                </Surface>
+
+
+
+
+
+             <View   style={{  height:32, flexDirection:'row'}}>
+                <Surface width={100} height={32}>
+                    <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
+                </Surface>
+                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >2nd CAB/CDC</Text>
+             </View > 
 
                 <Surface width={100} height={34}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
@@ -568,8 +634,8 @@ getCurrentTime = () =>
              <View   style={{  height:32, flexDirection:'row'}}>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
-                </Surface> 
-                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >Medical Dental Clinic</Text>
+                </Surface>
+                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >Medical/Dental Clinic</Text>
              </View> 
 
                 <Surface width={100} height={100}>
@@ -587,7 +653,7 @@ getCurrentTime = () =>
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >Super Gym</Text>
              </View> 
 
-                <Surface width={100} height={34}>
+               <Surface width={100} height={34}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
 
@@ -599,36 +665,7 @@ getCurrentTime = () =>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >School  </Text>
-             </View> 
-                <Surface width={100} height={34}>
-                    <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
-                </Surface>
-
-
-
-
-
-             <View   style={{  height:32, flexDirection:'row'}}>
-                <Surface width={100} height={32}>
-                    <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
-                </Surface>
-                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >Talon DFAC</Text>
-             </View > 
-
-                <Surface width={100} height={34}>
-                    <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
-                </Surface>
-
-
-
-
-
-             <View   style={{  height:32, flexDirection:'row'}}>
-                <Surface width={100} height={32}>
-                    <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
-                </Surface>
-                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >New 3rd Ml Bn</Text>
+                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >School</Text>
              </View> 
 
                 <Surface width={100} height={100}>
@@ -643,40 +680,10 @@ getCurrentTime = () =>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >New Barracks</Text>
-             </View> 
-
-               <Surface width={100} height={100}>
-                    <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
-                </Surface>
-
-
-
-
-
-             <View   style={{  height:32, flexDirection:'row'}}>
-                <Surface width={100} height={32}>
-                    <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
-                </Surface>
-                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >Bldg #P-6315</Text>
-             </View> 
-
-                <Surface width={100} height={32}>
-                    <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
-                </Surface>
-
-
-
-
-
-             <View   style={{  height:32, flexDirection:'row'}}>
-                <Surface width={100} height={32}>
-                    <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
-                </Surface>
-                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >Chapel P-6350</Text>
+                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >New Commissary</Text>
                </View> 
               
-                 <Surface width={100} height={34}>
+                 <Surface width={100} height={100}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                  </Surface>
 
@@ -688,7 +695,7 @@ getCurrentTime = () =>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} > Spartan DFAC</Text>
+                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >New PX</Text>
              </View> 
 
                <Surface width={100} height={100}>
@@ -703,7 +710,7 @@ getCurrentTime = () =>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >TMP S-7320</Text>
+                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >One Stop Bldg</Text>
              </View> 
 
                <Surface width={100} height={100}>
@@ -714,28 +721,58 @@ getCurrentTime = () =>
 
 
 
+             <View   style={{  height:32, flexDirection:'row'}}>
+                <Surface width={100} height={32}>
+                    <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
+                </Surface>
+                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >One Stop Bldg A</Text>
+             </View> 
+
+               <Surface width={100} height={166}>
+                    <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
+                </Surface>
+
+
+
+
+
+             <View   style={{  height:32, flexDirection:'row'}}>
+                <Surface width={100} height={32}>
+                    <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
+                </Surface>
+                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >Tomahawk DFAC</Text>
+             </View> 
+
+               <Surface width={100} height={34}>
+                    <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
+                </Surface>
+             
+             
+             
+             
+             
              <View   style={{  height:32, flexDirection:'row'}}>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >VMF S-7412</Text>
              </View> 
-
-               <Surface width={100} height={100}>
+             
+               <Surface width={100} height={34}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
-
-
-
-
-
+             
+             
+             
+             
+             
              <View   style={{  height:32, flexDirection:'row'}}>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >VMF S-7515</Text>
              </View> 
-
+             
                <Surface width={100} height={100}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
@@ -751,7 +788,7 @@ getCurrentTime = () =>
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >HQs P-7621</Text>
              </View> 
              
-               <Surface width={100} height={100}>
+               <Surface width={100} height={34}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
              
@@ -766,7 +803,7 @@ getCurrentTime = () =>
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >VMF S-7515</Text>
              </View> 
              
-               <Surface width={100} height={100}>
+               <Surface width={100} height={34}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
              
@@ -778,10 +815,10 @@ getCurrentTime = () =>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >TMP S-7320</Text>
+                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >VMF S-7412</Text>
              </View> 
              
-               <Surface width={100} height={100}>
+               <Surface width={100} height={34}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
              
@@ -793,37 +830,7 @@ getCurrentTime = () =>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >Spartan  DFAC</Text>
-             </View> 
-             
-               <Surface width={100} height={100}>
-                    <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
-                </Surface>
-             
-             
-             
-             
-             
-             <View   style={{  height:32, flexDirection:'row'}}>
-                <Surface width={100} height={32}>
-                    <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
-                </Surface>
-                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >Bldg #P-6315</Text>
-             </View> 
-             
-               <Surface width={100} height={32}>
-                    <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
-                </Surface>
-             
-             
-             
-             
-             
-             <View   style={{  height:32, flexDirection:'row'}}>
-                <Surface width={100} height={32}>
-                    <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
-                </Surface>
-                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >Chapel P-6360</Text>
+                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >Tomahawk DFAC</Text>
              </View> 
              
                <Surface width={100} height={166}>
@@ -838,10 +845,70 @@ getCurrentTime = () =>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >New Barracks ,Bldg P-6003</Text>
+                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >Spartan DFAC</Text>
              </View> 
              
+               <Surface width={100} height={34}>
+                    <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
+                </Surface>
+            
+            
+            
+            
+            
+             <View   style={{  height:32, flexDirection:'row'}}>
+                <Surface width={100} height={32}>
+                    <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
+                </Surface>
+                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >Bldg #P-6315</Text>
+             </View> 
+            
+               <Surface width={100} height={34}>
+                    <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
+                </Surface>
+            
+            
+            
+            
+            
+             <View   style={{  height:32, flexDirection:'row'}}>
+                <Surface width={100} height={32}>
+                    <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
+                </Surface>
+                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >Chapel P-6360</Text>
+             </View> 
+            
                <Surface width={100} height={100}>
+                    <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
+                </Surface>
+            
+            
+            
+            
+            
+             <View   style={{  height:32, flexDirection:'row'}}>
+                <Surface width={100} height={32}>
+                    <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
+                </Surface>
+                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >New Barracks P-6001</Text>
+             </View> 
+            
+               <Surface width={100} height={100}>
+                    <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
+                </Surface>
+            
+            
+            
+            
+            
+             <View   style={{  height:32, flexDirection:'row'}}>
+                <Surface width={100} height={32}>
+                    <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
+                </Surface>
+                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >Talon DFAC S-2097</Text>
+             </View> 
+            
+               <Surface width={100} height={34}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
             
@@ -855,7 +922,6 @@ getCurrentTime = () =>
                 </Surface>
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >3rd MI Bn</Text>
              </View> 
-            
                <Surface width={100} height={100}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
@@ -868,24 +934,8 @@ getCurrentTime = () =>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >Talon DFAC</Text>
+                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >TMP P-7010</Text>
              </View> 
-            
-               <Surface width={100} height={34}>
-                    <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
-                </Surface>
-            
-            
-            
-            
-            
-             <View   style={{  height:32, flexDirection:'row'}}>
-                <Surface width={100} height={32}>
-                    <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
-                </Surface>
-                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >School</Text>
-             </View> 
-            
                <Surface width={100} height={232}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
@@ -898,50 +948,7 @@ getCurrentTime = () =>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >1-17 CAV</Text>
-             </View> 
-            
-               <Surface width={100} height={100}>
-                    <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
-                </Surface>
-            
-            
-            
-            
-            
-             <View   style={{  height:32, flexDirection:'row'}}>
-                <Surface width={100} height={32}>
-                    <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
-                </Surface>
-                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >4-2 ARB</Text>
-             </View> 
-               <Surface width={100} height={34}>
-                    <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
-                </Surface>
-            
-            
-            
-            
-            
-             <View   style={{  height:32, flexDirection:'row'}}>
-                <Surface width={100} height={32}>
-                    <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
-                </Surface>
-                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >CPX</Text>
-             </View> 
-               <Surface width={100} height={166}>
-                    <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
-                </Surface>
-            
-            
-            
-            
-            
-             <View   style={{  height:32, flexDirection:'row'}}>
-                <Surface width={100} height={32}>
-                    <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
-                </Surface>
-                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >RED Walkthru gate</Text>
+                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >ROKA HQs</Text>
              </View>  
                <Surface width={100} height={100}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
@@ -955,7 +962,7 @@ getCurrentTime = () =>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} > Zoeckler station S-1210</Text>
+                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >8th Army HQs</Text>
              </View> 
                <Surface width={100} height={100}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
@@ -969,7 +976,7 @@ getCurrentTime = () =>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >Provider Grill DFAC</Text>
+                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >S-12114</Text>
              </View> 
                 <Surface width={100} height={100}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
@@ -983,13 +990,26 @@ getCurrentTime = () =>
                 <Surface width={100} height={32}>
                     <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
                 </Surface>
-                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >Zoeckler station S-1210</Text>
+                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >Provider DFAC S1291</Text>
              </View> 
                 <Surface width={100} height={100}>
                     <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
                 </Surface>
             
-            
+
+                
+                <View   style={{  height:32, flexDirection:'row'}}>
+                <Surface width={100} height={32}>
+                    <Shape d={path} stroke="#d11f1f" strokeWidth={1}/>
+                </Surface>
+                <Text style={{ marginTop:-10,marginLeft:0,fontSize:30}} >Zoeckler station S1210</Text>
+             </View> 
+                <Surface width={100} height={34}>
+                    <Shape d={path2} stroke="#000000" fill="#d11f1f" strokeWidth={1} />
+                </Surface>
+
+                    
+        
             
             
             

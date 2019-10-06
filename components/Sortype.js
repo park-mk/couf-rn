@@ -36,6 +36,7 @@ class Sorttype extends React.Component {
          
         );}
 
+        {/*
      if(this.props.typeof==2){
        
            return (
@@ -69,6 +70,7 @@ class Sorttype extends React.Component {
                    </View>
                   
                  );}
+                */}
                  if(this.props.typeof==4){
                       console.log("whiteh");
                   return (

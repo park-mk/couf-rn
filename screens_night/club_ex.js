@@ -239,7 +239,7 @@ class CLUBEX extends React.Component {
       return ( 
 
         <View
-        style={{ backgroundColor:"#1f2124"}}
+       // style={{ backgroundColor:"#1f2124"}}
         > 
        
          
@@ -287,7 +287,7 @@ class CLUBEX extends React.Component {
           onPress={()=> this.props.navigation.navigate('CLUB')}
           >
             <View
-             style={{flexDirection:'row', backgroundColor:["black", "#ffffff00"]
+             style={{flexDirection:'row',
            
              }}>
           <Image source={require('../assets/back.png')}
@@ -403,8 +403,10 @@ class CLUBEX extends React.Component {
             </View>
           
           
-        {//  <Texteditor text={vivid}/>
-        }
+          <Texteditor
+          
+          text={vivid}/>
+        
  </View>  
  {/*
         <SafeAreaView style={styles.container}>
@@ -440,11 +442,7 @@ class CLUBEX extends React.Component {
        
       </SafeAreaView>
             */}
-      <View  style={{   marginLeft:20,marginTop:10, flexDirection:'row',marginRight:20}} >
-      
-    
-   
-       </View>
+     
     { /* <View  style={{   marginLeft:20, flexDirection:'row',marginRight:20}} >
       <MaterialIcons name='date-range'  size={30}  color ="grey" /> 
      <Text style={{textAlign:'left', fontSize:20,color:'grey'}}> {JSON.stringify(date).replace(/^"(.+)"$/,'$1')} </Text> 

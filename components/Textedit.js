@@ -28,7 +28,7 @@ class Texteditor extends React.Component {
       var  article=[];
      for(let i=0;i<number_of_pagraph;i++){
         var  info ={
-            text:"a",
+            text:"fuck",
             color: "grey",
             size: 20,
             fontweight: 'bold',
@@ -110,9 +110,9 @@ class Texteditor extends React.Component {
              }
 
         
-        
+     if(info.text!="fuck"){
     article.push(info);
-    sentence=sentence.substring(term+12,sentence.length);
+    sentence=sentence.substring(term+12,sentence.length);}
     }
 
      
@@ -126,11 +126,14 @@ class Texteditor extends React.Component {
           { article.map((item, key)=>(  
              <View key={key}>
             
-           < Sorttype   typeof={item.type}   size={item.size} fontweight={item.fontweight} 
-                        fontstyle={item.fontstyle}     text={item.text}  
-                        uri={item.uri}   margin={item.margin}
+        {/*   < Sorttype   typeof={item.type}   size={item.size} 
+                           text={item.text}  
+                        margin={item.margin}
           />  
-             
+          */ }
+             <Text
+               style={{fontFamily:'content-font',fontSize:item.size,marginLeft:20,marginRight:20}}
+             >{item.text}</Text>
     {/*     <Text  style={{fontSize:item.size ,fontWeight:item.fontweight, fontStyle:item.fontstyle}} > {item.text}</Text>
              
          <Image

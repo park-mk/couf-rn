@@ -114,7 +114,7 @@ class Home1 extends React.Component {
 
         return (
           
-            <ScrollView style={{marginTop:23}}>
+            <ScrollView style={{marginTop:0}}>
                 <View style={{ flex: 1 ,marginTop:0}}>
 
 

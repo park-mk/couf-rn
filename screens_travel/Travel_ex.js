@@ -416,8 +416,8 @@ class Travelitem extends React.Component {
             </View>
           
           
-         {/* <Texteditor text={vivid}/>
-         */}
+          <Texteditor text={vivid}/>
+         
  </View>
         <SafeAreaView style={styles.container}>
         <View style={styles.content1}>
