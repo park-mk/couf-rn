@@ -23,6 +23,7 @@ class Comment extends React.Component {
         this.onRefresh = this.onRefresh.bind(this);
         this.base64Data = '';
         this.setData();
+
     }
 
     setData = () => {
@@ -57,13 +58,14 @@ class Comment extends React.Component {
     };
 
     createData=()=> {
-        let userId = firebase.auth().currentUser.uid;
+        let user = firebase.auth().currentUser;
         let newPostKey = firebase.database().ref().child('comment/'+this.props.type).push().key;
         let createData = {
             content: this.state.comment,
-            user: userId,
+            user: user.uid,
             uid: newPostKey,
-            useremail:firebase.auth().currentUser.email,
+            useremail:user.email,
+            displayName:user.displayName,
             timestamp:Date.now(),
             tags:{},
         };
@@ -169,13 +171,13 @@ class Comment extends React.Component {
         return (
             <View>
                 { firebase.auth().currentUser &&
-                    <CommentForm
-                        comment={this.state.comment}
-                        image={this.state.image}
-                        createData={this.createData}
-                        clearData={this.clearData}
-                        changeComment={this.changeComment}
-                    />
+                <CommentForm
+                    comment={this.state.comment}
+                    image={this.state.image}
+                    createData={this.createData}
+                    clearData={this.clearData}
+                    changeComment={this.changeComment}
+                />
                 }
                 <CommentList
                     lists={this.state.lists}

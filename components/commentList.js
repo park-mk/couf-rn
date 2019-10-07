@@ -110,7 +110,7 @@ class CommentList extends React.Component {
                                   key={item.uid}
                                   title={
                                       <View>
-                                          <Text>{item.useremail}</Text>
+                                          <Text>{item.displayName}</Text>
                                           <DateForm>{this.getDate(item.timestamp)}</DateForm>
                                       </View>
                                   }
@@ -158,14 +158,6 @@ const ModifyList = styled.View`
   margin: 10px;
   padding: 10px 0;
 `
-const ModifyTitleHeader = styled.View`
-  display:flex;
-  flex-direction: row;
-`
-const ModifyTitle = styled.View`
-  flex:1;
-`
-
 
 const Buttons = styled.View`
   display:flex;
