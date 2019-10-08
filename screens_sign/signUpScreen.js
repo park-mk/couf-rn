@@ -114,84 +114,74 @@ class SignUpScreen extends React.Component {
       
     }
 
-    singUpUser1=(email,password,displayname)=>{ 
+    singUpUser1=(email,password,displayname)=>{
 
 
         const { navigation } = this.props;
         console.log(email);
-     
-  
-          alert("next step"); 
-        
-            
-          if(this.state.password==this.state.password2){
-       
-       
+
+        if(this.state.password==this.state.password2){
+            // try {
+            if(this.state.password.length<6){
+                alert("Password should be longer than 6 please");
+                return
+            }
+
+            console.log(email, password);
+            firebase.auth().createUserWithEmailAndPassword(email.trim(),password).then(function () {
+
+            }).then(function () {
+                let user = firebase.auth().currentUser;
+                return user.updateProfile({
+                    displayName: displayname,
+                });
+                /*
+                            }).then(function(response){
+                                let code=email.substring(0,4)+"_"+displayname;
+
+                                ??? 나중에 뭔지 물어보기
+                                firebase.database().ref('userinfo/'+ code).update({
+                                    email:email,
+                                    user_like_history:"",
+                                    displayName:displayname,
+
+                                }, function(){
+                                    alert('Success');
+                                });
+                */
 
 
-           // try {
-                if(this.state.password.length<6){
-                    alert("longer than 6 please")
-                    return
-                } 
-                   
-                console.log(email, password);
-                firebase.auth().createUserWithEmailAndPassword(email.trim(),password).then(function () {
-                    user = firebase.auth().currentUser;
-                  
-                  })
-                  .then(function () {
-                    user.updateProfile({
-                    //  displayName: this.state.displayname,
-                      displayName: displayname,
-                    //console.log("a");
-                    });
-                  }).then(function(){
-                   
-                        var code=email.substring(0,4)+"_"+displayname;
-                       
-                        firebase.database().ref('userinfo/'+ code).update({
-                            email:email,
-                            user_like_history:"",
-                            displayName:displayname,
+            }).then(function(){
+                navigation.navigate('Profile');
 
-                        }, function(){
-                            alert('Success');
-                        });
-                
-                    
-                  }).then(function(){
-                    navigation.navigate('Profile');
+            }).catch(function(error) {
+                if(typeof error.message == 'string') alert(error.message);
+                console.log(error.message);
+            });
 
-                  })
-                  .catch(function(error) {
-                    console.log(error.message);
-                  });
-                
-         /*   this.props.navigation.navigate('SignUp1', {
-                email : email,
-                password: password,
-                firstname: this.state.firstname,
-                lastname: this.state.lastname,
-                male:this.state.male,
-                female:this.state.female,
-                year:this.state.year,
-                month:this.state.month,
-                day:this.state.day,
-        
-             });*/
-         
+            /*   this.props.navigation.navigate('SignUp1', {
+                   email : email,
+                   password: password,
+                   firstname: this.state.firstname,
+                   lastname: this.state.lastname,
+                   male:this.state.male,
+                   female:this.state.female,
+                   year:this.state.year,
+                   month:this.state.month,
+                   day:this.state.day,
+
+                });*/
+
         }
-     
 
-       
+
         else alert("confirming password is different with your password")
 
 
 
 
-       
-       }
+
+    }
        
     
      
@@ -293,7 +283,7 @@ class SignUpScreen extends React.Component {
                     <Item>
                         <Input
                             placeholder="Password"
-                           // secureTextEntry={true}
+                            secureTextEntry={true}
                             autoCorrect={false}
                             autoCapitalize="none"
                             onChangeText= {(password)=>this.setState({password})}

@@ -85,8 +85,7 @@ const styles = StyleSheet.create({
 
   render() {
     
-   console.log(this.state.data);
-   console.log("thisss");
+   console.log('데이터다',firebase.auth().currentUser);
     return (
         <Container style={styles.wrapper} >
            

@@ -25,7 +25,7 @@ class SuggestionScreen extends React.Component {
         })
         this.setData();
         this.base64Data = '';
-
+        this.onRefresh = this.onRefresh.bind(this);
 /*
         admin.auth().createUser({
             email: 'user@example.com',
@@ -153,7 +153,7 @@ class SuggestionScreen extends React.Component {
                         </Buttons>
                     </View>
                     }
-                    {!this.state.toggleWriteForm &&
+                    {!this.state.toggleWriteForm && firebase.auth().currentUser &&
                     <View>
                         <Buttons style={{alignSelf: 'flex-end'}}>
                             <Button type="solid" buttonStyle={{width: 50}}
