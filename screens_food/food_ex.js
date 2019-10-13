@@ -259,25 +259,19 @@ class Fooditem extends React.Component {
 
           />
           <ScrollView>
+
+            
             <View style={{ flex: 10 }}>
               <ImageBackground source={{ uri: topimage.toString() }} style={{ height: imageheight, width: imagewidth }}>
                 <View style={{ top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center' }}></View>
               </ImageBackground>
               <View style={{ marginTop:30}}></View>
               <View style={{ marginTop:0}}>
-                <View style={{ flexDirection: 'row', flex: 6 }} >
-                  <View style={{ flex: 0.3}}></View>
-                  <Image
-                      style={{
-                        width: 30, flex: 1,
-                        height: 30, alignContent: 'center',
-                      }}
-                      resizeMode={'contain'}
-                      source={require('../assets/place_lo.png')}
-                  />
-                  <View style={{ flex: 1 }}></View>
+                <View style={{ flexDirection: 'row', flex: 2 }} >
+                
+                 
 
-                  <View>
+                  <View style={{marginLeft:80,flex:1}}>
                     {this.state.voted ? (
 
                             <TouchableOpacity
@@ -314,10 +308,10 @@ class Fooditem extends React.Component {
                     )}
                   </View>
 
-                  <View style={{ flex: 1 ,marginRight:-10}}>
-                    <Text style={{ textAlign: 'left', fontSize: 20,color:'#56B8FF',marginBottom:3}}>{this.state.up}</Text>
-                  </View>
-
+                 
+                
+                
+                  <View style={{flex:1,alignItems:'flex-end',marginRight:80}}>
                   <TouchableHighlight
                       onPress={() => {
                         this.onClickComment();
@@ -333,11 +327,10 @@ class Fooditem extends React.Component {
                     />
                   </TouchableHighlight>
 
-                  <View style={{ flex: 1 }}>
-               {/*     <Text style={{ textAlign: 'left', fontSize: 20,color:'#56B8FF',marginBottom:2 }}>{this.state.up}</Text>*/}
                   </View>
 
                 </View>
+
                 
                 <View style={{ marginTop:30}}>
 

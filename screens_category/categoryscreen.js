@@ -20,7 +20,7 @@ class CategoryScreen extends React.Component {
 
   render() {
     return ( 
-    <View style={{flex:1,marginTop:20}}>
+    <View style={{flex:1,marginTop:20,marginLeft:7}}>
          <ScrollView   onRefresh={this.handleRefresh} >
          { /*****  category sort  each view have 2 category  in row  *******/}
              <View   style={{  flex:1,  flexDirection:'row'}}>
@@ -57,23 +57,23 @@ class CategoryScreen extends React.Component {
           
                     <Category  imageURI={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Fbuy%20%26%20sell.png?alt=media&token=5c07704a-85e8-4381-a860-14f33f81f160"}}
                            name='buy and sell'
-                           onPress={()=> this.props.navigation.navigate('UNDEVELOP')}
+                           onPress={()=> this.props.navigation.navigate('UNDEVELOP1')}
                       />
-                    <Category  imageURI={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2FQ%26A.png?alt=media&token=53b2c769-2dc1-437b-8454-4d99dab85827"}}
+                    <Category  imageURI={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2F71583065_384095262479898_3086850522427162624_n.png?alt=media&token=d90c1db1-b1f3-49bd-8a95-c4e5223a2f53"}}
                            name='TOUR'
-                           onPress={()=> this.props.navigation.navigate('UNDEVELOP')}
+                           onPress={()=> this.props.navigation.navigate('UNDEVELOP1')}
                       />
              </View>
        { /*****  category sort  each view have 2 category  in row  *******/}
              <View  style={{  flex:1,  flexDirection:'row'}}>
           
-                   <Category  imageURI={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Fculture.png?alt=media&token=49e680d1-059a-4cbb-8672-37997f328f90"}}
-                           name='Shopping'
+                   <Category  imageURI={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2F71943018_385345952161708_3197462092261097472_n.png?alt=media&token=d297dc46-a368-414d-b4fa-842f5cb079df"}}
+                           name='culture'
                            
                     />
-                   <Category  imageURI={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Fcontact%20us%20(1).png?alt=media&token=d8eaaa2d-7be6-49f5-bb3b-63f422d27c94"}}
-                           name='Q & A / Suggestion for APP'
-                          
+                   <Category  imageURI={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2F71348065_692662517904833_2631103120217735168_n.png?alt=media&token=9b1bb6f7-9af8-4241-9698-5c2b1e28675c"}}
+                           name='contact us'
+                           onPress={()=> this.props.navigation.navigate('CONTACT')}
                     />
              </View>
       { /*****  category sort  each view have 2 category  in row  *******/}

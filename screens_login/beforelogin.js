@@ -1,5 +1,5 @@
 import React from 'react';
-import {  Text, View ,StyleSheet, Image,ScrollView} from 'react-native';
+import {  Text, View ,StyleSheet, Image,ScrollView,Alert} from 'react-native';
 import  firebase from "../firebase";
 import{FormLabel,FormInput} from 'react-native-elements'
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
@@ -23,7 +23,7 @@ import SignUpScreen from '../screens_sign/signUpScreen';
  
     renderScreen() {
         if(firebase.auth().currentUser!=null){
-           
+         
               
               return  <Profile/>;
         

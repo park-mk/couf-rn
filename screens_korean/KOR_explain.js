@@ -2,22 +2,29 @@ import React from 'react';
 import { Button, View, Text ,Image,TouchableOpacity,ScrollView} from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation'; 
 import { List, ListItem, SearchBar ,Header} from "react-native-elements";
+import { Audio } from 'expo-av';
 class KOR_explainScreen extends React.Component {
 
 
   async _play(sound){
+    
+    
     try {
-      
-      const { sound: soundObject, status } = await Expo.Audio.Sound.createAsync(
+      console.log("soundout")
+      const { sound: soundObject, status } = await Audio.Sound.createAsync(
           
           {uri:JSON.stringify(sound).replace(/^"(.+)"$/,'$1')},
           { shouldPlay: true }
+
+
         );
         // Your sound is playing!
       } catch (error) {
         // An error occurred!
+        if(typeof error.message == 'string') alert(error.message);
       }
-  
+     
+     
    }
     render() {
          

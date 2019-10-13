@@ -288,11 +288,11 @@ class CLUBEX extends React.Component {
           >
             <View
              style={{flexDirection:'row',
-           
+               
              }}>
           <Image source={require('../assets/back.png')}
                       
-         style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
+         style={{width:70,height:80,marginLeft:-15,marginTop:25,resizeMode:'cover'}}
     />   
     
     </View>
@@ -301,7 +301,7 @@ class CLUBEX extends React.Component {
            
           
 
-        <View style={{ flex: 2,marginTop:-80}}>
+        <View style={{ flex: 2,marginTop:-105}}>
         
         <ImageBackground    source={{uri:topimage.toString()}} style={{height:200,width:375 }}>
         <View style={{ top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center'}}>

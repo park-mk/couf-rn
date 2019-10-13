@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, View, Text ,Image,TouchableOpacity,ScrollView} from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation'; 
 import { List, ListItem, SearchBar ,Header} from "react-native-elements";
-class UNDEVELOP extends React.Component {
+class UNDEVELOP1 extends React.Component {
 
 
  
@@ -14,7 +14,7 @@ class UNDEVELOP extends React.Component {
         <View style={{flex:1}}>
         <Header
         leftComponent={  <TouchableOpacity 
-         onPress={()=> this.props.navigation.navigate('Home')}
+         onPress={()=> this.props.navigation.navigate('Category')}
          >
          <Image source={require('./assets/back.png')}
                      
@@ -28,7 +28,7 @@ class UNDEVELOP extends React.Component {
          />
         <ScrollView style={{ flex: 1 }}>
         
-          <Text style={{fontSize:30,marginLeft:10,fontFamily:'title-font',marginRight:20}}> will be available soon! </Text>
+          <Text style={{fontSize:30,marginLeft:10,fontFamily:'title-font',marginRight:20}}>will be available soon! </Text>
       
           <Text style={{fontSize:20,marginLeft:10,marginTop:30,fontFamily:'content-font',color:'grey',marginRight:20}}>your likes and suggestions are essential. If you like this app, please spread the word!</Text>
         </ScrollView>
@@ -37,4 +37,4 @@ class UNDEVELOP extends React.Component {
     }
   }
 
-  export default  UNDEVELOP;
+  export default  UNDEVELOP1;

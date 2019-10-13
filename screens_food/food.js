@@ -257,7 +257,7 @@ this.setState({
          
           <Image
             style={ { width: 35,
-              height: 30,marginTop:200}}
+              height: 30,marginTop:170}}
             source={require('../assets/likewhithe.png')}
           /> 
           <Text style={{marginLeft:3,fontSize:30,color:'white',fontFamily:'title-font'}}>{item.upvote}</Text>
@@ -333,7 +333,7 @@ this.setState({
          
           <Image
             style={ { width: 35,
-              height: 30,marginTop:200}}
+              height: 30,marginTop:170}}
             source={require('../assets/likewhithe.png')}
           /> 
           <Text style={{marginLeft:3,fontSize:30,color:'white',fontFamily:'title-font'}}>{item.upvote}</Text>
@@ -412,7 +412,7 @@ this.setState({
          
           <Image
             style={ { width: 35,
-              height: 30,marginTop:200}}
+              height: 30,marginTop:170}}
             source={require('../assets/likewhithe.png')}
           /> 
           <Text style={{marginLeft:3,fontSize:30,color:'white',fontFamily:'title-font'}}>{item.upvote}</Text>
@@ -490,7 +490,7 @@ this.setState({
      
       <Image
         style={ { width: 35,
-          height: 30,marginTop:200}}
+          height: 30,marginTop:170}}
         source={require('../assets/likewhithe.png')}
       /> 
       <Text style={{marginLeft:3,fontSize:30,color:'white',fontFamily:'title-font'}}>{item.upvote}</Text>
@@ -563,8 +563,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   icon: {
-    width: 300,
-    height: 230,
+    width: 340,
+    height: 200,
     borderRadius: 5,
     resizeMode: 'cover',
    

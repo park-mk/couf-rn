@@ -15,14 +15,18 @@ import {
     TouchableOpacity,
     ActivityIndicator,
     Linking,
+    Alert
+    
+  
 } from 'react-native';
 import { List, ListItem, SearchBar } from "react-native-elements";
 import firebase, { storage } from "../firebase";
 //import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import someList from '../components/anylist'
 import *  as Font from'expo-font'
+import { ConfirmDialog } from 'react-native-simple-dialogs';
 
-
+import expo from '../app.json'
 
 
 const color = {
@@ -35,18 +39,20 @@ const color = {
 class Home1 extends React.Component {
     constructor(props) {
         super(props);
-
+     
         this.state = {
             description1:"",
             description2:"",
             description3:"",
             description4:"",
-
+            dialogVisible:true,
+            
             image1:"",
             image2:"",
             image3:"",
             image4:"",
         };
+        this.fundplease = this.fundplease.bind(this);
     }
 
 
@@ -85,7 +91,7 @@ class Home1 extends React.Component {
              description2:m.p_2.description,
              description3:m.p_3.description,
              description4:m.p_4.description,
-
+              
              image1:m.p_1.image,
              image2:m.p_2.image,
              image3:m.p_3.image,
@@ -97,24 +103,128 @@ class Home1 extends React.Component {
     }
 
     _keyExtractor = (item, index) => item.key;
+     
 
-    render() { 
+
+ 
+
+    fundplease=()=>{
+        let user = firebase.auth().currentUser;
+        var show=true;
+        firebase.auth().onAuthStateChanged(function(user) {
+            var date = new Date().getDate(); //Current Date
+            var month = new Date().getMonth() + 1; //Current Month
+            var year = new Date().getFullYear();
+            if (user) {
+
+              if(firebase.auth().currentUser!=null){
+                  var m;
+                var code = firebase.auth().currentUser.email.substring(0, 4) + '_' + firebase.auth().currentUser.displayName;
+                var usersRef = firebase.database().ref('userinfo/' + code + '/user_watched');
+                usersRef.on('value', (snapshot) => {
+                  m = snapshot.val()
+                  console.log("이거",m);
+                  if(m==date+month+year){
+                  console.log("아니",m,date+month+year);
+                   show=false;
+                  }
+               
+               
+                 
+                });
+               
+           
+
+            }
+
+
+            const MyStatusBar = ({backgroundColor, ...props}) => (
+                <View style={[styles.statusBar, { backgroundColor }]}>
+                 <StatusBar backgroundColor="yellow" barStyle="dark-content" />
+                </View>
+              ); 
+            } else {
+                console.log(Date(Date.now()).toString())
+                console.log("no user")
+    
+             
+              
+            }
+          });
+
+          
+
+              return show;
+            
+         
+     }
+
+     check2= ()=>{
+        console.log('no again')
+        var date = new Date().getDate(); //Current Date
+        var month = new Date().getMonth() + 1; //Current Month
+        var year = new Date().getFullYear();
+        var code = firebase.auth().currentUser.email.substring(0, 4) + '_' + firebase.auth().currentUser.displayName;
+        firebase.database().ref('userinfo/' + code).update({
+            user_watched:date+month+year
+          }, function () {
+    
+          });
+       
+       }
+    
+     
+
+
+ 
+     
+     render() { 
         let dimensions = Dimensions.get("window");
         let imageheight = dimensions.height / 5;
-        let imagewidth = dimensions.width;
-       
+        let imagewidth = dimensions.width; 
+
+      
+        const MyStatusBar = ({backgroundColor, ...props}) => (
+            <View style={[styles.statusBar, { backgroundColor }]}>
+             <StatusBar backgroundColor="yellow" barStyle="dark-content" />
+            </View>
+          ); 
+         
+         
+          console.log(expo.expo.version);
           
-        console.log(this.state.image1);
 
-
-       
-          
-        console.log(this.state.image1);
-
-
+         
+  
         return (
-          
+         
+     
+
+            <View>
+                <ConfirmDialog
+    title="Dear users"
+    message="
+    We, the developer team, are in need of financial support due to maintenance expenses. 
+    If any of you would like to support are hard work and the effort we put into this app, and help improve it,
+    Thank you "
+    visible={this.state.dialogVisible}
+    onTouchOutside={() => this.setState({dialogVisible: false})}
+    positiveButton={{
+        title: "YES",
+        onPress: () =>  Linking.openURL("https://www.paypal.me/coufKR?locale.x=ko_KR").catch((err) => console.error('An error occurred', err))
+    }}
+    negativeButton={{
+        title: "NO",
+        onPress: () =>this.setState({dialogVisible: false})
+    }}
+           />
+            <StatusBar backgroundColor="blue" barStyle="dark-content" />
+           
+    
+    
             <ScrollView style={{marginTop:0}}>
+
+
                 <View style={{ flex: 1 ,marginTop:0}}>
 
 
@@ -156,6 +266,7 @@ class Home1 extends React.Component {
                                 borderBottomWidth:3,
                             }}
                             source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2FENTERTAINMENT.png?alt=media&token=cad30c80-491a-4404-ab34-2dd5ef069f37" }}
+                        
                         />
 
 
@@ -187,6 +298,7 @@ class Home1 extends React.Component {
                             marginBottom:1,
                          }}
                          onPress={()=> this.props.navigation.navigate('UNDEVELOP')}
+                      //   onPress={()=> this.props.navigation.navigate('UNDEVELOP')}
                     >
 
 
@@ -195,7 +307,7 @@ class Home1 extends React.Component {
                                 width: imagewidth,
                                 height: imageheight,
                             }}
-                            source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2FSHOP.png?alt=media&token=841f58a9-4145-4b18-bf77-6a1a0ff523d2" }}
+                            source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2Fbuy%40sell.png?alt=media&token=54173976-31ab-4473-af6d-f4127ffc12d6" }}
                         />
 
 
@@ -260,6 +372,8 @@ class Home1 extends React.Component {
                 </View>
 
             </ScrollView>
+            </View> 
+            
         );
     }
 }

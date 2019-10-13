@@ -1081,17 +1081,17 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@emotion/is-prop-valid@^0.7.3":
-  version "0.7.3"
-  resolved "http://r.cnpmjs.org/@emotion/is-prop-valid/download/@emotion/is-prop-valid-0.7.3.tgz#a6bf4fa5387cbba59d44e698a4680f481a8da6cc"
-  integrity sha1-pr9PpTh8u6WdROaYpGgPSBqNpsw=
+"@emotion/is-prop-valid@^0.8.1":
+  version "0.8.3"
+  resolved "http://r.cnpmjs.org/@emotion/is-prop-valid/download/@emotion/is-prop-valid-0.8.3.tgz#cbe62ddbea08aa022cdf72da3971570a33190d29"
+  integrity sha1-y+Yt2+oIqgIs33LaOXFXCjMZDSk=
   dependencies:
-    "@emotion/memoize" "0.7.1"
+    "@emotion/memoize" "0.7.3"
 
-"@emotion/memoize@0.7.1":
-  version "0.7.1"
-  resolved "http://r.cnpmjs.org/@emotion/memoize/download/@emotion/memoize-0.7.1.tgz#e93c13942592cf5ef01aa8297444dc192beee52f"
-  integrity sha1-6TwTlCWSz17wGqgpdETcGSvu5S8=
+"@emotion/memoize@0.7.3":
+  version "0.7.3"
+  resolved "http://r.cnpmjs.org/@emotion/memoize/download/@emotion/memoize-0.7.3.tgz#5b6b1c11d6a6dddf1f2fc996f74cf3b219644d78"
+  integrity sha1-W2scEdam3d8fL8mW90zzshlkTXg=
 
 "@emotion/unitless@^0.7.0":
   version "0.7.3"
@@ -5707,6 +5707,14 @@ expo-asset@~7.0.0:
     path-browserify "^1.0.0"
     url-parse "^1.4.4"
 
+expo-av@~7.0.0:
+  version "7.0.1"
+  resolved "http://r.cnpmjs.org/expo-av/download/expo-av-7.0.1.tgz#c25cb66f20333157ae65110aa9faef68b34cc7a8"
+  integrity sha1-wly2byAzMVeuZREKqfrvaLNMx6g=
+  dependencies:
+    lodash "^4.17.15"
+    nullthrows "^1.1.0"
+
 expo-cli@^3.1.0:
   version "3.1.0"
   resolved "http://r.cnpmjs.org/expo-cli/download/expo-cli-3.1.0.tgz#7a208c1d0eaede73d3aa2e71b8977e4e019b1c67"
@@ -5770,6 +5778,11 @@ expo-constants@~7.0.0:
   dependencies:
     ua-parser-js "^0.7.19"
 
+expo-facebook@^7.0.0:
+  version "7.0.0"
+  resolved "http://r.cnpmjs.org/expo-facebook/download/expo-facebook-7.0.0.tgz#532b42d67ec91df051fa1f41ee8a1322154fba2b"
+  integrity sha1-UytC1n7JHfBR+h9B7ooTIhVPuis=
+
 expo-file-system@~7.0.0:
   version "7.0.0"
   resolved "http://r.cnpmjs.org/expo-file-system/download/expo-file-system-7.0.0.tgz#ac98233b18774cce299fffd9451f08f21b116564"
@@ -5777,7 +5790,7 @@ expo-file-system@~7.0.0:
   dependencies:
     uuid-js "^0.7.5"
 
-expo-font@~7.0.0:
+expo-font@^7.0.0, expo-font@~7.0.0:
   version "7.0.0"
   resolved "http://r.cnpmjs.org/expo-font/download/expo-font-7.0.0.tgz#0b36f5c91a77eb718fb20559b2c0c58d762ba535"
   integrity sha1-Czb1yRp363GPsgVZssDFjXYrpTU=
@@ -8017,6 +8030,11 @@ is-utf8@^0.2.0:
   resolved "http://r.cnpmjs.org/is-utf8/download/is-utf8-0.2.1.tgz#4b0da1442104d1b336340e80797e865cf39f7d72"
   integrity sha1-Sw2hRCEE0bM2NA6AeX6GXPOffXI=
 
+is-what@^3.3.1:
+  version "3.3.1"
+  resolved "http://r.cnpmjs.org/is-what/download/is-what-3.3.1.tgz#79502181f40226e2d8c09226999db90ef7c1bcbe"
+  integrity sha1-eVAhgfQCJuLYwJImmZ25DvfBvL4=
+
 is-windows@^1.0.2:
   version "1.0.2"
   resolved "http://r.cnpmjs.org/is-windows/download/is-windows-1.0.2.tgz#d1850eb9791ecd18e6182ce12a30f396634bb19d"
@@ -9248,6 +9266,13 @@ memory-fs@^0.4.0, memory-fs@^0.4.1, memory-fs@~0.4.1:
   dependencies:
     errno "^0.1.3"
     readable-stream "^2.0.1"
+
+merge-anything@^2.2.4:
+  version "2.4.1"
+  resolved "http://r.cnpmjs.org/merge-anything/download/merge-anything-2.4.1.tgz#e9bccaec1e49ec6cb5f77ca78c5770d1a35315e6"
+  integrity sha1-6bzK7B5J7Gy193ynjFdw0aNTFeY=
+  dependencies:
+    is-what "^3.3.1"
 
 merge-descriptors@1.0.1:
   version "1.0.1"
@@ -11699,7 +11724,7 @@ prompts@^0.1.9:
     kleur "^2.0.1"
     sisteransi "^0.1.1"
 
-prop-types@^15.5.0, prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2:
+prop-types@^15.5.0, prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.7, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2:
   version "15.7.2"
   resolved "http://r.cnpmjs.org/prop-types/download/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha1-UsQedbjIfnK52TYOAga5ncv/psU=
@@ -12059,10 +12084,25 @@ react-lifecycles-compat@^3.0.0, react-lifecycles-compat@^3.0.4:
   resolved "http://r.cnpmjs.org/react-lifecycles-compat/download/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha1-TxonOv38jzSIqMUWv9p4+HI1I2I=
 
+react-native-awesome-alert@^0.4.5:
+  version "0.4.5"
+  resolved "http://r.cnpmjs.org/react-native-awesome-alert/download/react-native-awesome-alert-0.4.5.tgz#39a8bec96f803df0719340e6c82bb002577de014"
+  integrity sha1-Oai+yW+APfBxk0DmyCuwAld94BQ=
+  dependencies:
+    prop-types "^15.6.0"
+    react-native-check-box "^2.0.2"
+
 react-native-branch@~3.0.1:
   version "3.0.1"
   resolved "http://r.cnpmjs.org/react-native-branch/download/react-native-branch-3.0.1.tgz#5b07b61cbd290168cd3c3662e017ebe0f356d2ca"
   integrity sha1-Wwe2HL0pAWjNPDZi4Bfr4PNW0so=
+
+react-native-check-box@^2.0.2:
+  version "2.1.7"
+  resolved "http://r.cnpmjs.org/react-native-check-box/download/react-native-check-box-2.1.7.tgz#f349d3505a13c15d19949ec4cec40c7adc4f3626"
+  integrity sha1-80nTUFoTwV0ZlJ7EzsQMetxPNiY=
+  dependencies:
+    prop-types "^15.5.7"
 
 react-native-datepicker@^1.7.2:
   version "1.7.2"
@@ -12103,6 +12143,11 @@ react-native-elements@^1.1.0:
     prop-types "^15.5.8"
     react-native-ratings "^6.3.0"
     react-native-status-bar-height "^2.2.0"
+
+react-native-fbsdk@^1.0.4:
+  version "1.0.4"
+  resolved "http://r.cnpmjs.org/react-native-fbsdk/download/react-native-fbsdk-1.0.4.tgz#ecc0faf235e12de4423af9908f56b999cf144422"
+  integrity sha1-7MD68jXhLeRCOvmQj1a5mc8URCI=
 
 react-native-fetch-blob@^0.10.8:
   version "0.10.8"
@@ -12185,6 +12230,11 @@ react-native-safe-area-view@^0.13.0:
   version "1.0.0-alpha.22"
   resolved "http://r.cnpmjs.org/react-native-screens/download/react-native-screens-1.0.0-alpha.22.tgz#7a120377b52aa9bbb94d0b8541a014026be9289b"
   integrity sha1-ehIDd7Uqqbu5TQuFQaAUAmvpKJs=
+
+react-native-simple-dialogs@^1.2.0:
+  version "1.2.0"
+  resolved "http://r.cnpmjs.org/react-native-simple-dialogs/download/react-native-simple-dialogs-1.2.0.tgz#d3fa8e7b46ea563eed9ee4882e804b9d1b9f3c59"
+  integrity sha1-0/qOe0bqVj7tnuSILoBLnRufPFk=
 
 react-native-status-bar-height@^2.2.0:
   version "2.2.0"
@@ -13845,17 +13895,19 @@ style-loader@^0.23.1:
     loader-utils "^1.1.0"
     schema-utils "^1.0.0"
 
-styled-components@latest:
-  version "4.2.0"
-  resolved "http://r.cnpmjs.org/styled-components/download/styled-components-4.2.0.tgz#811fbbec4d64c7189f6c7482b9eb6fefa7fefef7"
-  integrity sha1-gR+77E1kxxifbHSCuetv76f+/vc=
+styled-components@^4.4.0:
+  version "4.4.0"
+  resolved "http://r.cnpmjs.org/styled-components/download/styled-components-4.4.0.tgz#4e381e2dab831d0e6ea431c2840a96323e84e21b"
+  integrity sha1-TjgeLauDHQ5upDHChAqWMj6E4hs=
   dependencies:
     "@babel/helper-module-imports" "^7.0.0"
-    "@emotion/is-prop-valid" "^0.7.3"
+    "@babel/traverse" "^7.0.0"
+    "@emotion/is-prop-valid" "^0.8.1"
     "@emotion/unitless" "^0.7.0"
     babel-plugin-styled-components ">= 1"
     css-to-react-native "^2.2.2"
     memoize-one "^5.0.0"
+    merge-anything "^2.2.4"
     prop-types "^15.5.4"
     react-is "^16.6.0"
     stylis "^3.5.0"

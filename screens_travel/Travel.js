@@ -40,7 +40,16 @@ class Travellist extends React.Component {
 
 
   
+  async componentDidMount() {
+    await Font.loadAsync({
 
+      'Raley-balck': require('../assets/fonts/33676382891.ttf'),
+      'title-font': require('../assets/fonts/BebasNeue-Regular.ttf'),
+       'content-font':require('../assets/fonts/Bayon.ttf'),
+
+    });
+    this.setState({ fontLoaded: true })
+  }
 
   componentDidMount() {
     

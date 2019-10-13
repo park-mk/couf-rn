@@ -126,6 +126,7 @@ usersRef.on('value', (snapshot) => {
               loca: item.loca,
               topimage : item.topimage,
               imagelist: item.images,
+              disname:item.disname,
              // cate:item.cate,
              // upvote:item.upvote,
             

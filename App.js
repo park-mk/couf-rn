@@ -26,13 +26,15 @@ import {
   createAppContainer
 } from 'react-navigation';
 
-import { Ionicons } from '@expo/vector-icons';
-
+//import { Ionicons } from '@expo/vector-icons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import { YellowBox } from 'react-native';
 
 import CategoryScreen from './screens_category/categoryscreen'
 
 import UNDEVELOP from './undeveloped'
+import UNDEVELOP1 from './undeveloped1'
+import CONTACT from './contactus'
 
 import TOLScreen from './screens_category/TOLscreen'
 import KORcate from './screens_korean/KORcate'
@@ -91,7 +93,15 @@ import FESTIVALEX from'./screens_night/festival_ex'
 import CONCERT from'./screens_night/concert'
 import CONCERTEX from'./screens_night/concert_ex'
 
-import *  as Font from'expo-font'
+import * as Font from 'expo-font';
+//import { createIconSet } from '@expo/vector-icons';
+import expo from './app.json'
+
+const glyphMap = { 'icon-name': 1234, test: '∆' };
+//const expoAssetId = require("@expo/vector-icons/Ionicons.ttf");
+//const CustomIcon = createIconSet(glyphMap, 'FontName', expoAssetId);
+
+
 /////////////
 import { InteractionManager } from 'react-native';
 
@@ -153,32 +163,54 @@ class HomeScreen extends React.Component {
     }
   }
   
-
-  async componentDidMount() {
-    await Font.loadAsync({
+  componentWillMount() {
+    this.loadFonts();
+  }
+  async loadFonts() {
+    await Expo.Font.loadAsync({
 
       'Raley-balck': require('./assets/fonts/33676382891.ttf'),
       'title-font': require('./assets/fonts/BebasNeue-Regular.ttf'),
        'content-font':require('./assets/fonts/Bayon.ttf'),
+      // Ionicons: require('@expo/vector-icons/Ionicons.ttf'),
 
     });
-    this.setState({ fontLoaded: true })
   }
+
+  renderScreen() {
+    if(expo==expo.expo.version){
+       
+          
+          return   <View>
+          <Home1
+              navigation={this.props.navigation}
+           ></Home1>
+     
+         </View>;
+    
+}
+
+    return <View>
+    <Home1
+        navigation={this.props.navigation}
+     ></Home1>
+
+   </View>;
+}
+    tintcolorto(){
+
+      var colorname=`https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2Ficon%2Fmember.png?alt=media&token=ee4f86ef-a8df-4125-8fcd-957e3c91808d`;
+      return  colorname;
+    }
   render() {
-    let dimensions = Dimensions.get("window");
-    let imageheight = dimensions.height/5;
-    let imagewidth = dimensions.width;
+    
      //navigation.navigate('Home1')
     return (
-     // <SafeAreaView style={{ flex: 1 }}>
-    
+      <ScrollView >
+      {this.renderScreen()}
+  </ScrollView>
        
-      <View>
-       <Home1
-           navigation={this.props.navigation}
-        ></Home1>
-  
-      </View>
+    
       
     );
   }
@@ -263,7 +295,7 @@ const HomeStack = createStackNavigator({
     header: null,
    
 
-  }},
+  }}
 
 });
 
@@ -304,6 +336,15 @@ const CategoryStack = createStackNavigator({
   Red: { screen: Red },
   GREEN: { screen: GREEN },
   BLUE: { screen: BLUE },
+  CONTACT: { screen: CONTACT , navigationOptions: {
+    header: null,
+   
+
+  }},UNDEVELOP1: { screen: UNDEVELOP1 , navigationOptions: {
+    header: null,
+   
+
+  }}
   
 
 });
@@ -383,32 +424,36 @@ const AreaStack = createStackNavigator({
 
 const LoginStack = createStackNavigator({
   Loginc: {
-    screen: Loginc
-  },
-  Login1: {
-    screen: LoginScreen
-    , navigationOptions: {
+    screen: Loginc, navigationOptions: {
       header: null,
-
-
-
-
-    }
-
-  },
+  
+    } },
+  Login1: {
+    screen: LoginScreen, navigationOptions: {
+      header: null,
+  
+    } },
 
   SignUp: {
-    screen: SignUpScreen
-  },
+    screen: SignUpScreen, navigationOptions: {
+      header: null,
+  
+    } },
   SignUp1: {
-    screen: SignUp1
-  },
+    screen: SignUp1, navigationOptions: {
+      header: null,
+  
+    } },
   SignUp2: {
-    screen: SignUp2
-  },
+    screen: SignUp2, navigationOptions: {
+      header: null,
+  
+    } },
   Profile: {
-    screen: Profile
-  }
+    screen: Profile, navigationOptions: {
+      header: null,
+  
+    } }
 });
 
 const SuggestionStack = createStackNavigator({
@@ -435,23 +480,51 @@ export default createAppContainer(createBottomTabNavigator(
       tabBarIcon: ({ focused, tintColor }) => {
         const { routeName } = navigation.state;
         let iconName;
-      
-        if (routeName === 'Category') {
-          iconName = `md-list`;
+       
+        if (routeName === 'Category'&&focused===true) {
+          iconName = require("./assets/more.png");
         }
-        if (routeName === 'Home') {
-          iconName = `ios-home`;
+        if (routeName === 'Category'&&focused===false) {
+          iconName = require("./assets/more.png");
         }
-        if (routeName === 'Area') {
-          iconName = `ios-pin`;
+
+
+        if (routeName === 'Home'&&focused===true) {
+          iconName = require("./assets/home.png");
         }
-        if (routeName === 'Login1') {
-          iconName = `ios-contact`;
+        if (routeName === 'Home'&&focused===false) {
+          iconName =require("./assets/home.png");
+        }
+
+
+        if (routeName === 'Area'&&focused===true) {
+          iconName = require("./assets/place_lo.png");
+        }
+        if (routeName === 'Area'&&focused===false) {
+          iconName = require("./assets/home.png");
+        }
+
+
+        if (routeName === 'Login1'&&focused===true) {
+          iconName = require("./assets/member.png");
+        }
+        if (routeName === 'Login1'&&focused===false) {
+          iconName = require("./assets/home.png");
         }
         if (routeName === 'Suggestion') {
           iconName = `ios-contact`;
         }
-        return <Ionicons name={iconName} size={25} color={tintColor} />;
+        return  <Image
+        style={{
+          width: 30, flex: 1,
+          height: 30, alignContent: 'center'
+        }}
+        tintColor={tintColor}
+        resizeMode={'contain'} 
+        source={iconName}
+       // source={{uri:iconName}}
+       
+      />;
       },
     }),
     tabBarOptions: {
