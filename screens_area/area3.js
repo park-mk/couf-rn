@@ -191,42 +191,49 @@ usersRef.on('value', (snapshot) => {
       />
       <ScrollView>   
      
-   
+     
       <View>
-      <View style ={{ flexDirection:"row" ,flex:3}}>
-      <TouchableOpacity style={{flex:1}}
+      <View style ={{ flexDirection:"row" ,flex:2}}>
+      <TouchableOpacity style={{flex:1,alignItems:'center'}}
       
-      >
-      <Text   style={{fontFamily:'title-font' ,fontSize:23,marginTop:20,marginLeft:10,color:'#56B8FF'}}  >THINGS TO EAT</Text>
-      </TouchableOpacity >
-      <TouchableOpacity style={{flex:1}}
-           onPress={()=> this.props.navigation.navigate('Area3_1')}
-      >
-      <Text style={{fontFamily:'title-font' ,fontSize:23, marginTop:20,marginLeft:15,color:'#7f8182'}}>WHAT TO DO</Text>
+      onPress={()=> this.props.navigation.navigate('Area3')}>
+      <Text   style={{fontFamily:'title-font' ,fontSize:23,marginTop:20,color:'#56B8FF'}}  >THINGS TO EAT</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={{flex:1}}
-        onPress={()=> this.props.navigation.navigate('Area3_2')}
+      <TouchableOpacity style={{flex:1,alignItems:'center'}}
+
+        onPress={()=> this.props.navigation.navigate('Area3_1')}
       >
-      <Text style={{fontFamily:'title-font' ,fontSize:23, marginTop:20,color:'#7f8182'}}>BUS SCHEDULE</Text>
+      <Text style={{fontFamily:'title-font' ,fontSize:23, marginTop:20,color:'#7f8182'}}>WHAT TO DO</Text>
       </TouchableOpacity>
+      
     
    </View> 
      
           <View>
- 
-   
 
-         <View style={{
-     borderBottomColor: '#56B8FF',
-     borderBottomWidth: 1,
-     marginTop:3,
-          }}    />
-             <View style={{
-             width: imagewidth/3-5,
-             height:3,
-             backgroundColor: '#56B8FF',
-          }}    >
-             
+         
+            
+         
+      
+        
+        <View style={{
+    borderBottomColor: '#56B8FF',
+    borderBottomWidth: 1,
+    marginTop:3,
+         }}    />
+         <View  style={{flexDirection:'row'}}>
+            <View style={{
+            width:  imagewidth/2,
+            height:3,
+            backgroundColor: '#56B8FF',
+         }}    >
+           </View>
+               <View style={{
+            width:  imagewidth/2,
+            height:3,
+          
+         }}    >
+         </View>
          </View>
          
 <View style={{
@@ -234,7 +241,6 @@ usersRef.on('value', (snapshot) => {
     borderBottomWidth: 1,
 
          }}    /> 
-
    
       </View >
 

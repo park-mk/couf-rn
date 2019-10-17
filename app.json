@@ -8,9 +8,12 @@
       "ios",
       "android"
     ],
-    "version": "1.0.3",
+    "version": "1.2.0",
     "orientation": "portrait",
     "icon": "./assets/images/ico.png",
+    "facebookScheme":"fb1998302263810491",
+    "facebookAppId": "1998302263810491",
+    "facebookDisplayName": "couf",
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "contain",
@@ -24,12 +27,19 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.nn.couf"
+      "bundleIdentifier": "com.nn.couf",
+      "infoPlist": {
+        "facebookScheme":"fb1998302263810491",
+        "facebookAppId": "1998302263810491",
+        "facebookDisplayName": "couf"
+        
+      }
     },
+    
    
     "android": {
       "package": "com.nn.coufproject",
-      "versionCode": 2
+      "versionCode": 8
     },
     "extra": {
       "firebase": {
@@ -42,6 +52,7 @@
       },
       "facebook": {
         "appId": "1998302263810491"
+        
       }
     }
   

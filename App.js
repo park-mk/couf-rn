@@ -197,18 +197,22 @@ class HomeScreen extends React.Component {
 
    </View>;
 }
-    tintcolorto(){
-
-      var colorname=`https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2Ficon%2Fmember.png?alt=media&token=ee4f86ef-a8df-4125-8fcd-957e3c91808d`;
-      return  colorname;
-    }
+  
   render() {
     
      //navigation.navigate('Home1')
     return (
       <ScrollView >
-      {this.renderScreen()}
-  </ScrollView>
+      {
+         
+
+        
+        this.renderScreen()
+        
+        
+        
+        }
+     </ScrollView>
        
     
       
@@ -485,7 +489,7 @@ export default createAppContainer(createBottomTabNavigator(
           iconName = require("./assets/more.png");
         }
         if (routeName === 'Category'&&focused===false) {
-          iconName = require("./assets/more.png");
+          iconName = require("./assets/moreg.png");
         }
 
 
@@ -493,7 +497,7 @@ export default createAppContainer(createBottomTabNavigator(
           iconName = require("./assets/home.png");
         }
         if (routeName === 'Home'&&focused===false) {
-          iconName =require("./assets/home.png");
+          iconName =require("./assets/homeg.png");
         }
 
 
@@ -501,7 +505,7 @@ export default createAppContainer(createBottomTabNavigator(
           iconName = require("./assets/place_lo.png");
         }
         if (routeName === 'Area'&&focused===false) {
-          iconName = require("./assets/home.png");
+          iconName = require("./assets/placeg.png");
         }
 
 
@@ -509,7 +513,7 @@ export default createAppContainer(createBottomTabNavigator(
           iconName = require("./assets/member.png");
         }
         if (routeName === 'Login1'&&focused===false) {
-          iconName = require("./assets/home.png");
+          iconName = require("./assets/memberg.png");
         }
         if (routeName === 'Suggestion') {
           iconName = `ios-contact`;

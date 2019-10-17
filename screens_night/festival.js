@@ -119,14 +119,8 @@ class FESTIVAL extends React.Component {
 
 <View style={{flexDirection:'row',justifyContent:'flex-end',alignItems:'flex-end',marginEnd:20}}>
 
-<Image
-style={ { width: 35,
-height: 30,    marginTop:200  
 
-}}
-source={require('../assets/likewhithe.png')}
-/> 
-<Text style={{marginLeft:3,fontSize:30,color:'white',fontFamily:'title-font'}}>{item.upvote}</Text>
+
 
 
 </View>
@@ -211,7 +205,7 @@ source={require('../assets/likewhithe.png')}
  } 
      backgroundColor={'rgba(52, 52, 52, alpha)'}
     borderBottomColor={'#1f2124'}
-      centerComponent={{ text: 'FESTIVAL', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
+      centerComponent={{ text: 'FESTIVALS', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
        
        />
    

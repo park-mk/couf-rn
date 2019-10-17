@@ -119,7 +119,7 @@ this.setState({
                     
     > 
     <TouchableOpacity
-         onPress={() => this.gogo(item.name,item.description,item.topimage,item.cate,item.upvote,item.disname,item.ilo)}
+         onPress={() => this.gogo(item.name,item.description,item.topimage,item.cate,item.upvote,item.disname,item.loca)}
             
     >
   <ImageBackground   style={styles.icon}

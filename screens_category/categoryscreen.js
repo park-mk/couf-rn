@@ -20,7 +20,7 @@ class CategoryScreen extends React.Component {
 
   render() {
     return ( 
-    <View style={{flex:1,marginTop:20,marginLeft:7}}>
+    <View style={{flex:1,marginTop:20,marginLeft:5}}>
          <ScrollView   onRefresh={this.handleRefresh} >
          { /*****  category sort  each view have 2 category  in row  *******/}
              <View   style={{  flex:1,  flexDirection:'row'}}>
@@ -69,7 +69,7 @@ class CategoryScreen extends React.Component {
           
                    <Category  imageURI={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2F71943018_385345952161708_3197462092261097472_n.png?alt=media&token=d297dc46-a368-414d-b4fa-842f5cb079df"}}
                            name='culture'
-                           
+                           onPress={()=>  Linking.openURL("https://www.youtube.com/channel/UCS8Wlr_B7CQkN53Fim20G2Q?view_as=subscriber").catch((err) => console.error('An error occurred', err))}
                     />
                    <Category  imageURI={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2F71348065_692662517904833_2631103120217735168_n.png?alt=media&token=9b1bb6f7-9af8-4241-9698-5c2b1e28675c"}}
                            name='contact us'

@@ -6,6 +6,7 @@ import { createStackNavigator, createBottomTabNavigator, createAppContainer,with
 import {Container,Content,Header,Form,Input,Item,Label,Button} from 'native-base'
 import * as Facebook from 'expo-facebook';
 
+
 const wrapper = {
     padding: '5%'
 };
@@ -61,6 +62,14 @@ const styles = StyleSheet.create({
  
       })
     }
+
+  
+ 
+    logout = () => {
+      setLoggedinStatus(false);
+      setUserData(null);
+      setImageLoadStatus(false);
+    }
    singUpUser=(email,password)=>{
      try {
         if(this.state.password.length<6){
@@ -92,6 +101,34 @@ const styles = StyleSheet.create({
     }
   }
 
+  facebookLogIn = async () => {
+    try {
+      const {
+        type,
+        token,
+        expires,
+        permissions,
+        declinedPermissions,
+      } = await Facebook.logInWithReadPermissionsAsync('1998302263810491', {
+        permissions: ['public_profile'],
+      });
+      if (type === 'success') {
+        // Get the user's name using Facebook's Graph API
+         alert("second login success ");
+        fetch(`https://graph.facebook.com/me?access_token=${token}&fields=id,name,email,picture.height(500)`)
+          .then(response => response.json())
+          .then(data => {
+            setLoggedinStatus(true);
+            setUserData(data);
+          })
+          .catch(e => console.log(e))
+      } else {
+        // type === 'cancel'
+      }
+    } catch ({ message }) {
+      alert(`Facebook Login Error: ${message}`);
+    }
+  }
 
 
 
@@ -130,7 +167,8 @@ const styles = StyleSheet.create({
         // type === 'cancel'
       }
     } catch ({ message }) {
-      console.log(`Facebook Login Error: ${message}`);
+      console.log(`Facebook 1 Error: ${message}`);
+      alert("fisrt ${message}");
     }
    var password="123456789a"
  
@@ -198,9 +236,13 @@ const styles = StyleSheet.create({
 
   }
 
+
+
+
+   
   render() {
     const { navigation } = this.props;
-   
+    
     return (
        
         <View    style={ { alignItems:'center' }} >
@@ -209,7 +251,7 @@ const styles = StyleSheet.create({
                 <TouchableOpacity
                              style={{
                                 marginBottom:1,
-                                marginTop:120,
+                                marginTop:220,
                               
                              }}
                              onPress={()=> this.signInWithFacebook()}
@@ -219,7 +261,7 @@ const styles = StyleSheet.create({
                         <Image
                             style={{
                                 width: 200,
-                                height: 100,
+                                height: 50,
                                 
                             }}
                             source={require('../assets/facebook.png')}
@@ -229,7 +271,17 @@ const styles = StyleSheet.create({
                         
                     </TouchableOpacity>
 
+                  
+
+
+
+
         </View>
+        
+       
+       
+         
+       
 
           
     );

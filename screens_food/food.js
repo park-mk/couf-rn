@@ -183,12 +183,12 @@ this.setState({
 
   _keyExtractor = (item, index) => item.key; 
 
-   gogo=(iname,idescription,itopimage,icate)=>{
+   gogo=(iname,idescription,itopimage,icate,idisname)=>{
              
     this.props.navigation.navigate('FOODi', {
        name : iname,
        description :idescription,
-      
+       disname:idisname,
        topimage : itopimage,
        cate:icate,
       
@@ -273,7 +273,7 @@ this.setState({
           
             
             
-            onPress={() => this.gogo(item.name,item.description,item.topimage,item.cate)
+            onPress={() => this.gogo(item.name,item.description,item.topimage,item.cate,item.disname)
           
           }
         
@@ -349,7 +349,7 @@ this.setState({
           
             
             
-            onPress={() => this.gogo(item.name,item.description,item.topimage,item.cate)
+            onPress={() => this.gogo(item.name,item.description,item.topimage,item.cate,item.disname)
           
           }
         
@@ -428,7 +428,7 @@ this.setState({
           
             
             
-            onPress={() => this.gogo(item.name,item.description,item.topimage,item.cate)
+            onPress={() => this.gogo(item.name,item.description,item.topimage,item.cate,item.disname)
           
           }
         
@@ -514,8 +514,8 @@ this.setState({
                  description :item.description,
                  cate:item.cate,
                  topimage : item.topimage,
-               
-                
+                 disname:item.disname,
+                  
                
                  imagelist:item.images,
                  //tips:item.tips,

@@ -133,13 +133,7 @@ this.setState({
       onPress={()=> this.props.navigation.navigate('H221')}>
       <Text   style={{fontFamily:'title-font' ,fontSize:50,marginLeft:10,color:'#56B8FF'}}  >H221 (CASEY)</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={{flex:1}}>
-      <Text style={{fontFamily:'title-font' ,fontSize:50,marginLeft:15,color:'#7f8182'}}>TMC (CASEY)</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={{flex:1}}
-        onPress={()=> this.props.navigation.navigate('Area1_2')}>
-      <Text style={{fontFamily:'title-font' ,fontSize:50,marginLeft:15,color:'#7f8182'}}>HOVEY </Text>
-      </TouchableOpacity>
+     
 
       <TouchableOpacity style={{flex:1}}
       
@@ -161,7 +155,25 @@ this.setState({
       onPress={()=> this.props.navigation.navigate('Red')}>
       <Text   style={{fontFamily:'title-font' ,fontSize:50,marginLeft:10,color:'#56B8FF'}}  >RED (HUMPHREYS)</Text>
       </TouchableOpacity>
-    
+      
+      <TouchableOpacity style={{flex:1}}
+        onPress={ () =>  Linking.openURL("https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Bus%20schedules%2FINCHEON-HUMPHREYS_BUS_SCHEDULE_April_19_2019.png?alt=media&token=842f1f6a-58fa-4fb1-bb25-18a76f5adbbb").catch((err) => console.error('An error occurred', err))}
+      >
+      <Text   style={{fontFamily:'title-font' ,fontSize:50,marginLeft:10,color:'#56B8FF'}}  >ICN-HUM</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={{flex:1}}
+        onPress={ () =>  Linking.openURL("https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Bus%20schedules%2FShuttle_Exhibit_44_Yongsan-Cp._Humphreys_2019.4.22.jpg?alt=media&token=a180096f-ecdd-4766-96ca-9197595ea557").catch((err) => console.error('An error occurred', err))}
+      >
+      <Text   style={{fontFamily:'title-font' ,fontSize:50,marginLeft:10,color:'#56B8FF'}}  >HUM-Yongsan</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={{flex:1}}
+        onPress={ () =>  Linking.openURL("https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Bus%20schedules%2FIncheon_to_Yongsan_Mar_28_2019.jpg?alt=media&token=c45b386b-372f-49c9-a4c5-864da61842d3").catch((err) => console.error('An error occurred', err))}
+      >
+      <Text   style={{fontFamily:'title-font' ,fontSize:50,marginLeft:10,color:'#56B8FF'}}  >ICN-Yongsan</Text>
+      </TouchableOpacity>
+
    </View> 
       
      

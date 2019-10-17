@@ -104,7 +104,7 @@ class CommentList extends React.Component {
                           onRefresh={(e) => this.props.onRefresh(e)}
                           refreshing={this.props.fetching}
                           keyExtractor={item => item.uid}
-                          ListEmptyComponent={<Text>Empty</Text>}
+                          ListEmptyComponent={<Text>no comments</Text>}
                           renderItem={({item}) => (
                               <ListItem
                                   key={item.uid}

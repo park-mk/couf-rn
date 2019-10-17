@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Text, View ,Image,TouchableOpacity,Linking} from 'react-native';
+import { Button, Text, View ,Image,TouchableOpacity,Linking,Dimensions} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import { withNavigation } from 'react-navigation';
@@ -18,10 +18,14 @@ class Category extends React.Component {
 
 
 
-
+  
 
   render() {
     var  go;
+    let dimensions = Dimensions.get("window");
+    let imageheight = dimensions.height *0.24;
+    let imagewidth = dimensions.width * 0.44; 
+    console.log(imageheight,imagewidth);
      if(this.props.name=='Tips of life'){
        go='TOL'     
      }
@@ -30,8 +34,8 @@ class Category extends React.Component {
        }
      else go='KORca'
      
-    return (
-      <View style={{ height:170 ,width:160,marginLeft:10,marginTop:20, 
+    return ( 
+      <View style={{ height:imageheight ,width:imagewidth,marginLeft:10,marginTop:20, 
        // borderWidth: 3,borderColor:'#dddddd' ,borderRadius:10,
       }}>  
     

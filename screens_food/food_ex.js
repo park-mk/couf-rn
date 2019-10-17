@@ -73,7 +73,7 @@ class Fooditem extends React.Component {
     const { navigation } = this.props;
     const name = navigation.getParam('name', 'NO-ID');
     const cate = navigation.getParam('cate', 'NO-ID');
-
+  
     console.log(cate);
 
     var usersRef = firebase.database().ref('food/' + cate + '/' + name + '/upvote');
@@ -187,6 +187,7 @@ class Fooditem extends React.Component {
 
     const imagelist = navigation.getParam('imagelist', 'NO-ID');
     const tips = navigation.getParam('tips', 'NO-ID');
+    const disname = navigation.getParam('disname', 'NO-ID');
     var number_of_pagraph = 0;
     var sentence = imagelist.substring(1, imagelist.length);
 
@@ -337,7 +338,7 @@ class Fooditem extends React.Component {
                 </View>
 
 
-                <Text style={{ textAlign: 'left', fontSize: 55,color:'#56B8FF',marginLeft:10 ,fontFamily:'title-font' }}>{name}</Text>
+                <Text style={{ textAlign: 'left', fontSize: 55,color:'#56B8FF',marginLeft:10 ,fontFamily:'title-font' }}>{disname}</Text>
 
               </View>
 

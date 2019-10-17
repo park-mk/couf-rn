@@ -118,20 +118,21 @@ usersRef.on('value', (snapshot) => {
    
       <ScrollView>   
         
+      
       <View>
-      <View style ={{ flexDirection:"row" ,flex:3}}>
-      <TouchableOpacity style={{flex:1}}
+      <View style ={{ flexDirection:"row" ,flex:2}}>
+      <TouchableOpacity style={{flex:1,alignItems:'center'}}
       
       onPress={()=> this.props.navigation.navigate('Area4')}>
-      <Text   style={{fontFamily:'title-font' ,fontSize:23,marginTop:20,marginLeft:10,color:'#7f8182'}}  >THINGS TO EAT</Text>
+      <Text   style={{fontFamily:'title-font' ,fontSize:23,marginTop:20,color:'#7f8182'}}  >THINGS TO EAT</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={{flex:1}}>
-      <Text style={{fontFamily:'title-font' ,fontSize:23, marginTop:20,marginLeft:15,color:'#56B8FF'}}>WHAT TO DO</Text>
+      <TouchableOpacity style={{flex:1,alignItems:'center'}}
+
+        onPress={()=> this.props.navigation.navigate('Area4_1')}
+      >
+      <Text style={{fontFamily:'title-font' ,fontSize:23, marginTop:20,color:'#56B8FF'}}>WHAT TO DO</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={{flex:1}}
-        onPress={()=> this.props.navigation.navigate('Area4_2')}>
-      <Text style={{fontFamily:'title-font' ,fontSize:23, marginTop:20,color:'#7f8182'}}>BUS SCHEDULE</Text>
-      </TouchableOpacity>
+      
     
    </View> 
      
@@ -139,22 +140,23 @@ usersRef.on('value', (snapshot) => {
 
          
             
+         
       
         
-          <View style={{
+        <View style={{
     borderBottomColor: '#56B8FF',
     borderBottomWidth: 1,
     marginTop:3,
          }}    />
          <View  style={{flexDirection:'row'}}>
             <View style={{
-            width:  imagewidth/3-5,
+            width:  imagewidth/2,
             height:3,
            
          }}    >
            </View>
                <View style={{
-            width:  imagewidth/3,
+            width:  imagewidth/2,
             height:3,
             backgroundColor: '#56B8FF',
          }}    >
@@ -166,7 +168,6 @@ usersRef.on('value', (snapshot) => {
     borderBottomWidth: 1,
 
          }}    /> 
-
    
       </View > 
         

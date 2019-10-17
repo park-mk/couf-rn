@@ -190,10 +190,23 @@ class Home1 extends React.Component {
             </View>
           ); 
          
-         
+          var m;
+
+          var keys; 
           console.log(expo.expo.version);
           
+          var usersRef = firebase.database().ref('version');
+          usersRef.on('value', (snapshot) => {
+            m = snapshot.val()
+         
+            console.log("이거",m); 
+           if(m!=expo.expo.version){
 
+             alert("New version of the app is available. For more experience and better performance, please keep the app up to date!");
+           }
+            
+           
+          });
          
   
         return (
@@ -203,10 +216,7 @@ class Home1 extends React.Component {
             <View>
                 <ConfirmDialog
     title="Dear users"
-    message="
-    We, the developer team, are in need of financial support due to maintenance expenses. 
-    If any of you would like to support are hard work and the effort we put into this app, and help improve it,
-    Thank you "
+    message={" In order to continue our hard work, we have encountered financial difficulties considering server fees.  Those who would like to support us, please click yes to donate. Thank you!"}
     visible={this.state.dialogVisible}
     onTouchOutside={() => this.setState({dialogVisible: false})}
     positiveButton={{
