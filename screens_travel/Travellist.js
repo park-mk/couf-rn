@@ -17,7 +17,7 @@ import { ScrollView } from "react-native-gesture-handler";
   }
 
 
-class Travellist extends React.Component {
+class TTlist extends React.Component {
   constructor(props) {
     super(props);
 
@@ -64,7 +64,7 @@ class Travellist extends React.Component {
     const { navigation } = this.props;
     const move = navigation.getParam('move', 'NO-ID');
 
-    var usersRef = firebase.database().ref('travel/seoul1');
+    var usersRef = firebase.database().ref('travel/seoul');
     
     
 usersRef.on('value', (snapshot) => {
@@ -192,8 +192,7 @@ usersRef.on('value', (snapshot) => {
                  }); 
                  }
          if(item.cate=="more"){
-              this.props.navigation.navigate('TTlist');
-              console.log("move");
+             alert("go to ");
          }
           
           }
@@ -261,7 +260,7 @@ usersRef.on('value', (snapshot) => {
           
           renderItem={this.renderItem}
           
-          horizontal={true}
+         //  horizontal={true}
           keyExtractor={item => item.name}
           initialNumToRender={4}
           maxToRenderPerBatch={4}
@@ -270,71 +269,15 @@ usersRef.on('value', (snapshot) => {
           onRefresh={this.handleRefresh}
           refreshing={this.state.refreshing}
        
-          onEndReachedThreshold={10000000} 
+      //   onEndReachedThreshold={10000000} 
            
        
         />
 
       </View>
 
-      <Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'#56B8FF'}}  
-                           
-                           >BUSAN</Text>    
+    
 
-
-<View style={{flexDirection:'row'}} >
-        <View  style={{marginLeft:0}}>
-        </View>
-      <FlatList 
-          data={this.state.datasource1}
-          
-          renderItem={this.renderItem}
-          
-          horizontal={true}
-          keyExtractor={item => item.name}
-        
-          
-         // ListHeaderComponent={this.renderHeader}
-    //     ListFooterComponent={this.renderFooter}
-          onRefresh={this.handleRefresh}
-          refreshing={this.state.refreshing}
-          onEndReached={this.handleLoadMore}
-          onEndReachedThreshold={40}
-        />
-
-      </View>                 
-
-
-
-      <Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'#56B8FF'}}  
-                           
-                           >SPECIAL TOUR</Text>    
-
-
-<View style={{flexDirection:'row'}} >
-        <View  style={{marginLeft:0}}>
-        </View>
-      <FlatList 
-          data={this.state.datasource2}
-          
-          renderItem={this.renderItem}
-          
-          horizontal={true}
-          keyExtractor={item => item.name}
-        
-          
-         // ListHeaderComponent={this.renderHeader}
-   //      ListFooterComponent={this.renderFooter}
-          onRefresh={this.handleRefresh}
-          refreshing={this.state.refreshing}
-          onEndReached={this.handleLoadMore}
-          onEndReachedThreshold={40}
-        />
-
-      </View>           
-      <View style={{height:100}}>
-         <Text>   </Text>
-        </View>      
        </ScrollView>
       
        </View>
@@ -394,7 +337,7 @@ const styles = StyleSheet.create({
 })
 
 
-export default Travellist;
+export default TTlist;
 
 
 

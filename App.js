@@ -40,6 +40,8 @@ import TOLScreen from './screens_category/TOLscreen'
 import KORcate from './screens_korean/KORcate'
 import Fooditem from './screens_food/food_ex'
 import Travelitem from './screens_travel/Travel_ex'
+import TTlist from './screens_travel/Travellist'
+
 import KORScreen from './screens_korean/KORScreen'
 
 import KOR_explainScreen from './screens_korean/KOR_explain'
@@ -250,6 +252,12 @@ const HomeStack = createStackNavigator({
   } },
   TTi: {
     screen: Travelitem,
+    navigationOptions: {
+      header: null,       // HEADER DELETE
+    }
+  },
+  TTlist: {
+    screen: TTlist,
     navigationOptions: {
       header: null,       // HEADER DELETE
     }

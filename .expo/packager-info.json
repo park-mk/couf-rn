@@ -1,8 +1,8 @@
 {
   "expoServerPort": null,
-  "expoServerNgrokUrl": "https://t2-45y.park-mk.couf.exp.direct",
-  "packagerNgrokUrl": "https://packager.t2-45y.park-mk.couf.exp.direct",
-  "ngrokPid": 19222,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null,
   "packagerPort": null,
   "packagerPid": null,
   "devToolsPort": 19002
