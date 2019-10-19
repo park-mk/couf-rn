@@ -255,7 +255,7 @@ usersRef.on('value', (snapshot) => {
         <View  style={{marginLeft:0}}>
         </View>
       <FlatList 
-     
+            numColumns={2}
           data={this.state.datasource}
           
           renderItem={this.renderItem}
@@ -293,8 +293,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   icon: {
-    width: 282,
-    height: 400,
+    width: 141,
+    height: 200,
     
     marginRight:10,
     borderWidth:2,borderColor:'#56B8FF',borderRadius:5
