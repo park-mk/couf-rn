@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, FlatList, ActivityIndicator,Button,StyleSheet,Image,Text,ImageBackground,TouchableHighlight,TouchableOpacity} from "react-native";
+import { View, FlatList, ActivityIndicator,Button,StyleSheet,Image,Text,Dimensions,ImageBackground,TouchableHighlight,TouchableOpacity} from "react-native";
 import { List, ListItem, SearchBar ,Header} from "react-native-elements";
 import  firebase,{storage}  from "../firebase";
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
@@ -174,6 +174,10 @@ usersRef.on('value', (snapshot) => {
    
 
    renderItem =({item})=>{
+    let dimensions = Dimensions.get("window");
+   
+    let imagewidth = dimensions.width;
+     let margin=(dimensions.width-292)/3
 
          return(
            <TouchableOpacity
@@ -199,7 +203,7 @@ usersRef.on('value', (snapshot) => {
         
         }
            >
-          <View  style={{  flex:1,  marginLeft:10,flexDirection:'row',marginBottom:6,borderColor:'black'}} >
+          <View  style={{  flex:1,  marginLeft:margin,flexDirection:'row',marginBottom:6,borderColor:'black'}} >
                   <Image  style={styles.icon}
                         source={{uri:item.topimage}}
                  
@@ -224,6 +228,7 @@ usersRef.on('value', (snapshot) => {
 
    }
   render() {
+    
      
     return (
       <View>
@@ -244,8 +249,8 @@ usersRef.on('value', (snapshot) => {
    
      />
       <ScrollView> 
-         <View style={{flexDirection:'row'}} >
-    <Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'#56B8FF'}}  
+         <View style={{alignItems:"center"}} >
+    <Text   style={{fontFamily:'title-font' ,fontSize:40,color:'#56B8FF'}}  
                            
                            >SEOUL  </Text> 
                        

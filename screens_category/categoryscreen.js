@@ -1,21 +1,39 @@
 import React from 'react';
 import { Button, Text, View ,TouchableOpacity,Image,ScrollView,Linking} from 'react-native';
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
+import  firebase,{storage}  from "../firebase";
 import Category from '../components/category'
 import Categor from '../components/anylist'
 class CategoryScreen extends React.Component {
+  constructor(props) {
+    super(props);
 
-      handleRefresh = () => {
+    this.state = {
+       count:0
+    };
+  }
+     updateview = () => {
+     
+      var d;
+      var s
+      var usersRef = firebase.database().ref('visit/exchange/count');
+      usersRef.on('value', (snapshot) => {
     
-            this.setState(
-              {
-              
-               
-              },
-              () => {
-                
-              }
-            );
+    
+         m=snapshot.val() 
+       
+        
+     
+          
+          console.log("음",m);
+           this.state.count=m+1;
+           }); 
+   firebase.database().ref('visit/exchange').set({
+          count:this.state.count
+  }, function () {
+
+  });
+      
           }; 
 
   render() {
@@ -29,7 +47,12 @@ class CategoryScreen extends React.Component {
                            name='Exchange'
                           
                           // onPress={()=>  Linking.openURL("https://www.dollars2won.com/").catch((err) => console.error('An error occurred', err))}
-                          onPress={()=> this.props.navigation.navigate('EXCHANGE')}
+                         // onPress={()=> this.props.navigation.navigate('EXCHANGE')
+                         
+                     //   }
+                        onPress={
+                          
+                          ()=>  this.updateview()}
                      />
              
                     <Category  imageURI={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Flearning%20korea.png?alt=media&token=27b4bb03-956a-4af6-8026-4718f7d8eecf"}}
