@@ -5,7 +5,7 @@ import { List, ListItem, Button, Avatar  } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import firebase from "../firebase";
 // import ImagePicker from 'react-native-image-picker';
-import { ImagePicker } from 'expo';
+// import { ImagePicker } from 'expo';
 
 class CommentForm extends React.Component {
     constructor(props){

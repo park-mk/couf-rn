@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, FlatList, Modal, TouchableHighlight, TextInput} from 'react-native';
+import {Text, View, FlatList, Modal, TouchableHighlight, TextInput, Image} from 'react-native';
 import styled from 'styled-components'
 import { List, ListItem, Button, Avatar  } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -38,6 +38,7 @@ class CommentList extends React.Component {
     };
 
     modifyData= () => {
+        console.log('뭐여',this.props.type, this.state.modifyItem.uid);
         firebase.database().ref('comment/'+this.props.type +'/'+ this.state.modifyItem.uid).update({
             content: this.state.modifyItem.content,
         }, function(){
@@ -124,7 +125,10 @@ class CommentList extends React.Component {
                                       />
                                   }
                                   subtitle={
-                                      <Content>{item.content}</Content>
+                                      <View>
+                                          { item.image && <Image source={{ uri: item.imageUrl }} style={{ width: 200, height: 200 }} />}
+                                        <Content>{item.content}</Content>
+                                      </View>
                                   }
                                   rightElement={
                                       (firebase.auth().currentUser && item.useremail == firebase.auth().currentUser.email) && <Buttons style={{alignSelf: 'flex-start'}}>

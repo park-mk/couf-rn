@@ -4,11 +4,9 @@ import styled from 'styled-components'
 import { List, ListItem, Button, Avatar  } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import firebase from "../firebase";
-// import ImagePicker from 'react-native-image-picker';
-import { ImagePicker } from 'expo';
 import CommentList from '../components/commentList'
-// import admin from 'firebase-admin';
 // import Comment from '../components/comment'
+import * as ImagePicker from 'expo-image-picker';
 
 class SuggestionScreen extends React.Component {
     constructor(props){
@@ -22,29 +20,21 @@ class SuggestionScreen extends React.Component {
             fetching: true,
             isFetching: false,
             toggleWriteForm : false,
+            image: null,
         })
         this.setData();
         this.base64Data = '';
         this.onRefresh = this.onRefresh.bind(this);
-/*
-        admin.auth().createUser({
-            email: 'user@example.com',
-            emailVerified: false,
-            phoneNumber: '+11234567890',
-            password: 'secretPassword',
-            displayName: 'John Doe',
-            photoURL: 'http://www.example.com/12345678/photo.png',
-            disabled: false
-        })
-            .then(function(userRecord) {
-                // See the UserRecord reference doc for the contents of userRecord.
-                console.log('Successfully created new user:', userRecord.uid);
-            })
-            .catch(function(error) {
-                console.log('Error creating new user:', error);
-            });
 
-*/
+        const options = {
+            title: 'Select Avatar',
+            customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
+            storageOptions: {
+                skipBackup: true,
+                path: 'images',
+            },
+        };
+
     }
 
     deleteData= (key) => {
@@ -58,15 +48,51 @@ class SuggestionScreen extends React.Component {
             this.setState({
                 lists:  response,
                 isFetching: false,
-            })
+            });
         }.bind(this));
+    };
+
+    _pickImage = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect: [4, 3],
+        });
+
+        console.log(result);
+
+        if (!result.cancelled) {
+            this.setState({ image: result.uri });
+        }
+    };
+
+    uploadImage = async (uri, imageName) => {
+        if(!uri) return true;
+        const response = await fetch(uri);
+        const blob = await response.blob();
+
+        let ref = firebase.storage().ref().child("suggestion/" + imageName);
+        return ref.put(blob);
+    };
+
+
+    setImageData = (data) => {
+        return new Promise((resolve, reject) => {
+            if(!data.image) resolve(true);
+            firebase.storage().ref('suggestion').child(data.image).getDownloadURL().then(url => {
+                data.imageUrl = url;
+                resolve(data);
+            }).catch((error) => {
+                reject(error);
+            });
+        });
     };
 
     getData = () => {
         return new Promise((resolve, reject) => {
             firebase.database().ref('comment/suggestion').on('value', function (snapshot) {
                 let returnVal =  snapshot.val() || {};
-                resolve(Object.values(returnVal).reverse());
+                return resolve(Object.values(returnVal).reverse());
             }.bind(this),function(error){
                 reject(error);
             });
@@ -93,20 +119,31 @@ class SuggestionScreen extends React.Component {
             useremail:user.email,
             displayName:user.displayName,
             timestamp:Date.now(),
+            image: this.state.image ? newPostKey : null,
+            imageUrl : null,
             tags:{
                 'suggestion':true
             },
         };
 
-        firebase.database().ref('comment/suggestion/'+ newPostKey).set(createData).then(function(){
-            // this.uploadImage(this.state.image, 'test-image');
+        this.uploadImage(this.state.image, newPostKey).then(function(){
+            return this.setImageData(createData);
+
+        }.bind(this)).then((response)=>{
+            return firebase.database().ref('comment/suggestion/'+ newPostKey).set(createData);
+
+        }).then(function(){
             this.onRefresh();
             this.clearData();
-        }.bind(this));
+
+        }.bind(this)).catch((error) => {
+            console.log('error',error);
+        });
     };
     clearData = () => {
         this.setState({
             suggestion: '',
+            image: null,
         });
         this.toggleWriteForm();
     };
@@ -123,6 +160,7 @@ class SuggestionScreen extends React.Component {
                 >Please leave your suggestions  or the infromation you want to know for our app</Text>
                 <Lists>
                     <CommentList
+                        type={'suggestion'}
                         lists={this.state.lists}
                         onRefresh={this.onRefresh}
                         fetching={this.state.isFetching}
@@ -132,17 +170,26 @@ class SuggestionScreen extends React.Component {
                 <Form>
                     { this.state.toggleWriteForm && firebase.auth().currentUser &&
                     <View>
-                        <SuggestionInput
-                            multiline={true}
-                            onChangeText={(suggestion) => this.changeComment(suggestion)}
-                            value={this.state.suggestion}
-                            placeholder='Input your suggestion'
-                            numberOfLines={6}
-                        />
+                        <WrapTextInput>
+                            {this.state.image &&
+                            <Image source={{ uri: this.state.image }} style={{ width: 200, height: 200 }} />}
+                            <TextInput
+                                multiline={true}
+                                onChangeText={(suggestion) => this.changeComment(suggestion)}
+                                value={this.state.suggestion}
+                                placeholder='Input your suggestion'
+                                numberOfLines={6}
+                                textAlignVertical='top'
+                            />
+                        </WrapTextInput>
                         <Buttons style={{alignSelf: 'flex-end'}}>
                             <Button type="clear" buttonStyle={{width: 50, marginRight: 10}}
                                     icon={<Icon name="close" size={15} color="grey"/>}
                                     onPress={() => this.clearData()}
+                            />
+                            <Button type="clear" buttonStyle={{width: 50, marginRight: 10}}
+                                    icon={<Icon name="camera" size={15} color="grey"/>}
+                                    onPress={() => this._pickImage()}
                             />
                             <Button type="solid" buttonStyle={{width: 50}}
                                     icon={<Icon name="check" size={15} color="white"/>}
@@ -181,11 +228,15 @@ const Form = styled.View`
   padding : 10px
   margin-bottom: 10px;
 `
-const SuggestionInput = styled.TextInput`
+
+
+const WrapTextInput = styled.View`
   border:3px solid grey;
   margin-bottom: 5px;
   padding:10px;
+  display:flex;
 `
+
 const Buttons = styled.View`
   display:flex;
   flex-direction: row;

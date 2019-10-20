@@ -180,6 +180,7 @@ class Comment extends React.Component {
                 />
                 }
                 <CommentList
+                    type={this.props.type}
                     lists={this.state.lists}
                     onRefresh={this.onRefresh}
                     fetching={this.state.isFetching}
