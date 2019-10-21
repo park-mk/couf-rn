@@ -9,11 +9,19 @@ class CategoryScreen extends React.Component {
     super(props);
 
     this.state = {
-       count:0
+       count_korean:0,
+       count_bus:0,
+       count_phone:0,
+       count_qa:0,
+       count_culture:0,
+       count_contact:0,
+       count_exchange:0,
     };
   }
      updateview = () => {
-     
+       console.log(name);
+      if(name=="exchange"){
+
       var d;
       var s
       var usersRef = firebase.database().ref('visit/exchange/count');
@@ -35,8 +43,21 @@ class CategoryScreen extends React.Component {
   });
       
           }; 
+        }
 
   render() {
+    var usersRef = firebase.database().ref('visit/exchange/count');
+    usersRef.on('value', (snapshot) => {
+  
+      var m;
+       m=snapshot.val() 
+     
+      
+   
+        
+        console.log("음",m);
+         this.state.count_exchange=m;
+         }); 
     return ( 
     <View style={{flex:1,marginTop:20,marginLeft:5}}>
          <ScrollView   onRefresh={this.handleRefresh} >
@@ -44,7 +65,7 @@ class CategoryScreen extends React.Component {
              <View   style={{  flex:1,  flexDirection:'row'}}>
           
                    <Category imageURI={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Fexchange%20rate.png?alt=media&token=ab617188-a5ff-4f92-9f44-c381d655627a"}}
-                           name='Exchange'
+                           name='exchange'
                           
                           // onPress={()=>  Linking.openURL("https://www.dollars2won.com/").catch((err) => console.error('An error occurred', err))}
                          // onPress={()=> this.props.navigation.navigate('EXCHANGE')
@@ -52,7 +73,7 @@ class CategoryScreen extends React.Component {
                      //   }
                         onPress={
                           
-                          ()=>  this.updateview()}
+                          ()=>  this.updateview(name)}
                      />
              
                     <Category  imageURI={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Flearning%20korea.png?alt=media&token=27b4bb03-956a-4af6-8026-4718f7d8eecf"}}

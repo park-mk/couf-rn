@@ -36,15 +36,9 @@ class NIGHT extends React.Component {
         super(props);
 
         this.state = {
-            description1:"",
-            description2:"",
-            description3:"",
-            description4:"",
-
-            image1:"",
-            image2:"",
-            image3:"",
-            image4:"",
+           count_fes:0,
+           count_concert:0,
+           count_club:0,
         };
     }
 
@@ -52,6 +46,28 @@ class NIGHT extends React.Component {
    
 
 
+    updateview_f = () => {
+    
+          console.log("실행")
+ 
+        var d; 
+        var s
+        var usersRef = firebase.database().ref('visit/ent_festival/count');
+        usersRef.on('value', (snapshot) => {
+
+
+            m = snapshot.val()
+
+           
+            this.state.count_fes = m + 1;
+        });
+        firebase.database().ref('visit/ent_festival').update({
+            count: this.state.count_fes
+        }, function () {
+
+        }); 
+        this.props.navigation.navigate('FESTIVAL');
+    }
 
 
 
@@ -102,7 +118,7 @@ class NIGHT extends React.Component {
 
                     <TouchableOpacity 
                         
-                        onPress={()=> this.props.navigation.navigate('FESTIVAL')}
+                        onPress={()=> this.updateview_f()}
                     >
 
                          <View
