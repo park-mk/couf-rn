@@ -212,14 +212,13 @@ class Travelitem extends React.Component {
       const { navigation } = this.props;
       const name = navigation.getParam('name', 'NO-ID');
       const description = navigation.getParam('description', 'NO-ID');
-      const time=navigation.getParam('time', 'NO-ID');
+  
       const location = navigation.getParam('location', 'NO-ID');
       const topimage = navigation.getParam('topimage', 'NO-ID');
-      const uri = navigation.getParam('uri', 'NO-ID');
-      const money =navigation.getParam('money', 'NO-ID');
-      const date =navigation.getParam('date', 'NO-ID');
+   
+      
       const imagelist=navigation.getParam('imagelist', 'NO-ID');
-      const tips = navigation.getParam('tips', 'NO-ID');
+     
       const upvote = navigation.getParam('upvote', 'NO-ID');
       var number_of_pagraph=0; 
       var sentence= imagelist.substring(1,imagelist.length);
@@ -243,8 +242,7 @@ class Travelitem extends React.Component {
     
        var vivid =JSON.stringify(description);
        var res = vivid.substring(1, 4);
-       var storage = firebase.storage();
-        const imageRef = storage.ref('images').child(`WechatIMG190.jpeg`);
+    
       return ( 
 
         <View>

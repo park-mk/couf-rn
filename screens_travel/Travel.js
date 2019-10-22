@@ -26,6 +26,7 @@ class Travellist extends React.Component {
       datasource: [],
       datasource1: [],
       datasource2: [],
+      datasource3: [],
       pause:false,
       error: null,
       refreshing: false
@@ -103,6 +104,18 @@ usersRef.on('value', (snapshot) => {
   })
 });
 
+var usersRef = firebase.database().ref('travel/Jeju');
+    
+    
+usersRef.on('value', (snapshot) => {
+    
+    
+     var m=snapshot.val() 
+     var keys= Object.values(m);
+  this.setState({
+    datasource3:  keys
+  })
+});
 
 
     
@@ -303,6 +316,32 @@ usersRef.on('value', (snapshot) => {
         />
 
       </View>                 
+      <Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'#56B8FF'}}  
+                           
+                           >JEJU</Text>    
+
+
+<View style={{flexDirection:'row'}} >
+        <View  style={{marginLeft:0}}>
+        </View>
+      <FlatList 
+          data={this.state.datasource3}
+          
+          renderItem={this.renderItem}
+          
+          horizontal={true}
+          keyExtractor={item => item.topimage}
+        
+          
+         // ListHeaderComponent={this.renderHeader}
+    //     ListFooterComponent={this.renderFooter}
+          onRefresh={this.handleRefresh}
+          refreshing={this.state.refreshing}
+          onEndReached={this.handleLoadMore}
+          onEndReachedThreshold={40}
+        />
+
+      </View>     
 
 
 
