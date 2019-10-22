@@ -256,7 +256,7 @@ usersRef.on('value', (snapshot) => {
                        
               </View>             
                   
-        <View style={{flexDirection:'row'}} >
+        <View style={{flexDirection:'row'}} > 
         <View  style={{marginLeft:0}}>
         </View>
       <FlatList 
@@ -279,6 +279,11 @@ usersRef.on('value', (snapshot) => {
        
         />
 
+      </View>
+
+      <View 
+       style={{height:110}}
+       >
       </View>
 
     

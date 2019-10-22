@@ -72,11 +72,71 @@ class NIGHT extends React.Component {
 
 
 
+    updateview_c = () => {
+    
+        console.log("실행")
+
+      var d; 
+      var s
+      var usersRef = firebase.database().ref('visit/ent_concert/count');
+      usersRef.on('value', (snapshot) => {
+
+
+          m = snapshot.val()
+
+         
+          this.state.count_fes = m + 1;
+      });
+      firebase.database().ref('visit/ent_concert').update({
+          count: this.state.count_fes
+      }, function () {
+
+      }); 
+      this.props.navigation.navigate('CONCERT');
+  }
+
+
+  updateview_cl = () => {
+    
+    console.log("실행")
+
+  var d; 
+  var s
+  var usersRef = firebase.database().ref('visit/ent_club/count');
+  usersRef.on('value', (snapshot) => {
+
+
+      m = snapshot.val()
+
+     
+      this.state.count_fes = m + 1;
+  });
+  firebase.database().ref('visit/ent_club').update({
+      count: this.state.count_fes
+  }, function () {
+
+  }); 
+  this.props.navigation.navigate('CLUB');
+}
+
+
  
 
    
 
     render() { 
+        var usersRef = firebase.database().ref('visit');
+        usersRef.on('value', (snapshot) => {
+      
+          var m;
+           m=snapshot.val() 
+          
+        
+             this.state.count_fes=m.ent_festival.count;
+             this.state.count_concert=m.ent_concert.count;
+             this.state.count_club=m.ent_club.count;
+            
+             }); 
         let dimensions = Dimensions.get("window");
         let imageheight = dimensions.height / 3;
         let imagewidth = dimensions.width;
@@ -119,6 +179,7 @@ class NIGHT extends React.Component {
                     <TouchableOpacity 
                         
                         onPress={()=> this.updateview_f()}
+                    
                     >
 
                          <View
@@ -147,7 +208,7 @@ class NIGHT extends React.Component {
                          
                             
                         }}
-                        onPress={()=> this.props.navigation.navigate('CONCERT')}
+                        onPress={()=> this.updateview_c()}
                     >
 
                          <View  style={ { borderBottomWidth:1,borderColor:'white'}}>
@@ -170,11 +231,11 @@ class NIGHT extends React.Component {
                     </TouchableOpacity>
                     <TouchableOpacity 
                          style={{
-                          
+                           
                          
                            
                         }}
-                        onPress={()=> this.props.navigation.navigate('CLUB')}
+                        onPress={()=> this.updateview_cl()}
                     >
 
                          <View   style={ { borderBottomWidth:1,borderColor:'white'}}>

@@ -321,12 +321,7 @@ class Home1 extends React.Component {
       var m;
        m=snapshot.val() 
       
-        console.log("음",m);
-        console.log("음",m.travel);
-        console.log("음",m.ent);
-        console.log("음",m.food);
-        console.log("음",m.buy);
-        console.log("음",m.youtube);
+    
          this.state.count_travel=m.travel.count;
          this.state.count_buy=m.buy.count;
          this.state.count_ent=m.ent.count;
