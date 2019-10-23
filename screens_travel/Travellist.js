@@ -63,8 +63,9 @@ class TTlist extends React.Component {
     this.setState({ loading: true });
     const { navigation } = this.props;
     const move = navigation.getParam('move', 'NO-ID');
-
-    var usersRef = firebase.database().ref('travel/seoul');
+    const name = navigation.getParam('name', 'NO-ID');
+    console.log("this is na",name);
+    var usersRef = firebase.database().ref('travel/'+name);
     
     
 usersRef.on('value', (snapshot) => {
@@ -77,31 +78,6 @@ usersRef.on('value', (snapshot) => {
   })
 });
   
-var usersRef = firebase.database().ref('travel/busan');
-    
-    
-usersRef.on('value', (snapshot) => {
-    
-    
-     var m=snapshot.val() 
-     var keys= Object.values(m);
-  this.setState({
-    datasource1:  keys
-  })
-});
-
-var usersRef = firebase.database().ref('travel/special');
-    
-    
-usersRef.on('value', (snapshot) => {
-    
-    
-     var m=snapshot.val() 
-     var keys= Object.values(m);
-  this.setState({
-    datasource2:  keys
-  })
-});
 
 
 
@@ -228,8 +204,8 @@ usersRef.on('value', (snapshot) => {
 
    }
   render() {
-    
-     
+    const { navigation } = this.props;
+    const name = navigation.getParam('name', 'NO-ID');
     return (
       <View>
       <Header
@@ -252,7 +228,7 @@ usersRef.on('value', (snapshot) => {
          <View style={{alignItems:"center"}} >
     <Text   style={{fontFamily:'title-font' ,fontSize:40,color:'#56B8FF'}}  
                            
-                           >SEOUL  </Text> 
+                           >{JSON.stringify(name).replace(/^"(.+)"$/,'$1')}</Text> 
                        
               </View>             
                   

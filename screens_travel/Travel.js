@@ -27,6 +27,9 @@ class Travellist extends React.Component {
       datasource1: [],
       datasource2: [],
       datasource3: [],
+      cate:"",
+      name:"",
+      upvote:0,
       pause:false,
       error: null,
       refreshing: false
@@ -104,7 +107,7 @@ usersRef.on('value', (snapshot) => {
   })
 });
 
-var usersRef = firebase.database().ref('travel/Jeju');
+var usersRef = firebase.database().ref('travel/JEJU1');
     
     
 usersRef.on('value', (snapshot) => {
@@ -191,21 +194,28 @@ usersRef.on('value', (snapshot) => {
          return(
            <TouchableOpacity
            onPress={() => {
-                if(item.cate!="more"){
+
+            if(item.cate!="more"){
+           
+
                   this.props.navigation.navigate('TTi', {
                     name : item.name,
                     description :item.description,
                     location: item.location,
                     topimage : item.topimage,
                     cate:item.cate,
-                    upvote:item.upvote,
+                    upvote:this.state.upvote,//item.upvote,
                     imagelist:item.images,
                   //  imagelist:item.images,
                     //tips:item.tips,
                  }); 
                  }
          if(item.cate=="more"){
-              this.props.navigation.navigate('TTlist');
+              this.props.navigation.navigate('TTlist',{
+
+                name : item.name,
+              });
+
               console.log("move");
          }
           
