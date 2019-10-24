@@ -5,7 +5,7 @@ import { createStackNavigator, createBottomTabNavigator, createAppContainer } fr
 import *  as Font from'expo-font'
 import {Container,Content,Header,Form,Input,Item,Label} from 'native-base'
  //*****  AREA SCREEN : CONNECT TO THE 4 AREA ZONE  *******//
-class AreaScreen extends React.Component {
+class AreaScreen1 extends React.Component {
   constructor(props) {
     super(props);
      
@@ -24,9 +24,6 @@ class AreaScreen extends React.Component {
 
 
   async componentDidMount() {
-
-
-    
     await Font.loadAsync({
 
       'Raley-balck':require('../assets/fonts/33676382891.ttf'),
@@ -78,7 +75,7 @@ class AreaScreen extends React.Component {
     );
   }
 }
-export default AreaScreen;
+export default AreaScreen1;
 
 const wrapper = {
   padding: '5%'

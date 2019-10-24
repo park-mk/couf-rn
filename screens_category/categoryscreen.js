@@ -144,7 +144,7 @@ class CategoryScreen extends React.Component {
                 () => this.updateview(name)}
             />
 
-            <Category imageURI={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Flearning%20korea.png?alt=media&token=27b4bb03-956a-4af6-8026-4718f7d8eecf" }}
+            <Category imageURI={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Flearning%20korea%202.png?alt=media&token=b64cd108-71af-4a9c-bc3a-7b75349aefdc" }}
               name='korean'
               onPress={() => this.updateview_korean()}
             />
@@ -154,12 +154,12 @@ class CategoryScreen extends React.Component {
           }
 
           <View style={{ flex: 1, flexDirection: 'row' }}>
-            <Category imageURI={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Fbus%20schedule.png?alt=media&token=8f3279cd-2fa1-4d49-b603-85c9b9e6835d" }}
+            <Category imageURI={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Fbus%20schedule%202.png?alt=media&token=908b2ef2-ad53-4e8f-98f2-6e14c8e2dde6" }}
               name='bus'
               onPress={() => this.updateview_bus()}
 
             />
-            <Category imageURI={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Fphone%20book.png?alt=media&token=4cfb18e7-66bb-451f-804b-e866220440ef" }}
+            <Category imageURI={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Fphone%20book%202.png?alt=media&token=1ed70b8a-43fa-4dc3-a312-f0daa66daeb3" }}
               name='phone'
               onPress={() => this.updateview_phone()}
             />
@@ -171,7 +171,7 @@ class CategoryScreen extends React.Component {
               name='buy and sell'
               onPress={() => this.props.navigation.navigate('UNDEVELOP1')}
             />
-            <Category imageURI={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2F71583065_384095262479898_3086850522427162624_n.png?alt=media&token=d90c1db1-b1f3-49bd-8a95-c4e5223a2f53" }}
+            <Category imageURI={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Fcontact%20us%202.png?alt=media&token=d268a337-e339-4c86-94ae-f7c0b34d5f00" }}
               name='TOUR'
               onPress={() => this.props.navigation.navigate('UNDEVELOP1')}
             />

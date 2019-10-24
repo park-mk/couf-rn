@@ -113,7 +113,7 @@ class Travelitem extends React.Component {
       this.state.up = m
       console.log("here");
       console.log(this.state.up);
-     
+      console.log(this.state.keys);
     });
 
 

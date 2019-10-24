@@ -24,8 +24,11 @@ import SignUpScreen from '../screens_sign/signUpScreen';
     renderScreen() {
         if(firebase.auth().currentUser!=null){
          
+       
               
-              return  <Profile/>;
+              return  <Profile
+             
+              />;
         
     }
 
@@ -37,6 +40,7 @@ import SignUpScreen from '../screens_sign/signUpScreen';
        
     return (
         <ScrollView >
+         
             {this.renderScreen()}
         </ScrollView>
     );

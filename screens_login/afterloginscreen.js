@@ -1,10 +1,11 @@
 import React from 'react';
-import {  Text, View ,StyleSheet, Image,TouchableHighlight} from 'react-native';
+import {  Text, View ,StyleSheet, Image,TouchableHighlight,Dimensions} from 'react-native';
 import  firebase from "../firebase";
 import{FormLabel,FormInput} from 'react-native-elements'
 import { createStackNavigator, createBottomTabNavigator, createAppContainer,  withNavigation} from 'react-navigation';
 import {Container,Content,Header,Form,Input,Item,Label,Button} from 'native-base'
-
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import CHOSEarea from '../components/areachoose'
 
 const wrapper = {
     padding: '5%'
@@ -69,24 +70,97 @@ const styles = StyleSheet.create({
        email: '',
        password: '',
        data:[],
+       area:"MY AREA",
+       currentarea:0,
+       currentarea1:0,
  
       })
     }
     componentDidMount() {
     
+         if(this.state.currentarea==0){
+        // Toggle the state every second
+        setInterval(
+          () => this.setState({ currentarea1:this.state.currentarea }),
+          1000
+        );
+         }
+   
+
         this.makeRemoteRequest();
+
       }
     
       makeRemoteRequest = () => {
         
-         
+        this.renderScreen()
     
      
       };
+       
+      loading(){
+
+        console.log(this.state.currentarea,"ㅇ이거")
+        var m;
+        var code = firebase.auth().currentUser.email.substring(0, 4) + '_' + firebase.auth().currentUser.displayName;
+
+        var usersRef = firebase.database().ref('userinfo/'+code+'/area');
+    
+    
+         usersRef.on('value', (snapshot) => {
+    
+    
+         m = snapshot.val()
+      
+    
+        
+         this.state.currentarea=m;
+        
+        //  this.setState({ currentarea: m});
+          console.log("here,,m",m);
+       }) 
+      }
+      renderScreen() {
+           
+          //  await loading();
+          console.log("this.state.currentarea",this.state.currentarea);
+            if(this.state.currentarea1==0){
+
+            return ;
+            }
+           if(this.state.currentarea1==null){
+              
+           return <CHOSEarea/>
+           }
+           if(this.state.currentarea1==1){
+         
+         
+           return  <Image  style={{ resizeMode:'cover', marginLeft:120,marginTop:10,padding:0.5 ,width:120, height:39, borderRadius:10 }} source={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2Farea%201.png?alt=media&token=71eadde1-f1b7-4ecd-b7c6-8ab0e62ab502"}} />
+         
+          }
+           if(this.state.currentarea1==2) {
+           
+           return  <Image  style={{ resizeMode:'cover', marginLeft:120,marginTop:10,padding:0.5 ,width:120, height:39, borderRadius:10 }} source={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2Farea%201.png?alt=media&token=71eadde1-f1b7-4ecd-b7c6-8ab0e62ab502"}} />
+        
+          }
+           if(this.state.currentarea1==3)
+           return  <Image  style={{ resizeMode:'cover', marginLeft:120,marginTop:10,padding:0.5 ,width:120, height:39, borderRadius:10 }} source={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2Farea%201.png?alt=media&token=71eadde1-f1b7-4ecd-b7c6-8ab0e62ab502"}} />
+       
+           if(this.state.currentarea1==4)
+           return  <Image  style={{ resizeMode:'cover', marginLeft:120,marginTop:10,padding:0.5 ,width:120, height:39, borderRadius:10 }} source={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2Farea%201.png?alt=media&token=71eadde1-f1b7-4ecd-b7c6-8ab0e62ab502"}} />
+       
+          
+          
+
+       }
+
 
   render() {
-    
-   console.log('데이터다',firebase.auth().currentUser);
+
+    let screenwidth=Dimensions.get('window').width;
+    let screenheight=Dimensions.get('window').height; 
+   
+
     return (
 
 
@@ -107,10 +181,19 @@ const styles = StyleSheet.create({
 
         <Text style={ {color:'black', fontFamily:'content-font',fontSize:18,marginTop:-40,marginLeft:18 } }>{firebase.auth().currentUser.email
                 }</Text>
-
-
-
-
+             
+       
+          <TouchableOpacity
+           onPress={()=>this.choosearea()
+             }
+          >   
+  <Text style={ { fontFamily:'title-font',marginTop:60,fontSize:30,marginLeft:18 } }> {this.state.area}</Text>
+            </TouchableOpacity>
+            {  this.loading()}
+            {this.renderScreen()}
+          
+          
+          
 
           <Text style={ {color:'#56B8FF', fontFamily:'content-font',marginTop:60,fontSize:18,marginLeft:18 } }> liked places,food,etc</Text>
 

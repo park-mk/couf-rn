@@ -362,6 +362,7 @@ const CategoryStack = createStackNavigator({
 });
 
 const AreaStack = createStackNavigator({
+ 
   Area: {
     screen: AreaScreen,navigationOptions: {
       header: null,
@@ -373,6 +374,7 @@ const AreaStack = createStackNavigator({
     header: null,
 
   } },
+
   Area1_1: { screen: Area1_1Screen, navigationOptions: {
     header: null,
 
