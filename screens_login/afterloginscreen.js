@@ -78,13 +78,13 @@ const styles = StyleSheet.create({
     }
     componentDidMount() {
     
-         if(this.state.currentarea==0){
+     
         // Toggle the state every second
         setInterval(
           () => this.setState({ currentarea1:this.state.currentarea }),
           1000
         );
-         }
+         
    
 
         this.makeRemoteRequest();
@@ -96,11 +96,25 @@ const styles = StyleSheet.create({
         this.renderScreen()
     
      
-      };
+      }; 
+     choosearea = () => {
+        
+      
+  var code = firebase.auth().currentUser.email.substring(0, 4) + '_' + firebase.auth().currentUser.displayName;
+   
+  firebase.database().ref('userinfo/' + code ).update({
+         
+            area:null,
+  }, function () {
+
+  });
+    
+         
+      }; 
        
       loading(){
 
-        console.log(this.state.currentarea,"ㅇ이거")
+        console.log(this.state.currentarea,"current area")
         var m;
         var code = firebase.auth().currentUser.email.substring(0, 4) + '_' + firebase.auth().currentUser.displayName;
 
@@ -135,19 +149,19 @@ const styles = StyleSheet.create({
            if(this.state.currentarea1==1){
          
          
-           return  <Image  style={{ resizeMode:'cover', marginLeft:120,marginTop:10,padding:0.5 ,width:120, height:39, borderRadius:10 }} source={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2Farea%201.png?alt=media&token=71eadde1-f1b7-4ecd-b7c6-8ab0e62ab502"}} />
+           return  <Image  style={{ resizeMode:'cover', marginLeft:18,marginTop:10,padding:0.5 ,width:120, height:39, borderRadius:10 }} source={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2Farea%201.png?alt=media&token=71eadde1-f1b7-4ecd-b7c6-8ab0e62ab502"}} />
          
           }
            if(this.state.currentarea1==2) {
            
-           return  <Image  style={{ resizeMode:'cover', marginLeft:120,marginTop:10,padding:0.5 ,width:120, height:39, borderRadius:10 }} source={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2Farea%201.png?alt=media&token=71eadde1-f1b7-4ecd-b7c6-8ab0e62ab502"}} />
+           return  <Image  style={{ resizeMode:'cover', marginLeft:18,marginTop:10,padding:0.5 ,width:120, height:39, borderRadius:10 }} source={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2Farea%202.png?alt=media&token=364cf838-d93a-4183-bcbb-f456105f766d"}} />
         
           }
            if(this.state.currentarea1==3)
-           return  <Image  style={{ resizeMode:'cover', marginLeft:120,marginTop:10,padding:0.5 ,width:120, height:39, borderRadius:10 }} source={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2Farea%201.png?alt=media&token=71eadde1-f1b7-4ecd-b7c6-8ab0e62ab502"}} />
+           return  <Image  style={{ resizeMode:'cover', marginLeft:18,marginTop:10,padding:0.5 ,width:120, height:39, borderRadius:10 }} source={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2Farea%203.png?alt=media&token=1b8a44d2-4dfc-437d-8e5a-9ff0d8a36f0a"}} />
        
            if(this.state.currentarea1==4)
-           return  <Image  style={{ resizeMode:'cover', marginLeft:120,marginTop:10,padding:0.5 ,width:120, height:39, borderRadius:10 }} source={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2Farea%201.png?alt=media&token=71eadde1-f1b7-4ecd-b7c6-8ab0e62ab502"}} />
+           return  <Image  style={{ resizeMode:'cover', marginLeft:18,marginTop:10,padding:0.5 ,width:120, height:39, borderRadius:10 }} source={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2Farea%204.png?alt=media&token=9f42a327-15cd-433f-9fe7-df89cb418525"}} />
        
           
           
@@ -182,13 +196,15 @@ const styles = StyleSheet.create({
         <Text style={ {color:'black', fontFamily:'content-font',fontSize:18,marginTop:-40,marginLeft:18 } }>{firebase.auth().currentUser.email
                 }</Text>
              
-       
+             <View style={{flexDirection:'row'}}>
+        <Text style={ { fontFamily:'title-font',marginTop:60,fontSize:30,marginLeft:18 } }> {this.state.area}</Text>
           <TouchableOpacity
            onPress={()=>this.choosearea()
              }
           >   
-  <Text style={ { fontFamily:'title-font',marginTop:60,fontSize:30,marginLeft:18 } }> {this.state.area}</Text>
+  <Text style={ { fontFamily:'title-font',color:'grey',marginTop:70,fontSize:20,marginLeft:80} }> change..</Text>
             </TouchableOpacity>
+            </View>
             {  this.loading()}
             {this.renderScreen()}
           

@@ -484,7 +484,7 @@ export default createAppContainer(createBottomTabNavigator(
     Category: { screen: CategoryStack },
 
     
-    Area: { screen: AreaStack },
+    Area: { screen: AreaStack  },
     Login1: { screen: LoginStack },
 
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Text, View ,TouchableOpacity,Image,ScrollView,Linking,Dimensions,StyleSheet,ImageBackground} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import  firebase from "../firebase";
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import *  as Font from'expo-font'
 import {Container,Content,Header,Form,Input,Item,Label} from 'native-base'
@@ -37,6 +38,22 @@ class AreaScreen extends React.Component {
   }
   
   render() {
+    var code = firebase.auth().currentUser.email.substring(0, 4) + '_' + firebase.auth().currentUser.displayName;
+
+    var usersRef = firebase.database().ref('userinfo/'+code+'/area');
+
+
+     usersRef.on('value', (snapshot) => {
+
+
+     m = snapshot.val()
+  
+      
+    
+      
+      this.props.navigation.navigate('Area'+m);
+
+   }) 
        
     let screenwidth=Dimensions.get('window').width;
     let screenheight=Dimensions.get('window').height; 

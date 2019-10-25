@@ -1,9 +1,9 @@
 {
-  "expoServerPort": 19000,
+  "expoServerPort": null,
   "expoServerNgrokUrl": "https://qi-hpq.park-mk.couf.exp.direct",
   "packagerNgrokUrl": "https://packager.qi-hpq.park-mk.couf.exp.direct",
-  "ngrokPid": 7916,
-  "packagerPort": 19001,
-  "packagerPid": 7897,
+  "ngrokPid": 3006,
+  "packagerPort": null,
+  "packagerPid": null,
   "devToolsPort": 19002
 }
