@@ -211,7 +211,7 @@ usersRef.on('value', (snapshot) => {
       <Header
     leftComponent={  
      <TouchableOpacity 
-     onPress={()=> this.props.navigation.navigate('Home')}
+     onPress={()=> this.props.navigation.navigate('TT')}
      >
      <Image source={require('../assets/back.png')}
                  

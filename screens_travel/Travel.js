@@ -27,6 +27,7 @@ class Travellist extends React.Component {
       datasource1: [],
       datasource2: [],
       datasource3: [],
+      datasource4:[],
       cate:"",
       name:"",
       upvote:0,
@@ -117,6 +118,18 @@ usersRef.on('value', (snapshot) => {
      var keys= Object.values(m);
   this.setState({
     datasource3:  keys
+  })
+});
+var usersRef = firebase.database().ref('travel/OTHERS');
+    
+    
+usersRef.on('value', (snapshot) => {
+    
+    
+     var m=snapshot.val() 
+     var keys= Object.values(m);
+  this.setState({
+    datasource4:  keys
   })
 });
 
@@ -381,6 +394,33 @@ usersRef.on('value', (snapshot) => {
         />
 
       </View>           
+      <Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'#56B8FF'}}  
+                           
+                           >OTHERS</Text>    
+
+
+<View style={{flexDirection:'row'}} >
+        <View  style={{marginLeft:0}}>
+        </View>
+      <FlatList 
+          data={this.state.datasource4}
+          
+          renderItem={this.renderItem}
+          
+          horizontal={true}
+          keyExtractor={item => item.topimage}
+        
+          
+         // ListHeaderComponent={this.renderHeader}
+    //     ListFooterComponent={this.renderFooter}
+          onRefresh={this.handleRefresh}
+          refreshing={this.state.refreshing}
+          onEndReached={this.handleLoadMore}
+          onEndReachedThreshold={40}
+        />
+
+      </View>     
+
       <View style={{height:100}}>
          <Text>   </Text>
         </View>      
