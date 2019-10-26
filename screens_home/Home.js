@@ -19,12 +19,12 @@ import {
 
 
 } from 'react-native';
-import { List, ListItem, SearchBar } from "react-native-elements";
+import { List, ListItem, SearchBar, CheckBox } from "react-native-elements";
 import firebase, { storage } from "../firebase";
 //import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import someList from '../components/anylist'
 import *  as Font from 'expo-font'
-import { ConfirmDialog } from 'react-native-simple-dialogs';
+import { ConfirmDialog,Dialog } from 'react-native-simple-dialogs';
 
 import expo from '../app.json'
 
@@ -49,9 +49,10 @@ class Home1 extends React.Component {
             count_youtube: 0,
             count_suggestion: 0,
             alarmname:'',
-
-
+            alarmed:false,
+            alarmcontent:'',
             dialogVisible: false,
+            checked:false,
         };
     }
     updateview_t = () => {
@@ -320,18 +321,80 @@ class Home1 extends React.Component {
 
     }
 
-    check2 = () => {
-        console.log('no again')
-        var date = new Date().getDate(); //Current Date
-        var month = new Date().getMonth() + 1; //Current Month
-        var year = new Date().getFullYear();
-        var code = firebase.auth().currentUser.email.substring(0, 4) + '_' + firebase.auth().currentUser.displayName;
-        firebase.database().ref('userinfo/' + code).update({
-            user_watched: date + month + year
-        }, function () {
+    check2 = () => { 
+        if(this.state.alarmed==false){
 
-        });
+        var m;
 
+        var keys;
+        console.log(expo.expo.version);
+         
+       
+        var d;
+        var usersRef = firebase.database().ref('version');
+        usersRef.once('value', (snapshot) => {
+            m = snapshot.val()
+
+            console.log("현재 버젼 firebase", m);
+            if (m != expo.expo.version) {
+
+                alert("New version of the app is available. For more experience and better performance, please keep the app up to date!");
+              
+            } }).then(()=> {
+                if(firebase.auth().currentUser!=null) { 
+                    console.log(" 유저 로그인 상태  ")
+                    var usersRef3 = firebase.database().ref('zalarm');
+                    usersRef3.once('value', (snapshot) => {
+                        m = snapshot.val()
+                     //   alert(m.content);
+                      console.log("현재 서버알람 ",m.name)
+
+                       this.state.alarmname=m.name;
+                       this.setState({ alarmcontent: m.content})
+                    }).then((m)=>{
+                        var code = firebase.auth().currentUser.email.substring(0, 4) + '_' + firebase.auth().currentUser.displayName;
+                        var usersRef2 = firebase.database().ref('userinfo/' + code + '/alarm');
+                        usersRef2.once('value', (snapshot) => {
+                            d = snapshot.val()
+                            console.log("이거", d ,this.state.alarmname);
+                          
+                            
+        
+                        }).then(()=>
+                        {
+                            if(d==this.state.alarmname){
+                                console.log("same", this.state.alarmname);
+                                this.setState({ alarmed: true })
+
+                            }
+                            else{ 
+                             
+                            console.log("past alarm")
+                              
+                         this.Show_Custom_Alert();
+                     
+                            }
+                        })
+                   
+
+    
+                    });
+                 //지워    
+               
+                }
+                if(firebase.auth().currentUser==null) { 
+
+                    this.Show_Custom_Alert();
+
+                }
+                
+
+            });
+
+           
+           
+         //   this.setState({ alarmed: true })
+        }
     }
 
        notshow = () => {
@@ -343,11 +406,35 @@ class Home1 extends React.Component {
         }, function () {
 
         });
+        
+        
+
 
     }
 
- 
+  
+    Show_Custom_Alert() {
+      console.log("setting visible")
+        this.setState({ dialogVisible: true })
+        this.setState({ alarmed: true })
+      }
+     Yespressed=()=>{
+         console.log("yes")
+        this.setState({ dialogVisible: false })
+        Linking.openURL("https://www.paypal.me/coufKR?locale.x=ko_KR").catch((err) => console.error('An error occurred', err));
 
+         if(this.state.checked){
+             this.notshow();
+         }
+     }
+     Nopressed=()=>{
+        console.log("yno")
+        this.setState({ dialogVisible: false })
+        if(this.state.checked){
+            this.notshow();
+        }
+    }
+    
 
 
 
@@ -364,103 +451,53 @@ class Home1 extends React.Component {
             </View>
         );
 
-        var m;
-
-        var keys;
-        console.log(expo.expo.version);
-         
-       
-        var d;
-        var usersRef = firebase.database().ref('version');
-        usersRef.on('value', (snapshot) => {
-            m = snapshot.val()
-
-            console.log("현재 버젼 firebase", m);
-            if (m != expo.expo.version) {
-
-                alert("New version of the app is available. For more experience and better performance, please keep the app up to date!");
-        
-            } 
-
-            else{ 
-                if(firebase.auth().currentUser==null) {
-                var usersRef1 = firebase.database().ref('zalarm');
-                usersRef1.on('value', (snapshot) => {
-                    m = snapshot.val()
-                 //   alert(m.content);
-        
-                  this.state.alarmname=m.name;
-                //  this.setState({ dialogVisible:true })
-                this.state.dialogVisible=true;
-                   console.log("visible ")
-                });  
-
-               
-            } 
-            if(firebase.auth().currentUser!=null) { 
-                var usersRef3 = firebase.database().ref('zalarm');
-                usersRef3.on('value', (snapshot) => {
-                    m = snapshot.val()
-                 //   alert(m.content);
-        
-                   this.state.alarmname=m.name;
-                });
-
-                var code = firebase.auth().currentUser.email.substring(0, 4) + '_' + firebase.auth().currentUser.displayName;
-                var usersRef2 = firebase.database().ref('userinfo/' + code + '/alarm');
-                usersRef2.on('value', (snapshot) => {
-                    d = snapshot.val()
-                    console.log("이거", d ,this.state.alarmname);
-                  
-                    if(d==this.state.alarmname){
-                        console.log("same", this.state.alarmname);
-                       
-                    }
-                    else{
-                        var usersRef1 = firebase.database().ref('zalarm');
-                        usersRef1.on('value', (snapshot) => {
-                            m = snapshot.val()
-                           // alert(m.content);
-                            Alert.alert(
-                                'Dear users',
-                                m.content,
-                                [
-                                    {text: 'OK', onPress: () => Linking.openURL("https://www.paypal.me/coufKR?locale.x=ko_KR").catch((err) => console.error('An error occurred', err))},
-                                  {text: 'not show it again', onPress: () => this.notshow()},
-                                  {
-                                    text: 'Cance',
-                                    onPress: () => console.log('Cancel Pressed'),
-                                    style: 'cancel',
-                                  },
-                                 
-                                ],
-                                {cancelable: false},
-                              );
-                          
-                        });
-                    }
-
-
-                });
-                
-              
-
-            } 
-
-          
-            }
-
-
-        });
      
-     
+        this.check2();
 
         return (
 
 
 
             <View>
-                <ConfirmDialog
+                <Dialog
+                    visible={this.state.dialogVisible}
+                    title="Dear users"
+                    onTouchOutside={() => this.setState({ dialogVisible: false })} >
+                    <View>
+                        <Text style={{ fontSize: 20, color: 'grey' }}>{this.state.alarmcontent}</Text>
+                     
+                            <CheckBox
+                                center
+                                title='NOT SHOW IT AGAIN'
+                                checked={this.state.checked}
+                                onPress={() => this.setState({checked: !this.state.checked})}
+                            />
+                                <View
+                       style={{flexDirection:'row'}}
+                        >
+
+                          <TouchableOpacity
+                            onPress={() =>this.Nopressed()}
+                                style={{
+                                    marginLeft:60,  marginTop: 30
+                                }}  >
+                 <Text style={{fontSize:20,color:'#56B8FF'}}>NO</Text>
+                        </TouchableOpacity>  
+
+                            <TouchableOpacity
+                             onPress={() =>this.Yespressed()}
+                                style={{
+                                    marginLeft:60, marginTop: 30
+                                }}  > 
+                                  
+                 <Text style={{fontSize:20,color:'#56B8FF'}}>YES</Text>
+                 
+                        </TouchableOpacity>
+                    </View>
+                    </View>
+                    
+                </Dialog>
+                {  /* <ConfirmDialog
                     title="Dear users"
                     message={" In order to continue our hard work, we have encountered financial difficulties considering server fees.  Those who would like to support us, please click yes to donate. Thank you!"}
                     visible={ this.state.dialogVisible}
@@ -473,7 +510,11 @@ class Home1 extends React.Component {
                         title: "NO",
                         onPress: () => this.setState({ dialogVisible: false })
                     }}
-                />
+                    positiveButton={{
+                        title: "fuck",
+                        onPress: () => alert("Yes touched!")
+                    }}
+                />*/}
                 <StatusBar backgroundColor="blue" barStyle="dark-content" />
 
 
