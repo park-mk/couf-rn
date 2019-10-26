@@ -26,106 +26,110 @@ class CategoryScreen extends React.Component {
 
 
 
-    var d;
+  
+    var d; 
     var s
     var usersRef = firebase.database().ref('visit/korean/count');
-    usersRef.on('value', (snapshot) => {
+    usersRef.once('value', (snapshot) => {
 
 
-      m = snapshot.val()
+        m = snapshot.val()
 
+       
+        this.state.count_korean = m ;
+    }, function (m) {
+        
+    }).then((m)=>{
+        console.log("korean",this.state.count_korean)
+        firebase.database().ref('visit/korean').update({
+            count: this.state.count_korean +1
+        }, function () {
 
-      this.state.count_travel = m + 1;
-    });
-    firebase.database().ref('visit/korean').update({
-      count: this.state.count_travel
-    }, function () {
-
-    });
+        }); 
+    })
     this.props.navigation.navigate('KORca');
   }
   updateview_bus = () => {
 
 
 
-    var d;
+    
+    var d; 
     var s
     var usersRef = firebase.database().ref('visit/bus/count');
-    usersRef.on('value', (snapshot) => {
+    usersRef.once('value', (snapshot) => {
 
 
-      m = snapshot.val()
+        m = snapshot.val()
 
+       
+        this.state.count_bus = m ;
+    }, function (m) {
+        
+    }).then((m)=>{
+      
+        firebase.database().ref('visit/bus').update({
+            count: this.state.count_bus+1
+        }, function () {
 
-      this.state.count_travel = m + 1;
-    });
-    firebase.database().ref('visit/bus').update({
-      count: this.state.count_travel
-    }, function () {
-
-    });
+        }); 
+    })
     this.props.navigation.navigate('BUS');
   }
   updateview_phone = () => {
 
-
-
-    var d;
+    var d; 
     var s
     var usersRef = firebase.database().ref('visit/phone/count');
-    usersRef.on('value', (snapshot) => {
+    usersRef.once('value', (snapshot) => {
 
 
-      m = snapshot.val()
+        m = snapshot.val()
 
+       
+        this.state.count_phone = m ;
+    }, function (m) {
+        
+    }).then((m)=>{
+        console.log("korean",this.state.count_phone)
+        firebase.database().ref('visit/phone').update({
+            count: this.state.count_phone +1
+        }, function () {
 
-      this.state.count_travel = m + 1;
-    });
-    firebase.database().ref('visit/phone').update({
-      count: this.state.count_travel
-    }, function () {
-
-    });
+        }); 
+    })
     this.props.navigation.navigate('TOL');
   }
   updateview_contact = () => {
 
 
 
-    var d;
+  
+    var d; 
     var s
     var usersRef = firebase.database().ref('visit/contact/count');
-    usersRef.on('value', (snapshot) => {
+    usersRef.once('value', (snapshot) => {
 
 
-      m = snapshot.val()
+        m = snapshot.val()
 
+       
+        this.state.count_contact = m ;
+    }, function (m) {
+        
+    }).then((m)=>{
+       
+        firebase.database().ref('visit/contact').update({
+            count: this.state.count_contact +1
+        }, function () {
 
-      this.state.count_travel = m + 1;
-    });
-    firebase.database().ref('visit/contact').update({
-      count: this.state.count_travel
-    }, function () {
-
-    });
+        }); 
+    })
     this.props.navigation.navigate('CONTACT');
   }
 
   render() {
-    var usersRef = firebase.database().ref('visit');
-    usersRef.on('value', (snapshot) => {
-
-      var m;
-      m = snapshot.val()
-
-
-      this.state.count_travel = m.travel.count;
-      this.state.count_buy = m.buy.count;
-      this.state.count_ent = m.ent.count;
-      this.state.count_food = m.food.count;
-      this.state.count_youtube = m.youtube.count;
-      this.state.count_suggestion = m.suggestion.count;
-    });
+  
     return (
       <View style={{ flex: 1, marginTop: 20, marginLeft: 5 }}>
         <ScrollView onRefresh={this.handleRefresh} >

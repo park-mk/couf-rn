@@ -56,24 +56,30 @@ class Home1 extends React.Component {
     }
     updateview_t = () => {
     
-        
+       
  
         var d; 
         var s
         var usersRef = firebase.database().ref('visit/travel/count');
-        usersRef.on('value', (snapshot) => {
+        usersRef.once('value', (snapshot) => {
 
 
             m = snapshot.val()
 
-            console.log("트레블", m);
-            this.state.count_travel = m + 1;
-        });
-        firebase.database().ref('visit/travel').update({
-            count: this.state.count_travel
-        }, function () {
-
-        }); 
+            console.log("트레블ㅇ", m);
+            this.state.count_travel = m ;
+        }, function (m) {
+            
+        }).then((m)=>{
+            console.log("실행",this.state.count_travel)
+            firebase.database().ref('visit/travel').update({
+                count: this.state.count_travel+1
+            }, function () {
+    
+            }); 
+        })
+        
+   
         this.props.navigation.navigate('TT');
     }
 
@@ -81,68 +87,78 @@ class Home1 extends React.Component {
 
 
                
-        var d;
+        var d; 
         var s
         var usersRef = firebase.database().ref('visit/ent/count');
-        usersRef.on('value', (snapshot) => {
+        usersRef.once('value', (snapshot) => {
 
 
             m = snapshot.val()
 
-            console.log("ent", m);
-            this.state.count_ent = m + 1;
-        });
-        firebase.database().ref('visit/ent').update({
-           count: this.state.count_ent
-        }, function () {
-
-        }); 
+            console.log("트레블ㅇ", m);
+            this.state.count_ent = m ;
+        }, function (m) {
+            
+        }).then((m)=>{
+           
+            firebase.database().ref('visit/ent').update({
+                count: this.state.count_ent+1
+            }, function () {
+    
+            }); 
+        })
         this.props.navigation.navigate('NIGHT')
     }
 
     updateview_f = () => {
 
 
-
-        var d;
+        var d; 
         var s
         var usersRef = firebase.database().ref('visit/food/count');
-        usersRef.on('value', (snapshot) => {
+        usersRef.once('value', (snapshot) => {
 
 
             m = snapshot.val()
 
-            console.log("음", m);
-            this.state.count_food = m + 1;
-        });
-        firebase.database().ref('visit/food').update({
-           count: this.state.count_food
-        }, function () {
-
-        }); 
+            console.log("트레블ㅇ", m);
+            this.state.count_food = m ;
+        }, function (m) {
+            
+        }).then((m)=>{
+           
+            firebase.database().ref('visit/food').update({
+                count: this.state.count_food+1
+            }, function () {
+    
+            }); 
+        })
         this.props.navigation.navigate('Food')
     }
 
     updateview_b = () => {
 
 
-     
-        var d;
+        var d; 
         var s
         var usersRef = firebase.database().ref('visit/buy/count');
-        usersRef.on('value', (snapshot) => {
+        usersRef.once('value', (snapshot) => {
 
 
             m = snapshot.val()
 
-            console.log("음", m);
-            this.state.count_buy = m + 1;
-        });
-        firebase.database().ref('visit/buy').update({
-           count: this.state.count_buy
-        }, function () {
-
-        }); 
+            console.log("트레블ㅇ", m);
+            this.state.count_buy = m ;
+        }, function (m) {
+            
+        }).then((m)=>{
+           
+            firebase.database().ref('visit/buy').update({
+                count: this.state.count_buy+1
+            }, function () {
+    
+            }); 
+        })
         this.props.navigation.navigate('UNDEVELOP')
 
     }
@@ -150,22 +166,26 @@ class Home1 extends React.Component {
 
 
 
-        var d;
+        var d; 
         var s
         var usersRef = firebase.database().ref('visit/youtube/count');
-        usersRef.on('value', (snapshot) => {
+        usersRef.once('value', (snapshot) => {
 
 
             m = snapshot.val()
 
-            console.log("음", m);
-            this.state.count_youtube = m + 1;
-        });
-        firebase.database().ref('visit/youtube').update({
-           count: this.state.count_youtube
-        }, function () {
-
-        }); 
+            console.log("트레블ㅇ", m);
+            this.state.count_youtube = m ;
+        }, function (m) {
+            
+        }).then((m)=>{
+           
+            firebase.database().ref('visit/youtube').update({
+                count: this.state.count_youtube+1
+            }, function () {
+    
+            }); 
+        })
         Linking.openURL("https://www.youtube.com/channel/UCS8Wlr_B7CQkN53Fim20G2Q?view_as=subscriber").catch((err) => console.error('An error occurred', err))
     }
 
@@ -173,22 +193,26 @@ class Home1 extends React.Component {
 
 
 
-        var d;
+          var d; 
         var s
         var usersRef = firebase.database().ref('visit/suggestion/count');
-        usersRef.on('value', (snapshot) => {
+        usersRef.once('value', (snapshot) => {
 
 
             m = snapshot.val()
 
-            console.log("음", m);
-            this.state.count_suggestion = m + 1;
-        });
-        firebase.database().ref('visit/suggestion').update({
-           count: this.state.count_suggestion
-        }, function () {
-
-        }); 
+            console.log("트레블ㅇ", m);
+            this.state.count_suggestion = m ;
+        }, function (m) {
+            
+        }).then((m)=>{
+           
+            firebase.database().ref('visit/suggestion').update({
+                count: this.state.count_suggestion+1
+            }, function () {
+    
+            }); 
+        })
         this.props.navigation.navigate('SuggestionScreen')
     
     }
@@ -328,20 +352,7 @@ class Home1 extends React.Component {
 
 
     render() {
-        var usersRef = firebase.database().ref('visit');
-    usersRef.on('value', (snapshot) => {
-  
-      var m;
-       m=snapshot.val() 
-      
-    
-         this.state.count_travel=m.travel.count;
-         this.state.count_buy=m.buy.count;
-         this.state.count_ent=m.ent.count;
-         this.state.count_food=m.food.count;
-         this.state.count_youtube=m.youtube.count;
-         this.state.count_suggestion=m.suggestion.count;
-         }); 
+   
         let dimensions = Dimensions.get("window");
         let imageheight = dimensions.height / 5;
         let imagewidth = dimensions.width;
