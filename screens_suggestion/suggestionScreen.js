@@ -143,6 +143,7 @@ class SuggestionScreen extends React.Component {
             uid: newPostKey,
             useremail:user.email,
             displayName:user.displayName,
+            photoURL:user.photoURL,
             timestamp:Date.now(),
             image: this.state.image ? newPostKey : null,
             imageUrl : null,
