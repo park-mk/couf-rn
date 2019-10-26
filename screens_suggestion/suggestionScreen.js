@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, Text, TextInput, View, FlatList, CameraRoll, Modal, KeyboardAvoidingView } from 'react-native';
+import {Image, Text, TextInput, View, FlatList, CameraRoll, Modal, KeyboardAvoidingView, Alert } from 'react-native';
 import styled from 'styled-components'
 import { List, ListItem, Button, Avatar  } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -38,9 +38,32 @@ class SuggestionScreen extends React.Component {
     }
 
     deleteData= (key) => {
-        /* TODO : 지울지 말지 확인창 띄우기 */
-        firebase.database().ref().child('comment/suggestion/'+key).set(null);
-        this.setData();
+        Alert.alert(
+            'Delete Popup',
+            'Are you sure you want to delete this?',
+            [
+                {text: 'Delete', onPress: () => {
+                        let ref = firebase.storage().ref().child("suggestion/"+key);
+                        let deleteData = firebase.database().ref().child('comment/suggestion/'+key);
+
+                        Promise.all([ref.delete(), deleteData.set(null)]).then(function(values) {
+                            console.log(values);
+
+                        }).catch((error) => {
+                            console.log(error);
+                        });
+                        this.setData();
+
+                    }
+                },
+                {
+                    text: 'Cancel',
+                    onPress: () => console.log('Cancel Pressed'),
+                    style: 'cancel',
+                },
+            ],
+            {cancelable: false},
+        );
     };
 
     setData = () => {
