@@ -7,6 +7,7 @@ import firebase from "../firebase";
 import CommentList from '../components/commentList'
 // import Comment from '../components/comment'
 import * as ImagePicker from 'expo-image-picker';
+import ProgressLoader from 'rn-progress-loader';
 
 class SuggestionScreen extends React.Component {
     constructor(props){
@@ -21,6 +22,7 @@ class SuggestionScreen extends React.Component {
             isFetching: false,
             toggleWriteForm : false,
             image: null,
+            loadVisible : false,
         })
         this.setData();
         this.base64Data = '';
@@ -149,6 +151,7 @@ class SuggestionScreen extends React.Component {
             },
         };
 
+        this.setState({loadVisible:true});
         this.uploadImage(this.state.image, newPostKey).then(function(){
             return this.setImageData(createData);
 
@@ -161,6 +164,9 @@ class SuggestionScreen extends React.Component {
 
         }.bind(this)).catch((error) => {
             console.log('error',error);
+        }).finally(() => {
+            this.setState({loadVisible:false});
+            console.log('final');
         });
     };
     clearData = () => {
@@ -178,6 +184,12 @@ class SuggestionScreen extends React.Component {
     render(url) {
         return (
             <Wrap style={{flex:1}} keyboardVerticalOffset={70} behavior="padding">
+                <ProgressLoader
+                    visible={this.state.loadVisible}
+                    isModal={true} isHUD={true}
+                    color={"#000000"}
+                    barHeight={80}
+                />
                 <Text
                     style={{fontFamily:'title-font' ,fontSize:25,marginLeft:10, }}
                 >Please leave your suggestions  or the infromation you want to know for our app</Text>
