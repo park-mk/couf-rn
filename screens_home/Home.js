@@ -48,9 +48,10 @@ class Home1 extends React.Component {
             count_buy: 0,
             count_youtube: 0,
             count_suggestion: 0,
+            alarmname:'',
 
 
-            dialogVisible: true,
+            dialogVisible: false,
         };
     }
     updateview_t = () => {
@@ -309,7 +310,19 @@ class Home1 extends React.Component {
 
     }
 
+       notshow = () => {
+        console.log('notshow')
+       
+        var code = firebase.auth().currentUser.email.substring(0, 4) + '_' + firebase.auth().currentUser.displayName;
+        firebase.database().ref('userinfo/' + code).update({
+             alarm:this.state.alarmname
+        }, function () {
 
+        });
+
+    }
+
+ 
 
 
 
@@ -344,20 +357,92 @@ class Home1 extends React.Component {
 
         var keys;
         console.log(expo.expo.version);
-
+         
+       
+        var d;
         var usersRef = firebase.database().ref('version');
         usersRef.on('value', (snapshot) => {
             m = snapshot.val()
 
-            console.log("이거", m);
+            console.log("현재 버젼 firebase", m);
             if (m != expo.expo.version) {
 
                 alert("New version of the app is available. For more experience and better performance, please keep the app up to date!");
+        
+            } 
+
+            else{ 
+                if(firebase.auth().currentUser==null) {
+                var usersRef1 = firebase.database().ref('zalarm');
+                usersRef1.on('value', (snapshot) => {
+                    m = snapshot.val()
+                 //   alert(m.content);
+        
+                  this.state.alarmname=m.name;
+                //  this.setState({ dialogVisible:true })
+                this.state.dialogVisible=true;
+                   console.log("visible ")
+                });  
+
+               
+            } 
+            if(firebase.auth().currentUser!=null) { 
+                var usersRef3 = firebase.database().ref('zalarm');
+                usersRef3.on('value', (snapshot) => {
+                    m = snapshot.val()
+                 //   alert(m.content);
+        
+                   this.state.alarmname=m.name;
+                });
+
+                var code = firebase.auth().currentUser.email.substring(0, 4) + '_' + firebase.auth().currentUser.displayName;
+                var usersRef2 = firebase.database().ref('userinfo/' + code + '/alarm');
+                usersRef2.on('value', (snapshot) => {
+                    d = snapshot.val()
+                    console.log("이거", d ,this.state.alarmname);
+                  
+                    if(d==this.state.alarmname){
+                        console.log("same", this.state.alarmname);
+                       
+                    }
+                    else{
+                        var usersRef1 = firebase.database().ref('zalarm');
+                        usersRef1.on('value', (snapshot) => {
+                            m = snapshot.val()
+                           // alert(m.content);
+                            Alert.alert(
+                                'Dear users',
+                                m.content,
+                                [
+                                    {text: 'OK', onPress: () => Linking.openURL("https://www.paypal.me/coufKR?locale.x=ko_KR").catch((err) => console.error('An error occurred', err))},
+                                  {text: 'not show it again', onPress: () => this.notshow()},
+                                  {
+                                    text: 'Cance',
+                                    onPress: () => console.log('Cancel Pressed'),
+                                    style: 'cancel',
+                                  },
+                                 
+                                ],
+                                {cancelable: false},
+                              );
+                          
+                        });
+                    }
+
+
+                });
+                
+              
+
+            } 
+
+          
             }
 
 
         });
-
+     
+     
 
         return (
 
@@ -367,7 +452,7 @@ class Home1 extends React.Component {
                 <ConfirmDialog
                     title="Dear users"
                     message={" In order to continue our hard work, we have encountered financial difficulties considering server fees.  Those who would like to support us, please click yes to donate. Thank you!"}
-                    visible={this.state.dialogVisible}
+                    visible={ this.state.dialogVisible}
                     onTouchOutside={() => this.setState({ dialogVisible: false })}
                     positiveButton={{
                         title: "YES",

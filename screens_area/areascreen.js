@@ -38,6 +38,7 @@ class AreaScreen extends React.Component {
   }
   
   render() {
+     if(firebase.auth().currentUser!=null){
     var code = firebase.auth().currentUser.email.substring(0, 4) + '_' + firebase.auth().currentUser.displayName;
 
     var usersRef = firebase.database().ref('userinfo/'+code+'/area');
@@ -53,7 +54,7 @@ class AreaScreen extends React.Component {
       
       this.props.navigation.navigate('Area'+m);
 
-   }) 
+   })  }
        
     let screenwidth=Dimensions.get('window').width;
     let screenheight=Dimensions.get('window').height; 
