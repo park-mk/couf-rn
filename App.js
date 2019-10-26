@@ -38,11 +38,15 @@ import CONTACT from './contactus'
 
 import TOLScreen from './screens_category/TOLscreen'
 import KORcate from './screens_korean/KORcate'
+
 import Fooditem from './screens_food/food_ex'
 import Travelitem from './screens_travel/Travel_ex'
 import TTlist from './screens_travel/Travellist'
 
 import KORScreen from './screens_korean/KORScreen'
+import NEWSScreen from './screens_news/news'
+import CULTUREScreen from './screens_culture/culture'
+
 
 import KOR_explainScreen from './screens_korean/KOR_explain'
 import AreaScreen from './screens_area/areascreen'
@@ -342,7 +346,18 @@ const CategoryStack = createStackNavigator({
   KORex: { screen: KOR_explainScreen , navigationOptions: {
     header: null,
 
-  }}, TMC: { screen: TMC },
+  }},  NEWS: { screen: NEWSScreen , navigationOptions: {
+    header: null,
+
+  }},
+
+  CULTURE: { screen: CULTUREScreen , navigationOptions: {
+    header: null,
+
+  }},
+  
+  
+   TMC: { screen: TMC },
   YS: { screen: YS },
   H221: { screen: H221 },
   Red: { screen: Red },

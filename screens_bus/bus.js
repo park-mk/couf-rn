@@ -142,18 +142,18 @@ this.setState({
       </TouchableOpacity>
       <TouchableOpacity style={{flex:1}}
        onPress={()=> this.props.navigation.navigate('GREEN')}>
-      <Text style={{fontFamily:'title-font' ,fontSize:50,marginLeft:15,color:'#d11f1f'}}>GREEN (HUMPHREYS)</Text>
+      <Text style={{fontFamily:'title-font' ,fontSize:50,marginLeft:15,color:'#04DC00'}}>GREEN (HUMPHREYS)</Text>
       </TouchableOpacity>
       <TouchableOpacity style={{flex:1}}
         onPress={()=> this.props.navigation.navigate('BLUE')}>
-      <Text style={{fontFamily:'title-font' ,fontSize:50,marginLeft:15,color:'#21dd21'}}>BLUE (HUMPHREYS)</Text>
+      <Text style={{fontFamily:'title-font' ,fontSize:50,marginLeft:15,color:'#1448FF'}}>BLUE (HUMPHREYS)</Text>
       </TouchableOpacity>
 
 
       <TouchableOpacity style={{flex:1}}
       
       onPress={()=> this.props.navigation.navigate('Red')}>
-      <Text   style={{fontFamily:'title-font' ,fontSize:50,marginLeft:10,color:'#2c4ed6'}}  >RED (HUMPHREYS)</Text>
+      <Text   style={{fontFamily:'title-font' ,fontSize:50,marginLeft:10,color:'#FF0000'}}  >RED (HUMPHREYS)</Text>
       </TouchableOpacity>
       
       <TouchableOpacity style={{flex:1}}

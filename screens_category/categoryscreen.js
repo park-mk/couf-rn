@@ -22,6 +22,33 @@ class CategoryScreen extends React.Component {
 
     };
   }
+  updateview_news = () => {
+
+
+
+  
+    var d; 
+    var s
+    var usersRef = firebase.database().ref('visit/news/count');
+    usersRef.once('value', (snapshot) => {
+
+
+        m = snapshot.val()
+
+       
+        this.state.count_news = m ;
+    }, function (m) {
+        
+    }).then((m)=>{
+       
+        firebase.database().ref('visit/news').update({
+            count: this.state.count_news +1
+        }, function () {
+
+        }); 
+    })
+    this.props.navigation.navigate('NEWS');
+  }
   updateview_korean = () => {
 
 
@@ -100,6 +127,33 @@ class CategoryScreen extends React.Component {
     })
     this.props.navigation.navigate('TOL');
   }
+  updateview_culture = () => {
+
+
+
+  
+    var d; 
+    var s
+    var usersRef = firebase.database().ref('visit/culture/count');
+    usersRef.once('value', (snapshot) => {
+
+
+        m = snapshot.val()
+
+       
+        this.state.count_culture = m ;
+    }, function (m) {
+        
+    }).then((m)=>{
+       
+        firebase.database().ref('visit/culture').update({
+            count: this.state.count_culture +1
+        }, function () {
+
+        }); 
+    })
+    this.props.navigation.navigate('CULTURE');
+  }
   updateview_contact = () => {
 
 
@@ -137,7 +191,7 @@ class CategoryScreen extends React.Component {
           <View style={{ flex: 1, flexDirection: 'row' }}>
 
             <Category imageURI={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Fnews.png?alt=media&token=d10da786-ea88-4051-92ad-2f62d1216090" }}
-              name='exchange'
+              name='news'
 
               // onPress={()=>  Linking.openURL("https://www.dollars2won.com/").catch((err) => console.error('An error occurred', err))}
               // onPress={()=> this.props.navigation.navigate('EXCHANGE')
@@ -145,7 +199,7 @@ class CategoryScreen extends React.Component {
               //   }
               onPress={
 
-                () => this.updateview(name)}
+                () => this.updateview_news()}
             />
 
             <Category imageURI={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Flearning%20korea%202.png?alt=media&token=b64cd108-71af-4a9c-bc3a-7b75349aefdc" }}
@@ -183,11 +237,11 @@ class CategoryScreen extends React.Component {
           { /*****  category sort  each view have 2 category  in row  *******/}
           <View style={{ flex: 1, flexDirection: 'row' }}>
 
-            <Category imageURI={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2F71943018_385345952161708_3197462092261097472_n.png?alt=media&token=d297dc46-a368-414d-b4fa-842f5cb079df" }}
+            <Category imageURI={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Fculture%202.png?alt=media&token=4f711b3c-b0c0-44a3-99b7-e5a2547dcec3" }}
               name='culture'
-              onPress={() => Linking.openURL("https://www.youtube.com/channel/UCS8Wlr_B7CQkN53Fim20G2Q?view_as=subscriber").catch((err) => console.error('An error occurred', err))}
+              onPress={() => this.updateview_culture()}
             />
-            <Category imageURI={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2F71348065_692662517904833_2631103120217735168_n.png?alt=media&token=9b1bb6f7-9af8-4241-9698-5c2b1e28675c" }}
+            <Category imageURI={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Fabout%20us%202.png?alt=media&token=7328b825-4625-40ca-ad4f-6896c3ea496d" }}
               name='contact us'
               onPress={() => this.updateview_contact()}
             />
