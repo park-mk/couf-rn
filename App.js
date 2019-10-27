@@ -45,6 +45,7 @@ import TTlist from './screens_travel/Travellist'
 
 import KORScreen from './screens_korean/KORScreen'
 import NEWSScreen from './screens_news/news'
+import NEWSS from './screens_news/news_ex'
 import CULTUREScreen from './screens_culture/culture'
 
 
@@ -347,6 +348,10 @@ const CategoryStack = createStackNavigator({
     header: null,
 
   }},  NEWS: { screen: NEWSScreen , navigationOptions: {
+    header: null,
+
+  }},
+  NEWSS: { screen: NEWSS , navigationOptions: {
     header: null,
 
   }},

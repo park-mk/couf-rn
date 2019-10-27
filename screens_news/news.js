@@ -137,18 +137,28 @@ usersRef.on('value', (snapshot) => {
     return(
       <TouchableOpacity
       onPress={() => {
-
+        this.props.navigation.navigate('NEWSS', {
+          title : item.title,
+          description :item.description,
+         
+          topimage : item.topimage,
+          date:item.date,
+       
+        //  imagelist:item.images,
+          //tips:item.tips,
+       }); 
+       
      
      }
    
    }
       >
-          <View style={{borderColor:'grey',borderBottomWidth:3,height:80}}>
+          <View style={{borderColor:'grey',borderBottomWidth:3}}>
      <View  style={{  flex:1,alignItems:'center'}} >
-               <Text style={{fontSize:20,fontFamily:'content-font' ,marginLeft:10}}>{item.title}</Text>
+               <Text style={{fontSize:20,fontFamily:'content-font' ,marginLeft:10,marginTop:20}}>{item.title}</Text>
              </View  >
-             <View>
-             <Text style={{fontSize:10,fontFamily:'content-font' ,marginLeft:10}}>{item.date}</Text>
+             <View style={{  flex:1,alignItems:'flex-end'}}>
+             <Text style={{fontSize:15,fontFamily:'content-font' ,color:'grey',marginRight:20}}>{item.date}</Text>
            
             
            </View>
@@ -170,7 +180,7 @@ usersRef.on('value', (snapshot) => {
       <View style={{flex:1}}>
       <Header
       leftComponent={  <TouchableOpacity 
-       onPress={()=> this.props.navigation.navigate('KORca')}
+       onPress={()=> this.props.navigation.navigate('Category')}
        >
        <Image source={require('../assets/back.png')}
                    
@@ -183,6 +193,7 @@ usersRef.on('value', (snapshot) => {
      
        />
         <FlatList
+        //inverted
           data={this.state.datasource}
           
           renderItem={this.renderItem}
