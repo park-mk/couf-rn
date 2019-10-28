@@ -143,7 +143,8 @@ usersRef.on('value', (snapshot) => {
          
           topimage : item.topimage,
           date:item.date,
-       
+          upvote:this.state.upvote,//item.upvote,
+          imagelist:item.images,
         //  imagelist:item.images,
           //tips:item.tips,
        }); 

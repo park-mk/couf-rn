@@ -47,6 +47,10 @@ import KORScreen from './screens_korean/KORScreen'
 import NEWSScreen from './screens_news/news'
 import NEWSS from './screens_news/news_ex'
 import CULTUREScreen from './screens_culture/culture'
+import TIP from './screens_tips/tips'
+
+
+
 
 
 import KOR_explainScreen from './screens_korean/KOR_explain'
@@ -360,6 +364,11 @@ const CategoryStack = createStackNavigator({
     header: null,
 
   }},
+  TIP: { screen: TIP , navigationOptions: {
+    header: null,
+
+  }},
+
   
   
    TMC: { screen: TMC },

@@ -12274,9 +12274,10 @@ react-native-youtube@^1.1.0:
   dependencies:
     prop-types "^15.5.0"
 
-"react-native@https://github.com/expo/react-native/archive/sdk-35.0.0.tar.gz":
-  version "0.59.8"
-  resolved "https://github.com/expo/react-native/archive/sdk-35.0.0.tar.gz#cf62758ae75b5df304836ad9971239abdb240587"
+react-native@^0.59.8:
+  version "0.59.10"
+  resolved "http://r.cnpmjs.org/react-native/download/react-native-0.59.10.tgz#352f381e382f93a0403be499c9e384bf51c2591c"
+  integrity sha1-NS84Hjgvk6BAO+SZyeOEv1HCWRw=
   dependencies:
     "@babel/runtime" "^7.0.0"
     "@react-native-community/cli" "^1.2.1"
@@ -12324,7 +12325,7 @@ react-native-youtube@^1.1.0:
     semver "^5.0.3"
     serve-static "^1.13.1"
     shell-quote "1.6.1"
-    stacktrace-parser "0.1.4"
+    stacktrace-parser "^0.1.3"
     ws "^1.1.5"
     xmldoc "^0.4.0"
     yargs "^9.0.0"
@@ -12970,6 +12971,11 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
   dependencies:
     hash-base "^3.0.0"
     inherits "^2.0.1"
+
+rn-progress-loader@^1.0.8:
+  version "1.0.8"
+  resolved "http://r.cnpmjs.org/rn-progress-loader/download/rn-progress-loader-1.0.8.tgz#c670a690106c0be0d4346f651da11409865cd14c"
+  integrity sha1-xnCmkBBsC+DUNG9lHaEUCYZc0Uw=
 
 rsvp@^3.3.3:
   version "3.6.2"
@@ -13667,10 +13673,12 @@ stack-utils@^1.0.1:
   resolved "http://r.cnpmjs.org/stack-utils/download/stack-utils-1.0.2.tgz#33eba3897788558bebfc2db059dc158ec36cebb8"
   integrity sha1-M+ujiXeIVYvr/C2wWdwVjsNs67g=
 
-stacktrace-parser@0.1.4:
-  version "0.1.4"
-  resolved "http://r.cnpmjs.org/stacktrace-parser/download/stacktrace-parser-0.1.4.tgz#01397922e5f62ecf30845522c95c4fe1d25e7d4e"
-  integrity sha1-ATl5IuX2Ls8whFUiyVxP4dJefU4=
+stacktrace-parser@^0.1.3:
+  version "0.1.7"
+  resolved "http://r.cnpmjs.org/stacktrace-parser/download/stacktrace-parser-0.1.7.tgz#9ed005638a5e79dcf256611da1dfb4871e6fd14d"
+  integrity sha1-ntAFY4peedzyVmEdod+0hx5v0U0=
+  dependencies:
+    type-fest "^0.7.1"
 
 static-extend@^0.1.1:
   version "0.1.2"
@@ -14469,6 +14477,11 @@ type-fest@^0.5.2:
   version "0.5.2"
   resolved "http://r.cnpmjs.org/type-fest/download/type-fest-0.5.2.tgz#d6ef42a0356c6cd45f49485c3b6281fc148e48a2"
   integrity sha1-1u9CoDVsbNRfSUhcO2KB/BSOSKI=
+
+type-fest@^0.7.1:
+  version "0.7.1"
+  resolved "http://r.cnpmjs.org/type-fest/download/type-fest-0.7.1.tgz#8dda65feaf03ed78f0a3f9678f1869147f7c5c48"
+  integrity sha1-jdpl/q8D7Xjwo/lnjxhpFH98XEg=
 
 type-is@~1.6.16:
   version "1.6.16"

@@ -542,7 +542,7 @@ class Home1 extends React.Component {
                                     height: imageheight + imageheight / 3,
 
                                 }}
-                                source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2FTRAVEL.png?alt=media&token=4bfb56db-527a-449d-8a40-213751b0d53f" }}
+                                source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2FComponent.png?alt=media&token=db513047-d0ed-41bc-ad74-f3a2ffc49bd9" }}
                             />
 
 
@@ -562,7 +562,7 @@ class Home1 extends React.Component {
                                     height: imageheight,
                                     borderBottomWidth: 3,
                                 }}
-                                source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2FENTERTAINMENT.png?alt=media&token=cad30c80-491a-4404-ab34-2dd5ef069f37" }}
+                                source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2FComponent%205.png?alt=media&token=004700a5-2631-492f-81db-50c4ff1f376d" }}
 
                             />
 
@@ -584,7 +584,7 @@ class Home1 extends React.Component {
                                     height: imageheight,
 
                                 }}
-                                source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2FFOOD.png?alt=media&token=14634ce6-4ff4-43d9-a385-4f17b61d7741" }}
+                                source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2FComponent%205-2.png?alt=media&token=638418c7-a696-4f2f-82a6-549d548b2338" }}
                             />
 
 
@@ -604,7 +604,7 @@ class Home1 extends React.Component {
                                     width: imagewidth,
                                     height: imageheight,
                                 }}
-                                source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2Fbuy%40sell.png?alt=media&token=54173976-31ab-4473-af6d-f4127ffc12d6" }}
+                                source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2FComponent%208.png?alt=media&token=7660c171-a0f5-4a56-b6c9-7d7e17b28a23" }}
                             />
 
 
@@ -631,7 +631,7 @@ class Home1 extends React.Component {
                                     width: imagewidth,
                                     height: imageheight,
                                 }}
-                                source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2FYOUTUBE.png?alt=media&token=30d9eca6-38af-48b8-9e3b-1e7c4269cf88" }}
+                                source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2FYOUTUBE.png?alt=media&token=5cf3d21f-3e2c-495a-8299-29867da8fe72" }}
                             />
 
 
@@ -656,7 +656,7 @@ class Home1 extends React.Component {
                                     height: imageheight,
 
                                 }}
-                                source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2FSUGGESTIONS.png?alt=media&token=a15872fe-c150-4b89-87f1-c786bda67aaf" }}
+                                source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2FSUGGESTIONS.png?alt=media&token=8c5473ad-9368-4599-b853-1d3d06ca53a9" }}
                             />
 
 

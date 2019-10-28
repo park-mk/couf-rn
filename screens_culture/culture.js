@@ -30,7 +30,7 @@ class CULTUREScreen extends React.Component {
       return  <Image
       style={{
         width: 30, flex: 1,
-        height: 30, marginRight:10
+        height: 30, marginRight:20
       }}
       resizeMode={'contain'}
       source={ 
@@ -41,7 +41,7 @@ class CULTUREScreen extends React.Component {
         return  <Image
         style={{
           width: 30, flex: 1,
-          height: 30, marginRight:10
+          height: 30, marginRight:20
         }}
         resizeMode={'contain'}
         source={ 
@@ -61,12 +61,13 @@ class CULTUREScreen extends React.Component {
    
    }
       >
-          <View style={{flexDirection:'row',borderColor:'grey',borderBottomWidth:3,height:80}}>
-     <View  style={{  flex:1,alignItems:'center'}} >
-               <Text style={{fontSize:20,fontFamily:'content-font' ,marginLeft:10}}>{item.title}</Text>
+          <View style={{flexDirection:'row',borderColor:'grey',borderBottomWidth:3}}>
+          <View  style={{  flex:1,alignItems:'center'}} >
+               <Text style={{fontSize:20,fontFamily:'content-font' ,marginLeft:10,marginTop:10,marginBottom:10,marginRight:15}}>{item.title}</Text>
              </View  >
+             
              <View>
-           {this.image(item)}
+             {this.image(item)}
            
             
            </View>
@@ -190,7 +191,7 @@ usersRef.on('value', (snapshot) => {
       <View style={{flex:1}}>
       <Header
       leftComponent={  <TouchableOpacity 
-       onPress={()=> this.props.navigation.navigate('KORca')}
+       onPress={()=> this.props.navigation.navigate('Category')}
        >
        <Image source={require('../assets/back.png')}
                    
