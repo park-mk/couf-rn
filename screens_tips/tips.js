@@ -61,6 +61,7 @@ class TIP extends React.Component {
             </TouchableOpacity>
        { /*****  category sort  each view have 2 category  in row  *******/}
        <Text style={{fontFamily:'title-font',fontSize:35,marginTop:10,marginLeft:20}}>TIPS IN LIFE</Text>
+       
 
           <TouchableOpacity 
                 

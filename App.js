@@ -17,6 +17,7 @@ import {
   Image,
   TouchableOpacity,
   ActivityIndicator,
+  AsyncStorage,
 } from 'react-native';
 
 import {
@@ -188,6 +189,32 @@ class HomeScreen extends React.Component {
     });
   }
 
+  saveValueFunction = (value) => {
+    //function to save the value in AsyncStorage
+    if(value==null){
+      //To check the input not empty
+      AsyncStorage.setItem('check_first', "done");
+      //Setting a data to a AsyncStorage with respect to a key 
+     // this.setState({ textInputData: '' })
+      //Resetting the TextInput
+      alert('Data Saved');
+      //alert to confirm
+    }else{
+      alert('Please fill data');
+     
+    }
+  };
+
+  getValueFunction = () => {
+    //function to get the value from AsyncStorage
+    AsyncStorage.getItem('check_first').then(value =>
+      //AsyncStorage returns a promise so adding a callback to get the value
+      this.saveValueFunction (value) 
+      //Setting the value in Text 
+      
+    );
+  };
+
   renderScreen() {
     if(expo==expo.expo.version){
        
@@ -210,7 +237,9 @@ class HomeScreen extends React.Component {
 }
   
   render() {
-    
+  
+  
+  { this.getValueFunction ()}
      //navigation.navigate('Home1')
     return (
       <ScrollView >
