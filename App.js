@@ -18,6 +18,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   AsyncStorage,
+  Modal,
 } from 'react-native';
 
 import {
@@ -189,6 +190,7 @@ class HomeScreen extends React.Component {
     });
   }
 
+
   saveValueFunction = (value) => {
     //function to save the value in AsyncStorage
     if(value==null){
@@ -200,12 +202,33 @@ class HomeScreen extends React.Component {
       alert('Data Saved');
       //alert to confirm
     }else{
-      alert('Please fill data');
+      let dimensions = Dimensions.get("window");
+      let imageheight = dimensions.height ;
+      let imagewidth = dimensions.width;
+     // alert(imageheight);
+      console.log(imagewidth);
+     return  
+        <View>
+     <Image
+         style={{
+             width: imagewidth,
+             height: imageheight,
+             borderBottomWidth: 3,
+         }}
+         source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Fabout%20us.png?alt=media&token=0cdfd383-1dd5-40f2-8d19-a1fb03904478" }}
+
+     />
+</View>
+
+
      
     }
   };
 
   getValueFunction = () => {
+    let dimensions = Dimensions.get("window");
+      let imageheight = dimensions.height ;
+      let imagewidth = dimensions.width;
     //function to get the value from AsyncStorage
     AsyncStorage.getItem('check_first').then(value =>
       //AsyncStorage returns a promise so adding a callback to get the value
@@ -213,22 +236,25 @@ class HomeScreen extends React.Component {
       //Setting the value in Text 
       
     );
+    return   <View>
+      <Modal
+              animationType="slide"
+              transparent={false}
+              visible={false}
+              onRequestClose={() => {
+                console.log('Modal has been closed.');
+              }}>
+          
+            </Modal> 
+</View>
+     
   };
 
   renderScreen() {
-    if(expo==expo.expo.version){
-       
-          
-          return   <View>
-          <Home1
-              navigation={this.props.navigation}
-           ></Home1>
-     
-         </View>;
-    
-}
+   
 
     return <View>
+       { this.getValueFunction ()}
     <Home1
         navigation={this.props.navigation}
      ></Home1>
@@ -239,10 +265,11 @@ class HomeScreen extends React.Component {
   render() {
   
   
-  { this.getValueFunction ()}
+ 
      //navigation.navigate('Home1')
     return (
       <ScrollView >
+         { this.getValueFunction ()}
       {
          
 

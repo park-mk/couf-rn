@@ -16,7 +16,8 @@ import {
     ActivityIndicator,
     Linking,
     Alert,
-    AsyncStorage
+    AsyncStorage,
+    Modal,
 
 
 } from 'react-native';
@@ -54,6 +55,7 @@ class Home1 extends React.Component {
             alarmcontent:'',
             dialogVisible: false,
             checked:false,
+            commentVisible:false,
         };
     }
     updateview_t = () => {
@@ -435,7 +437,63 @@ class Home1 extends React.Component {
             this.notshow();
         }
     }
+    saveValueFunction = (value) => {
+        //function to save the value in AsyncStorage
+        if(value==null){
+          //To check the input not empty
+          AsyncStorage.setItem('check_first_', "done");
+          //Setting a data to a AsyncStorage with respect to a key 
+         // this.setState({ textInputData: '' })
+          //Resetting the TextInput
+          alert('Data Saved');
+          //alert to confirm
+          this.setState({commentVisible:true})
+          
+        }else{
+          let dimensions = Dimensions.get("window");
+          let imageheight = dimensions.height ;
+          let imagewidth = dimensions.width;
+         // alert(imageheight);
+          console.log(imagewidth);
+         return  
+            <View>
+         <Image
+             style={{
+                 width: imagewidth,
+                 height: imageheight,
+                 borderBottomWidth: 3,
+             }}
+             source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Fabout%20us.png?alt=media&token=0cdfd383-1dd5-40f2-8d19-a1fb03904478" }}
     
+         />
+           </View>
+    
+    
+         
+        }
+      };
+      onClickComment = (value) => {
+        this.setState({
+          commentVisible: value || !this.state.commentVisible,
+        });
+      }; 
+
+      getValueFunction = () => {
+        let dimensions = Dimensions.get("window");
+          let imageheight = dimensions.height ;
+          let imagewidth = dimensions.width;
+        //function to get the value from AsyncStorage
+        AsyncStorage.getItem('check_first_').then(value =>
+          //AsyncStorage returns a promise so adding a callback to get the value
+          this.saveValueFunction (value) 
+          //Setting the value in Text 
+          
+        );
+        return   <View>
+        
+         </View>
+         
+      };
 
 
 
@@ -445,26 +503,8 @@ class Home1 extends React.Component {
         let imageheight = dimensions.height / 5;
         let imagewidth = dimensions.width;
         const userId = '8ba790f3-5acd-4a08-bc6a-97a36c124f29';
-        const saveUserId = async userId => {
-          try {
-            await AsyncStorage.setItem('userId', userId);
-          } catch (error) {
-            // Error retrieving data
-            console.log(error.message);
-          }
-        };
-
-        const getUserId = async () => {
-            let userId = '';
-            try {
-              userId = await AsyncStorage.getItem('userId') || 'none';
-            } catch (error) {
-              // Error retrieving data
-              console.log(error.message);
-            }
-            return userId;
-          }
-
+      
+    
         const MyStatusBar = ({ backgroundColor, ...props }) => (
             <View style={[styles.statusBar, { backgroundColor }]}>
                 <StatusBar backgroundColor="yellow" barStyle="dark-content" />
@@ -473,12 +513,36 @@ class Home1 extends React.Component {
 
      
         this.check2();
-
+         
         return (
 
 
 
             <View>
+                <Modal
+                  animationType="slide"
+                  transparent={false}
+                  visible={this.state.commentVisible}
+                  onRequestClose={() => {
+                    console.log('Modal has been closed.');
+                  }}>
+                <View>
+                    <TouchableOpacity
+                     onPress={() =>this.onClickComment()}
+                    >
+         <Image
+             style={{
+                 width: imagewidth,
+                 height: imageheight*5,
+                 borderBottomWidth: 3,
+             }}
+             source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Fabout%20us.png?alt=media&token=0cdfd383-1dd5-40f2-8d19-a1fb03904478" }}
+    
+         />
+           </TouchableOpacity>
+           </View>
+                </Modal> 
+
                 <Dialog
                     visible={this.state.dialogVisible}
                     title="Dear users"
