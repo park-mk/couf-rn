@@ -88,38 +88,27 @@ class WTEA1 extends React.Component {
 
 
   async componentDidMount() {
-   {/* const { navigation } = this.props;
+    const { navigation } = this.props;
     const name = navigation.getParam('name', 'NO-ID');
     const cate = navigation.getParam('cate', 'NO-ID');
-
-    console.log(cate);
-
-    var usersRef = firebase.database().ref('travel/' + cate + '/' + name + '/upvote');
+ 
+    var usersRef = firebase.database().ref(  cate + '/' + name + '/upvote');
 
 
-    usersRef.on('value', (snapshot) => {
+    usersRef.once('value', (snapshot) => {
 
 
       var m = snapshot.val()
       this.state.keys = Object.values(m);
-      this.state.up = m
+      this.setState({up:m})
       console.log("here");
       console.log(this.state.up);
       console.log(this.state.keys);
     });
-
-
-   // this.analyze(name);
-
-
-
-    this.makeRemoteRequest();
-
-*/}
   }
 
   makeRemoteRequest = () => {
-
+  
     //this.setState({ upvote: this.state.up })
     var code = firebase.auth().currentUser.email.substring(0, 4) + '_' + firebase.auth().currentUser.displayName;
 
@@ -242,7 +231,7 @@ class WTEA1 extends React.Component {
   } 
      backgroundColor={'#fff'}
     borderBottomColor={'#fff'}
-      centerComponent={{ text: 'TRAVEL', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
+      centerComponent={{ text: 'EAT', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
      
        />
         <ScrollView>
@@ -290,6 +279,7 @@ class WTEA1 extends React.Component {
               </View>
   
               <View style={{ flex: 1 ,alignItems:'center'}}>
+              <View style={{ flex: 1 ,flexDirection:'row'}}>
             {this.state.voted ? (
 
 <TouchableOpacity
@@ -326,6 +316,8 @@ class WTEA1 extends React.Component {
             />
 </TouchableOpacity>
             )}
+             <Text style={{ textAlign: 'left', fontSize: 20,color:'#56B8FF',marginBottom:3}}>{this.state.up}</Text>
+              </View>
             </View>
             
              

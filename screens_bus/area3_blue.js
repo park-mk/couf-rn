@@ -116,7 +116,9 @@ class BLUE extends React.Component {
                     this.state.yvalue1=(long/this.state.timeofcircle)*this.state.circlelength-50;
                       this.state.xvalue1=0; 
                     
-                      break;
+                      if(this.state.yvalue1<4700){
+                              
+                        break;}
                 }
                 else this.state.yvalue1=-300;
              }
@@ -132,7 +134,9 @@ class BLUE extends React.Component {
                     this.state.yvalue2=(long/this.state.timeofcircle)*this.state.circlelength-50;
                       this.state.xvalue2=-50; 
                     
-                      break;
+                      if(this.state.yvalue2<4700){
+                              
+                        break;}
                 }
                 else this.state.yvalue2=-300;
              }
@@ -149,7 +153,9 @@ class BLUE extends React.Component {
                     this.state.yvalue3=(long/this.state.timeofcircle)*this.state.circlelength-50;
                       this.state.xvalue3=0; 
                     
-                      break;
+                      if(this.state.yvalue3<4700){
+                              
+                        break;}
                 }
              }
              this.state.yvalue4=-200;
@@ -186,7 +192,7 @@ class BLUE extends React.Component {
          /////////// bus1  
                 
                       for(let i=0;i<18;i++){
-                          
+                      
                          if(number>=this.state.bus1[i]&&number<=this.state.bus1[i]+158){
                                  
                              var h= (hour-parseInt(this.state.bus1[i]/100));
@@ -198,13 +204,16 @@ class BLUE extends React.Component {
                             
                                this.state.xvalue1=0; 
                              
-                               break;
+                               if(this.state.yvalue1<4700){
+                              
+                                break;}
                          }
                          else this.state.yvalue1=-300;
                       }
 
 
                       for(let i=0;i<18;i++){
+                        console.log("bus2",this.state.yvalue2,"number",number);
                         if(number>=this.state.bus2[i]&&number<=this.state.bus2[i]+158){
                                
                             var h= (hour-parseInt(this.state.bus2[i]/100));
@@ -214,8 +223,9 @@ class BLUE extends React.Component {
                             var long=h*60+m+seconds/60
                              this.state.yvalue2=(long/this.state.timeofcircle)*this.state.circlelength-50;
                               this.state.xvalue2=0; 
-                            
-                              break;
+                              if(this.state.yvalue2<4700){
+                              
+                              break;}
                         }
                         else this.state.yvalue2=-300;
                      }
@@ -233,7 +243,9 @@ class BLUE extends React.Component {
                              this.state.yvalue3=(long/this.state.timeofcircle)*this.state.circlelength-50;
                               this.state.xvalue3=0; 
                             
-                              break;
+                              if(this.state.yvalue3<4700){
+                              
+                                break;}
                         }
                         else this.state.yvalue3=-300;
                      }
@@ -241,6 +253,7 @@ class BLUE extends React.Component {
 
 
                      for(let i=0;i<18;i++){
+                      
                         if(number>=this.state.bus4[i]&&number<=this.state.bus4[i]+158){
                                
                             var h= (hour-parseInt(this.state.bus4[i]/100));
@@ -252,7 +265,9 @@ class BLUE extends React.Component {
                             
                               this.state.xvalue4=0; 
                             
-                              break;
+                              if(this.state.yvalue4<4700){
+                              
+                                break;}
                         }
                         else this.state.yvalue4=-300;
                      }
@@ -260,7 +275,8 @@ class BLUE extends React.Component {
 
 
                      for(let i=0;i<18;i++){
-                        if(number>=this.state.bus5[i]&&number<=this.state.bus5[i]+158){
+                     
+                        if(number>=this.state.bus5[i]&&number<=this.state.bus5[i]+111){
                                
                             var h= (hour-parseInt(this.state.bus5[i]/100));
                             var m= minutes-(this.state.bus5[i]%100);
@@ -268,11 +284,13 @@ class BLUE extends React.Component {
                             
                             var long=h*60+m+seconds/60
                              this.state.yvalue5=(long/this.state.timeofcircle)*this.state.circlelength-50;
-                              //console.log(this.state.yvalue5);
+                            
                              
                               this.state.xvalue5=0; 
                             
-                              break;
+                              if(this.state.yvalue5<4700){
+                              
+                                break;}
                         }
                         else this.state.yvalue5=-300;
                      }
