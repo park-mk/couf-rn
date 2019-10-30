@@ -56,6 +56,8 @@ class Home1 extends React.Component {
             dialogVisible: false,
             checked:false,
             commentVisible:false,
+            image:"",
+            imagechange:0,
         };
     }
     updateview_t = () => {
@@ -441,7 +443,7 @@ class Home1 extends React.Component {
         //function to save the value in AsyncStorage
         if(value==null){
           //To check the input not empty
-          AsyncStorage.setItem('check_first_', "done");
+          AsyncStorage.setItem('che', "e");
           //Setting a data to a AsyncStorage with respect to a key 
          // this.setState({ textInputData: '' })
           //Resetting the TextInput
@@ -453,29 +455,45 @@ class Home1 extends React.Component {
           let dimensions = Dimensions.get("window");
           let imageheight = dimensions.height ;
           let imagewidth = dimensions.width;
-         // alert(imageheight);
-          console.log(imagewidth);
-         return  
-            <View>
-         <Image
-             style={{
-                 width: imagewidth,
-                 height: imageheight,
-                 borderBottomWidth: 3,
-             }}
-             source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Fabout%20us.png?alt=media&token=0cdfd383-1dd5-40f2-8d19-a1fb03904478" }}
-    
-         />
-           </View>
+        
+        
+           
     
     
          
         }
       };
       onClickComment = (value) => {
-        this.setState({
-          commentVisible: value || !this.state.commentVisible,
-        });
+           if(this.state.imagechange==0){
+            this.setState({
+               imagechange: 1,
+              });
+           }
+         else  if(this.state.imagechange==1){
+
+            this.setState({
+                imagechange: 2,
+               });
+        }
+       else if(this.state.imagechange==2){
+            this.setState({
+                imagechange: 3,
+               });
+            
+        }
+       else if(this.state.imagechange==3){
+            this.setState({
+                imagechange: 4,
+               });
+            
+        }
+     else   if(this.state.imagechange==4){
+           
+            this.setState({
+                commentVisible: value || !this.state.commentVisible,
+              });
+        }
+       
       }; 
 
       getValueFunction = () => {
@@ -483,7 +501,7 @@ class Home1 extends React.Component {
           let imageheight = dimensions.height ;
           let imagewidth = dimensions.width;
         //function to get the value from AsyncStorage
-        AsyncStorage.getItem('check_first_').then(value =>
+        AsyncStorage.getItem('che').then(value =>
           //AsyncStorage returns a promise so adding a callback to get the value
           this.saveValueFunction (value) 
           //Setting the value in Text 
@@ -511,7 +529,7 @@ class Home1 extends React.Component {
             </View>
         );
 
-     
+      {this.getValueFunction()}
         this.check2();
          
         return (

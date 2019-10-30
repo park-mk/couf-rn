@@ -19,6 +19,7 @@ class Travelitem extends React.Component {
       up: 0,
       voted: false,
       commentVisible: false,
+      
     
     };
   }
@@ -105,12 +106,12 @@ class Travelitem extends React.Component {
     var usersRef = firebase.database().ref('travel/' + cate + '/' + name + '/upvote');
 
 
-    usersRef.on('value', (snapshot) => {
+    usersRef.once('value', (snapshot) => {
 
 
       var m = snapshot.val()
       this.state.keys = Object.values(m);
-      this.state.up = m
+      this.setState({up:m})
       console.log("here");
       console.log(this.state.up);
       console.log(this.state.keys);
@@ -385,7 +386,7 @@ class Travelitem extends React.Component {
 </TouchableOpacity>
             )}
            
-              <Text style={{ textAlign: 'left', fontSize: 20,color:'#56B8FF',marginBottom:3}}>{upvote}</Text>
+              <Text style={{ textAlign: 'left', fontSize: 20,color:'#56B8FF',marginBottom:3}}>{this.state.up}</Text>
               </View>
               </View>
 

@@ -208,8 +208,9 @@ usersRef.on('value', (snapshot) => {
            <TouchableOpacity
            onPress={() => {
 
+         
             if(item.cate!="more"){
-           
+                 console.log("adad");
 
                   this.props.navigation.navigate('TTi', {
                     name : item.name,
