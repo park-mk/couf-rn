@@ -10,7 +10,7 @@ import  firebase,{storage}  from "../firebase";
 import Comment from '../components/comment'
 
 class Travelitem extends React.Component {
- 
+  _isMounted = false;
   constructor(props) {
     super(props);
 
@@ -56,8 +56,11 @@ class Travelitem extends React.Component {
 
       if (found != undefined) {
         console.log("find");
-       // this.setState({ voted: true })
-          this.state.voted=true;
+        if (this._isMounted) {
+          this.setState({ voted: false })
+        }
+        
+         
       }
 
 
@@ -89,7 +92,7 @@ class Travelitem extends React.Component {
 
  
   componentWillUnmount() {
-    this.state.voted=false;
+    this._isMounted = false;
   }
 
 
@@ -97,6 +100,7 @@ class Travelitem extends React.Component {
 
 
   async componentDidMount() {
+    this._isMounted = true;
     const { navigation } = this.props;
     const name = navigation.getParam('name', 'NO-ID');
     const cate = navigation.getParam('cate', 'NO-ID');
@@ -175,14 +179,16 @@ class Travelitem extends React.Component {
       });
 
       //this.setState({ voted: true })
-      this.state.voted=true;
-      alert("thank you for your appreciate");
-      
+     
+     
+      if (this._isMounted) {
+        this.setState({voted: true})
+      }
     }
     else {
       ///minus
 
-      alert("no cancle");
+      alert("can't undo");
 
 
     }

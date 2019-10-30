@@ -1,11 +1,12 @@
 import React from 'react';
-import { Button, View, Text ,ScrollView,Image,Dimensions,ImageBackground,StyleSheet,TouchableHighlight,TouchableOpacity,SafeAreaView,Linking} from 'react-native';
+import { Button, View, Text ,ScrollView,Image,Dimensions,ImageBackground,StyleSheet,TouchableHighlight,TouchableOpacity,SafeAreaView,Linking,Modal} from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation'; 
 import ImageSlider from 'react-native-image-slider';
 import { List, ListItem, SearchBar ,Header} from "react-native-elements";
 import { Ionicons,MaterialIcons ,Entypo,Feather, FontAwesome } from '@expo/vector-icons';
 import Texteditor from  '../components/Textedit'
 import  firebase,{storage}  from "../firebase";
+import Comment from '../components/comment'
 
 class WTEA1 extends React.Component {
  
@@ -16,16 +17,23 @@ class WTEA1 extends React.Component {
       keys: [],
       up: 0,
       voted: false,
-    
+      commentVisible: false,
     };
   }
+
+  onClickComment = (value) => {
+    this.setState({
+      commentVisible: value || !this.state.commentVisible,
+    });
+  };
+
 
   analyze = (name) => {
     //search
 
     var str = "ffuck";
     var code = firebase.auth().currentUser.email.substring(0, 4) + '_' + firebase.auth().currentUser.displayName;
-    var usersRef = firebase.database().ref('userinfo/' + code + '/user_like_history');
+    var usersRef = firebase.database().ref('userinfo/' + code + '/user_like_history_areae');
     usersRef.on('value', (snapshot) => {
       var m = snapshot.val()
       str = m;
@@ -52,8 +60,8 @@ class WTEA1 extends React.Component {
 
       if (found != undefined) {
         console.log("find");
-       // this.setState({ voted: true })
-          this.state.voted=true;
+        this.setState({ voted: true })
+        
       }
 
 
@@ -105,6 +113,8 @@ class WTEA1 extends React.Component {
       console.log(this.state.up);
       console.log(this.state.keys);
     });
+
+    this.analyze(name);
   }
 
   makeRemoteRequest = () => {
@@ -113,7 +123,7 @@ class WTEA1 extends React.Component {
     var code = firebase.auth().currentUser.email.substring(0, 4) + '_' + firebase.auth().currentUser.displayName;
 
 
-    var usersRef = firebase.database().ref('userinfo/' + code + '/user_like_history');
+    var usersRef = firebase.database().ref('userinfo/' + code + '/user_like_history_areae');
     usersRef.on('value', (snapshot) => {
       var m = snapshot.val()
       this.state.origin = m;
@@ -133,8 +143,8 @@ class WTEA1 extends React.Component {
 
 
       console.log("dong");
-
-      firebase.database().ref('travel/' + cate + '/' + name).update({
+  console.log()
+      firebase.database().ref(  cate + '/' + name).update({
         upvote: this.state.up + 1,
       }, function () {
 
@@ -144,20 +154,20 @@ class WTEA1 extends React.Component {
       var code = firebase.auth().currentUser.email.substring(0, 4) + '_' + firebase.auth().currentUser.displayName;
 
       firebase.database().ref('userinfo/' + code).update({
-        user_like_history: this.state.origin + "," + name,
+        user_like_history_areae: this.state.origin + "," + name,
       }, function () {
 
       });
 
-      //this.setState({ voted: true })
-      this.state.voted=true;
-      alert("thank you for your appreciate");
+      this.setState({ voted: true })
+     
+     
       
     }
     else {
       ///minus
 
-      alert("no cancle");
+      alert("can't undo");
 
 
     }
@@ -218,6 +228,36 @@ class WTEA1 extends React.Component {
       return ( 
 
         <View>
+            <Modal
+              animationType="slide"
+              transparent={false}
+              visible={this.state.commentVisible}
+              onRequestClose={() => {
+                console.log('Modal has been closed.');
+              }}>
+            <Header
+                leftComponent={
+                  <TouchableOpacity
+                      onPress={() => {
+                        this.onClickComment();
+                      }}
+                  >
+                    <Image source={require('../assets/back.png')}
+
+                           style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
+                    />
+                  </TouchableOpacity>
+                }
+                backgroundColor={'#fff'}
+                borderBottomColor={'#fff'}
+                centerComponent={{ text: 'Food', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
+
+            />
+            <Comment
+                type={'wte'}
+                tag={name}
+            />
+              </Modal> 
         <Header
       leftComponent={  
        <TouchableOpacity 
@@ -280,57 +320,62 @@ class WTEA1 extends React.Component {
   
               <View style={{ flex: 1 ,alignItems:'center'}}>
               <View style={{ flex: 1 ,flexDirection:'row'}}>
-            {this.state.voted ? (
+              {this.state.voted ? (
 
 <TouchableOpacity
 
 
- // onPress={() => this.check()}
- >
-            <Image
-              style={{
-                width: 30, flex: 1,
-                height: 30, alignContent: 'center',
-                
-              }} 
-              resizeMode={'contain'}
-              source={require('../assets/Vector_f.png')}
-            />
+   onPress={() => this.check()}>
+        <Image
+          style={{
+            width: 30, flex: 1,
+            height: 30, 
+            
+          }} 
+          resizeMode={'contain'}
+          source={require('../assets/Vector_f.png')}
+        />
 
 </TouchableOpacity>
-          )
-            : (<TouchableOpacity
-              // styles={{textAlign:'center'}}
+      )
+        : (<TouchableOpacity
+          // styles={{textAlign:'center'}}
 
-            //  onPress={() => this.check()} 
-            >
+          onPress={() => this.check()} >
 
-     <Image
-              style={{
-                width: 30, flex: 1,
-                height: 30, alignContent: 'center',
-                
-              }} 
-              resizeMode={'contain'}
-              source={require('../assets/Vector.png')}
-            />
+ <Image
+          style={{
+            width: 30, flex: 1,
+            height: 30, 
+            
+          }} 
+          resizeMode={'contain'}
+          source={require('../assets/Vector.png')}
+        />
 </TouchableOpacity>
-            )}
+        )}
              <Text style={{ textAlign: 'left', fontSize: 20,color:'#56B8FF',marginBottom:3}}>{this.state.up}</Text>
               </View>
             </View>
             
-             
-              <Image
-                style={{
-                  width: 30, flex: 1,
-                  height: 30, alignContent: 'center'
-                }}
-                resizeMode={'contain'}
-                source={require('../assets/baseline-chat-24px.png')}
-              />
+            <View style={{ flex: 1 ,alignItems:'center'}}>
+            <TouchableHighlight
+                      onPress={() => {
+                        this.onClickComment();
+                      }}
+                  >
+                    <Image
+                        style={{
+                          width: 30, flex: 1,
+                          height: 30, alignContent: 'center',
+                        }}
+                        resizeMode={'contain'}
+                        source={require('../assets/baseline-chat-24px.png')}
+                    />
+                  </TouchableHighlight>
             
             
+            </View>
             </View>
           
           
