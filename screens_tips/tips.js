@@ -1,16 +1,167 @@
 import React from 'react';
-import { Button, Text, View ,TouchableOpacity,Image,ScrollView,Dimensions} from 'react-native';
+import { Button, Text, View ,TouchableOpacity,StyleSheet,Image,ScrollView,Dimensions,FlatList} from 'react-native';
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import Category from '../components/category'
+import  firebase,{storage}  from "../firebase";
 import { List, ListItem, SearchBar ,Header} from "react-native-elements";
 class TIP extends React.Component {
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      loading: false,
+      datasource: [],
+      datasource1:[],
      
+    };
+  }
+
+  image=(item)=>{ 
+    let dimensions=Dimensions.get("window");
+    if(item.cate==1){
+    return  <Image
+    style={{
+      width: 30, 
+      height: 30,  marginTop:-30,marginLeft:dimensions.width-50
+    }}
+    resizeMode={'contain'}
+    source={ 
+      require('../assets/youtu.png') 
+    }
+
+  />}
+ 
+
+
+} 
+
+image1=(item)=>{ 
+  let dimensions=Dimensions.get("window");
+  if(item.cate==1){
+  return  <Image
+  style={{
+    width: 20, 
+    height: 20,  marginTop:-30,marginLeft:2*dimensions.width/5-10
+  }}
+  resizeMode={'contain'}
+  source={ 
+    require('../assets/youtu.png') 
+  }
+
+/>}
+
+} 
+  renderItem =({item})=>{
+    let dimensions=Dimensions.get("window");
+    
+    return(
+      <TouchableOpacity
+      onPress={() => {
+
+    
+     
+     }
+   
+   }
+      >
+   
+
+
+              <View  style={{ justifyContent: 'center',alignContent:'center',height:dimensions.height/2,width:dimensions.width-10, backgroundColor:'grey', borderColor:'#56B8FF',borderWidth:2,borderRadius:0}}>
+              <Text style={{textAlign:'center',fontFamily:'title-font',fontSize:30,color:'#56B8FF'}}> {item.title}</Text>
+             
+              </View>
+              {this.image(item)}
+
+
+           </TouchableOpacity>   
+
+
+
+
+    )
+
+
+
+}
+
+renderItem1 =({item})=>{
+  let dimensions=Dimensions.get("window");
+  let margin=(dimensions.width)/15
+  return(
+    <TouchableOpacity
+    onPress={() => {
+
+  
+   
+   }
+ 
+ }
+    >
+ 
+
+
+            <View  style={{ marginTop:50,marginLeft:margin,justifyContent: 'center',alignContent:'center',height:2*dimensions.width/5,width:2*dimensions.width/5, backgroundColor:'grey', borderColor:'#56B8FF',borderWidth:2,borderRadius:0}}>
+            <Text style={{textAlign:'center',fontFamily:'title-font',fontSize:30,color:'#56B8FF'}}> {item.title}</Text>
+            </View>
+            {this.image1(item)}
+
+         </TouchableOpacity>   
+
+
+
+
+  )
+
+
+
+}
+
+  componentDidMount() {
+    
+    this.makeRemoteRequest();
+  }
+
+  makeRemoteRequest = () => {
+    
+     
+
+    
+
+    var usersRef = firebase.database().ref('tips/main');
+    
+    
+usersRef.on('value', (snapshot) => {
+    
+    
+     var m=snapshot.val() 
+     var keys= Object.values(m);
+    
+  this.setState({
+    datasource:  keys
+  })
+});
+var usersRef1 = firebase.database().ref('tips/others');
+    
+    
+usersRef1.on('value', (snapshot) => {
+    
+    
+     var m=snapshot.val() 
+     var keys= Object.values(m);
+    
+  this.setState({
+    datasource1:  keys
+  })
+});
+
+}
  
   render() {
     let dimensions = Dimensions.get("window");
-    let imageheight = dimensions.height/4;
-    let imagewidth = 2*dimensions.width/3;
+    let imageheight = dimensions.height/2;
+    let imagewidth = dimensions.width;
     return ( 
       <View style={{flex:1}}>
       <Header
@@ -43,75 +194,52 @@ class TIP extends React.Component {
                      />
       
       *******/} 
-           <Text style={{fontFamily:'title-font',fontSize:35,marginTop:40,marginLeft:20}}>Etiquette in Korea</Text>
+           <Text style={{fontFamily:'title-font',fontSize:35,marginTop:20,marginLeft:20}}> </Text>
 
-            <TouchableOpacity 
-                
-                 onPress={() => {
-                           
-                  this.props.navigation.navigate('KOR', {
-                    move:'BASIC',
-                 });
-               }}
-            >   
-              <View  style={{marginLeft:20,height:188,width:320, backgroundColor:'grey', borderColor:'#56B8FF',borderWidth:4,borderRadius:0}}>
-               <Text style={{textAlign:'center',marginTop:imageheight/2-20,fontFamily:'title-font',fontSize:30,color:'#56B8FF'}}> BASIC Expression</Text>
-               </View>
+           <FlatList 
+     
+     data={this.state.datasource}
+     
+     renderItem={this.renderItem}
+     
+     horizontal={true}
+     keyExtractor={item => item.title}
+     initialNumToRender={4}
+     maxToRenderPerBatch={4}
+    // ListHeaderComponent={this.renderHeader}
+ //   ListFooterComponent={this.renderFooter}
+     onRefresh={this.handleRefresh}
+     refreshing={this.state.refreshing}
+  
+     onEndReachedThreshold={10000000} 
+      
+  
+   />
 
-            </TouchableOpacity>
-       { /*****  category sort  each view have 2 category  in row  *******/}
-       <Text style={{fontFamily:'title-font',fontSize:35,marginTop:10,marginLeft:20}}>TIPS IN LIFE</Text>
+<FlatList 
+            numColumns={2}
+          data={this.state.datasource1}
+          
+          renderItem={this.renderItem1}
+          
+         //  horizontal={true}
+          keyExtractor={item => item.name}
+          initialNumToRender={4}
+          maxToRenderPerBatch={4}
+         // ListHeaderComponent={this.renderHeader}
+      //   ListFooterComponent={this.renderFooter}
+          onRefresh={this.handleRefresh}
+          refreshing={this.state.refreshing}
        
+      //   onEndReachedThreshold={10000000} 
+           
+       
+        />
+       { /*****  category sort  each view have 2 category  in row  *******/}
+    
 
-          <TouchableOpacity 
                 
-                 onPress={() => {
-                           
-                  this.props.navigation.navigate('KOR', {
-                    move:'SHOPPING',
-                 });
-               }}
-            >   
-
-
-               <View  style={{marginLeft:20,height:188,width:320, backgroundColor:'grey', borderColor:'#56B8FF',borderWidth:4,borderRadius:0}}>
-               <Text style={{textAlign:'center',marginTop:imageheight/2-20,fontFamily:'title-font',fontSize:30,color:'#56B8FF'}}> SHOPPING/RESTAURANT</Text>
-               </View>
-
-            </TouchableOpacity>
-
-            <Text style={{fontFamily:'title-font',fontSize:35,marginTop:10,marginLeft:20}}> dating</Text>
-
-            <TouchableOpacity 
-                
-                 onPress={() => {
-                           
-                  this.props.navigation.navigate('KOR', {
-                    move:'DATE',
-                 });
-               }}
-            >   
-              <View  style={{marginLeft:20,height:188,width:320, backgroundColor:'grey', borderColor:'#56B8FF',borderWidth:4,borderRadius:0}}>
-               <Text style={{textAlign:'center',marginTop:imageheight/2-20,fontFamily:'title-font',fontSize:30,color:'#56B8FF'}}> Date expresion</Text>
-               </View>
-
-            </TouchableOpacity>
-                
-            <Text style={{fontFamily:'title-font',fontSize:35,marginTop:10,marginLeft:20}}> learning</Text>
-            <TouchableOpacity 
-               
-
-
-
-
-
-            >   
-              <View  style={{marginLeft:20,height:188,width:320, backgroundColor:'grey', borderColor:'#56B8FF',borderWidth:4,borderRadius:0}}>
-               <Text style={{fontFamily:'title-font',fontSize:25,color:'#56B8FF'}}> please leave the comments for the words or expression you wanna know ,we will upload it soon</Text>
-               </View> 
-
-
-            </TouchableOpacity>
+         
             <View  style={{marginLeft:20,height:2,width:imagewidth}}>
               
                </View> 
@@ -126,13 +254,17 @@ class TIP extends React.Component {
 }
 export default TIP;
 { /*****   design part  *******/}
-/*
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     
     alignItems: 'center',
     justifyContent: 'center',
-  },
+  },  icon: {
+  
+    
+    marginRight:10,
+    borderWidth:2,borderColor:'#56B8FF',borderRadius:5
+  } 
 });
- */
