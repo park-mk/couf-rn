@@ -18,6 +18,7 @@ class WTEA1 extends React.Component {
       up: 0,
       voted: false,
       commentVisible: false,
+      origin:" ",
     };
   }
 
@@ -27,7 +28,21 @@ class WTEA1 extends React.Component {
     });
   };
 
+  navigate_ = ()=>{
+    const { navigation } = this.props; 
+    const from = navigation.getParam('from', 'NO-ID');
+    if(from=="area1")
+    this.props.navigation.navigate('Area1');
+    if(from=="profile"){
+      this.props.navigation.navigate('Area');
+    this.props.navigation.navigate('Profile');
+    }
+    if(from=="area3")
+    this.props.navigation.navigate('Area3');
+    if(from=="area4")
+    this.props.navigation.navigate('Area4');
 
+  }
   analyze = (name) => {
     //search
 
@@ -43,8 +58,10 @@ class WTEA1 extends React.Component {
 
       var words = str.split(',');
       for (i = 0; i < str.split(",").length; i++) {
-
-        lists.push(words[i]);
+        var word=words[i].split(':');
+        console.log(word[0],"word0",word[1])
+       lists.push(word[0]);
+      
       }
 
 
@@ -60,12 +77,12 @@ class WTEA1 extends React.Component {
 
       if (found != undefined) {
         console.log("find");
-        this.setState({ voted: true })
+      
+          this.setState({ voted: true })
         
+        
+         
       }
-
-
-
 
 
 
@@ -115,6 +132,8 @@ class WTEA1 extends React.Component {
     });
 
     this.analyze(name);
+
+    this.makeRemoteRequest();
   }
 
   makeRemoteRequest = () => {
@@ -127,7 +146,7 @@ class WTEA1 extends React.Component {
     usersRef.on('value', (snapshot) => {
       var m = snapshot.val()
       this.state.origin = m;
-      //  console.log(this.state.origin);
+        console.log(this.state.origin);
     });
 
   }
@@ -154,7 +173,7 @@ class WTEA1 extends React.Component {
       var code = firebase.auth().currentUser.email.substring(0, 4) + '_' + firebase.auth().currentUser.displayName;
 
       firebase.database().ref('userinfo/' + code).update({
-        user_like_history_areae: this.state.origin + "," + name,
+        user_like_history_areae: this.state.origin + "," + name +':'+cate,
       }, function () {
 
       });
@@ -217,7 +236,7 @@ class WTEA1 extends React.Component {
         images.push(info);
         
         sentence=sentence.substring(term+3,sentence.length);
-        console.log(sentence);
+       // console.log(sentence);
         
        }
      
@@ -261,7 +280,7 @@ class WTEA1 extends React.Component {
         <Header
       leftComponent={  
        <TouchableOpacity 
-       onPress={()=> this.props.navigation.navigate('Area')}
+       onPress={()=> this.navigate_()}
        >
        <Image source={require('../assets/back.png')}
                    

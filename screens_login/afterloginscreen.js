@@ -97,6 +97,7 @@ class Profile extends React.Component {
             currentarea1:0,
             loadVisible:false,
             datasource:[],
+            datasource1:[],
 
         })
     }
@@ -120,6 +121,7 @@ class Profile extends React.Component {
        
         this.renderarea();
       this.SortTravel();
+      this.SortRes();
      
 
     }; 
@@ -198,6 +200,63 @@ class Profile extends React.Component {
 
   }
 
+  renderItem1 =({item})=>{
+
+    return(
+      <TouchableOpacity
+      onPress={() => {
+
+    
+        this.props.navigation.navigate('WTEA1', {
+            name : item.name,
+            description :item.description,
+            location: item.location,
+            loca: item.loca,
+            topimage : item.topimage,
+            imagelist: item.images,
+            disname:item.disname,
+            cate:item.cate,
+            from:"profile"
+           // cate:item.cate,
+           // upvote:item.upvote,
+          
+          //  imagelist:item.images,
+            //tips:item.tips,
+         });
+        
+    
+     
+     }
+   
+   }
+      >
+     <View  style={{  flex:1,  marginLeft:10,flexDirection:'row',marginBottom:6,borderColor:'black'}} >
+             <Image  style={{height:141,width:141, resizeMode:'cover',
+                 marginRight:10,
+              borderWidth:2,borderColor:'#56B8FF',borderRadius:5}}
+                   source={{uri:item.topimage}}
+            
+            />
+             <View  >
+         { //<Text style={styles.h1}>{item.name}</Text>  
+            // <Text style={styles.p} >{item.devision}</Text>   
+            //<Text style={styles.price} >{item.location}</Text> 
+            }
+           
+             </View>
+            
+           </View>
+           </TouchableOpacity>   
+
+
+
+
+    )
+
+
+
+}
+
     loading(){
         /* TODO : rendering 을 계속하는 함수 나중에 따로 뺴는게 좋을듯 */
         // console.log(this.state.currentarea,"current area")
@@ -253,7 +312,63 @@ class Profile extends React.Component {
 
 
     }  
+     
+    SortRes() {
+        var code = firebase.auth().currentUser.email.substring(0, 4) + '_' + firebase.auth().currentUser.displayName;
+        var usersRef = firebase.database().ref('userinfo/' + code + '/user_like_history_areae');
+       var lists = [];
+       var final_lists=[];
+        var num_of_like;
+         var data_res=[];
+        usersRef.once('value', (snapshot) => {
+          var m = snapshot.val()
+          str = m;
     
+         
+          str = " " + str;
+    
+          var words = str.split(',');
+          num_of_like=str.split(",").length;
+          for (i = 0; i < str.split(",").length; i++) {
+            var word=words[i].split(':');
+           console.log(word[0],"word0",word[1]);
+           lists.push(word[0]);
+           var usersRef1 = firebase.database().ref(word[1]+'/'+word[0]);
+           usersRef1.once('value', (snapshot) => {
+   
+   
+               var m=snapshot.val() 
+           
+              console.log(m);
+              if(m!=null)
+             data_res.push(m);
+      
+             console.log(data_res,"date1");
+            
+             this.setState({ datasource1: data_res })
+   
+           }) 
+        //   var result= data_travel.reduce((o, m) => m.concat(o), []);
+
+      //  this.setState({ datasource: data_travel })
+          }
+           
+
+
+
+       
+        });
+
+
+      
+
+
+
+      
+     
+
+
+    }
     SortTravel() {
         var code = firebase.auth().currentUser.email.substring(0, 4) + '_' + firebase.auth().currentUser.displayName;
         var usersRef = firebase.database().ref('userinfo/' + code + '/user_like_history');
@@ -297,24 +412,6 @@ class Profile extends React.Component {
 
 
 
-     {/*     var usersRef1 = firebase.database().ref('travel/seoul');
-          usersRef1.once('value', (snapshot) => {
-  
-  
-              var m=snapshot.val() 
-              var keys= Object.values(m);
-              for (i = 1; i < num_of_like; i++) {
-                 
-           var userlike =  keys.filter(function(hero) {
-              return hero.name == lists[i];
-          });
-            data_travel.push(userlike);
-      }   
-      var result= data_travel.reduce((o, m) => m.concat(o), []);
-      this.setState({ datasource: result })
-         
-  
-          })    */}
        
         });
 
@@ -485,9 +582,9 @@ class Profile extends React.Component {
               <View  style={{marginLeft:0}}>
               <FlatList 
    
-   data={this.state.datasource}
+   data={this.state.datasource1}
    
-   renderItem={this.renderItem}
+   renderItem={this.renderItem1}
    
    horizontal={true}
    keyExtractor={item => item.name}
@@ -503,31 +600,7 @@ class Profile extends React.Component {
 
  />
   </View>
-<Text style={ {color:'#56B8FF', fontFamily:'content-font',marginTop:60,fontSize:18,marginLeft:18 } }> liked restaurant </Text>
-
-                
-<View  style={{marginLeft:0}}>
-<FlatList 
-
-data={this.state.datasource}
-
-renderItem={this.renderItem}
-
-horizontal={true}
-keyExtractor={item => item.name}
-initialNumToRender={4}
-maxToRenderPerBatch={4}
-// ListHeaderComponent={this.renderHeader}
-//   ListFooterComponent={this.renderFooter}
-onRefresh={this.handleRefresh}
-refreshing={this.state.refreshing}
-
-
-
-
-/>
-</View>
-              
+     
             </View>
             
             </ScrollView>
