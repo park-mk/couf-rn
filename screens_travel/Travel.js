@@ -77,6 +77,7 @@ usersRef.on('value', (snapshot) => {
     
      var m=snapshot.val() 
      var keys= Object.values(m);
+    
   this.setState({
     datasource:  keys
   })
@@ -220,6 +221,7 @@ usersRef.on('value', (snapshot) => {
                     cate:item.cate,
                     upvote:this.state.upvote,//item.upvote,
                     imagelist:item.images,
+                    from:"list",
                   //  imagelist:item.images,
                     //tips:item.tips,
                  }); 

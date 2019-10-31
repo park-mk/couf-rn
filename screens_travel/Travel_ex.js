@@ -39,8 +39,10 @@ class Travelitem extends React.Component {
 
       var words = str.split(',');
       for (i = 0; i < str.split(",").length; i++) {
-
-        lists.push(words[i]);
+        var word=words[i].split(':');
+        console.log(word[0],"word0",word[1])
+       lists.push(word[0]);
+      
       }
 
 
@@ -57,7 +59,7 @@ class Travelitem extends React.Component {
       if (found != undefined) {
         console.log("find");
         if (this._isMounted) {
-          this.setState({ voted: false })
+          this.setState({ voted: true })
         }
         
          
@@ -145,7 +147,17 @@ class Travelitem extends React.Component {
     });
 
   }
+  navigate_ = ()=>{
+    const { navigation } = this.props; 
+    const from = navigation.getParam('from', 'NO-ID');
+    if(from=="list")
+    this.props.navigation.navigate('TT');
+    if(from=="profile"){
+      this.props.navigation.navigate('Home');
+    this.props.navigation.navigate('Profile');
+    }
 
+  }
 
   check = () => {
     // add likes
@@ -173,7 +185,7 @@ class Travelitem extends React.Component {
       var code = firebase.auth().currentUser.email.substring(0, 4) + '_' + firebase.auth().currentUser.displayName;
 
       firebase.database().ref('userinfo/' + code).update({
-        user_like_history: this.state.origin + "," + name,
+        user_like_history: this.state.origin + "," + name + ":"+ cate,
       }, function () {
 
       });
@@ -286,7 +298,7 @@ class Travelitem extends React.Component {
         <Header
       leftComponent={  
        <TouchableOpacity 
-       onPress={()=> this.props.navigation.navigate('TT')}
+       onPress={()=> this.navigate_()}
        >
        <Image source={require('../assets/back.png')}
                    

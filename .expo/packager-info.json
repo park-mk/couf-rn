@@ -1,9 +1,10 @@
 {
   "expoServerPort": null,
-  "expoServerNgrokUrl": "https://wt-g5z.park-mk.couf.exp.direct",
-  "packagerNgrokUrl": "https://packager.wt-g5z.park-mk.couf.exp.direct",
-  "ngrokPid": 24637,
+  "expoServerNgrokUrl": "https://pp-zdp.park-mk.couf.exp.direct",
+  "packagerNgrokUrl": "https://packager.pp-zdp.park-mk.couf.exp.direct",
+  "ngrokPid": 5172,
   "packagerPort": null,
   "packagerPid": null,
-  "devToolsPort": 19002
+  "devToolsPort": 19002,
+  "webpackServerPort": null
 }

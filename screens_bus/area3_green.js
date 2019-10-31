@@ -590,6 +590,7 @@ getCurrentTime = () =>
                     <Shape d={path} stroke="#21dd21" strokeWidth={1}/>
                 </Surface>
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:22}} >Chapel P-6360</Text>
+                <Text style={{ marginTop:-10,marginLeft:0,fontSize:10}} >2~3 min difference</Text>
              </View> 
 
                 <Surface width={100} height={34}>
@@ -604,6 +605,7 @@ getCurrentTime = () =>
                     <Shape d={path} stroke="#21dd21" strokeWidth={1}/>
                 </Surface>
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:22}} >Bldg P-6315</Text>
+                <Text style={{ marginTop:-10,marginLeft:0,fontSize:10}} >2~3 min difference</Text>
              </View> 
 
                 <Surface width={100} height={100}>
@@ -619,6 +621,7 @@ getCurrentTime = () =>
                     <Shape d={path} stroke="#21dd21" strokeWidth={1}/>
                 </Surface>
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:22}} >Spartan S-6321 </Text>
+                <Text style={{ marginTop:-10,marginLeft:0,fontSize:10}} >2~3 min difference</Text>
              </View> 
                 <Surface width={100} height={100}>
                     <Shape d={path2} stroke="#000000" fill="#21dd21" strokeWidth={1} />
@@ -633,6 +636,7 @@ getCurrentTime = () =>
                     <Shape d={path} stroke="#21dd21" strokeWidth={1}/>
                 </Surface>
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:22}} >One stop</Text>
+                <Text style={{ marginTop:-10,marginLeft:0,fontSize:10}} >2~3 min difference</Text>
              </View > 
 
                 <Surface width={100} height={100}>
@@ -648,6 +652,7 @@ getCurrentTime = () =>
                     <Shape d={path} stroke="#21dd21" strokeWidth={1}/>
                 </Surface>
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:22}} >New Commissary</Text>
+                <Text style={{ marginTop:-10,marginLeft:0,fontSize:10}} >2~3 min difference</Text>
              </View> 
 
                 <Surface width={100} height={100}>
@@ -663,6 +668,7 @@ getCurrentTime = () =>
                     <Shape d={path} stroke="#21dd21" strokeWidth={1}/>
                 </Surface>
                 <Text style={{ marginTop:-10,marginLeft:0,fontSize:22}} > New PX</Text>
+                <Text style={{ marginTop:-10,marginLeft:0,fontSize:10}} >2~3 min difference</Text>
              </View> 
 
                <Surface width={100} height={100}>
