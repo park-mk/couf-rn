@@ -49,7 +49,9 @@ import KORScreen from './screens_korean/KORScreen'
 import NEWSScreen from './screens_news/news'
 import NEWSS from './screens_news/news_ex'
 import CULTUREScreen from './screens_culture/culture'
+import CUL_EX from './screens_culture/culture_ex'
 import TIP from './screens_tips/tips'
+import TIP_EX from './screens_tips/tips_ex'
 
 
 
@@ -364,7 +366,15 @@ const CategoryStack = createStackNavigator({
     header: null,
 
   }},
+  CUL_EX: { screen: CUL_EX , navigationOptions: {
+    header: null,
+
+  }},
   TIP: { screen: TIP , navigationOptions: {
+    header: null,
+
+  }},
+  TIP_EX: { screen: TIP_EX , navigationOptions: {
     header: null,
 
   }},

@@ -58,8 +58,14 @@ image1=(item)=>{
     return(
       <TouchableOpacity
       onPress={() => {
-
-    
+        this.props.navigation.navigate('TIP_EX', {
+          title : item.title,
+          description :item.contents,
+         
+          cate:item.cate,
+        
+       }); 
+         
      
      }
    

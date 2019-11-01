@@ -19,7 +19,7 @@ class Sorttype extends React.Component {
      
     return (
        <View>
-           <Text/>
+         <Text>    </Text>
       </View>
      
     );}
@@ -28,61 +28,73 @@ class Sorttype extends React.Component {
         return (
            <View style={{marginLeft:15}} >
               
-               <Text  style={{fontSize:this.props.size , lineHeight:this.props.size+12 ,
-               marginLeft:0, 
-               marginRight:this.props.margin,fontFamily:'content-font'}} > {this.props.text}</Text>
+              <Text
+               style={{fontFamily:'content-font',fontSize:20,marginLeft:20,marginRight:20}}
+             >{this.props.text}</Text>
             
           </View>
          
         );}
-
-        {/*
-     if(this.props.typeof==2){
-       
-           return (
-               <View>
-                    <Image
-          style={{height:imageheight,width:imagewidth }}
-          source={{uri:this.props.uri.toString()}}
-        />
+        if(this.props.typeof==2){
+           
+          return (
+             <View  >
+                
+                <Image
+             style={{
+                 width: imagewidth,
+                 height: this.props.size,
+                 borderBottomWidth: 3,
+             }}
+             source={{ uri: this.props.text }}
+    
+         />
+              
+            </View>
+           
+          );}
+          if(this.props.typeof==3){
+           
+            return (
+               <View  >
+                  <TouchableOpacity
+                onPress={()=> Linking.openURL(this.props.uri).catch((err) => console.error('An error occurred', err))}
+                 
+                >
+                  <Image
+               style={{
+                   width: imagewidth,
+                   height: this.props.size,
+                   borderBottomWidth: 3,
+               }}
+               source={{ uri: this.props.text }}
+      
+           />
+                </TouchableOpacity>
               </View>
              
-            );}
+            );
+          }
 
-            if(this.props.typeof==3){
-            
-                return (
-                    <View>
 
-                         <TouchableOpacity   style={{height:imageheight,width:imagewidth }}
-             
-             onPress={()=>  Linking.openURL("https://www.dollars2won.com/").catch((err) => console.error('An error occurred', err))}
-       >  
-      
-        
-             <Image  style={{height:imageheight,width:imagewidth }}
-          source={{uri:this.props.uri.toString()}}
-             /> 
-            
-            
+
+        if(this.props.typeof==4){
+         console.log("type c")
+          return (
+             <View style={{marginLeft:15}} >
+                <TouchableOpacity
+                onPress={()=> Linking.openURL(this.props.text).catch((err) => console.error('An error occurred', err))}
+                 
+                >
+                <Text
+                 style={{fontFamily:'content-font',fontSize:20,marginLeft:20,marginRight:20,color:'blue'}}
+               >{this.props.text}</Text>
+               </TouchableOpacity>
+            </View>
            
-      </TouchableOpacity>
-                   </View>
-                  
-                 );}
-                */}
-                 if(this.props.typeof==4){
-                      console.log("whiteh");
-                  return (
-                     <View style={{marginLeft:15,marginRight:10}} >
-                        
-                         <Text  style={{fontSize:this.props.size , lineHeight:this.props.size+12 ,
-                         marginLeft:0,  color:'#e8e6e6',
-                         marginRight:this.props.margin,fontFamily:'content-font'}} > {this.props.text}</Text>
-                      
-                    </View>
-                    
-                  );}
+          );}
+
+      
 
      else 
      return (

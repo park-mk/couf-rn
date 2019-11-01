@@ -10,7 +10,7 @@ import  firebase,{storage}  from "../firebase";
 import Comment from '../components/comment'
 import Sorttype from '../components/Sortype'
 
-class TIP_EX extends React.Component {
+class CUL_EX extends React.Component {
   _isMounted = false;
   constructor(props) {
     super(props);
@@ -169,7 +169,7 @@ class TIP_EX extends React.Component {
         <Header
       leftComponent={  
        <TouchableOpacity 
-       onPress={()=> this.props.navigation.navigate('TIP')}
+       onPress={()=> this.props.navigation.navigate('CULTURE')}
        >
        <Image source={require('../assets/back.png')}
                    
@@ -179,7 +179,7 @@ class TIP_EX extends React.Component {
   } 
      backgroundColor={'#fff'}
     borderBottomColor={'#fff'}
-      centerComponent={{ text: 'TRAVEL', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
+      centerComponent={{ text: 'CULTURE', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
      
 />
 
@@ -250,4 +250,4 @@ class TIP_EX extends React.Component {
       height: 8,
     },
   });
-  export default  TIP_EX ;
+  export default  CUL_EX ;

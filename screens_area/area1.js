@@ -127,7 +127,7 @@ usersRef.on('value', (snapshot) => {
               imagelist: item.images,
               disname:item.disname,
               cate:item.cate,
-              from:"area",
+              from:"area1",
              // cate:item.cate,
              // upvote:item.upvote,
             

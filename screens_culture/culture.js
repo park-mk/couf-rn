@@ -54,7 +54,23 @@ class CULTUREScreen extends React.Component {
 
     return(
       <TouchableOpacity
-      onPress={() => {
+      onPress={() => { 
+        console.log("pressed")
+        if(item.cate==1){
+          this.props.navigation.navigate('CUL_EX', {
+            title : item.title,
+            description :item.description,
+           
+           
+          
+         }); 
+           
+          
+        }
+
+        if(item.cate==2){
+
+        }
 
      
      }
