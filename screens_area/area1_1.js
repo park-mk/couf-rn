@@ -39,7 +39,8 @@ class Area1_1Screen extends React.Component {
 
 
   componentDidMount() {
-   
+
+ 
     this.makeRemoteRequest();
   }
 
@@ -50,7 +51,7 @@ class Area1_1Screen extends React.Component {
     this.setState({ loading: true });
     const { navigation } = this.props;
    
-    var usersRef = firebase.database().ref('food/soup');
+    var usersRef = firebase.database().ref('WTD_MAIN');
  
 
      usersRef.on('value', (snapshot) => {
@@ -86,7 +87,47 @@ usersRef.on('value', (snapshot) => {
     
   };
 
+  renderItem =({item})=>{
+    let dimensions=Dimensions.get("window");
+    let imageheight=4*dimensions.height/10;
+    let imagewidth=dimensions.width;
+    return(
+      <TouchableOpacity
+      onPress={() => {
+        this.props.navigation.navigate('TIP_EX', {
+          title : item.title,
+          description :item.contents,
+         
+          cate:item.cate,
+        
+       }); 
+         
+     
+     }
+   
+   }
+      >
+   
 
+
+       <ImageBackground    source={{uri:item.topimage.toString()}} style={{height:imageheight,width:imagewidth }}>
+        <View style={{ top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center'}}>
+      
+         </View> 
+        </ImageBackground>  
+          
+
+
+           </TouchableOpacity>   
+
+
+
+
+    )
+
+
+
+}
 
 
 
@@ -134,6 +175,9 @@ usersRef.on('value', (snapshot) => {
    </View> 
      
           <View>
+          
+
+
 
          
             
@@ -170,18 +214,31 @@ usersRef.on('value', (snapshot) => {
       </View > 
         
        
-      <Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30}}  
-                           
-                           >SHORT TOUR</Text>
+ 
 
       <View>
+      <FlatList 
+     
+     data={this.state.datasource}
+     
+     renderItem={this.renderItem}
+     
+     horizontal={true}
+     keyExtractor={item => item.name}
+     initialNumToRender={4}
+     maxToRenderPerBatch={4}
+    // ListHeaderComponent={this.renderHeader}
+ //   ListFooterComponent={this.renderFooter}
+     onRefresh={this.handleRefresh}
+     refreshing={this.state.refreshing}
+  
+     onEndReachedThreshold={10000000} 
+      
+  
+   />
 
-       <Text   style={{fontFamily:'title-font' ,fontSize:35, marginLeft:20,marginTop:30,color:'grey'}}  
-                           
-                           >PLZ WAIT FOR NEXT</Text>
-                            <Text   style={{fontFamily:'title-font' ,fontSize:35, marginLeft:20,marginTop:30,color:'grey'}}  
-                           
-                           >VERSION ....</Text>
+      
+
     {/*
     <FlatList 
           data={this.state.datasource}
@@ -280,7 +337,7 @@ usersRef.on('value', (snapshot) => {
           horizontal={true}
           renderItem={({ item }) => (
               
-            <ListItem  
+   <ListItem  
          //    linearGradientProps={{
             //  colors: ['#f45a5a', '#f45a5a'],
    // colors: ['#ea3807', '#e5bcb0'],
@@ -288,9 +345,9 @@ usersRef.on('value', (snapshot) => {
     //end: [0.2, 0],
  // }}
  
- 
+    
                title=  {     
-                 
+               
                 <View  style={{  justifyContent: 'center',
                 alignItems: 'center',  marginRight:-3, borderWidth:2,borderColor:'#56B8FF', width: 260,
                 height: 160,
@@ -298,26 +355,16 @@ usersRef.on('value', (snapshot) => {
                 alignItems: 'center',
                 backgroundColor:'grey',}
                 
-              }
-                    
-                >
-            
-            <Text style={{fontSize:50,color:'#56B8FF',fontFamily:'title-font',justifyContent: 'center',
-                alignItems: 'center',}}>{item.name}</Text>
+              } >
+                <ImageBackground    source={{uri:item.topimage.toString()}} style={{height:160,width:260}}>
+                <View style={{ top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center'}}>
               
-                 
-             
-             
-         
-    
-             
-            
-              </View>
-            
-                
-                  
-          }
+                 </View> 
+                </ImageBackground>  
+                </View>
           
+          }
+      
             
             
             onPress={() => {

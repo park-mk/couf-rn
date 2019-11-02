@@ -1,10 +1,10 @@
 {
-  "expoServerPort": null,
+  "expoServerPort": 19000,
   "expoServerNgrokUrl": "https://d7-gn7.park-mk.couf.exp.direct",
   "packagerNgrokUrl": "https://packager.d7-gn7.park-mk.couf.exp.direct",
-  "ngrokPid": 13242,
-  "packagerPort": null,
-  "packagerPid": null,
+  "ngrokPid": 13700,
+  "packagerPort": 19001,
+  "packagerPid": 13690,
   "devToolsPort": 19002,
   "webpackServerPort": null
 }
