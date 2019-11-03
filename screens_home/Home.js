@@ -343,7 +343,7 @@ class Home1 extends React.Component {
             console.log("현재 버젼 firebase", m);
             if (m != expo.expo.version) {
 
-                alert("New version of the app is available. For more experience and better performance, please keep the app up to date!");
+              //  alert("New version of the app is available. For more experience and better performance, please keep the app up to date!");
               
             } }).then(()=> {
                 if(firebase.auth().currentUser!=null) { 

@@ -101,6 +101,14 @@ class Profile extends React.Component {
 
         })
     }
+    componentWillMount() {
+
+
+
+
+        this.makeRemoteRequest();
+
+    }
     componentDidMount() {
 
 
@@ -120,8 +128,8 @@ class Profile extends React.Component {
     makeRemoteRequest = () => {
        
         this.renderarea();
-      this.SortTravel();
-      this.SortRes();
+       this.SortTravel();
+       this.SortRes();
      
 
     }; 
@@ -329,9 +337,10 @@ class Profile extends React.Component {
     
           var words = str.split(',');
           num_of_like=str.split(",").length;
+          console.log("num),",num_of_like)
           for (i = 0; i < str.split(",").length; i++) {
             var word=words[i].split(':');
-           console.log(word[0],"word0",word[1]);
+           console.log(word[0],"word-res",word[1]);
            lists.push(word[0]);
            var usersRef1 = firebase.database().ref(word[1]+'/'+word[0]);
            usersRef1.once('value', (snapshot) => {
@@ -343,7 +352,7 @@ class Profile extends React.Component {
               if(m!=null)
              data_res.push(m);
       
-             console.log(data_res,"date1");
+             console.log(data_res,"dihihihihihihi");
             
              this.setState({ datasource1: data_res })
    
