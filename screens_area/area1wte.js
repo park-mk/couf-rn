@@ -169,7 +169,7 @@ class WTEA1 extends React.Component {
 
       });
 
-
+      this.setState((state)=>({ up:state.up+1 }));
       var code = firebase.auth().currentUser.email.substring(0, 4) + '_' + firebase.auth().currentUser.displayName;
 
       firebase.database().ref('userinfo/' + code).update({
@@ -185,8 +185,32 @@ class WTEA1 extends React.Component {
     }
     else {
       ///minus
+  
+     
+      firebase.database().ref( cate + '/' + name).update({
+        upvote: this.state.up-1,
+      }, function () {
+     
+      });
 
-      alert("can't undo");
+      this.setState((state)=>({ up:state.up-1 }));
+      var code = firebase.auth().currentUser.email.substring(0, 4) + '_' + firebase.auth().currentUser.displayName;
+        var change1=","+name+":"+cate;
+       var change2=this.state.origin.replace(change1,'')
+      firebase.database().ref('userinfo/' + code).update({
+      
+        user_like_history_areae: change2,
+      }, function () {
+
+      });
+
+      //this.setState({ voted: true })
+     
+     
+      
+        this.setState({voted: false})
+      
+
 
 
     }

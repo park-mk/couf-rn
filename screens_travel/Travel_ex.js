@@ -174,14 +174,14 @@ class Travelitem extends React.Component {
 
 
       console.log("dong");
-
+     
       firebase.database().ref('travel/' + cate + '/' + name).update({
-        upvote: this.state.up + 1,
+        upvote: this.state.up+1 ,
       }, function () {
-
+      
       });
 
-
+      this.setState((state)=>({ up:state.up+1 }));
       var code = firebase.auth().currentUser.email.substring(0, 4) + '_' + firebase.auth().currentUser.displayName;
 
       firebase.database().ref('userinfo/' + code).update({
@@ -200,7 +200,32 @@ class Travelitem extends React.Component {
     else {
       ///minus
 
-      alert("can't undo");
+     
+   
+     
+      firebase.database().ref('travel/' + cate + '/' + name).update({
+        upvote: this.state.up-1,
+      }, function () {
+     
+      });
+
+      this.setState((state)=>({ up:state.up-1 }));
+      var code = firebase.auth().currentUser.email.substring(0, 4) + '_' + firebase.auth().currentUser.displayName;
+        var change1=","+name+":"+cate;
+       var change2=this.state.origin.replace(change1,'')
+      firebase.database().ref('userinfo/' + code).update({
+      
+        user_like_history: change2,
+      }, function () {
+
+      });
+
+      //this.setState({ voted: true })
+     
+     
+      if (this._isMounted) {
+        this.setState({voted: false})
+      }
 
 
     }

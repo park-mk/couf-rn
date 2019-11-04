@@ -1,9 +1,9 @@
 import React from 'react';
-import { Button, Text, View , ART,TouchableOpacity,Image,ScrollView,Linking,Animated,StyleSheet} from 'react-native';
+import { Button, Text, View , ART,TouchableOpacity,Image,ScrollView,Linking,Animated,StyleSheet,Dimensions} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { List, ListItem, SearchBar,Header } from "react-native-elements";
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import Circle from '../components/circle'
-
 
 
 
@@ -69,6 +69,15 @@ class YS extends React.Component {
 
 
    }
+   getMonthName =() =>{
+
+    const monthNames = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN",
+  "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"
+];
+
+const d = new Date();
+ return monthNames[d.getMonth()];
+}
 
    _check=()=>{
      
@@ -258,7 +267,9 @@ getCurrentTime = () =>
   }
 
   render() {
-
+    let dimensions = Dimensions.get("window");
+    let imageheight = dimensions.height/2;
+    let imagewidth = dimensions.width/3;
     let { fadeAnim } = this.state;
        
 
@@ -276,26 +287,62 @@ getCurrentTime = () =>
     .close();
     
     return ( 
-        <ScrollView >
-         <View   style={{  flex:10}}>
-           
-          <Text style={{fontSize:30,textAlign:'center'}}>{this.state.currentTime }</Text>
+        <View>
+        <Header
+leftComponent={  
+ <TouchableOpacity 
+ onPress={()=> this.props.navigation.navigate('BUS')}
+ >
+ <Image source={require('../assets/back.png')}
+             
+style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
+  />
+</TouchableOpacity>
+} 
+backgroundColor={'#fff'}
+borderBottomColor={'#fff'}
+centerComponent={{ text: 'BUS', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
 
-          <Text  style={{fontSize:20,textAlign:'right',fontStyle:'italic'}}>{this.state.currentDay }</Text>
-          <Text  style={{fontSize:15,textAlign:'left',fontStyle:'italic'}}>{this.state.explain }</Text>
-            
+ />
+
+  <ScrollView >
+  
+  <View   style={{  flex:10}}>
+      
+
+  <View   style={{  marginLeft:imagewidth,flexDirection:"row"}}>
+
+  <Text  style={{fontSize:30,fontFamily:'title-font',textAlign:'center'}}>{this.state.currentDay.toString()}</Text>
+          
+  <Text  style={{fontSize:30,fontFamily:'title-font',textAlign:'center'}}>,</Text>
+  <Text  style={{fontSize:30,textAlign:'center',fontFamily:'title-font'}}>{this.getMonthName()}</Text>
+  <Text  style={{fontSize:30,textAlign:'center',fontFamily:'title-font'}}> </Text>
+  <Text  style={{fontSize:30,textAlign:'center',fontFamily:'title-font'}}>{new Date().getDay() }</Text>
+
+ 
+  
+
+         </View>
+         <Text  style={{marginTop:20,fontSize:30,textAlign:'center',fontFamily:'title-font',color:"#d11f1f"}}>YONGSAN BUS ROUTE</Text>
+  
 
 
-            
-         
+   
+         <TouchableOpacity
+       
+           onPress={this.onPress}
+         >
+         <Text  style={{marginTop:20,fontSize:20,textAlign:'center',fontFamily:'content-font',color:"grey"}}>{this.state.explain}</Text>
+         </TouchableOpacity>
+        
+         <Text  style={{fontSize:10,textAlign:'center',fontFamily:'content-font'}}>click to change schedule</Text>
+         <Text  style={{marginTop:10,fontSize:10,textAlign:'center',fontFamily:'content-font'}}>location  of the bus is based on timetable, minor differences plausible</Text>
+
+      
              <View style={{ flex: 8 }} > 
             
 
-             <Button
-            onPress={this.onPress}
-            title={this.state.explain}
-            color="#00ced1"
-          />
+             
                 <View   style={{  flexDirection:'row'}}>
                  <Image  
               source={require('../assets/bus_v.png')}
@@ -478,6 +525,7 @@ getCurrentTime = () =>
 
       
      </ScrollView>
+     </View>
 
     );
   }

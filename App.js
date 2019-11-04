@@ -381,12 +381,30 @@ const CategoryStack = createStackNavigator({
 
   
   
-   TMC: { screen: TMC },
-  YS: { screen: YS },
-  H221: { screen: H221 },
-  Red: { screen: Red },
-  GREEN: { screen: GREEN },
-  BLUE: { screen: BLUE },
+   TMC: { screen: TMC , navigationOptions: {
+    header: null,
+
+  }},
+  YS: { screen: YS , navigationOptions: {
+    header: null,
+
+  }},
+  H221: { screen: H221, navigationOptions: {
+    header: null,
+
+  }},
+  Red: { screen: Red , navigationOptions: {
+    header: null,
+
+  }},
+  GREEN: { screen: GREEN , navigationOptions: {
+    header: null,
+
+  }},
+  BLUE: { screen: BLUE , navigationOptions: {
+    header: null,
+
+  }},
   CONTACT: { screen: CONTACT , navigationOptions: {
     header: null,
    
