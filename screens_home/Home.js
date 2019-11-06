@@ -52,7 +52,7 @@ class Home1 extends React.Component {
             count_suggestion: 0,
             alarmname:'',
             alarmed:false,
-            alarmcontent:'',
+            alarmcontent:"In order to continue our hard work, we have encountered financial difficulties considering server fees.  Those who would like to support us, please click yes to donate. Thank you!",
             dialogVisible: false,
             checked:false,
             commentVisible:false,
@@ -404,14 +404,15 @@ class Home1 extends React.Component {
 
        notshow = () => {
         console.log('notshow')
-       
+        if(firebase.auth().currentUser!=null) { 
         var code = firebase.auth().currentUser.email.substring(0, 4) + '_' + firebase.auth().currentUser.displayName;
         firebase.database().ref('userinfo/' + code).update({
              alarm:this.state.alarmname
         }, function () {
 
         });
-        
+    } 
+    else alert("please login first");
         
 
 
@@ -563,14 +564,14 @@ class Home1 extends React.Component {
 
                 <Dialog
                     visible={this.state.dialogVisible}
-                    title="SORRY your app got  unappropriated version now , plz romove it and reinstall"
+                    title="DEAR USER"
                     onTouchOutside={() => this.setState({ dialogVisible: false })} >
                     <View>
                         <Text style={{ fontSize: 20, color: 'grey' }}>{this.state.alarmcontent}</Text>
                      
                             <CheckBox
                                 center
-                                title='NOT SHOW IT AGAIN'
+                                title='NOT SHOW IT AGAIN.'
                                 checked={this.state.checked}
                                 onPress={() => this.setState({checked: !this.state.checked})}
                             />

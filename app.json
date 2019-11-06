@@ -8,7 +8,7 @@
       "ios",
       "android"
     ],
-    "version": "1.2.0",
+    "version": "1.3.3",
     "orientation": "portrait",
     "icon": "./assets/images/ico.png",
     "facebookScheme":"fb1998302263810491",
@@ -20,7 +20,7 @@
       "backgroundColor": "#ffffff"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "enabled":false
     },
     "assetBundlePatterns": [
       "**/*"
@@ -39,7 +39,7 @@
    
     "android": {
       "package": "com.nn.coufproject",
-      "versionCode": 8
+      "versionCode": 9
     },
     "extra": {
       "firebase": {

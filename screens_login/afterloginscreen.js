@@ -536,7 +536,7 @@ class Profile extends React.Component {
                
                 <Text style={ { fontFamily:'title-font',fontSize:26} }> liked places </Text>
 
-                <TouchableOpacity
+           {/*     <TouchableOpacity
                
         
                onPress={()=>
@@ -553,7 +553,7 @@ class Profile extends React.Component {
                source={require('../assets/black_.png')}
              />
             </TouchableOpacity>
-             
+            */}
                 </View>
 
                 
