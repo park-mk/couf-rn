@@ -165,9 +165,9 @@ usersRef1.on('value', (snapshot) => {
 }
  
   render() {
-    let dimensions = Dimensions.get("window");
-    let imageheight = dimensions.height/2;
-    let imagewidth = dimensions.width;
+      let dimensions = Dimensions.get("window");
+      let imageheight = dimensions.height/2;
+      let imagewidth = dimensions.width;
     return ( 
       <View style={{flex:1}}>
       <Header

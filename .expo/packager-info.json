@@ -1,8 +1,8 @@
 {
-  "expoServerPort": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
+  "expoServerPort": 19000,
+  "expoServerNgrokUrl": "https://vx-mm6.park-mk.couf.exp.direct",
+  "packagerNgrokUrl": "https://packager.vx-mm6.park-mk.couf.exp.direct",
+  "ngrokPid": 15338,
   "packagerPort": null,
   "packagerPid": null,
   "devToolsPort": 19002,

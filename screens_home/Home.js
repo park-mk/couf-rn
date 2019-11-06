@@ -563,7 +563,7 @@ class Home1 extends React.Component {
 
                 <Dialog
                     visible={this.state.dialogVisible}
-                    title="Dear users"
+                    title="SORRY your app got  unappropriated version now , plz romove it and reinstall"
                     onTouchOutside={() => this.setState({ dialogVisible: false })} >
                     <View>
                         <Text style={{ fontSize: 20, color: 'grey' }}>{this.state.alarmcontent}</Text>
@@ -662,7 +662,7 @@ class Home1 extends React.Component {
                                 style={{
                                     width: imagewidth,
                                     height: imageheight,
-                                    borderBottomWidth: 3,
+                                   
                                 }}
                                 source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2FComponent%205.png?alt=media&token=004700a5-2631-492f-81db-50c4ff1f376d" }}
 

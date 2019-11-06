@@ -14,6 +14,7 @@ const color = {
 }
 
 class Area4_1Screen extends React.Component {
+
   
   constructor(props) {
     super(props);
@@ -38,7 +39,8 @@ class Area4_1Screen extends React.Component {
 
 
   componentDidMount() {
-   
+
+ 
     this.makeRemoteRequest();
   }
 
@@ -49,7 +51,7 @@ class Area4_1Screen extends React.Component {
     this.setState({ loading: true });
     const { navigation } = this.props;
    
-    var usersRef = firebase.database().ref('food/soup');
+    var usersRef = firebase.database().ref('WTD_MAIN');
  
 
      usersRef.on('value', (snapshot) => {
@@ -85,7 +87,41 @@ usersRef.on('value', (snapshot) => {
     
   };
 
+  renderItem =({item})=>{
+    let dimensions=Dimensions.get("window");
+    let imageheight=4*dimensions.height/10;
+    let imagewidth=dimensions.width;
+    return(
+      <TouchableOpacity
+      onPress={() => {
+     
+         
+     
+     }
+   
+   }
+      >
+   
 
+
+       <ImageBackground    source={{uri:item.topimage.toString()}} style={{height:imageheight,width:imagewidth }}>
+        <View style={{ top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center'}}>
+      
+         </View> 
+        </ImageBackground>  
+          
+
+
+           </TouchableOpacity>   
+
+
+
+
+    )
+
+
+
+}
 
 
 
@@ -118,18 +154,14 @@ usersRef.on('value', (snapshot) => {
    
       <ScrollView>   
         
-      
       <View>
       <View style ={{ flexDirection:"row" ,flex:2}}>
       <TouchableOpacity style={{flex:1,alignItems:'center'}}
       
-      onPress={()=> this.props.navigation.navigate('Area4')}>
+      onPress={()=> this.props.navigation.navigate('Area1')}>
       <Text   style={{fontFamily:'title-font' ,fontSize:23,marginTop:20,color:'#7f8182'}}  >THINGS TO EAT</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={{flex:1,alignItems:'center'}}
-
-        onPress={()=> this.props.navigation.navigate('Area4_1')}
-      >
+      <TouchableOpacity style={{flex:1,alignItems:'center'}}>
       <Text style={{fontFamily:'title-font' ,fontSize:23, marginTop:20,color:'#56B8FF'}}>WHAT TO DO</Text>
       </TouchableOpacity>
       
@@ -137,6 +169,9 @@ usersRef.on('value', (snapshot) => {
    </View> 
      
           <View>
+          
+
+
 
          
             
@@ -168,22 +203,36 @@ usersRef.on('value', (snapshot) => {
     borderBottomWidth: 1,
 
          }}    /> 
+
    
       </View > 
         
        
-      <Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30}}  
-                           
-                           >SHORT TOUR</Text>
+ 
 
       <View>
+      <FlatList 
+     
+     data={this.state.datasource}
+     
+     renderItem={this.renderItem}
+     
+     horizontal={true}
+     keyExtractor={item => item.name}
+     initialNumToRender={4}
+     maxToRenderPerBatch={4}
+    // ListHeaderComponent={this.renderHeader}
+ //   ListFooterComponent={this.renderFooter}
+     onRefresh={this.handleRefresh}
+     refreshing={this.state.refreshing}
+  
+     onEndReachedThreshold={10000000} 
+      
+  
+   />
 
-       <Text   style={{fontFamily:'title-font' ,fontSize:35, marginLeft:20,marginTop:30,color:'grey'}}  
-                           
-                           >PLZ WAIT FOR NEXT</Text>
-                            <Text   style={{fontFamily:'title-font' ,fontSize:35, marginLeft:20,marginTop:30,color:'grey'}}  
-                           
-                           >VERSION ....</Text>
+      
+
     {/*
     <FlatList 
           data={this.state.datasource}
@@ -282,7 +331,7 @@ usersRef.on('value', (snapshot) => {
           horizontal={true}
           renderItem={({ item }) => (
               
-            <ListItem  
+   <ListItem  
          //    linearGradientProps={{
             //  colors: ['#f45a5a', '#f45a5a'],
    // colors: ['#ea3807', '#e5bcb0'],
@@ -290,38 +339,26 @@ usersRef.on('value', (snapshot) => {
     //end: [0.2, 0],
  // }}
  
- 
+    
                title=  {     
-                 
-                <View  style={{  flex:1,   alignContent:'center',marginRight:-3, borderWidth:2,borderColor:'#56B8FF'}}
-                    
-                >
-              <ImageBackground   style={styles.icon}
-                    source={{uri:item.topimage}}
-                 
-             >    
-               <Text style={{marginLeft:3,fontSize:30,color:'#56B8FF',fontFamily:'title-font'}}>{item.name}</Text>
-              
-         
-        <View style={{flexDirection:'row',justifyContent:'flex-end',alignItems:'flex-end'}}>
-     
-     {/*  <Image
-        style={ { width: 35,
-          height: 30,marginTop:200}}
-        source={require('../assets/likewhithe.png')}
-      /> 
-      <Text style={{marginLeft:3,fontSize:30,color:'white',fontFamily:'title-font'}}>{item.upvote}</Text>
-     
-        */}
-      </View>
-             
-              </ImageBackground>
-              </View>
-            
+               
+                <View  style={{  justifyContent: 'center',
+                alignItems: 'center',  marginRight:-3, borderWidth:2,borderColor:'#56B8FF', width: 260,
+                height: 160,
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor:'grey',}
                 
-                  
-          }
+              } >
+                <ImageBackground    source={{uri:item.topimage.toString()}} style={{height:160,width:260}}>
+                <View style={{ top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center'}}>
+              
+                 </View> 
+                </ImageBackground>  
+                </View>
           
+          }
+      
             
             
             onPress={() => {
@@ -397,7 +434,9 @@ const styles = StyleSheet.create({
   icon: {
     width: 260,
     height: 160,
-    borderRadius: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor:'grey',
    
    // alignContent:'center',
   },

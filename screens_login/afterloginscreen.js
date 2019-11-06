@@ -118,6 +118,8 @@ class Profile extends React.Component {
           
             1000
         );
+
+      
       
 
 
@@ -340,7 +342,7 @@ class Profile extends React.Component {
           console.log("num),",num_of_like)
           for (i = 0; i < str.split(",").length; i++) {
             var word=words[i].split(':');
-           console.log(word[0],"word-res",word[1]);
+         
            lists.push(word[0]);
            var usersRef1 = firebase.database().ref(word[1]+'/'+word[0]);
            usersRef1.once('value', (snapshot) => {
@@ -348,12 +350,12 @@ class Profile extends React.Component {
    
                var m=snapshot.val() 
            
-              console.log(m);
+           
               if(m!=null)
              data_res.push(m);
       
-             console.log(data_res,"dihihihihihihi");
-            
+           
+             console.log(data_res,"data_res_new");
              this.setState({ datasource1: data_res })
    
            }) 
@@ -361,7 +363,8 @@ class Profile extends React.Component {
 
       //  this.setState({ datasource: data_travel })
           }
-           
+       
+         
 
 
 
@@ -396,7 +399,7 @@ class Profile extends React.Component {
           num_of_like=str.split(",").length;
           for (i = 0; i < str.split(",").length; i++) {
             var word=words[i].split(':');
-           console.log(word[0],"word0",word[1]);
+      //     console.log(word[0],"word0",word[1]);
            lists.push(word[0]);
            var usersRef1 = firebase.database().ref('travel/'+word[1]+'/'+word[0]);
            usersRef1.once('value', (snapshot) => {
@@ -408,7 +411,7 @@ class Profile extends React.Component {
               if(m!=null)
              data_travel.push(m);
       
-             console.log(data_travel,"date1");
+           //  console.log(data_travel,"date1");
             
              this.setState({ datasource: data_travel })
    
@@ -515,7 +518,7 @@ class Profile extends React.Component {
         
                   onPress={()=>
                 
-                  this.llink()}
+                  this.render()}
                   
               >
                 <Image
@@ -532,6 +535,24 @@ class Profile extends React.Component {
                   
                
                 <Text style={ { fontFamily:'title-font',fontSize:26} }> liked places </Text>
+
+                <TouchableOpacity
+               
+        
+               onPress={()=>
+             
+               this.render()}
+               
+           >
+             <Image
+               style={{
+                 width: 30, flex: 1,marginLeft:18,
+                 height: 30, alignContent: 'center',
+               }}
+               resizeMode={'contain'}
+               source={require('../assets/black_.png')}
+             />
+            </TouchableOpacity>
              
                 </View>
 
@@ -567,7 +588,7 @@ class Profile extends React.Component {
       
                 onPress={()=>
               
-                this.llink()}
+                this.SortRes()}
                 
             >
               <Image
