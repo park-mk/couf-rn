@@ -1,3 +1,4 @@
+
 import React, { Component } from "react";
 import {
     Button,
@@ -343,7 +344,7 @@ class Home1 extends React.Component {
             console.log("현재 버젼 firebase", m);
             if (m != expo.expo.version) {
 
-              //  alert("New version of the app is available. For more experience and better performance, please keep the app up to date!");
+                alert("New version of the app is available. For more experience and better performance, please keep the app up to date! 12.1!!!!!!! ");
               
             } }).then(()=> {
                 if(firebase.auth().currentUser!=null) { 
@@ -530,7 +531,7 @@ class Home1 extends React.Component {
             </View>
         );
 
-      {this.getValueFunction()}
+    //  {this.getValueFunction()}
         this.check2();
          
         return (
@@ -687,7 +688,7 @@ class Home1 extends React.Component {
                                     height: imageheight,
 
                                 }}
-                                source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2FComponent%205-2.png?alt=media&token=638418c7-a696-4f2f-82a6-549d548b2338" }}
+                                source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2F74589771_1273785989450128_4231382538565713920_n.png?alt=media&token=48f566e0-5eec-4187-b143-c61ae667a445" }}
                             />
 
 
@@ -781,7 +782,6 @@ class Home1 extends React.Component {
 
 
 export default Home1;
-
 
 
 

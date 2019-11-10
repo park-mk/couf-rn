@@ -97,6 +97,7 @@ import Loginc from './screens_login/beforelogin'
 import SuggestionScreen from './screens_suggestion/suggestionScreen'
 import SuggestionModify from './screens_suggestion/suggestionModify'
 import Home1 from'./screens_home/Home'
+import HOMEX from'./screens_home/Home_ex'
 import EXCHANGE from './screens_exchange/exchange'
 
 
@@ -251,6 +252,7 @@ const HomeStack = createStackNavigator({
     }
   },
   Home1: { screen: Home1 },
+  HOMEX: { screen: HOMEX },
   NIGHT: { screen: NIGHT , navigationOptions: {
     header: null,
 

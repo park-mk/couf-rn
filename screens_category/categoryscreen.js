@@ -197,10 +197,8 @@ class CategoryScreen extends React.Component {
               // onPress={()=> this.props.navigation.navigate('EXCHANGE')
 
               //   }
-              onPress={
-              () => this.props.navigation.navigate('UNDEVELOP1')
-               // () => this.updateview_news()
-              }
+           //   onPress={       () => this.updateview_news()}
+           onPress={() => this.props.navigation.navigate('UNDEVELOP1')}
             />
 
             <Category imageURI={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Flearning%20korea%202.png?alt=media&token=b64cd108-71af-4a9c-bc3a-7b75349aefdc" }}
@@ -228,8 +226,8 @@ class CategoryScreen extends React.Component {
 
             <Category imageURI={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Ftips.png?alt=media&token=9c969d9b-61f3-4687-9263-929db6f0918e" }}
               name='buy and sell'
-            //  onPress={() => this.props.navigation.navigate('TIP')}
-            onPress={() => this.props.navigation.navigate('UNDEVELOP1')}
+              onPress={() => this.props.navigation.navigate('UNDEVELOP1')}
+           //   onPress={() => this.props.navigation.navigate('TIP')}
             />
             <Category imageURI={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Fcontact%20us%202.png?alt=media&token=d268a337-e339-4c86-94ae-f7c0b34d5f00" }}
               name='TOUR'
@@ -241,8 +239,8 @@ class CategoryScreen extends React.Component {
 
             <Category imageURI={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Fculture%202.png?alt=media&token=4f711b3c-b0c0-44a3-99b7-e5a2547dcec3" }}
               name='culture'
-            //  onPress={() => this.updateview_culture()}
-            onPress={() => this.props.navigation.navigate('UNDEVELOP1')}
+              onPress={() => this.props.navigation.navigate('UNDEVELOP1')}
+           //   onPress={() => this.updateview_culture()}
             />
             <Category imageURI={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Fabout%20us%202.png?alt=media&token=7328b825-4625-40ca-ad4f-6896c3ea496d" }}
               name='contact us'
