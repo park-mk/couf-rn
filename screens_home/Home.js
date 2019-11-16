@@ -69,23 +69,28 @@ class Home1 extends React.Component {
         //check
         const {status}= await Permissions.getAsync(Permissions.NOTIFICATIONS);
         let finalStauts =status;
-
+       
         if(status!='granted'){
 
-            const {status}= await Permissions.getAsync(Permissions.NOTIFICATIONS);
-            finalStauts =status;
+            const { status } = await Permissions.askAsync(Permissions.USER_FACING_NOTIFICATIONS);
+            const { status2 } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+            finalStatus = status2?status2:status;
+        
+           
         }
        
 
-        if(finalStauts!='granted'){return ;}
+        if(finalStauts!='granted'){
+          
+            return ;}
 
-
+      
         let token= await Notifications.getExpoPushTokenAsync();
         console.log(token);
       //  alert(token);
       
        token1= token.substring(18, 40)
-       alert(token1);
+   
       
         firebase.database().ref('usertoken/'+token1 ).update({
 
@@ -93,6 +98,8 @@ class Home1 extends React.Component {
         }, function () {
 
         });
+
+        
         
 
      }
@@ -381,7 +388,7 @@ class Home1 extends React.Component {
             console.log("현재 버젼 firebase", m);
             if (m != expo.expo.version) {
 
-           //     alert("New version of the app is available. For more experience and better performance, please keep the app up to date! 12.3!!!!!!! ");
+                alert("New version of the app is available. For more experience and better performance, please keep the app up to date! 12.3!!!!!!! ");
               
             } }).then(()=> {
                 if(firebase.auth().currentUser!=null) { 

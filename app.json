@@ -8,7 +8,7 @@
       "ios",
       "android"
     ],
-    "version": "1.5.2",
+    "version": "1.5.4",
     "orientation": "portrait",
     "icon": "./assets/images/ico.png",
     "facebookScheme":"fb1998302263810491",
