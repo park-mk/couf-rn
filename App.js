@@ -99,7 +99,7 @@ import SuggestionModify from './screens_suggestion/suggestionModify'
 import Home1 from'./screens_home/Home'
 import HOMEX from'./screens_home/Home_ex'
 import EXCHANGE from './screens_exchange/exchange'
-
+import BUYLIST from './screens_buysell/list'
 
 import NIGHT from './screens_night/seperate'
 import Clublist from './screens_night/nightlife'
@@ -316,6 +316,10 @@ const HomeStack = createStackNavigator({
     header: null,
    
 
+  }},BUYLIST: { screen: BUYLIST , navigationOptions: {
+    header: null,
+   
+
   }},UNDEVELOP: { screen: UNDEVELOP , navigationOptions: {
     header: null,
    
@@ -343,7 +347,10 @@ const CategoryStack = createStackNavigator({
 
     }
   },
-  TOL: { screen: TOLScreen },
+  TOL: { screen: TOLScreen , navigationOptions: {
+    header: null,
+
+  }},
   KORca: { screen: KORcate , navigationOptions: {
     header: null,
 

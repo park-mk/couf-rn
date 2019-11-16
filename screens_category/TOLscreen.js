@@ -1,6 +1,6 @@
 import React from 'react';
 import {   View , FlatList,Image,Button,TouchableOpacity,Text,SafeAreaView,ScrollView} from 'react-native';
-import { List, ListItem, SearchBar } from "react-native-elements";
+import { List, ListItem, SearchBar,Header } from "react-native-elements";
 import  firebase from "../firebase";
 import call from 'react-native-phone-call';
 
@@ -100,15 +100,37 @@ searchFilterFunction = text => {
   });
   console.log(this.state.search)
 
- const newData = this.state.datasource.filter(item => {      
-    const itemData = `${item.name.toUpperCase()} ${item.number.toUpperCase()}   `;
-    
-     const textData = text.toUpperCase();
-      
-     return itemData.indexOf(textData) > -1;    
-  });
 
-  this.setState({ datasource: newData });  
+  var usersRef =firebase.database().ref('Phonebook');       //   bring the database tips
+  usersRef.once('value', (snapshot) => {                     //    tips database resort
+  
+   var m=snapshot.val() 
+   var keys= Object.values(m);
+this.setState({
+  datasource:  keys                                   // datasource of list 
+})
+}).then((m)=>{
+           
+   
+
+ const newData = this.state.datasource.filter(item => {      
+  const itemData = `${item.name.toUpperCase()} ${item.number.toUpperCase()}   `;
+  
+   const textData = text.toUpperCase();
+    
+   return itemData.indexOf(textData) > -1;    
+});
+
+this.setState({ datasource: newData });  
+})
+
+
+
+
+
+
+
+
 
   //this.makeRemoteRequest();
 };
@@ -171,6 +193,20 @@ searchFilterFunction = text => {
         // flat list data= datasoucr= firebase.tips        details please look upper 
           
     <View> 
+       <Header
+    leftComponent={  <TouchableOpacity 
+     onPress={()=> this.props.navigation.navigate('Category')}
+     >
+     <Image source={require('../assets/back.png')}
+                 
+    style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
+/> 
+</TouchableOpacity>} 
+   backgroundColor={'#fff'}
+  borderBottomColor={'#fff'}
+    centerComponent={{ text: 'Phonebook', style: {fontFamily:'title-font' ,fontSize:30,marginLeft:10,color:'#56B8FF' } }}
+   
+     />
       <ScrollView>
      <View  horizontal={true}> 
         <SearchBar        
@@ -183,20 +219,7 @@ searchFilterFunction = text => {
          autoCorrect={false}             
          value={this.state.search}
        />    
-             <TouchableOpacity
-             onPress={  ()=> this.renderagain()}
-             >
-             <View
-              style={{
-                width:300, 
-                height: 40, 
-              }}
-             
-              
-            >
-             <Text  style={{fontFamily:'title-font' ,fontSize:23,textAlign:'center'}} > REFRESH FOR UNCORRECT TYPING</Text>
-            </View>
-             </TouchableOpacity>
+        
          </View> 
      <FlatList
           data={this.state.datasource}

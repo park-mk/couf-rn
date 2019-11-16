@@ -59,6 +59,8 @@ class Home1 extends React.Component {
             dialogVisible: false,
             checked:false,
             commentVisible:false,
+            commentVisib:false,
+            commentVisibl:false,
             image:"",
             imagechange:0,
         };
@@ -208,7 +210,7 @@ class Home1 extends React.Component {
     
             }); 
         })
-        this.props.navigation.navigate('UNDEVELOP')
+        this.props.navigation.navigate('BUYLIST')
 
     }
     updateview_y = () => {
@@ -387,8 +389,11 @@ class Home1 extends React.Component {
 
             console.log("현재 버젼 firebase", m);
             if (m != expo.expo.version) {
-
-                alert("New version of the app is available. For more experience and better performance, please keep the app up to date! 12.3!!!!!!! ");
+                this.setState({
+                    commentVisibl: true,
+                  });
+            
+              //  alert("New version of the app is available. For more experience and better performance, please keep the app up to date! 12.3!!!!!!! ");
               
             } }).then(()=> {
                 if(firebase.auth().currentUser!=null) { 
@@ -483,6 +488,7 @@ class Home1 extends React.Component {
         this.setState({ dialogVisible: false })
         if(this.state.checked){
             this.notshow();
+            this.setState({ commentVisib: true})
         }
     }
     saveValueFunction = (value) => {
@@ -541,6 +547,24 @@ class Home1 extends React.Component {
         }
        
       }; 
+      onClickCommen = (value) => {
+      
+        
+         this.setState({
+             commentVisibl: value || !this.state.commentVisibl,
+           });
+     
+    
+       }; 
+       onClickComme = (value) => {
+      
+        
+        this.setState({
+            commentVisib: false,
+          });
+    
+   
+      }; 
 
       getValueFunction = () => {
         let dimensions = Dimensions.get("window");
@@ -583,6 +607,29 @@ class Home1 extends React.Component {
 
 
             <View>
+                  <Modal
+                  animationType="slide"
+                  transparent={false}
+                  visible={this.state.commentVisib}
+                  onRequestClose={() => {
+                    console.log('Modal has been closed.');
+                  }}>
+                <View>
+                    <TouchableOpacity
+                     onPress={() =>this.onClickComme()}
+                    >
+         <Image
+             style={{
+                 width: imagewidth,
+                 height: imageheight*5,
+                 borderBottomWidth: 3,
+             }}
+             source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2Fdonate.jpg?alt=media&token=53e3013e-499d-460a-8b74-49c97897bd6f" }}
+    
+         />
+           </TouchableOpacity>
+           </View>
+                </Modal> 
                 <Modal
                   animationType="slide"
                   transparent={false}
@@ -601,6 +648,29 @@ class Home1 extends React.Component {
                  borderBottomWidth: 3,
              }}
              source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Fabout%20us.png?alt=media&token=0cdfd383-1dd5-40f2-8d19-a1fb03904478" }}
+    
+         />
+           </TouchableOpacity>
+           </View>
+                </Modal> 
+                <Modal
+                  animationType="slide"
+                  transparent={false}
+                  visible={this.state.commentVisibl}
+                  onRequestClose={() => {
+                    console.log('Modal has been closed.');
+                  }}>
+                <View>
+                    <TouchableOpacity
+                   //  onPress={() =>this.onClickCommen()}
+                    >
+         <Image
+             style={{
+                 width: imagewidth,
+                 height: imageheight*5,
+                 borderBottomWidth: 3,
+             }}
+             source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2Fupdate.jpg?alt=media&token=10e28bac-6dcd-4891-a01c-39f04dc052f9" }}
     
          />
            </TouchableOpacity>

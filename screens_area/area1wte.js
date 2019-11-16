@@ -226,7 +226,7 @@ class WTEA1 extends React.Component {
    
     render() {
        let dimensions=Dimensions.get("window");
-       let imageheight=6*dimensions.height/10
+       let imageheight=6*dimensions.height/10;
        //let imageheight =Math.round((dimensions.width*9)/12);
         let imagewidth =dimensions.width;
       const { navigation } = this.props;
