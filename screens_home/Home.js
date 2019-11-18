@@ -1,5 +1,5 @@
 
-import React, { Component } from "react";
+import React, { Component }from "react";
 import {
     Button,
     Text,
@@ -27,10 +27,10 @@ import firebase, { storage } from "../firebase";
 //import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import someList from '../components/anylist'
 import *  as Font from 'expo-font'
-import { ConfirmDialog,Dialog } from 'react-native-simple-dialogs';
+import { ConfirmDialog, Dialog } from 'react-native-simple-dialogs';
 
 import expo from '../app.json'
-import {Notifications} from'expo';
+import { Notifications } from 'expo';
 import * as Permissions from 'expo-permissions'
 
 
@@ -43,6 +43,8 @@ const color = {
 
 //need push alarm
 class Home1 extends React.Component {
+
+   
     constructor(props) {
         super(props);
 
@@ -53,63 +55,79 @@ class Home1 extends React.Component {
             count_buy: 0,
             count_youtube: 0,
             count_suggestion: 0,
-            alarmname:'',
-            alarmed:false,
-            alarmcontent:"In order to continue our hard work, we have encountered financial difficulties considering server fees.  Those who would like to support us, please click yes to donate. Thank you!",
+            alarmname: '',
+            palarmname: '',
+            palarmheight:0,
+            palarmwidth:0,
+            alarmed: false,
+            alarmcontent: "In order to continue our hard work, we have encountered financial difficulties considering server fees.  Those who would like to support us, please click yes to donate. Thank you!",
+            palarmcontent: "",
+            palarmimage: "",
             dialogVisible: false,
-            checked:false,
-            commentVisible:false,
-            commentVisib:false,
-            commentVisibl:false,
-            image:"",
-            imagechange:0,
+            dialogVisible1: false,
+            checked: false,
+            commentVisible: false,
+            commentVisib: false,
+            commentVisibl: false,
+            image: "",
+            imagechange: 0,
         };
     }
 
 
-     registerForPushNotifications = async()=>{
+    registerForPushNotifications = async () => {
         //check
-        const {status}= await Permissions.getAsync(Permissions.NOTIFICATIONS);
-        let finalStauts =status;
-       
-        if(status!='granted'){
+        const { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
+        let finalStauts = status;
+
+        if (status != 'granted') {
 
             const { status } = await Permissions.askAsync(Permissions.USER_FACING_NOTIFICATIONS);
             const { status2 } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
-            finalStatus = status2?status2:status;
-        
-           
+            finalStatus = status2 ? status2 : status;
+
+
         }
-       
 
-        if(finalStauts!='granted'){
-          
-            return ;}
 
-      
-        let token= await Notifications.getExpoPushTokenAsync();
-        console.log(token);
-      //  alert(token);
-      
-       token1= token.substring(18, 40)
-   
-      
-        firebase.database().ref('usertoken/'+token1 ).update({
+        if (finalStauts != 'granted') {
 
-            uid: token,
-        }, function () {
+            return;
+        }
 
-        });
 
-        
-        
+        let token = await Notifications.getExpoPushTokenAsync();
 
-     }
+        //  alert(token);
+
+        token1 = token.substring(18, 40)
+
+        if (firebase.auth().currentUser != null) {
+            firebase.database().ref('usertoken/' + token1).update({
+                name: firebase.auth().currentUser.displayName,
+                uid: token,
+            }, function () {
+
+            });
+            console.log(token, "my name");
+        }
+
+        if (firebase.auth().currentUser == null) {
+            firebase.database().ref('usertoken/' + token1).update({
+
+                uid: token,
+            }, function () {
+
+            });
+            console.log(token, "no name");
+        }
+
+    }
     updateview_t = () => {
-    
-       
- 
-        var d; 
+
+
+
+        var d;
         var s
         var usersRef = firebase.database().ref('visit/travel/count');
         usersRef.once('value', (snapshot) => {
@@ -118,27 +136,27 @@ class Home1 extends React.Component {
             m = snapshot.val()
 
             console.log("트레블ㅇ", m);
-            this.state.count_travel = m ;
+            this.state.count_travel = m;
         }, function (m) {
-            
-        }).then((m)=>{
-            console.log("실행",this.state.count_travel)
+
+        }).then((m) => {
+            console.log("실행", this.state.count_travel)
             firebase.database().ref('visit/travel').update({
-                count: this.state.count_travel+1
+                count: this.state.count_travel + 1
             }, function () {
-    
-            }); 
+
+            });
         })
-        
-   
+
+
         this.props.navigation.navigate('TT');
     }
 
     updateview_e = () => {
 
 
-               
-        var d; 
+
+        var d;
         var s
         var usersRef = firebase.database().ref('visit/ent/count');
         usersRef.once('value', (snapshot) => {
@@ -147,16 +165,16 @@ class Home1 extends React.Component {
             m = snapshot.val()
 
             console.log("트레블ㅇ", m);
-            this.state.count_ent = m ;
+            this.state.count_ent = m;
         }, function (m) {
-            
-        }).then((m)=>{
-           
+
+        }).then((m) => {
+
             firebase.database().ref('visit/ent').update({
-                count: this.state.count_ent+1
+                count: this.state.count_ent + 1
             }, function () {
-    
-            }); 
+
+            });
         })
         this.props.navigation.navigate('NIGHT')
     }
@@ -164,7 +182,7 @@ class Home1 extends React.Component {
     updateview_f = () => {
 
 
-        var d; 
+        var d;
         var s
         var usersRef = firebase.database().ref('visit/food/count');
         usersRef.once('value', (snapshot) => {
@@ -173,16 +191,16 @@ class Home1 extends React.Component {
             m = snapshot.val()
 
             console.log("트레블ㅇ", m);
-            this.state.count_food = m ;
+            this.state.count_food = m;
         }, function (m) {
-            
-        }).then((m)=>{
-           
+
+        }).then((m) => {
+
             firebase.database().ref('visit/food').update({
-                count: this.state.count_food+1
+                count: this.state.count_food + 1
             }, function () {
-    
-            }); 
+
+            });
         })
         this.props.navigation.navigate('Food')
     }
@@ -190,7 +208,7 @@ class Home1 extends React.Component {
     updateview_b = () => {
 
 
-        var d; 
+        var d;
         var s
         var usersRef = firebase.database().ref('visit/buy/count');
         usersRef.once('value', (snapshot) => {
@@ -199,16 +217,16 @@ class Home1 extends React.Component {
             m = snapshot.val()
 
             console.log("트레블ㅇ", m);
-            this.state.count_buy = m ;
+            this.state.count_buy = m;
         }, function (m) {
-            
-        }).then((m)=>{
-           
+
+        }).then((m) => {
+
             firebase.database().ref('visit/buy').update({
-                count: this.state.count_buy+1
+                count: this.state.count_buy + 1
             }, function () {
-    
-            }); 
+
+            });
         })
         this.props.navigation.navigate('BUYLIST')
 
@@ -217,7 +235,7 @@ class Home1 extends React.Component {
 
 
 
-        var d; 
+        var d;
         var s
         var usersRef = firebase.database().ref('visit/youtube/count');
         usersRef.once('value', (snapshot) => {
@@ -226,16 +244,16 @@ class Home1 extends React.Component {
             m = snapshot.val()
 
             console.log("트레블ㅇ", m);
-            this.state.count_youtube = m ;
+            this.state.count_youtube = m;
         }, function (m) {
-            
-        }).then((m)=>{
-           
+
+        }).then((m) => {
+
             firebase.database().ref('visit/youtube').update({
-                count: this.state.count_youtube+1
+                count: this.state.count_youtube + 1
             }, function () {
-    
-            }); 
+
+            });
         })
         Linking.openURL("https://www.youtube.com/channel/UCS8Wlr_B7CQkN53Fim20G2Q?view_as=subscriber").catch((err) => console.error('An error occurred', err))
     }
@@ -244,7 +262,7 @@ class Home1 extends React.Component {
 
 
 
-          var d; 
+        var d;
         var s
         var usersRef = firebase.database().ref('visit/suggestion/count');
         usersRef.once('value', (snapshot) => {
@@ -252,20 +270,20 @@ class Home1 extends React.Component {
 
             m = snapshot.val()
 
-          
-            this.state.count_suggestion = m ;
+
+            this.state.count_suggestion = m;
         }, function (m) {
-            
-        }).then((m)=>{
-           
+
+        }).then((m) => {
+
             firebase.database().ref('visit/suggestion').update({
-                count: this.state.count_suggestion+1
+                count: this.state.count_suggestion + 1
             }, function () {
-    
-            }); 
+
+            });
         })
         this.props.navigation.navigate('SuggestionScreen')
-    
+
     }
 
 
@@ -278,6 +296,7 @@ class Home1 extends React.Component {
     async componentDidMount() {
 
         this.registerForPushNotifications();
+        this.check2();
         await Font.loadAsync({
 
             'Raley-balck': require('../assets/fonts/33676382891.ttf'),
@@ -373,347 +392,477 @@ class Home1 extends React.Component {
 
     }
 
-    check2 = () => { 
-        if(this.state.alarmed==false){
-
-        var m;
-
-        var keys;
-        console.log(expo.expo.version);
+    check2 = () => {
+ 
          
-       
-        var d;
-        var usersRef = firebase.database().ref('version');
-        usersRef.once('value', (snapshot) => {
-            m = snapshot.val()
+        if (this.state.alarmed == false) {
 
-            console.log("현재 버젼 firebase", m);
-            if (m != expo.expo.version) {
-                this.setState({
-                    commentVisibl: true,
-                  });
-            
-              //  alert("New version of the app is available. For more experience and better performance, please keep the app up to date! 12.3!!!!!!! ");
-              
-            } }).then(()=> {
-                if(firebase.auth().currentUser!=null) { 
+            var m;
+            var mm;
+
+            var keys;
+            console.log(expo.expo.version);
+
+
+            var d;
+            var dd;
+            var usersRef = firebase.database().ref('version');
+            usersRef.once('value', (snapshot) => {
+                m = snapshot.val()
+
+                console.log("현재 버젼 firebase", m);
+                if (m != expo.expo.version) {
+                    this.setState({
+                        commentVisibl: true,
+                    });
+
+                    //  alert("New version of the app is available. For more experience and better performance, please keep the app up to date! 12.3!!!!!!! ");
+
+                }
+            }).then(() => {
+                if (firebase.auth().currentUser != null) {
                     console.log(" 유저 로그인 상태  ")
                     var usersRef3 = firebase.database().ref('zalarm');
                     usersRef3.once('value', (snapshot) => {
                         m = snapshot.val()
-                     //   alert(m.content);
-                      console.log("현재 서버알람 ",m.name)
+                        //   alert(m.content);
+                        console.log("현재 서버알람 ", m.name)
 
-                       this.state.alarmname=m.name;
-                       this.setState({ alarmcontent: m.content})
-                    }).then((m)=>{
+                        this.state.alarmname = m.name;
+                        this.setState({ alarmcontent: m.content })
+                    }).then((m) => {
                         var code = firebase.auth().currentUser.email.substring(0, 4) + '_' + firebase.auth().currentUser.displayName;
                         var usersRef2 = firebase.database().ref('userinfo/' + code + '/alarm');
                         usersRef2.once('value', (snapshot) => {
                             d = snapshot.val()
-                            console.log("이거", d ,this.state.alarmname);
-                          
-                            
-        
-                        }).then(()=>
-                        {
-                            if(d==this.state.alarmname){
-                                console.log("same", this.state.alarmname);
-                                this.setState({ alarmed: true })
+                            console.log("유저의 서버 알람 ", d, this.state.alarmname);
 
-                            }
-                            else{ 
+
+
+                        }).then(() => {
+                            var usersRef4 = firebase.database().ref('zpushalarm');
+                            usersRef4.once('value', (snapshot) => {
+                                mm = snapshot.val()
+                                //   alert(m.content);
+                                console.log("현재 서버  push알람 ", mm.name)
+
+                                this.state.palarmname = mm.name;
+                        
                              
-                            console.log("past alarm")
-                              
-                         this.Show_Custom_Alert();
-                     
+                                this.setState({ palarmimage: mm.image })
+                             
+                            }).then(() => {
+
+                                var code = firebase.auth().currentUser.email.substring(0, 4) + '_' + firebase.auth().currentUser.displayName;
+                                var usersRef5 = firebase.database().ref('userinfo/' + code + '/alarmpush');
+                                usersRef5.once('value', (snapshot) => {
+                                    dd = snapshot.val()
+                                    console.log("유저의 push", dd, this.state.palarmname);
+                                }
+                                ).then(() => { 
+                                    if(this.state.alarmed==false){
+
+                                    if (d == this.state.alarmname&&dd==this.state.palarmname) {
+                                        console.log("both-same");
+                                        this.setState({ alarmed: true })
+        
+                                    }
+                                    else if (d != this.state.alarmname&&dd==this.state.palarmname) {
+                                        console.log("no danation");
+
+                                        this.setState({ alarmed: true })
+                                         this.setState({ dialogVisible: true })
+                                    }
+                                    else if (d == this.state.alarmname&&dd!=this.state.palarmname) {
+                                        console.log("danationed");
+
+                                        this.setState({ alarmed: true })
+                                         this.setState({ dialogVisible1: true })
+                                         var code = firebase.auth().currentUser.email.substring(0, 4) + '_' + firebase.auth().currentUser.displayName;
+                                         firebase.database().ref('userinfo/' + code).update({
+                                             alarmpush: this.state.palarmname
+                                         }, function () {
+                             
+                                         });
+
+
+                                    }
+
+                                    else if (d != this.state.alarmname&&dd!=this.state.palarmname) {
+                                        console.log("danationed!");
+                                        
+
+                                        this.setState({ alarmed: true })
+                                         this.setState({ dialogVisible1: true })
+                                         var code = firebase.auth().currentUser.email.substring(0, 4) + '_' + firebase.auth().currentUser.displayName;
+                                         firebase.database().ref('userinfo/' + code).update({
+                                             alarmpush: this.state.palarmname
+                                         }, function () {
+                             
+                                         });
+
+                                    }
+                                }
+
+
+
+
+
+
+                                });
+
+
+
                             }
+
+                            );
+
+                            //start
+
+
+
+
+                           
+
+
+
+
                         })
-                   
 
-    
+
+
                     });
-                 //지워    
-               
+                    //지워    
+                    this.registerForPushNotifications();
                 }
-                if(firebase.auth().currentUser==null) { 
+                if (firebase.auth().currentUser == null) {
+                     var check;
+                     var mmm;
+                    var usersRef4 = firebase.database().ref('zpushalarm');
+                            usersRef4.once('value', (snapshot) => {
+                                mmm = snapshot.val()
+                             
+                                console.log("현재 서버  push알람 ", mmm.name)
 
-                    this.Show_Custom_Alert();
+                                this.state.palarmname = mmm.name;
+                                check=mmm.check;
+                              
+                                this.setState({ palarmimage: mmm.image })
+                             
+                            }).then(()=>{
+                                if(check==0){
+                                this.setState({ dialogVisible: true })
+                                this.setState({ alarmed: true })
+                                }
+                                if(check==1){
+                                this.setState({ dialogVisible1: true })
+                                this.setState({ alarmed: true })
+                                }
+                                 
 
+
+                            })
+ 
+
+                     
                 }
-                
+
 
             });
 
-           
-           
-         //   this.setState({ alarmed: true })
+
+
+
         }
+ 
     }
 
-       notshow = () => {
+    notshow = () => {
         console.log('notshow')
-        if(firebase.auth().currentUser!=null) { 
-        var code = firebase.auth().currentUser.email.substring(0, 4) + '_' + firebase.auth().currentUser.displayName;
-        firebase.database().ref('userinfo/' + code).update({
-             alarm:this.state.alarmname
-        }, function () {
+        if (firebase.auth().currentUser != null) {
+            var code = firebase.auth().currentUser.email.substring(0, 4) + '_' + firebase.auth().currentUser.displayName;
+            firebase.database().ref('userinfo/' + code).update({
+                alarm: this.state.alarmname
+            }, function () {
 
-        });
-    } 
-    else alert("please login first");
-        
+            });
+        }
+        else alert("please login first");
+
 
 
     }
 
-  
+
     Show_Custom_Alert() {
-      console.log("setting visible")
+        console.log("setting visible")
         this.setState({ dialogVisible: true })
         this.setState({ alarmed: true })
-      }
-     Yespressed=()=>{
-         console.log("yes")
+        this.setState({ dialogVisible1: true })
+    }
+    Yespressed = () => {
+        console.log("yes")
         this.setState({ dialogVisible: false })
         Linking.openURL("https://www.paypal.me/coufKR?locale.x=ko_KR").catch((err) => console.error('An error occurred', err));
 
-         if(this.state.checked){
-             this.notshow();
-         }
-     }
-     Nopressed=()=>{
+        if (this.state.checked) {
+            this.notshow();
+        }
+    }
+    Nopressed = () => {
         console.log("yno")
         this.setState({ dialogVisible: false })
-        if(this.state.checked){
+        if (this.state.checked) {
             this.notshow();
-            this.setState({ commentVisib: true})
+            this.setState({ commentVisib: true })
         }
     }
     saveValueFunction = (value) => {
         //function to save the value in AsyncStorage
-        if(value==null){
-          //To check the input not empty
-          AsyncStorage.setItem('che', "e");
-          //Setting a data to a AsyncStorage with respect to a key 
-         // this.setState({ textInputData: '' })
-          //Resetting the TextInput
-          alert('Data Saved');
-          //alert to confirm
-          this.setState({commentVisible:true})
-          
-        }else{
-          let dimensions = Dimensions.get("window");
-          let imageheight = dimensions.height ;
-          let imagewidth = dimensions.width;
-        
-        
-           
-    
-    
-         
+        if (value == null) {
+            //To check the input not empty
+            AsyncStorage.setItem('che', "e");
+            //Setting a data to a AsyncStorage with respect to a key 
+            // this.setState({ textInputData: '' })
+            //Resetting the TextInput
+            alert('Data Saved');
+            //alert to confirm
+            this.setState({ commentVisible: true })
+
+        } else {
+            let dimensions = Dimensions.get("window");
+            let imageheight = dimensions.height;
+            let imagewidth = dimensions.width;
+
+
+
+
+
+
         }
-      };
-      onClickComment = (value) => {
-           if(this.state.imagechange==0){
+    };
+    onClickComment = (value) => {
+        if (this.state.imagechange == 0) {
             this.setState({
-               imagechange: 1,
-              });
-           }
-         else  if(this.state.imagechange==1){
+                imagechange: 1,
+            });
+        }
+        else if (this.state.imagechange == 1) {
 
             this.setState({
                 imagechange: 2,
-               });
+            });
         }
-       else if(this.state.imagechange==2){
+        else if (this.state.imagechange == 2) {
             this.setState({
                 imagechange: 3,
-               });
-            
+            });
+
         }
-       else if(this.state.imagechange==3){
+        else if (this.state.imagechange == 3) {
             this.setState({
                 imagechange: 4,
-               });
-            
+            });
+
         }
-     else   if(this.state.imagechange==4){
-           
+        else if (this.state.imagechange == 4) {
+
             this.setState({
                 commentVisible: value || !this.state.commentVisible,
-              });
+            });
         }
-       
-      }; 
-      onClickCommen = (value) => {
-      
-        
-         this.setState({
-             commentVisibl: value || !this.state.commentVisibl,
-           });
-     
-    
-       }; 
-       onClickComme = (value) => {
-      
-        
+
+    };
+    onClickCommen = (value) => {
+
+
+        this.setState({
+            commentVisibl: value || !this.state.commentVisibl,
+        });
+
+
+    };
+    onClickComme = (value) => {
+
+
         this.setState({
             commentVisib: false,
-          });
-    
-   
-      }; 
+        });
 
-      getValueFunction = () => {
+
+    };
+
+    getValueFunction = () => {
         let dimensions = Dimensions.get("window");
-          let imageheight = dimensions.height ;
-          let imagewidth = dimensions.width;
+        let imageheight = dimensions.height;
+        let imagewidth = dimensions.width;
         //function to get the value from AsyncStorage
         AsyncStorage.getItem('che').then(value =>
-          //AsyncStorage returns a promise so adding a callback to get the value
-          this.saveValueFunction (value) 
-          //Setting the value in Text 
-          
+            //AsyncStorage returns a promise so adding a callback to get the value
+            this.saveValueFunction(value)
+            //Setting the value in Text 
+
         );
-        return   <View>
-        
-         </View>
-         
-      };
+        return <View>
+
+        </View>
+
+    };
 
 
 
     render() {
-   
+
         let dimensions = Dimensions.get("window");
         let imageheight = dimensions.height / 5;
         let imagewidth = dimensions.width;
         const userId = '8ba790f3-5acd-4a08-bc6a-97a36c124f29';
-      
-    
+
+
         const MyStatusBar = ({ backgroundColor, ...props }) => (
             <View style={[styles.statusBar, { backgroundColor }]}>
                 <StatusBar backgroundColor="yellow" barStyle="dark-content" />
             </View>
         );
 
-    //  {this.getValueFunction()}
-        this.check2();
-         
+        //  {this.getValueFunction()}
+      
+
         return (
 
 
 
             <View>
-                  <Modal
-                  animationType="slide"
-                  transparent={false}
-                  visible={this.state.commentVisib}
-                  onRequestClose={() => {
-                    console.log('Modal has been closed.');
-                  }}>
-                <View>
-                    <TouchableOpacity
-                     onPress={() =>this.onClickComme()}
-                    >
-         <Image
-             style={{
-                 width: imagewidth,
-                 height: imageheight*5,
-                 borderBottomWidth: 3,
-             }}
-             source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2Fdonate.jpg?alt=media&token=53e3013e-499d-460a-8b74-49c97897bd6f" }}
-    
-         />
-           </TouchableOpacity>
-           </View>
-                </Modal> 
                 <Modal
-                  animationType="slide"
-                  transparent={false}
-                  visible={this.state.commentVisible}
-                  onRequestClose={() => {
-                    console.log('Modal has been closed.');
-                  }}>
-                <View>
-                    <TouchableOpacity
-                     onPress={() =>this.onClickComment()}
-                    >
-         <Image
-             style={{
-                 width: imagewidth,
-                 height: imageheight*5,
-                 borderBottomWidth: 3,
-             }}
-             source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Fabout%20us.png?alt=media&token=0cdfd383-1dd5-40f2-8d19-a1fb03904478" }}
-    
-         />
-           </TouchableOpacity>
-           </View>
-                </Modal> 
-                <Modal
-                  animationType="slide"
-                  transparent={false}
-                  visible={this.state.commentVisibl}
-                  onRequestClose={() => {
-                    console.log('Modal has been closed.');
-                  }}>
-                <View>
-                    <TouchableOpacity
-                   //  onPress={() =>this.onClickCommen()}
-                    >
-         <Image
-             style={{
-                 width: imagewidth,
-                 height: imageheight*5,
-                 borderBottomWidth: 3,
-             }}
-             source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2Fupdate.jpg?alt=media&token=10e28bac-6dcd-4891-a01c-39f04dc052f9" }}
-    
-         />
-           </TouchableOpacity>
-           </View>
-                </Modal> 
+                    animationType="slide"
+                    transparent={false}
+                    visible={this.state.commentVisib}
+                    onRequestClose={() => {
+                        console.log('Modal has been closed.');
+                    }}>
+                    <View>
+                        <TouchableOpacity
+                            onPress={() => this.onClickComme()}
+                        >
+                            <Image
+                                style={{
+                                    width: imagewidth,
+                                    height: imageheight * 5,
+                                    borderBottomWidth: 3,
+                                }}
+                                source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2Fdonate.jpg?alt=media&token=53e3013e-499d-460a-8b74-49c97897bd6f" }}
 
+                            />
+                        </TouchableOpacity>
+                    </View>
+                </Modal>
+                <Modal
+                    animationType="slide"
+                    transparent={false}
+                    visible={this.state.commentVisible}
+                    onRequestClose={() => {
+                        console.log('Modal has been closed.');
+                    }}>
+                    <View>
+                        <TouchableOpacity
+                            onPress={() => this.onClickComment()}
+                        >
+                            <Image
+                                style={{
+                                    width: imagewidth,
+                                    height: imageheight * 5,
+                                    borderBottomWidth: 3,
+                                }}
+                                source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Fabout%20us.png?alt=media&token=0cdfd383-1dd5-40f2-8d19-a1fb03904478" }}
+
+                            />
+                        </TouchableOpacity>
+                    </View>
+                </Modal>
+                <Modal
+                    animationType="slide"
+                    transparent={false}
+                    visible={this.state.commentVisibl}
+                    onRequestClose={() => {
+                        console.log('Modal has been closed.');
+                    }}>
+                    <View>
+                        <TouchableOpacity
+                        //  onPress={() =>this.onClickCommen()}
+                        >
+                            <Image
+                                style={{
+                                    width: imagewidth,
+                                    height: imageheight * 5,
+                                    borderBottomWidth: 3,
+                                }}
+                                source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2Fupdate.jpg?alt=media&token=10e28bac-6dcd-4891-a01c-39f04dc052f9" }}
+
+                            />
+                        </TouchableOpacity>
+                    </View>
+                </Modal>
+                <Dialog
+                    visible={this.state.dialogVisible1}
+                  
+                    onTouchOutside={() => this.setState({ dialogVisible1: false })} >
+                    <View  style={{
+                               alignItems:'center'
+
+                                }}>
+                   
+                    
+                        <Image
+                                style={{
+                                    width:2*imagewidth/3,
+                                    height: imageheight*5/2,
+
+                                }}
+                                source={{ uri:this.state.palarmimage }}
+
+                            />
+
+
+                    </View>
+
+                </Dialog>
                 <Dialog
                     visible={this.state.dialogVisible}
                     title="DEAR USER"
                     onTouchOutside={() => this.setState({ dialogVisible: false })} >
                     <View>
                         <Text style={{ fontSize: 20, color: 'grey' }}>{this.state.alarmcontent}</Text>
-                     
-                            <CheckBox
-                                center
-                                title='NOT SHOW IT AGAIN.'
-                                checked={this.state.checked}
-                                onPress={() => this.setState({checked: !this.state.checked})}
-                            />
-                                <View
-                       style={{flexDirection:'row'}}
+
+                        <CheckBox
+                            center
+                            title='NOT SHOW IT AGAIN.'
+                            checked={this.state.checked}
+                            onPress={() => this.setState({ checked: !this.state.checked })}
+                        />
+                        <View
+                            style={{ flexDirection: 'row' }}
                         >
 
-                          <TouchableOpacity
-                            onPress={() =>this.Nopressed()}
+                            <TouchableOpacity
+                                onPress={() => this.Nopressed()}
                                 style={{
-                                    marginLeft:60,  marginTop: 30
+                                    marginLeft: 60, marginTop: 30
                                 }}  >
-                 <Text style={{fontSize:20,color:'#56B8FF'}}>NO</Text>
-                        </TouchableOpacity>  
+                                <Text style={{ fontSize: 20, color: '#56B8FF' }}>NO</Text>
+                            </TouchableOpacity>
 
                             <TouchableOpacity
-                             onPress={() =>this.Yespressed()}
+                                onPress={() => this.Yespressed()}
                                 style={{
-                                    marginLeft:60, marginTop: 30
-                                }}  > 
-                                  
-                 <Text style={{fontSize:20,color:'#56B8FF'}}>YES</Text>
-                 
-                        </TouchableOpacity>
+                                    marginLeft: 60, marginTop: 30
+                                }}  >
+
+                                <Text style={{ fontSize: 20, color: '#56B8FF' }}>YES</Text>
+
+                            </TouchableOpacity>
+                        </View>
                     </View>
-                    </View>
-                    
+
                 </Dialog>
                 {  /* <ConfirmDialog
                     title="Dear users"
@@ -749,7 +898,7 @@ class Home1 extends React.Component {
                             style={{
                                 marginBottom: 1,
                             }}
-                            onPress={() =>this.updateview_t()}
+                            onPress={() => this.updateview_t()}
                         >
 
 
@@ -770,7 +919,7 @@ class Home1 extends React.Component {
                             style={{
                                 marginBottom: 1,
                             }}
-                            onPress={() =>this.updateview_e()}
+                            onPress={() => this.updateview_e()}
                         >
 
 
@@ -778,7 +927,7 @@ class Home1 extends React.Component {
                                 style={{
                                     width: imagewidth,
                                     height: imageheight,
-                                   
+
                                 }}
                                 source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2FComponent%205.png?alt=media&token=004700a5-2631-492f-81db-50c4ff1f376d" }}
 
@@ -792,7 +941,7 @@ class Home1 extends React.Component {
                             style={{
                                 marginBottom: 1,
                             }}
-                            onPress={() =>this.updateview_f()}
+                            onPress={() => this.updateview_f()}
                         >
 
 
@@ -812,7 +961,7 @@ class Home1 extends React.Component {
                             style={{
                                 marginBottom: 1,
                             }}
-                            onPress={() =>this.updateview_b()}
+                            onPress={() => this.updateview_b()}
                         //   onPress={()=> this.props.navigation.navigate('UNDEVELOP')}
                         >
 
@@ -837,7 +986,7 @@ class Home1 extends React.Component {
                             style={{
                                 marginBottom: 1,
                             }}
-                            onPress={() =>this.updateview_y()}
+                            onPress={() => this.updateview_y()}
                         >
 
 
@@ -864,7 +1013,7 @@ class Home1 extends React.Component {
                             style={{
                                 marginBottom: 1,
                             }}
-                            onPress={() =>this.updateview_s()}
+                            onPress={() => this.updateview_s()}
                         >
 
 

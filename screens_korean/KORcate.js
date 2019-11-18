@@ -1,18 +1,68 @@
 import React from 'react';
-import { Button, Text, View ,TouchableOpacity,Image,ScrollView,Dimensions} from 'react-native';
+import { Button, Text, View ,TouchableOpacity,Image,ScrollView,Dimensions, Modal} from 'react-native';
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import Category from '../components/category'
 import { List, ListItem, SearchBar ,Header} from "react-native-elements";
+import Comment from '../components/comment'
 class KORcate extends React.Component {
 
-     
+  constructor(props) {
+    super(props);
+
+    this.state = {
+    
+      commentVisible: false,
+      
+    
+    };
+  }
+
+  onClickComment = (value) => {
+    this.setState({
+      commentVisible: value || !this.state.commentVisible,
+    });
+  };
+ 
  
   render() {
+    
     let dimensions = Dimensions.get("window");
     let imageheight = dimensions.height/4;
     let imagewidth = 2*dimensions.width/3;
     return ( 
+      
+      
       <View style={{flex:1}}>
+            <Modal
+              animationType="slide"
+              transparent={false}
+              visible={this.state.commentVisible}
+              onRequestClose={() => {
+                console.log('Modal has been closed.');
+              }}>
+            <Header
+                leftComponent={
+                  <TouchableOpacity
+                      onPress={() => {
+                        this.onClickComment();
+                      }}
+                  >
+                    <Image source={require('../assets/back.png')}
+
+                           style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
+                    />
+                  </TouchableOpacity>
+                }
+                backgroundColor={'#fff'}
+                borderBottomColor={'#fff'}
+                centerComponent={{ text: 'want to learn', style: {fontFamily:'title-font' ,fontSize:30,marginLeft:10,color:'#56B8FF' } }}
+
+            />
+            <Comment
+                type={'korean'}
+                tag={'korean'}
+            />
+            </Modal> 
       <Header
       leftComponent={  <TouchableOpacity 
        onPress={()=> this.props.navigation.navigate('Category')}
@@ -98,15 +148,16 @@ class KORcate extends React.Component {
                 
             <Text style={{fontFamily:'title-font',fontSize:35,marginTop:10,marginLeft:20}}> learning</Text>
             <TouchableOpacity 
-               
-
+               onPress={() => {
+                this.onClickComment();
+              }}
 
 
 
 
             >   
               <View  style={{marginLeft:20,height:188,width:320, backgroundColor:'grey', borderColor:'#56B8FF',borderWidth:4,borderRadius:0}}>
-               <Text style={{fontFamily:'title-font',fontSize:25,color:'#56B8FF'}}> please leave the comments for the words or expression you wanna know ,we will upload it soon</Text>
+               <Text style={{fontFamily:'title-font',fontSize:25,color:'#56B8FF'}}> please leave the comments for the words or expression you want to know ,we will upload it soon!! </Text>
                </View> 
 
 

@@ -136,28 +136,14 @@ class TIP_EX extends React.Component {
       const topimage = navigation.getParam('topimage', 'NO-ID');
    
       
-      const imagelist=navigation.getParam('imagelist', 'NO-ID');
+   
      
       const upvote = navigation.getParam('upvote', 'NO-ID');
       var number_of_pagraph=0; 
-      var sentence= imagelist.substring(1,imagelist.length);
+     
      
       var sen;
-      number_of_pagraph=sentence.split("/*/").length - 1;
-      
-      const images = [
-      
-      ];  
-       for(let i=0;i<number_of_pagraph;i++){
-        var term= sentence.indexOf("/*/");
-        let info=sentence.substring(0,term);
-        if(i!=0)
-        images.push(info);
-        
-        sentence=sentence.substring(term+3,sentence.length);
-       
-        
-       }
+   
     
        var vivid =JSON.stringify(description);
        var res = vivid.substring(1, 4);
