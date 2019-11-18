@@ -91,6 +91,10 @@ class SuggestionScreen extends React.Component {
         }
     };
 
+    multiImage = async () => {
+        this.props.navigation.navigate('ImageSelector')
+    };
+
     uploadImage = async (uri, imageName) => {
         if(!uri) return true;
         const response = await fetch(uri);
@@ -226,6 +230,10 @@ class SuggestionScreen extends React.Component {
                             <Button type="clear" buttonStyle={{width: 50, marginRight: 10}}
                                     icon={<Icon name="camera" size={15} color="grey"/>}
                                     onPress={() => this._pickImage()}
+                            />
+                            <Button type="clear" buttonStyle={{width: 50, marginRight: 10}}
+                                    icon={<Icon name="camera" size={15} color="grey"/>}
+                                    onPress={() => this.multiImage()}
                             />
                             <Button type="solid" buttonStyle={{width: 50}}
                                     icon={<Icon name="check" size={15} color="white"/>}
