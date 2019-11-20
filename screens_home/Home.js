@@ -55,6 +55,7 @@ class Home1 extends React.Component {
             count_buy: 0,
             count_youtube: 0,
             count_suggestion: 0,
+            checkalarm:0,
             alarmname: '',
             palarmname: '',
             palarmheight:0,
@@ -447,7 +448,7 @@ class Home1 extends React.Component {
                                 console.log("현재 서버  push알람 ", mm.name)
 
                                 this.state.palarmname = mm.name;
-                        
+                               this.state.checkalarm=mm.check;
                              
                                 this.setState({ palarmimage: mm.image })
                              
@@ -457,7 +458,7 @@ class Home1 extends React.Component {
                                 var usersRef5 = firebase.database().ref('userinfo/' + code + '/alarmpush');
                                 usersRef5.once('value', (snapshot) => {
                                     dd = snapshot.val()
-                                    console.log("유저의 push", dd, this.state.palarmname);
+                                    console.log("유저의 push", dd, this.state.palarmname,this.state.checkalarm);
                                 }
                                 ).then(() => { 
                                     if(this.state.alarmed==false){
@@ -474,7 +475,13 @@ class Home1 extends React.Component {
                                          this.setState({ dialogVisible: true })
                                     }
                                     else if (d == this.state.alarmname&&dd!=this.state.palarmname) {
-                                        console.log("danationed");
+                                        console.log("일헤라");
+                                        if(this.state.checkalarm===0){
+                                            console.log("danationed0");
+                                            this.setState({ alarmed: true })
+                                        }
+                                        if(this.state.checkalarm===1){
+                                            console.log("danationed1");
 
                                         this.setState({ alarmed: true })
                                          this.setState({ dialogVisible1: true })
@@ -484,13 +491,27 @@ class Home1 extends React.Component {
                                          }, function () {
                              
                                          });
+                                        }
+                                        if(this.state.checkalarm===2){
+                                            console.log("danationed2");
+
+                                        this.setState({ alarmed: true })
+                                         this.setState({ dialogVisible1: true })
+                                       
+                                        }
 
 
                                     }
 
                                     else if (d != this.state.alarmname&&dd!=this.state.palarmname) {
-                                        console.log("danationed!");
-                                        
+                                        if(this.state.checkalarm===0){
+                                            this.setState({ alarmed: true })
+                                            this.setState({ dialogVisible: true })
+                                            console.log("danation!!0");
+
+                                        }
+                                        if(this.state.checkalarm===1){
+                                            console.log("danation!!1");
 
                                         this.setState({ alarmed: true })
                                          this.setState({ dialogVisible1: true })
@@ -500,7 +521,14 @@ class Home1 extends React.Component {
                                          }, function () {
                              
                                          });
+                                        }
+                                        if(this.state.checkalarm===2){
+                                            console.log("danatione!!2");
 
+                                        this.setState({ alarmed: true })
+                                         this.setState({ dialogVisible1: true })
+                                       
+                                        }
                                     }
                                 }
 
@@ -554,7 +582,7 @@ class Home1 extends React.Component {
                                 this.setState({ dialogVisible: true })
                                 this.setState({ alarmed: true })
                                 }
-                                if(check==1){
+                                if(check==1||2){
                                 this.setState({ dialogVisible1: true })
                                 this.setState({ alarmed: true })
                                 }
@@ -735,26 +763,40 @@ class Home1 extends React.Component {
             <View>
                 <Modal
                     animationType="slide"
-                    transparent={false}
+                    transparent={true}
                     visible={this.state.commentVisib}
+                    backdropColor = {'white'}
+                    backdropOpacity = {0.5}
                     onRequestClose={() => {
                         console.log('Modal has been closed.');
                     }}>
-                    <View>
-                        <TouchableOpacity
+                        
+                    <View
+                         style={{
+                            alignItems: 'center',
+                          
+                            backgroundColor: '#00000080',
+                            justifyContent: 'center',
+                           
+                        }}
+                    >
+                         <TouchableOpacity
                             onPress={() => this.onClickComme()}
                         >
+                       
                             <Image
-                                style={{
-                                    width: imagewidth,
-                                    height: imageheight * 5,
-                                    borderBottomWidth: 3,
-                                }}
+                                      style={{
+                                      marginTop:imageheight * 5/4,
+                                      marginBottom:imageheight * 5/4,
+                                        width: imagewidth/2,
+                                        height: imageheight * 5/2,
+                                    }}
                                 source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2Fdonate.jpg?alt=media&token=53e3013e-499d-460a-8b74-49c97897bd6f" }}
 
                             />
-                        </TouchableOpacity>
+                       </TouchableOpacity>
                     </View>
+                   
                 </Modal>
                 <Modal
                     animationType="slide"
@@ -802,30 +844,43 @@ class Home1 extends React.Component {
                         </TouchableOpacity>
                     </View>
                 </Modal>
-                <Dialog
+                <Modal
+                    animationType="slide"
+                    transparent={true}
                     visible={this.state.dialogVisible1}
-                  
-                    onTouchOutside={() => this.setState({ dialogVisible1: false })} >
-                    <View  style={{
-                               alignItems:'center'
-
-                                }}>
-                   
-                    
-                        <Image
-                                style={{
-                                    width:2*imagewidth/3,
-                                    height: imageheight*5/2,
-
-                                }}
+                    backdropColor = {'white'}
+                    backdropOpacity = {0.5}
+                    onRequestClose={() => {
+                        console.log('Modal has been closed.');
+                    }}>
+                        
+                    <View
+                         style={{
+                            alignItems: 'center',
+                          
+                            backgroundColor: '#00000080',
+                            justifyContent: 'center',
+                           
+                        }}
+                    >
+                         <TouchableOpacity
+                            onPress={() =>this.setState({ dialogVisible1: false }) }
+                        >
+                       
+                            <Image
+                                      style={{
+                                      marginTop:imageheight * 5/4,
+                                      marginBottom:imageheight * 5/4,
+                                        width: imagewidth/2,
+                                        height: imageheight * 5/2,
+                                    }}
                                 source={{ uri:this.state.palarmimage }}
 
                             />
-
-
+                       </TouchableOpacity>
                     </View>
-
-                </Dialog>
+                   
+                </Modal>
                 <Dialog
                     visible={this.state.dialogVisible}
                     title="DEAR USER"

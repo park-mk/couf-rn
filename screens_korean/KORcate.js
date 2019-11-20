@@ -3,7 +3,7 @@ import { Button, Text, View ,TouchableOpacity,Image,ScrollView,Dimensions, Modal
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import Category from '../components/category'
 import { List, ListItem, SearchBar ,Header} from "react-native-elements";
-import Comment from '../components/comment'
+import Comment2 from '../components/comment2'
 class KORcate extends React.Component {
 
   constructor(props) {
@@ -58,7 +58,7 @@ class KORcate extends React.Component {
                 centerComponent={{ text: 'want to learn', style: {fontFamily:'title-font' ,fontSize:30,marginLeft:10,color:'#56B8FF' } }}
 
             />
-            <Comment
+            <Comment2
                 type={'korean'}
                 tag={'korean'}
             />
