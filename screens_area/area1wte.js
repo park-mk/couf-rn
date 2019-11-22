@@ -293,7 +293,7 @@ class WTEA1 extends React.Component {
                 }
                 backgroundColor={'#fff'}
                 borderBottomColor={'#fff'}
-                centerComponent={{ text: 'Food', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
+                centerComponent={{ text: 'Food', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#67DBFF' } }}
 
             />
             <Comment
@@ -314,7 +314,7 @@ class WTEA1 extends React.Component {
   } 
      backgroundColor={'#fff'}
     borderBottomColor={'#fff'}
-      centerComponent={{ text: 'EAT', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
+      centerComponent={{ text: 'EAT', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#67DBFF' } }}
      
        />
         <ScrollView>
@@ -332,7 +332,7 @@ class WTEA1 extends React.Component {
         <View >
        
               </View>
-          <Text style={{fontFamily:'title-font' ,fontSize:60,marginLeft:10,color:'#56B8FF' }}> {JSON.stringify(disname).replace(/^"(.+)"$/,'$1')}</Text>
+          <Text style={{fontFamily:'title-font' ,fontSize:60,marginLeft:10,color:'#67DBFF' }}> {JSON.stringify(disname).replace(/^"(.+)"$/,'$1')}</Text>
          
                
           <View style={{marginTop: 0,width:100}}>
@@ -397,7 +397,7 @@ class WTEA1 extends React.Component {
         />
 </TouchableOpacity>
         )}
-             <Text style={{ textAlign: 'left', fontSize: 20,color:'#56B8FF',marginBottom:3}}>{this.state.up}</Text>
+             <Text style={{ textAlign: 'left', fontSize: 20,color:'#67DBFF',marginBottom:3}}>{this.state.up}</Text>
               </View>
             </View>
             

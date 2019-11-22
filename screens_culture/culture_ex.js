@@ -179,7 +179,7 @@ class CUL_EX extends React.Component {
   } 
      backgroundColor={'#fff'}
     borderBottomColor={'#fff'}
-      centerComponent={{ text: 'CULTURE', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
+      centerComponent={{ text: 'CULTURE', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#67DBFF' } }}
      
 />
 
@@ -243,7 +243,7 @@ class CUL_EX extends React.Component {
     },
     buttonSelected: {
       opacity: 1,
-      backgroundColor: '#56B8FF',
+      backgroundColor: '#67DBFF',
       borderRadius: 8 / 2,
        marginRight:3,
       width: 8,

@@ -108,7 +108,7 @@ this.setState({
 } 
     backgroundColor={'#fff'}
    borderBottomColor={'#fff'}
-     centerComponent={{ text: 'AREA2', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
+     centerComponent={{ text: 'AREA2', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#67DBFF' } }}
     
       />
       <ScrollView>   
@@ -118,7 +118,7 @@ this.setState({
       <TouchableOpacity style={{flex:1,alignItems:'center'}}
       
       onPress={()=> this.props.navigation.navigate('Area2')}>
-      <Text   style={{fontFamily:'title-font' ,fontSize:23,marginTop:20,color:'#56B8FF'}}  >THINGS TO EAT</Text>
+      <Text   style={{fontFamily:'title-font' ,fontSize:23,marginTop:20,color:'#67DBFF'}}  >THINGS TO EAT</Text>
       </TouchableOpacity>
       <TouchableOpacity style={{flex:1,alignItems:'center'}}
 
@@ -138,7 +138,7 @@ this.setState({
       
         
         <View style={{
-    borderBottomColor: '#56B8FF',
+    borderBottomColor: '#67DBFF',
     borderBottomWidth: 1,
     marginTop:3,
          }}    />
@@ -146,7 +146,7 @@ this.setState({
             <View style={{
             width:  imagewidth/2,
             height:3,
-            backgroundColor: '#56B8FF',
+            backgroundColor: '#67DBFF',
          }}    >
            </View>
                <View style={{
@@ -158,7 +158,7 @@ this.setState({
          </View>
          
 <View style={{
-    borderBottomColor: '#56B8FF',
+    borderBottomColor: '#67DBFF',
     borderBottomWidth: 1,
 
          }}    /> 

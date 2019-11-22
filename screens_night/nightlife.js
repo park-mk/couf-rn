@@ -230,7 +230,7 @@ this.setState({
  } 
      backgroundColor={'rgba(52, 52, 52, alpha)'}
     borderBottomColor={'#1f2124'}
-      centerComponent={{ text: this.state.name, style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
+      centerComponent={{ text: this.state.name, style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#67DBFF' } }}
        
        />
    
@@ -258,7 +258,7 @@ this.setState({
                   
      style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
 />   
-<Text style={{fontFamily:'title-font' ,fontSize:40,marginLeft:60,marginTop:20,color:'#56B8FF'} }> </Text>
+<Text style={{fontFamily:'title-font' ,fontSize:40,marginLeft:60,marginTop:20,color:'#67DBFF'} }> </Text>
 </View>
 </TouchableOpacity>
 

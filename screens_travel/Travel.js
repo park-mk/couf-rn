@@ -280,12 +280,12 @@ usersRef.on('value', (snapshot) => {
 } 
    backgroundColor={'#fff'}
   borderBottomColor={'#fff'}
-    centerComponent={{ text: 'TRAVEL', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
+    centerComponent={{ text: 'TRAVEL', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#67DBFF' } }}
    
      />
       <ScrollView> 
          <View style={{flexDirection:'row'}} >
-    <Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'#56B8FF'}}  
+    <Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'#67DBFF'}}  
                            
                            >SEOUL  </Text> 
                        
@@ -316,7 +316,7 @@ usersRef.on('value', (snapshot) => {
 
       </View>
 
-      <Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'#56B8FF'}}  
+      <Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'#67DBFF'}}  
                            
                            >BUSAN</Text>    
 
@@ -342,7 +342,7 @@ usersRef.on('value', (snapshot) => {
         />
 
       </View>                 
-      <Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'#56B8FF'}}  
+      <Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'#67DBFF'}}  
                            
                            >JEJU</Text>    
 
@@ -371,7 +371,7 @@ usersRef.on('value', (snapshot) => {
 
 
 
-      <Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'#56B8FF'}}  
+      <Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'#67DBFF'}}  
                            
                            >SPECIAL TOUR</Text>    
 
@@ -397,7 +397,7 @@ usersRef.on('value', (snapshot) => {
         />
 
       </View>           
-      <Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'#56B8FF'}}  
+      <Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'#67DBFF'}}  
                            
                            >OTHERS</Text>    
 
@@ -446,7 +446,7 @@ const styles = StyleSheet.create({
     height: 400,
     
     marginRight:10,
-    borderWidth:2,borderColor:'#56B8FF',borderRadius:5
+    borderWidth:2,borderColor:'#67DBFF',borderRadius:5
   },
   rightContainer: {
     flex: 1,

@@ -55,7 +55,7 @@ class KORcate extends React.Component {
                 }
                 backgroundColor={'#fff'}
                 borderBottomColor={'#fff'}
-                centerComponent={{ text: 'want to learn', style: {fontFamily:'title-font' ,fontSize:30,marginLeft:10,color:'#56B8FF' } }}
+                centerComponent={{ text: 'want to learn', style: {fontFamily:'title-font' ,fontSize:30,marginLeft:10,color:'#67DBFF' } }}
 
             />
             <Comment2
@@ -74,7 +74,7 @@ class KORcate extends React.Component {
  </TouchableOpacity>} 
      backgroundColor={'#fff'}
     borderBottomColor={'#fff'}
-      centerComponent={{ text: 'LEARNING KOREAN', style: {fontFamily:'title-font' ,fontSize:30,marginLeft:10,color:'#56B8FF' } }}
+      centerComponent={{ text: 'LEARNING KOREAN', style: {fontFamily:'title-font' ,fontSize:30,marginLeft:10,color:'#67DBFF' } }}
      
        />
   
@@ -104,8 +104,8 @@ class KORcate extends React.Component {
                  });
                }}
             >   
-              <View  style={{marginLeft:20,height:188,width:320, backgroundColor:'grey', borderColor:'#56B8FF',borderWidth:4,borderRadius:0}}>
-               <Text style={{textAlign:'center',marginTop:imageheight/2-20,fontFamily:'title-font',fontSize:30,color:'#56B8FF'}}> BASIC Expression</Text>
+              <View  style={{marginLeft:20,height:188,width:320, backgroundColor:'grey', borderColor:'#67DBFF',borderWidth:4,borderRadius:0}}>
+               <Text style={{textAlign:'center',marginTop:imageheight/2-20,fontFamily:'title-font',fontSize:30,color:'#67DBFF'}}> BASIC Expression</Text>
                </View>
 
             </TouchableOpacity>
@@ -123,8 +123,8 @@ class KORcate extends React.Component {
             >   
 
 
-               <View  style={{marginLeft:20,height:188,width:320, backgroundColor:'grey', borderColor:'#56B8FF',borderWidth:4,borderRadius:0}}>
-               <Text style={{textAlign:'center',marginTop:imageheight/2-20,fontFamily:'title-font',fontSize:30,color:'#56B8FF'}}> SHOPPING/RESTAURANT</Text>
+               <View  style={{marginLeft:20,height:188,width:320, backgroundColor:'grey', borderColor:'#67DBFF',borderWidth:4,borderRadius:0}}>
+               <Text style={{textAlign:'center',marginTop:imageheight/2-20,fontFamily:'title-font',fontSize:30,color:'#67DBFF'}}> SHOPPING/RESTAURANT</Text>
                </View>
 
             </TouchableOpacity>
@@ -140,8 +140,8 @@ class KORcate extends React.Component {
                  });
                }}
             >   
-              <View  style={{marginLeft:20,height:188,width:320, backgroundColor:'grey', borderColor:'#56B8FF',borderWidth:4,borderRadius:0}}>
-               <Text style={{textAlign:'center',marginTop:imageheight/2-20,fontFamily:'title-font',fontSize:30,color:'#56B8FF'}}> Date expresion</Text>
+              <View  style={{marginLeft:20,height:188,width:320, backgroundColor:'grey', borderColor:'#67DBFF',borderWidth:4,borderRadius:0}}>
+               <Text style={{textAlign:'center',marginTop:imageheight/2-20,fontFamily:'title-font',fontSize:30,color:'#67DBFF'}}> Date expresion</Text>
                </View>
 
             </TouchableOpacity>
@@ -156,8 +156,8 @@ class KORcate extends React.Component {
 
 
             >   
-              <View  style={{marginLeft:20,height:188,width:320, backgroundColor:'grey', borderColor:'#56B8FF',borderWidth:4,borderRadius:0}}>
-               <Text style={{fontFamily:'title-font',fontSize:25,color:'#56B8FF'}}> please leave the comments for the words or expression you want to know ,we will upload it soon!! </Text>
+              <View  style={{marginLeft:20,height:188,width:320, backgroundColor:'grey', borderColor:'#67DBFF',borderWidth:4,borderRadius:0}}>
+               <Text style={{fontFamily:'title-font',fontSize:25,color:'#67DBFF'}}> please leave the comments for the words or expression you want to know ,we will upload it soon!! </Text>
                </View> 
 
 

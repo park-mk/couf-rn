@@ -104,7 +104,7 @@ usersRef.on('value', (snapshot) => {
         style={{
           height: 1,
           width: "86%",
-          backgroundColor: "#56B8FF",
+          backgroundColor: "#67DBFF",
           marginLeft: "14%"
         }}
       />
@@ -188,7 +188,7 @@ usersRef.on('value', (snapshot) => {
 } 
     backgroundColor={'#fff'}
    borderBottomColor={'#fff'}
-     centerComponent={{ text: 'AREA1', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
+     centerComponent={{ text: 'AREA1', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#67DBFF' } }}
     
       />
       <ScrollView>   
@@ -198,7 +198,7 @@ usersRef.on('value', (snapshot) => {
       <TouchableOpacity style={{flex:1,alignItems:'center'}}
       
       onPress={()=> this.props.navigation.navigate('Area1')}>
-      <Text   style={{fontFamily:'title-font' ,fontSize:23,marginTop:20,color:'#56B8FF'}}  >THINGS TO EAT</Text>
+      <Text   style={{fontFamily:'title-font' ,fontSize:23,marginTop:20,color:'#67DBFF'}}  >THINGS TO EAT</Text>
       </TouchableOpacity>
       <TouchableOpacity style={{flex:1,alignItems:'center'}}
 
@@ -218,7 +218,7 @@ usersRef.on('value', (snapshot) => {
       
         
         <View style={{
-    borderBottomColor: '#56B8FF',
+    borderBottomColor: '#67DBFF',
     borderBottomWidth: 1,
     marginTop:3,
          }}    />
@@ -226,7 +226,7 @@ usersRef.on('value', (snapshot) => {
             <View style={{
             width:  imagewidth/2,
             height:3,
-            backgroundColor: '#56B8FF',
+            backgroundColor: '#67DBFF',
          }}    >
            </View>
                <View style={{
@@ -238,7 +238,7 @@ usersRef.on('value', (snapshot) => {
          </View>
          
 <View style={{
-    borderBottomColor: '#56B8FF',
+    borderBottomColor: '#67DBFF',
     borderBottomWidth: 1,
 
          }}    /> 

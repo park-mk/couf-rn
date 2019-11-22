@@ -903,7 +903,7 @@ class Home1 extends React.Component {
                                 style={{
                                     marginLeft: 60, marginTop: 30
                                 }}  >
-                                <Text style={{ fontSize: 20, color: '#56B8FF' }}>NO</Text>
+                                <Text style={{ fontSize: 20, color: '#67DBFF' }}>NO</Text>
                             </TouchableOpacity>
 
                             <TouchableOpacity
@@ -912,7 +912,7 @@ class Home1 extends React.Component {
                                     marginLeft: 60, marginTop: 30
                                 }}  >
 
-                                <Text style={{ fontSize: 20, color: '#56B8FF' }}>YES</Text>
+                                <Text style={{ fontSize: 20, color: '#67DBFF' }}>YES</Text>
 
                             </TouchableOpacity>
                         </View>

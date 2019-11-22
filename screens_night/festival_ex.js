@@ -88,7 +88,7 @@ class FESTIVALEX extends React.Component {
         </ImageBackground>  
         </View>
         <View>
-        <Text style={{fontFamily:'title-font' ,fontSize:50,marginLeft:10,color:'#56B8FF',textAlign:'center' }}> {JSON.stringify(name).replace(/^"(.+)"$/,'$1')}</Text>
+        <Text style={{fontFamily:'title-font' ,fontSize:50,marginLeft:10,color:'#67DBFF',textAlign:'center' }}> {JSON.stringify(name).replace(/^"(.+)"$/,'$1')}</Text>
 
         <Text style={{fontFamily:'content-font' ,fontSize:20,marginLeft:10,marginTop:20}}> {JSON.stringify(description).replace(/^"(.+)"$/,'$1')}</Text>
        
@@ -97,7 +97,7 @@ class FESTIVALEX extends React.Component {
               onPress={()=>  Linking.openURL(JSON.stringify(loca).replace(/^"(.+)"$/,'$1')).catch((err) => console.error('An error occurred', err))}
               
             > 
-               <Text style={{fontFamily:'title-font' ,fontSize:30,marginLeft:10,marginTop:30,color:'#56B8FF',textDecorationLine:'underline',textAlign:'center'}}> LEARN MORE</Text>
+               <Text style={{fontFamily:'title-font' ,fontSize:30,marginLeft:10,marginTop:30,color:'#67DBFF',textDecorationLine:'underline',textAlign:'center'}}> LEARN MORE</Text>
              </TouchableOpacity>
        
               </View>

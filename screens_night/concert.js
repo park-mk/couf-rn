@@ -103,7 +103,7 @@ usersRef.on('value', (snapshot) => {
         style={{
           height: 1,
           width: "86%",
-          backgroundColor: "#56B8FF",
+          backgroundColor: "#67DBFF",
           marginLeft: "14%"
         }}
       />
@@ -181,7 +181,7 @@ usersRef.on('value', (snapshot) => {
 } 
     backgroundColor={'#fff'}
    borderBottomColor={'#fff'}
-     centerComponent={{ text: 'FES&CON', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
+     centerComponent={{ text: 'FES&CON', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#67DBFF' } }}
     
       />
       <ScrollView>   
@@ -259,7 +259,7 @@ const styles = StyleSheet.create({
     marginTop:40,
    // color: color.theme,
     fontSize:20,
-    color:'#56B8FF'
+    color:'#67DBFF'
      
   },
   h1: {

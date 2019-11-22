@@ -48,7 +48,7 @@ class KOR_explainScreen extends React.Component {
    </TouchableOpacity>} 
        backgroundColor={'#fff'}
       borderBottomColor={'#fff'}
-        centerComponent={{ text: 'LEARNING KOREAN', style: {fontFamily:'title-font' ,fontSize:30,marginLeft:10,color:'#56B8FF' } }}
+        centerComponent={{ text: 'LEARNING KOREAN', style: {fontFamily:'title-font' ,fontSize:30,marginLeft:10,color:'#67DBFF' } }}
        
          />
         <ScrollView style={{ flex: 1 }}>

@@ -266,7 +266,7 @@ class CLUBEX extends React.Component {
           }
           backgroundColor={'#1f2124'}
           borderBottomColor={'#fff'}
-          centerComponent={{ text: disname, style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
+          centerComponent={{ text: disname, style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#67DBFF' } }}
 
       />
       <Comment
@@ -312,7 +312,7 @@ class CLUBEX extends React.Component {
         <View >
        
               </View>
-          <Text style={{fontFamily:'title-font' ,fontSize:60,marginLeft:10,color:'#56B8FF' }}> {JSON.stringify(disname).replace(/^"(.+)"$/,'$1')}</Text>
+          <Text style={{fontFamily:'title-font' ,fontSize:60,marginLeft:10,color:'#67DBFF' }}> {JSON.stringify(disname).replace(/^"(.+)"$/,'$1')}</Text>
          
                
           <View style={{marginTop: 0,width:100}}>
@@ -377,7 +377,7 @@ class CLUBEX extends React.Component {
             />
 </TouchableOpacity>
             )}
-           <Text style={{ textAlign: 'left', fontSize: 20,color:'#56B8FF',marginBottom:3}}>{upvote}</Text>
+           <Text style={{ textAlign: 'left', fontSize: 20,color:'#67DBFF',marginBottom:3}}>{upvote}</Text>
               </View>
               </View>
               <View style={{ flex: 1 ,alignItems:'center'}}>

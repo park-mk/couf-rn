@@ -74,8 +74,8 @@ image1=(item)=>{
    
 
 
-              <View  style={{ justifyContent: 'center',alignContent:'center',height:dimensions.height/2,width:dimensions.width-10, backgroundColor:'grey', borderColor:'#56B8FF',borderWidth:2,borderRadius:0}}>
-              <Text style={{textAlign:'center',fontFamily:'title-font',fontSize:30,color:'#56B8FF'}}> {item.title}</Text>
+              <View  style={{ justifyContent: 'center',alignContent:'center',height:dimensions.height/2,width:dimensions.width-10, backgroundColor:'grey', borderColor:'#67DBFF',borderWidth:2,borderRadius:0}}>
+              <Text style={{textAlign:'center',fontFamily:'title-font',fontSize:30,color:'#67DBFF'}}> {item.title}</Text>
              
               </View>
               {this.image(item)}
@@ -108,8 +108,8 @@ renderItem1 =({item})=>{
  
 
 
-            <View  style={{ marginTop:50,marginLeft:margin,justifyContent: 'center',alignContent:'center',height:2*dimensions.width/5,width:2*dimensions.width/5, backgroundColor:'grey', borderColor:'#56B8FF',borderWidth:2,borderRadius:0}}>
-            <Text style={{textAlign:'center',fontFamily:'title-font',fontSize:30,color:'#56B8FF'}}> {item.title}</Text>
+            <View  style={{ marginTop:50,marginLeft:margin,justifyContent: 'center',alignContent:'center',height:2*dimensions.width/5,width:2*dimensions.width/5, backgroundColor:'grey', borderColor:'#67DBFF',borderWidth:2,borderRadius:0}}>
+            <Text style={{textAlign:'center',fontFamily:'title-font',fontSize:30,color:'#67DBFF'}}> {item.title}</Text>
             </View>
             {this.image1(item)}
 
@@ -181,7 +181,7 @@ usersRef1.on('value', (snapshot) => {
  </TouchableOpacity>} 
      backgroundColor={'#fff'}
     borderBottomColor={'#fff'}
-      centerComponent={{ text: 'TIPS', style: {fontFamily:'title-font' ,fontSize:30,marginLeft:10,color:'#56B8FF' } }}
+      centerComponent={{ text: 'TIPS', style: {fontFamily:'title-font' ,fontSize:30,marginLeft:10,color:'#67DBFF' } }}
      
        />
   
@@ -271,6 +271,6 @@ const styles = StyleSheet.create({
   
     
     marginRight:10,
-    borderWidth:2,borderColor:'#56B8FF',borderRadius:5
+    borderWidth:2,borderColor:'#67DBFF',borderRadius:5
   } 
 });

@@ -106,7 +106,7 @@ this.setState({
   </TouchableOpacity> } 
      backgroundColor={'#fff'}
     borderBottomColor={'#fff'}
-      centerComponent={{ text: 'AREA2', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
+      centerComponent={{ text: 'AREA2', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#67DBFF' } }}
      
        />
       <ScrollView>   
@@ -123,7 +123,7 @@ this.setState({
       </TouchableOpacity>
       <TouchableOpacity style={{flex:1}}
         onPress={()=> this.props.navigation.navigate('Area2_2')}>
-      <Text style={{fontFamily:'title-font' ,fontSize:23, marginTop:20,color:'#56B8FF'}}>BUS SCHEDULE</Text>
+      <Text style={{fontFamily:'title-font' ,fontSize:23, marginTop:20,color:'#67DBFF'}}>BUS SCHEDULE</Text>
       </TouchableOpacity>
     
    </View> 
@@ -136,7 +136,7 @@ this.setState({
       
         
         <View style={{
-    borderBottomColor: '#56B8FF',
+    borderBottomColor: '#67DBFF',
     borderBottomWidth: 1,
     marginTop:3,
          }}    />
@@ -158,13 +158,13 @@ this.setState({
                <View style={{
             width:  imagewidth/3,
             height:3,
-            backgroundColor: '#56B8FF',
+            backgroundColor: '#67DBFF',
          }}    >
          </View>
          </View>
          
 <View style={{
-    borderBottomColor: '#56B8FF',
+    borderBottomColor: '#67DBFF',
     borderBottomWidth: 1,
 
          }}    /> 
@@ -182,7 +182,7 @@ this.setState({
       <Text   style={{fontFamily:'title-font' ,fontSize:50,marginLeft:10,color:'#7f8182'}}  >H221</Text>
       </TouchableOpacity>
       <TouchableOpacity style={{flex:1}}>
-      <Text style={{fontFamily:'title-font' ,fontSize:50,marginLeft:15,color:'#56B8FF'}}>TMC</Text>
+      <Text style={{fontFamily:'title-font' ,fontSize:50,marginLeft:15,color:'#67DBFF'}}>TMC</Text>
       </TouchableOpacity>
       <TouchableOpacity style={{flex:1}}
         onPress={()=> this.props.navigation.navigate('Area2_2')}>

@@ -146,7 +146,7 @@ class NEWSS extends React.Component {
   } 
      backgroundColor={'#fff'}
     borderBottomColor={'#fff'}
-      centerComponent={{ text: 'NEWS', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
+      centerComponent={{ text: 'NEWS', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#67DBFF' } }}
      
 />
 
@@ -210,7 +210,7 @@ class NEWSS extends React.Component {
     },
     buttonSelected: {
       opacity: 1,
-      backgroundColor: '#56B8FF',
+      backgroundColor: '#67DBFF',
       borderRadius: 8 / 2,
        marginRight:3,
       width: 8,

@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
         height: 200,
 
         marginRight: 10,
-        borderWidth: 2, borderColor: '#56B8FF', borderRadius: 5
+        borderWidth: 2, borderColor: '#67DBFF', borderRadius: 5
     },
 });
 
@@ -244,7 +244,7 @@ class Profile extends React.Component {
                     <Image style={{
                         height: 141, width: 141, resizeMode: 'cover',
                         marginRight: 10,
-                        borderWidth: 2, borderColor: '#56B8FF', borderRadius: 5
+                        borderWidth: 2, borderColor: '#67DBFF', borderRadius: 5
                     }}
                         source={{ uri: item.topimage }}
 
@@ -489,7 +489,7 @@ class Profile extends React.Component {
                             <ProfileImage source={{ uri: firebase.auth().currentUser.photoURL }} />
                         </ProfileTopImage>
                         <ProfileTopRight>
-                            <Text style={{ color: '#56B8FF', fontFamily: 'title-font', fontSize: 28 }}>
+                            <Text style={{ color: '#67DBFF', fontFamily: 'title-font', fontSize: 28 }}>
                                 {firebase.auth().currentUser.displayName}
                             </Text>
                             <Text style={{ color: 'black', fontFamily: 'content-font', fontSize: 18 }}>

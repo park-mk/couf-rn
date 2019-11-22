@@ -235,7 +235,7 @@ class Fooditem extends React.Component {
                 }
                 backgroundColor={'#fff'}
                 borderBottomColor={'#fff'}
-                centerComponent={{ text: 'Food', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
+                centerComponent={{ text: 'Food', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#67DBFF' } }}
 
             />
             <Comment
@@ -256,7 +256,7 @@ class Fooditem extends React.Component {
               }
               backgroundColor={'#fff'}
               borderBottomColor={'#fff'}
-              centerComponent={{ text: 'Food', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
+              centerComponent={{ text: 'Food', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#67DBFF' } }}
 
           />
           <ScrollView>
@@ -338,7 +338,7 @@ class Fooditem extends React.Component {
                 </View>
 
 
-                <Text style={{ textAlign: 'left', fontSize: 55,color:'#56B8FF',marginLeft:10 ,fontFamily:'title-font' }}>{disname}</Text>
+                <Text style={{ textAlign: 'left', fontSize: 55,color:'#67DBFF',marginLeft:10 ,fontFamily:'title-font' }}>{disname}</Text>
 
               </View>
 
