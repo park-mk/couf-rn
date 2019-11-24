@@ -244,6 +244,8 @@ class SuggestionScreen extends React.Component {
         }
 
         return (
+
+            
             <Wrap style={{flex:1}} keyboardVerticalOffset={70} behavior="padding">
                 <ProgressLoader
                     visible={this.state.loadVisible}

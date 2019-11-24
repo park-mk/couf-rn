@@ -172,7 +172,7 @@ usersRef.on('value', (snapshot) => {
       <View>
       <View style ={{ flexDirection:"row" ,flex:3}}>
       <TouchableOpacity style={{flex:1}}>
-      <Text   style={{fontFamily:'title-font' ,fontSize:23,marginTop:20,marginLeft:10,color:'#56B8FF'}}  >THINGS TO EAT</Text>
+      <Text   style={{fontFamily:'title-font' ,fontSize:23,marginTop:20,marginLeft:10,color:'#67DBFF'}}  >THINGS TO EAT</Text>
       </TouchableOpacity>
       <TouchableOpacity style={{flex:1}}>
       <Text style={{fontFamily:'title-font' ,fontSize:23, marginTop:20,marginLeft:15,color:'#7f8182'}}>WHAT TO DO</Text>
@@ -191,20 +191,20 @@ usersRef.on('value', (snapshot) => {
       
         
         <View style={{
-    borderBottomColor: '#56B8FF',
+    borderBottomColor: '#67DBFF',
     borderBottomWidth: 1,
     marginTop:3,
          }}    />
             <View style={{
             width: imagewidth/3-5,
             height:3,
-            backgroundColor: '#56B8FF',
+            backgroundColor: '#67DBFF',
          }}    >
              
          </View>
          
 <View style={{
-    borderBottomColor: '#56B8FF',
+    borderBottomColor: '#67DBFF',
     borderBottomWidth: 1,
 
          }}    /> 

@@ -608,7 +608,7 @@ export default createAppContainer(createBottomTabNavigator(
       },
     }),
     tabBarOptions: {
-      activeTintColor: '#56B8FF',
+      activeTintColor: '#67DBFF',
       inactiveTintColor: 'gray',
       showLabel:false,
     },

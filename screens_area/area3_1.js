@@ -147,7 +147,7 @@ usersRef.on('value', (snapshot) => {
 </TouchableOpacity>} 
     backgroundColor={'#fff'}
    borderBottomColor={'#fff'}
-     centerComponent={{ text: 'AREA3', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
+     centerComponent={{ text: 'AREA3', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#67DBFF' } }}
     
       />
    
@@ -162,7 +162,7 @@ usersRef.on('value', (snapshot) => {
       <Text   style={{fontFamily:'title-font' ,fontSize:23,marginTop:20,color:'#7f8182'}}  >THINGS TO EAT</Text>
       </TouchableOpacity>
       <TouchableOpacity style={{flex:1,alignItems:'center'}}>
-      <Text style={{fontFamily:'title-font' ,fontSize:23, marginTop:20,color:'#56B8FF'}}>WHAT TO DO</Text>
+      <Text style={{fontFamily:'title-font' ,fontSize:23, marginTop:20,color:'#67DBFF'}}>WHAT TO DO</Text>
       </TouchableOpacity>
       
     
@@ -179,7 +179,7 @@ usersRef.on('value', (snapshot) => {
       
         
         <View style={{
-    borderBottomColor: '#56B8FF',
+    borderBottomColor: '#67DBFF',
     borderBottomWidth: 1,
     marginTop:3,
          }}    />
@@ -193,13 +193,13 @@ usersRef.on('value', (snapshot) => {
                <View style={{
             width:  imagewidth/2,
             height:3,
-            backgroundColor: '#56B8FF',
+            backgroundColor: '#67DBFF',
          }}    >
          </View>
          </View>
          
 <View style={{
-    borderBottomColor: '#56B8FF',
+    borderBottomColor: '#67DBFF',
     borderBottomWidth: 1,
 
          }}    /> 
@@ -251,7 +251,7 @@ usersRef.on('value', (snapshot) => {
  
                title=  {     
                  
-                <View  style={{  flex:1,   alignContent:'center',marginRight:-3, borderWidth:2,borderColor:'#56B8FF'}}
+                <View  style={{  flex:1,   alignContent:'center',marginRight:-3, borderWidth:2,borderColor:'#67DBFF'}}
                     
                 >
               <ImageBackground   style={styles.icon}
@@ -343,7 +343,7 @@ usersRef.on('value', (snapshot) => {
                title=  {     
                
                 <View  style={{  justifyContent: 'center',
-                alignItems: 'center',  marginRight:-3, borderWidth:2,borderColor:'#56B8FF', width: 260,
+                alignItems: 'center',  marginRight:-3, borderWidth:2,borderColor:'#67DBFF', width: 260,
                 height: 160,
                 justifyContent: 'center',
                 alignItems: 'center',

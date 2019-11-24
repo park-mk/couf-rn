@@ -205,7 +205,7 @@ class FESTIVAL extends React.Component {
  } 
      backgroundColor={'rgba(52, 52, 52, alpha)'}
     borderBottomColor={'#1f2124'}
-      centerComponent={{ text: 'FESTIVALS', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
+      centerComponent={{ text: 'FESTIVALS', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#67DBFF' } }}
        
        />
    

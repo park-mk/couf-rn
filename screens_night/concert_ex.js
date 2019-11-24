@@ -72,7 +72,7 @@ class CONCERTEX extends React.Component {
   } 
      backgroundColor={'#fff'}
     borderBottomColor={'#fff'}
-      centerComponent={{ text: 'TRAVEL', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
+      centerComponent={{ text: 'TRAVEL', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#67DBFF' } }}
      
        />
         <ScrollView>
@@ -86,14 +86,14 @@ class CONCERTEX extends React.Component {
         </ImageBackground>  
         </View>
         <View>
-        <Text style={{fontFamily:'title-font' ,fontSize:50,marginLeft:10,color:'#56B8FF',textAlign:'center' }}> {JSON.stringify(name).replace(/^"(.+)"$/,'$1')}</Text>
+        <Text style={{fontFamily:'title-font' ,fontSize:50,marginLeft:10,color:'#67DBFF',textAlign:'center' }}> {JSON.stringify(name).replace(/^"(.+)"$/,'$1')}</Text>
 
-        <Text style={{fontFamily:'content-font' ,fontSize:20,marginLeft:10,color:'#56B8FF',textAlign:'center'}}> {JSON.stringify(date).replace(/^"(.+)"$/,'$1')}</Text>
+        <Text style={{fontFamily:'content-font' ,fontSize:20,marginLeft:10,color:'#67DBFF',textAlign:'center'}}> {JSON.stringify(date).replace(/^"(.+)"$/,'$1')}</Text>
         <TouchableOpacity
               onPress={()=>  Linking.openURL(JSON.stringify(loca).replace(/^"(.+)"$/,'$1')).catch((err) => console.error('An error occurred', err))}
               
             > 
-               <Text style={{fontFamily:'content-font' ,fontSize:20,marginLeft:10,color:'#56B8FF',textAlign:'center',textDecorationLine:'underline'}}> {JSON.stringify(location).replace(/^"(.+)"$/,'$1')}</Text>
+               <Text style={{fontFamily:'content-font' ,fontSize:20,marginLeft:10,color:'#67DBFF',textAlign:'center',textDecorationLine:'underline'}}> {JSON.stringify(location).replace(/^"(.+)"$/,'$1')}</Text>
              </TouchableOpacity>
        
               </View>

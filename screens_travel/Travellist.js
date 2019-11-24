@@ -222,12 +222,12 @@ usersRef.on('value', (snapshot) => {
 } 
    backgroundColor={'#fff'}
   borderBottomColor={'#fff'}
-    centerComponent={{ text: 'TRAVEL', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
+    centerComponent={{ text: 'TRAVEL', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#67DBFF' } }}
    
      />
       <ScrollView> 
          <View style={{alignItems:"center"}} >
-    <Text   style={{fontFamily:'title-font' ,fontSize:40,color:'#56B8FF'}}  
+    <Text   style={{fontFamily:'title-font' ,fontSize:40,color:'#67DBFF'}}  
                            
                            >{JSON.stringify(name).replace(/^"(.+)"$/,'$1')}</Text> 
                        
@@ -284,7 +284,7 @@ const styles = StyleSheet.create({
     height: 200,
     
     marginRight:10,
-    borderWidth:2,borderColor:'#56B8FF',borderRadius:5
+    borderWidth:2,borderColor:'#67DBFF',borderRadius:5
   },
   rightContainer: {
     flex: 1,

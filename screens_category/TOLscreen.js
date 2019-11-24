@@ -204,7 +204,7 @@ this.setState({ datasource: newData });
 </TouchableOpacity>} 
    backgroundColor={'#fff'}
   borderBottomColor={'#fff'}
-    centerComponent={{ text: 'Phonebook', style: {fontFamily:'title-font' ,fontSize:30,marginLeft:10,color:'#56B8FF' } }}
+    centerComponent={{ text: 'Phonebook', style: {fontFamily:'title-font' ,fontSize:30,marginLeft:10,color:'#67DBFF' } }}
    
      />
       <ScrollView>

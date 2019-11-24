@@ -107,7 +107,7 @@ usersRef.on('value', (snapshot) => {
         style={{
           paddingVertical: 20,
           borderTopWidth: 1,
-          borderColor: "#56B8FF"
+          borderColor: "#67DBFF"
         }}
       >
       
@@ -124,7 +124,7 @@ usersRef.on('value', (snapshot) => {
         style={{
           height: 1,
           width: "86%",
-          backgroundColor: "#56B8FF",
+          backgroundColor: "#67DBFF",
           marginLeft: "14%"
         }}
       />
@@ -141,12 +141,7 @@ usersRef.on('value', (snapshot) => {
           title : item.title,
           description :item.description,
          
-          topimage : item.topimage,
-          date:item.date,
-          upvote:this.state.upvote,//item.upvote,
-          imagelist:item.images,
-        //  imagelist:item.images,
-          //tips:item.tips,
+        
        }); 
        
      
@@ -190,7 +185,7 @@ usersRef.on('value', (snapshot) => {
  </TouchableOpacity>} 
      backgroundColor={'#fff'}
     borderBottomColor={'#fff'}
-      centerComponent={{ text: 'NEWS', style: {fontFamily:'title-font' ,fontSize:30,marginLeft:10,color:'#56B8FF' } }}
+      centerComponent={{ text: 'NEWS', style: {fontFamily:'title-font' ,fontSize:30,marginLeft:10,color:'#67DBFF' } }}
      
        />
         <FlatList

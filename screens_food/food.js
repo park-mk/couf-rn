@@ -215,13 +215,13 @@ this.setState({
  } 
      backgroundColor={'#fff'}
     borderBottomColor={'#fff'}
-      centerComponent={{ text: 'Food', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
+      centerComponent={{ text: 'Food', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#67DBFF' } }}
      
        />
     
         
       <ScrollView>   
-<Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'#56B8FF'}}  
+<Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'#67DBFF'}}  
                            
                            >Meat</Text>
 
@@ -244,7 +244,7 @@ this.setState({
            
                title=  {    
                
-                    <View  style={{  flex:1,   alignContent:'center',marginRight:-3, borderWidth:2,borderColor:'#56B8FF'}}
+                    <View  style={{  flex:1,   alignContent:'center',marginRight:-3, borderWidth:2,borderColor:'#67DBFF'}}
                     
                     >
                   <ImageBackground   style={styles.icon}
@@ -297,7 +297,7 @@ this.setState({
 
         
        </View>
-<Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'#56B8FF'}}  
+<Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'#67DBFF'}}  
                            
                            >SEAFOOD</Text>
 
@@ -320,7 +320,7 @@ this.setState({
            
                title=  {    
                
-                    <View  style={{  flex:1,   alignContent:'center',marginRight:-3, borderWidth:2,borderColor:'#56B8FF'}}
+                    <View  style={{  flex:1,   alignContent:'center',marginRight:-3, borderWidth:2,borderColor:'#67DBFF'}}
                     
                     >
                   <ImageBackground   style={styles.icon}
@@ -376,7 +376,7 @@ this.setState({
 
 
 
-       <Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'#56B8FF'}}  
+       <Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'#67DBFF'}}  
                            
                            >SOUP</Text>
 
@@ -399,7 +399,7 @@ this.setState({
            
                title=  {    
                
-                    <View  style={{  flex:1,   alignContent:'center',marginRight:-3, borderWidth:2,borderColor:'#56B8FF'}}
+                    <View  style={{  flex:1,   alignContent:'center',marginRight:-3, borderWidth:2,borderColor:'#67DBFF'}}
                     
                     >
                   <ImageBackground   style={styles.icon}
@@ -454,7 +454,7 @@ this.setState({
        </View>
 
 
-       <Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'#56B8FF'}}  
+       <Text   style={{fontFamily:'title-font' ,fontSize:40, marginLeft:20,marginTop:30,color:'#67DBFF'}}  
                            
                            >DESSERT</Text>
 
@@ -477,7 +477,7 @@ this.setState({
  
                title=  {     
                  
-                <View  style={{  flex:1,   alignContent:'center',marginRight:-3, borderWidth:2,borderColor:'#56B8FF'}}
+                <View  style={{  flex:1,   alignContent:'center',marginRight:-3, borderWidth:2,borderColor:'#67DBFF'}}
                     
                 >
               <ImageBackground   style={styles.icon}

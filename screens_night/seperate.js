@@ -156,7 +156,7 @@ class NIGHT extends React.Component {
      </TouchableOpacity>} 
          backgroundColor={'#fff'}
         borderBottomColor={'#fff'}
-          centerComponent={{ text: 'ENTERTAINMENT', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:5,color:'#56B8FF' } }}
+          centerComponent={{ text: 'ENTERTAINMENT', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:5,color:'#67DBFF' } }}
          
           />
            
