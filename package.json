@@ -20,7 +20,6 @@
     "expo-file-system": "^7.0.0",
     "expo-font": "^7.0.0",
     "expo-image-picker": "^7.0.0",
-    "expo-multiple-imagepicker": "^1.0.6",
     "expo-permissions": "~7.0.0",
     "firebase": "^6.2.2",
     "global": "^4.4.0",
@@ -43,7 +42,8 @@
     "rn-progress-loader": "^1.0.8",
     "semver": "^6.3.0",
     "styled-components": "^4.4.0",
-    "watchman": "^1.0.0"
+    "watchman": "^1.0.0",
+    "react-native-vector-icons": "latest"
   },
   "devDependencies": {
     "babel-preset-expo": "^5.0.0",

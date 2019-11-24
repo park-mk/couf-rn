@@ -18,7 +18,7 @@ import firebase from "../firebase";
 import CommentList from '../components/commentList'
 // import Comment from '../components/comment'
 import ProgressLoader from 'rn-progress-loader';
-import {ImageBrowser,CameraBrowser} from 'expo-multiple-imagepicker';
+import ImageBrowser from '../components/multiple-imagepicker/src/ImageBrowser';
 
 class SuggestionScreen extends React.Component {
     constructor(props){
