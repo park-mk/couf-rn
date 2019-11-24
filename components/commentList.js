@@ -16,7 +16,9 @@ class CommentList extends React.Component {
             modifyItem:{},
             lists:[],
         });
+
         console.log('현재 유저',firebase.auth().currentUser);
+        console.log('게시물',this.props.lists);
     }
 
     getDate = (timestamp) => {
@@ -47,6 +49,16 @@ class CommentList extends React.Component {
         }.bind(this));
     };
 
+    renderImage(item, i) {
+        return(
+            <Image
+                style={{height: 100, width: 100}}
+                source={{uri: item.file}}
+                key={i}
+            />
+        )
+    }
+    
     render(url) {
         return (
             <View>
@@ -126,7 +138,12 @@ class CommentList extends React.Component {
                                   }
                                   subtitle={
                                       <View>
-                                          { item.image && <Image source={{ uri: item.imageUrl }} style={{ width: 200, height: 200 }} />}
+                                          {
+                                              item.imageUrl && item.imageUrl.map((image, i) => {
+                                                  return (<Image source={{ uri: image }} style={{ width: 100, height: 100 }} key={i} />);
+                                              })
+                                          }
+
                                         <Content>{item.content}</Content>
                                       </View>
                                   }
@@ -134,7 +151,7 @@ class CommentList extends React.Component {
                                       (firebase.auth().currentUser && item.useremail == firebase.auth().currentUser.email) && <Buttons style={{alignSelf: 'flex-start'}}>
                                           <Button type="clear" buttonStyle={{width: 30}}
                                                   icon={<Icon name="trash" size={15} color="black"/>}
-                                                  onPress={() => this.props.deleteData(item.uid)}
+                                                  onPress={() => this.props.deleteData(item)}
                                           />
                                           <Button type="clear" buttonStyle={ { width: 30 } }
                                                   icon={<Icon name="edit" size={15} color="black" /> }

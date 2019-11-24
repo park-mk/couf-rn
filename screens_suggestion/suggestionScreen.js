@@ -1,13 +1,24 @@
 import React from 'react';
-import {Image, Text, TextInput, View, FlatList, CameraRoll, Modal, KeyboardAvoidingView, Alert } from 'react-native';
+import {
+    Image,
+    Text,
+    TextInput,
+    View,
+    FlatList,
+    CameraRoll,
+    Modal,
+    KeyboardAvoidingView,
+    Alert,
+    ScrollView
+} from 'react-native';
 import styled from 'styled-components'
 import { List, ListItem, Button, Avatar  } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import firebase from "../firebase";
 import CommentList from '../components/commentList'
 // import Comment from '../components/comment'
-import * as ImagePicker from 'expo-image-picker';
 import ProgressLoader from 'rn-progress-loader';
+import {ImageBrowser,CameraBrowser} from 'expo-multiple-imagepicker';
 
 class SuggestionScreen extends React.Component {
     constructor(props){
@@ -23,6 +34,9 @@ class SuggestionScreen extends React.Component {
             toggleWriteForm : false,
             image: null,
             loadVisible : false,
+            imageBrowserOpen: false,
+            cameraBrowserOpen: false,
+            photos: []
         })
         this.setData();
         this.base64Data = '';
@@ -39,16 +53,19 @@ class SuggestionScreen extends React.Component {
 
     }
 
-    deleteData= (key) => {
+    deleteData= (item) => {
         Alert.alert(
             'Delete Popup',
             'Are you sure you want to delete this?',
             [
                 {text: 'Delete', onPress: () => {
-                        let ref = firebase.storage().ref().child("suggestion/"+key);
-                        let deleteData = firebase.database().ref().child('comment/suggestion/'+key);
+                        let ref = firebase.storage().ref();
+                        let deleteData = firebase.database().ref().child('comment/suggestion/'+item.uid);
 
-                        Promise.all([ref.delete(), deleteData.set(null)]).then(function(values) {
+                        Promise.all([
+                            item.images.map((item) => ref.child("suggestion/"+item).delete()),
+                            deleteData.set(null)
+                        ]).then(function(values) {
                             console.log(values);
 
                         }).catch((error) => {
@@ -77,44 +94,74 @@ class SuggestionScreen extends React.Component {
         }.bind(this));
     };
 
-    _pickImage = async () => {
-        let result = await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            allowsEditing: true,
-            aspect: [4, 3],
+    imageBrowserCallback = (callback) => {
+        callback.then((photos) => {
+            this.setState({
+                imageBrowserOpen: false,
+                photos
+            })
+        }).catch((e) => console.log(e))
+    };
+
+    uploadMultiImage = (data) => {
+        return Promise.all(
+            this.state.photos.map((item, i) => this.uploadImage(item, data, i))
+        ).then(function(values) {
+            console.log('upload Multi Image',values);
+
+        }).catch((error) => {
+            console.log(error);
         });
-
-        console.log(result);
-
-        if (!result.cancelled) {
-            this.setState({ image: result.uri });
-        }
     };
 
-    multiImage = async () => {
-        this.props.navigation.navigate('ImageSelector')
-    };
-
-    uploadImage = async (uri, imageName) => {
-        if(!uri) return true;
-        const response = await fetch(uri);
+    uploadImage = async (item, data,i) => {
+        if(!item || !item.uri) return true;
+        const response = await fetch(item.uri);
         const blob = await response.blob();
 
-        let ref = firebase.storage().ref().child("suggestion/" + imageName);
-        return ref.put(blob);
+        let imageName = data.uid+'-'+i;
+        data.images.push(imageName);
+        console.log('data 의 images 다 ㅏㄷ',data.images);
+        return firebase.storage().ref().child("suggestion/" + imageName).put(blob);
     };
 
+    renderImage(item, i) {
+        return(
+            <Image
+                style={{height: 100, width: 100}}
+                source={{uri: item.file}}
+                key={i}
+            />
+        )
+    }
 
-    setImageData = (data) => {
+
+    _getImageDownLoadUrl = (image, index) => {
+        console.log('뭐 안들어오는데 ?', image, index);
         return new Promise((resolve, reject) => {
-            if(!data.image) resolve(true);
-            firebase.storage().ref('suggestion').child(data.image).getDownloadURL().then(url => {
-                data.imageUrl = url;
-                resolve(data);
+            firebase.storage().ref('suggestion').child(image).getDownloadURL().then(url => {
+                console.log('image',image);
+                console.log('받은 rul',url);
+                resolve(url);
             }).catch((error) => {
                 reject(error);
             });
         });
+
+    };
+
+    setImageData = (data) => {
+        console.log('data 는 ',data);
+        return Promise.all(
+            data.images.map((item,i) => this._getImageDownLoadUrl(item, i))
+        ).then(function(values) {
+            console.log('결과들이다',values);
+            return values;
+
+        }).catch((error) => {
+            console.error(error);
+        });
+
     };
 
     getData = () => {
@@ -149,18 +196,21 @@ class SuggestionScreen extends React.Component {
             displayName:user.displayName,
             photoURL:user.photoURL,
             timestamp:Date.now(),
-            image: this.state.image ? newPostKey : null,
-            imageUrl : null,
+            images: [], // firebase image 이름
+            imageUrl : [], //이미지 donwload url ( 보여주기용 url )
             tags:{
                 'suggestion':true
             },
         };
 
         this.setState({loadVisible:true});
-        this.uploadImage(this.state.image, newPostKey).then(function(){
+        console.log('create Data : ',createData);
+        this.uploadMultiImage(createData).then(function(){
             return this.setImageData(createData);
 
         }.bind(this)).then((response)=>{
+            console.log('받은 res는 ?', response);
+            createData.imageUrl = response;
             return firebase.database().ref('comment/suggestion/'+ newPostKey).set(createData);
 
         }).then(function(){
@@ -187,6 +237,12 @@ class SuggestionScreen extends React.Component {
     }
 
     render(url) {
+        if (this.state.imageBrowserOpen) {
+            return(<ImageBrowser max={10} callback={this.imageBrowserCallback}/>);
+        }else if (this.state.cameraBrowserOpen) {
+            return(<CameraBrowser max={10} callback={this.imageBrowserCallback}/>);
+        }
+
         return (
             <Wrap style={{flex:1}} keyboardVerticalOffset={70} behavior="padding">
                 <ProgressLoader
@@ -210,6 +266,9 @@ class SuggestionScreen extends React.Component {
                 <Form>
                     { this.state.toggleWriteForm && firebase.auth().currentUser &&
                     <View>
+                        <ScrollView>
+                            {this.state.photos.map((item,i) => this.renderImage(item,i))}
+                        </ScrollView>
                         <WrapTextInput>
                             {this.state.image &&
                             <Image source={{ uri: this.state.image }} style={{ width: 200, height: 200 }} />}
@@ -229,11 +288,7 @@ class SuggestionScreen extends React.Component {
                             />
                             <Button type="clear" buttonStyle={{width: 50, marginRight: 10}}
                                     icon={<Icon name="camera" size={15} color="grey"/>}
-                                    onPress={() => this._pickImage()}
-                            />
-                            <Button type="clear" buttonStyle={{width: 50, marginRight: 10}}
-                                    icon={<Icon name="camera" size={15} color="grey"/>}
-                                    onPress={() => this.multiImage()}
+                                    onPress={() => this.setState({imageBrowserOpen: true})}
                             />
                             <Button type="solid" buttonStyle={{width: 50}}
                                     icon={<Icon name="check" size={15} color="white"/>}
