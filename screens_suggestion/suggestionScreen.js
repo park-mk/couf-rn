@@ -151,11 +151,9 @@ class SuggestionScreen extends React.Component {
     };
 
     setImageData = (data) => {
-        console.log('data 는 ',data);
         return Promise.all(
             data.images.map((item,i) => this._getImageDownLoadUrl(item, i))
         ).then(function(values) {
-            console.log('결과들이다',values);
             return values;
 
         }).catch((error) => {
@@ -224,17 +222,18 @@ class SuggestionScreen extends React.Component {
             console.log('final');
         });
     };
+
     clearData = () => {
         this.setState({
             suggestion: '',
-            image: null,
+            photos: [],
         });
         this.toggleWriteForm();
     };
 
     toggleWriteForm = () => {
         this.setState({toggleWriteForm : !this.state.toggleWriteForm})
-    }
+    };
 
     render(url) {
         if (this.state.imageBrowserOpen) {
@@ -272,8 +271,6 @@ class SuggestionScreen extends React.Component {
                             {this.state.photos.map((item,i) => this.renderImage(item,i))}
                         </ScrollView>
                         <WrapTextInput>
-                            {this.state.image &&
-                            <Image source={{ uri: this.state.image }} style={{ width: 200, height: 200 }} />}
                             <TextInput
                                 multiline={true}
                                 onChangeText={(suggestion) => this.changeComment(suggestion)}
