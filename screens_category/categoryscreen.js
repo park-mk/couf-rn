@@ -227,7 +227,7 @@ class CategoryScreen extends React.Component {
             <Category imageURI={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2FMore%20-%20Icons%2Fbuy%20%26%20sell.png?alt=media&token=1245857a-f4e3-4c61-a1ca-d2ad217af7f5" }}
               name='buy and sell'
             
-              onPress={() => this.props.navigation.navigate('TIP')}
+              onPress={() => this.props.navigation.navigate('BUYLIST')}
             />
              
             <Category imageURI={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2FMore%20-%20Icons%2Fcontact%20us.png?alt=media&token=e719f7a2-cf50-438e-8fb5-a55c2b57d305" }}

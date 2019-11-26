@@ -259,8 +259,7 @@ const HomeStack = createStackNavigator({
     header: null,
 
   }},
-  SuggestionScreen: { screen: SuggestionScreen },
-  SuggestionModify: { screen: SuggestionModify },
+ 
   TT: { screen: Travellist , navigationOptions: {
     header: null,
 
@@ -432,7 +431,16 @@ const CategoryStack = createStackNavigator({
     header: null,
    
 
-  }}
+  }}, SuggestionScreen: { screen: SuggestionScreen , navigationOptions: {
+    header: null,
+   
+
+  }}, 
+  SuggestionModify: { screen: SuggestionModify , navigationOptions: {
+    header: null,
+   
+
+  }}, 
   
 
 });
@@ -544,11 +552,6 @@ const LoginStack = createStackNavigator({
       header: null,
   
     } }
-});
-
-const SuggestionStack = createStackNavigator({
-  SuggestionScreen: { screen: SuggestionScreen },
-  SuggestionModify: { screen: SuggestionModify },
 });
 
 

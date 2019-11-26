@@ -9,10 +9,11 @@ import {
     Modal,
     KeyboardAvoidingView,
     Alert,
-    ScrollView
+    ScrollView,
+    TouchableOpacity,
 } from 'react-native';
 import styled from 'styled-components'
-import { List, ListItem, Button, Avatar  } from 'react-native-elements'
+import { List, ListItem, Button, Avatar  ,Header} from 'react-native-elements'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import firebase from "../firebase";
 import CommentList from '../components/commentList'
@@ -276,14 +277,32 @@ class SuggestionScreen extends React.Component {
         }
 
         return (
-
+           
             
             <Wrap style={{flex:1}} keyboardVerticalOffset={70} behavior="padding">
+                
                 <ProgressLoader
                     visible={this.state.loadVisible}
                     isModal={true} isHUD={true}
                     color={"#000000"}
                     barHeight={80}
+                />
+                     <Header
+                    leftComponent={
+                        <TouchableOpacity
+                            onPress={() => this.props.navigation.navigate('Home')}
+                        >
+                            <Image source={require('../assets/back.png')}
+
+                                style={{ width: 70, height: 80, marginLeft: -15, resizeMode: 'cover' }}
+                            />
+                        </TouchableOpacity>
+                    }
+                   
+                    backgroundColor={'#fff'}
+                    borderBottomColor={'#fff'}
+                    centerComponent={{ text: 'SUGGESTION', style: { fontFamily: 'title-font', fontSize: 40, marginLeft: 10, color: '#67DBFF' } }}
+
                 />
                 <Text
                     style={{fontFamily:'title-font' ,fontSize:25,marginLeft:10, }}

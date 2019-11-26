@@ -11,8 +11,8 @@ import {
     Dimensions,
     TextInput
 } from 'react-native';
-import { List, ListItem, SearchBar ,Header} from "react-native-elements";
-import  firebase from "../firebase";
+import { List, ListItem, SearchBar, Header } from "react-native-elements";
+import firebase from "../firebase";
 import call from 'react-native-phone-call';
 import ImageSlider from 'react-native-image-slider';
 import Icon from "../screens_suggestion/suggestionScreen";
@@ -24,7 +24,7 @@ import ImageBrowser from '../components/multiple-imagepicker/src/ImageBrowser';
 
 
 //load the firebase.database in order to simplfy
-database=firebase.database();
+database = firebase.database();
 
 //tip of liFE
 class BUYLIST extends React.Component {
@@ -35,19 +35,19 @@ class BUYLIST extends React.Component {
         this.state = {
             loading: false,
             datasource: [],
-            pause:false,
+            pause: false,
             error: null,
             refreshing: false,
             search: '',
-            images:'',
-            toggleWriteForm : false,
+            images: '',
+            toggleWriteForm: false,
             imageBrowserOpen: false,
             cameraBrowserOpen: false,
             photos: [],
-            comment:'',
-            show:' ',
-            title:'',
-            loadVisible:false,
+            comment: '',
+            show: ' ',
+            title: '',
+            loadVisible: false,
         };
     }
 
@@ -60,23 +60,23 @@ class BUYLIST extends React.Component {
     makeRemoteRequest = () => {
 
         firebase.database().ref('comment/buyNsell').on('value', function (snapshot) {
-            let returnVal =  snapshot.val() || {};
-            this.setState({datasource: Object.values(returnVal).reverse()});
-        }.bind(this),function(error){
+            let returnVal = snapshot.val() || {};
+            this.setState({ datasource: Object.values(returnVal).reverse() });
+        }.bind(this), function (error) {
             console.error(error);
         });
 
-/*
-        this.setState({ loading: true });                    //because while this function is working = loading
-        var usersRef =firebase.database().ref('A1WTE');       //   bring the database tips
-        usersRef.on('value', (snapshot) => {                     //    tips database resort
-            var m=snapshot.val()
-            var keys= Object.values(m);
-            this.setState({
-                datasource:  keys                                   // datasource of list
-            })
-        });
-*/
+        /*
+                this.setState({ loading: true });                    //because while this function is working = loading
+                var usersRef =firebase.database().ref('A1WTE');       //   bring the database tips
+                usersRef.on('value', (snapshot) => {                     //    tips database resort
+                    var m=snapshot.val()
+                    var keys= Object.values(m);
+                    this.setState({
+                        datasource:  keys                                   // datasource of list
+                    })
+                });
+        */
 
 
     };
@@ -94,8 +94,8 @@ class BUYLIST extends React.Component {
 
     setImageData = (data) => {
         return Promise.all(
-            data.images.map((item,i) => this._getImageDownLoadUrl(item, i))
-        ).then(function(values) {
+            data.images.map((item, i) => this._getImageDownLoadUrl(item, i))
+        ).then(function (values) {
             return values;
 
         }).catch((error) => {
@@ -116,35 +116,35 @@ class BUYLIST extends React.Component {
     uploadMultiImage = (data) => {
         return Promise.all(
             this.state.photos.map((item, i) => this.uploadImage(item, data, i))
-        ).then(function(values) {
-            console.log('upload Multi Image',values);
+        ).then(function (values) {
+            console.log('upload Multi Image', values);
 
         }).catch((error) => {
             console.log(error);
         });
     };
     showDescription = (comment) => {
-        if(comment.length>20){
+        if (comment.length > 20) {
             this.setState(
                 {
-                  show:comment.substring(0,30)+"......"
+                    show: comment.substring(0, 30) + "......"
                 });
         }
-        else 
-        this.setState(
-            {
-              show:comment
-            });
+        else
+            this.setState(
+                {
+                    show: comment
+                });
 
-      return this.state.show;
+        return this.state.show;
     };
 
-    uploadImage = async (item, data,i) => {
-        if(!item || !item.uri) return true;
+    uploadImage = async (item, data, i) => {
+        if (!item || !item.uri) return true;
         const response = await fetch(item.uri);
         const blob = await response.blob();
 
-        let imageName = data.uid+'-'+i;
+        let imageName = data.uid + '-' + i;
         data.images.push(imageName);
         return firebase.storage().ref().child("buyNsell/" + imageName).put(blob);
     };
@@ -190,7 +190,7 @@ class BUYLIST extends React.Component {
             <SearchBar
                 placeholder="Type Here..."
                 backgroundColor="white"
-              
+
                 //  onChangeText={(text) => this.searchFilterFunction(text)}
                 onChangeText={this.updateSearch}
                 autoCorrect={false}
@@ -201,8 +201,8 @@ class BUYLIST extends React.Component {
 
 
     renderItem = ({ item }) => {
-        let dimensions=Dimensions.get("window");
-        let imageheight=5*dimensions.height/10;
+        let dimensions = Dimensions.get("window");
+        let imageheight = 5 * dimensions.height / 10;
         //let imageheight =Math.round((dimensions.width*9)/12);
         let imagewidth = dimensions.width;
 
@@ -235,20 +235,20 @@ class BUYLIST extends React.Component {
 
 
             >
-                <Text   style={{fontFamily:'title-font' ,fontSize:30, marginLeft:20,marginTop:10}}>
+                <Text style={{ fontFamily: 'title-font', fontSize: 30, marginLeft: 20, marginTop: 10 }}>
                     {item.title}
                 </Text>
-                <Text   style={{fontFamily:'content-font' ,fontSize:15, marginLeft:20}}>
+                <Text style={{ fontFamily: 'content-font', fontSize: 15, marginLeft: 20 }}>
                     {item.location}
                 </Text>
-                <Text   style={{fontFamily:'content-font' ,fontSize:15, marginLeft:20}}>
-                   {item.content.substring(0,30)+"....."}
+                <Text style={{ fontFamily: 'content-font', fontSize: 15, marginLeft: 20 }}>
+                    {item.content.substring(0, 30) + "....."}
                 </Text>
-                <Text   style={{fontFamily:'content-font' ,fontSize:20, marginLeft:14,color:'green'}}>
-                    {'$'+item.price}
+                <Text style={{ fontFamily: 'content-font', fontSize: 20, marginLeft: 14, color: 'green' }}>
+                    {'$' + item.price}
                 </Text>
                 <View style={{ flex: 1, marginBottom: 0, borderColor: 'black' }} >
-                    <Image style={{height:imageheight,width:imagewidth }} source={{ uri: item.imageUrl[0] }} />
+                    <Image style={{ height: imageheight, width: imagewidth }} source={{ uri: item.imageUrl[0] }} />
                     <View  >
                         { //<Text style={styles.h1}>{item.name}</Text>
                             // <Text style={styles.p} >{item.devision}</Text>
@@ -277,15 +277,15 @@ class BUYLIST extends React.Component {
         console.log(this.state.search)
 
 
-        var usersRef =firebase.database().ref('comment/buyNsell');       //   bring the database tips
+        var usersRef = firebase.database().ref('comment/buyNsell');       //   bring the database tips
         usersRef.once('value', (snapshot) => {                     //    tips database resort
 
-            var m=snapshot.val()
-            var keys= Object.values(m);
+            var m = snapshot.val()
+            var keys = Object.values(m);
             this.setState({
-                datasource:  keys                                   // datasource of list
+                datasource: keys                                   // datasource of list
             })
-        }).then((m)=>{
+        }).then((m) => {
 
 
 
@@ -361,34 +361,34 @@ class BUYLIST extends React.Component {
     };
 
     renderImage(item, i) {
-        return(
+        return (
             <Image
-                style={{height: 100, width: 100}}
-                source={{uri: item.file}}
+                style={{ height: 100, width: 100 }}
+                source={{ uri: item.file }}
                 key={i}
             />
         )
     }
 
     toggleWriteForm = () => {
-        this.setState({toggleWriteForm : !this.state.toggleWriteForm})
+        this.setState({ toggleWriteForm: !this.state.toggleWriteForm })
     };
 
-    changeTitle=(title) => {
-        this.setState({title: title});
+    changeTitle = (title) => {
+        this.setState({ title: title });
     };
 
-    changeComment=(comment) => {
-        this.setState({comment: comment});
+    changeComment = (comment) => {
+        this.setState({ comment: comment });
     };
 
 
     // start to draw whole screen
     render() {
         if (this.state.imageBrowserOpen) {
-            return(<ImageBrowser max={10} callback={this.imageBrowserCallback}/>);
-        }else if (this.state.cameraBrowserOpen) {
-            return(<CameraBrowser max={10} callback={this.imageBrowserCallback}/>);
+            return (<ImageBrowser max={10} callback={this.imageBrowserCallback} />);
+        } else if (this.state.cameraBrowserOpen) {
+            return (<CameraBrowser max={10} callback={this.imageBrowserCallback} />);
         }
 
         return (
@@ -404,41 +404,43 @@ class BUYLIST extends React.Component {
                 <Header
                     leftComponent={
                         <TouchableOpacity
-                            onPress={()=> this.props.navigation.navigate('Home')}
+                            onPress={() => this.props.navigation.navigate('Home')}
                         >
                             <Image source={require('../assets/back.png')}
 
-                                   style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
+                                style={{ width: 70, height: 80, marginLeft: -15, resizeMode: 'cover' }}
                             />
                         </TouchableOpacity>
                     }
                     rightComponent={
                         <TouchableOpacity
-                            onPress={()=> this.props.navigation.navigate('WRITE')}
+                            onPress={() => this.props.navigation.navigate('WRITE')}
                         >
                             <Image source={require('../assets/write.png')}
 
-                                   style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
+                                style={{ width: 70, height: 80, marginLeft: -15, resizeMode: 'cover' }}
                             />
                         </TouchableOpacity>
                     }
                     backgroundColor={'#fff'}
                     borderBottomColor={'#fff'}
-                    centerComponent={{ text: 'BUY & SELL', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#67DBFF' } }}
+                    centerComponent={{ text: 'BUY & SELL', style: { fontFamily: 'title-font', fontSize: 40, marginLeft: 10, color: '#67DBFF' } }}
 
                 />
                 <ScrollView>
-                    <View  horizontal={true}>
+                    <View horizontal={true}>
                         <SearchBar
-                           
-                              
-                             inputStyle={{backgroundColor: 'white'}}
-                             containerStyle={{backgroundColor: 'white', borderBottomWidth: 0,borderTopWidth:0 }}
-                             inputContainerStyle={{backgroundColor: 'white'}}
+
+
+                            inputStyle={{ backgroundColor: 'white' }}
+                            containerStyle={{ backgroundColor: 'white', borderBottomWidth: 0, borderTopWidth: 0 }}
+                            inputContainerStyle={{ backgroundColor: 'white' }}
                             onChangeText={(text) => this.searchFilterFunction(text)}
-                          style={{ borderBottomColor: 'transparent',
-                         
-                                 borderTopColor: 'transparent'}}
+                            style={{
+                                borderBottomColor: 'transparent',
+
+                                borderTopColor: 'transparent'
+                            }}
                             autoCorrect={false}
                             value={this.state.search}
                         />
@@ -449,23 +451,36 @@ class BUYLIST extends React.Component {
                         // (item =  tips ) here
                         renderItem={this.renderItem}
                         keyExtractor={item => item.uid}
-                        //  ListHeaderComponent={this.renderHeader}
-                        //  ListFooterComponent={this.renderFooter}
-                        //   onRefresh={this.handleRefresh}
-                        // refreshing={this.state.refreshing}
-                        // onEndReached={this.handleLoadMore}
-                        // onEndReachedThreshold={30}
+                    //  ListHeaderComponent={this.renderHeader}
+                    //  ListFooterComponent={this.renderFooter}
+                    //   onRefresh={this.handleRefresh}
+                    // refreshing={this.state.refreshing}
+                    // onEndReached={this.handleLoadMore}
+                    // onEndReachedThreshold={30}
                     />
 
-                  
 
-                    <Button
-                        title="Refresh"
-                        type="outline"
-                        onPress={  ()=> this.renderagain()}
-                    />
+                    <TouchableOpacity
+
+                        style={{
+                         alignContent: 'center',
+                        }}
+                        onPress={() =>
+
+                            this.renderagain()}
+
+                    >
+                        <Image
+                            style={{
+                                width: 80, flex: 1,
+                                height: 80, alignContent: 'center',
+                            }}
+                            resizeMode={'contain'}
+                            source={require('../assets/refresh.png')}
+                        />
+                    </TouchableOpacity>
                     <View
-                        style={{height:100}}
+                        style={{ height: 100 }}
                     >
                     </View>
                 </ScrollView>

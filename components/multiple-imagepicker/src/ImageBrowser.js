@@ -6,7 +6,9 @@ import {
   CameraRoll,
   FlatList,
   Dimensions,
-  Button
+  Button,
+  TouchableOpacity,
+  Image,
 } from 'react-native';
 import * as FileSystem from 'expo-file-system';
 // import { FileSystem } from 'expo';
@@ -29,7 +31,7 @@ export default class ImageBrowser extends React.Component {
   }
 
   selectImage = (index) => {
-    let newSelected = {...this.state.selected};
+    let newSelected = { ...this.state.selected };
     if (newSelected[index]) {
       delete newSelected[index];
     } else {
@@ -51,7 +53,7 @@ export default class ImageBrowser extends React.Component {
 
   processPhotos = (r) => {
     if (this.state.after === r.page_info.end_cursor) return;
-    let uris = r.edges.map(i=> i.node).map(i=> i.image).map(i=>i.uri)
+    let uris = r.edges.map(i => i.node).map(i => i.image).map(i => i.uri)
     this.setState({
       photos: [...this.state.photos, ...uris],
       after: r.page_info.end_cursor,
@@ -59,24 +61,24 @@ export default class ImageBrowser extends React.Component {
     });
   }
 
-  getItemLayout = (data,index) => {
-    let length = width/4;
+  getItemLayout = (data, index) => {
+    let length = width / 4;
     return { length, offset: length * index, index }
   }
 
   prepareCallback() {
     let { selected, photos } = this.state;
     let selectedPhotos = photos.filter((item, index) => {
-      return(selected[index])
+      return (selected[index])
     });
 
     let files = selectedPhotos
-      .map(i => FileSystem.getInfoAsync(i, {md5: true}))
+      .map(i => FileSystem.getInfoAsync(i, { md5: true }))
     let callbackResult = Promise
       .all(files)
-      .then(imageData=> {
+      .then(imageData => {
         return imageData.map((data, i) => {
-          return {file: selectedPhotos[i], ...data}
+          return { file: selectedPhotos[i], ...data }
         })
       })
     this.props.callback(callbackResult)
@@ -88,22 +90,50 @@ export default class ImageBrowser extends React.Component {
     if (selectedCount === this.props.max) headerText = headerText + ' (Max)';
     return (
       <View style={styles.header}>
-        <Button
-          title="Close"
-          onPress={() => this.props.callback(Promise.resolve([]))}
-        />
-        <Text>{headerText}</Text>
-        <Button
-          title="Done"
+     
+          <TouchableOpacity
+
+onPress={() => this.props.callback(Promise.resolve([]))}
+
+>
+<Image
+  style={{
+    width: 90, flex: 1,
+    height: 90, alignContent: 'center',
+  }}
+  resizeMode={'contain'}
+  source={require('../../../assets/clear.png')}
+/>
+</TouchableOpacity>
+        <Text
+          style={{
+            fontSize: 30,
+            fontFamily: 'title-font'
+          }}
+        >{headerText}</Text>
+
+        <TouchableOpacity
+
+
           onPress={() => this.prepareCallback()}
-        />
+
+        >
+          <Image
+            style={{
+              width: 90, flex: 1, marginLeft: 18,
+              height: 90, alignContent: 'center',
+            }}
+            resizeMode={'contain'}
+            source={require('../../../assets/submit.png')}
+          />
+        </TouchableOpacity>
       </View>
     )
   }
 
-  renderImageTile = ({item, index}) => {
+  renderImageTile = ({ item, index }) => {
     let selected = this.state.selected[index] ? true : false
-    return(
+    return (
       <ImageTile
         item={item}
         index={index}
@@ -114,15 +144,20 @@ export default class ImageBrowser extends React.Component {
     )
   }
   renderImages() {
-    return(
+    return (
       <FlatList
         data={this.state.photos}
         numColumns={4}
         renderItem={this.renderImageTile}
-        keyExtractor={(_,index) => index}
-        onEndReached={()=> {this.getPhotos()}}
+        keyExtractor={(_, index) => index}
+        onEndReached={() => { this.getPhotos() }}
         onEndReachedThreshold={0.5}
-        ListEmptyComponent={<Text>Loading...</Text>}
+        ListEmptyComponent={
+
+          <Text style={{ fontSize: 20, marginLeft: 10, marginTop: 30, fontFamily: 'content-font', color: 'grey', marginRight: 20 }}>if this screen is not changing ,please go to the "settings" and allow this app to access your storage space, and restart the app</Text>
+
+
+        }
         initialNumToRender={24}
         getItemLayout={this.getItemLayout}
       />
