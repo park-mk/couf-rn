@@ -23,7 +23,7 @@ class CONTACT extends React.Component {
    </TouchableOpacity>} 
        backgroundColor={'#fff'}
       borderBottomColor={'#fff'}
-        centerComponent={{ text: 'CONTACT US', style: {fontFamily:'title-font' ,fontSize:30,marginLeft:10,color:'#56B8FF' } }}
+        centerComponent={{ text: 'CONTACT US', style: {fontFamily:'title-font' ,fontSize:30,marginLeft:10,color:'#67DBFF' } }}
        
          />
         <ScrollView style={{ flex: 1 }}>
@@ -46,7 +46,7 @@ class CONTACT extends React.Component {
          <Text style={{fontSize:30,marginLeft:10,fontFamily:'title-font',marginRight:20,marginTop:15}}>SERVING AS KATUSA  </Text>  
          <TouchableOpacity style={{flex:1}}
           onPress={()=>  Linking.openURL("https://www.paypal.me/coufKR?locale.x=ko_KR").catch((err) => console.error('An error occurred', err))}>
-         <Text style={{fontFamily:'title-font' ,fontSize:30, marginTop:40,marginLeft:10,color:'#56B8FF'}}>CLICK HERE FOR DONATION</Text>
+         <Text style={{fontFamily:'title-font' ,fontSize:30, marginTop:40,marginLeft:10,color:'#67DBFF'}}>CLICK HERE FOR DONATION</Text>
          </TouchableOpacity>
 
           

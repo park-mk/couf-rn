@@ -190,7 +190,7 @@ class CategoryScreen extends React.Component {
           { /*****  category sort  each view have 2 category  in row  *******/}
           <View style={{ flex: 1, flexDirection: 'row' }}>
 
-            <Category imageURI={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Fnews.png?alt=media&token=d10da786-ea88-4051-92ad-2f62d1216090" }}
+            <Category imageURI={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2FMore%20-%20Icons%2Fnews.png?alt=media&token=e7581558-f252-4ab4-949a-f4b02053b1ca" }}
               name='news'
 
               // onPress={()=>  Linking.openURL("https://www.dollars2won.com/").catch((err) => console.error('An error occurred', err))}
@@ -201,7 +201,7 @@ class CategoryScreen extends React.Component {
          
             />
 
-            <Category imageURI={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Flearning%20korea%202.png?alt=media&token=b64cd108-71af-4a9c-bc3a-7b75349aefdc" }}
+            <Category imageURI={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2FMore%20-%20Icons%2Flearning%20korea.png?alt=media&token=e5bb5602-fb64-497c-944f-f418182b394d" }}
               name='korean'
               onPress={() => this.updateview_korean()}
             />
@@ -211,12 +211,12 @@ class CategoryScreen extends React.Component {
           }
 
           <View style={{ flex: 1, flexDirection: 'row' }}>
-            <Category imageURI={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Fbus%20schedule%202.png?alt=media&token=908b2ef2-ad53-4e8f-98f2-6e14c8e2dde6" }}
+            <Category imageURI={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2FMore%20-%20Icons%2Fbus%20schedule.png?alt=media&token=5f70caaf-1beb-4833-be2d-be828ba8d475" }}
               name='bus'
               onPress={() => this.updateview_bus()}
 
             />
-            <Category imageURI={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Fphone%20book%202.png?alt=media&token=1ed70b8a-43fa-4dc3-a312-f0daa66daeb3" }}
+            <Category imageURI={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2FMore%20-%20Icons%2Fphone%20book.png?alt=media&token=ac2a856d-432d-43ba-8799-e336cf8bc042" }}
               name='phone'
               onPress={() => this.updateview_phone()}
             />
@@ -224,13 +224,13 @@ class CategoryScreen extends React.Component {
           { /*****  category sort  each view have 2 category  in row  *******/}
           <View style={{ flex: 1, flexDirection: 'row' }}>
 
-            <Category imageURI={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Ftips.png?alt=media&token=9c969d9b-61f3-4687-9263-929db6f0918e" }}
+            <Category imageURI={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2FMore%20-%20Icons%2Fbuy%20%26%20sell.png?alt=media&token=1245857a-f4e3-4c61-a1ca-d2ad217af7f5" }}
               name='buy and sell'
             
               onPress={() => this.props.navigation.navigate('TIP')}
             />
              
-            <Category imageURI={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Fcontact%20us%202.png?alt=media&token=d268a337-e339-4c86-94ae-f7c0b34d5f00" }}
+            <Category imageURI={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2FMore%20-%20Icons%2Fcontact%20us.png?alt=media&token=e719f7a2-cf50-438e-8fb5-a55c2b57d305" }}
               name='TOUR'
               onPress={() => this.props.navigation.navigate('UNDEVELOP1')}
               />
@@ -238,14 +238,14 @@ class CategoryScreen extends React.Component {
           { /*****  category sort  each view have 2 category  in row  *******/}
           <View style={{ flex: 1, flexDirection: 'row' }}>
 
-            <Category imageURI={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Fculture%202.png?alt=media&token=4f711b3c-b0c0-44a3-99b7-e5a2547dcec3" }}
+            <Category imageURI={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2FMore%20-%20Icons%2Fculture.png?alt=media&token=498157f9-530a-462f-9bbb-27da31a75ddd" }}
               name='culture'
            
               onPress={() => this.updateview_culture()}
             />
-            <Category imageURI={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Fabout%20us%202.png?alt=media&token=7328b825-4625-40ca-ad4f-6896c3ea496d" }}
+            <Category imageURI={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2FMore%20-%20Icons%2Fabout%20us.png?alt=media&token=07dd4bb4-e98e-4bd1-82e5-d5b52be6afea" }}
               name='contact us'
-              onPress={() => this.updateview_contact()}
+              onPress={() => this.updateview_contact()} 
             />
           </View>
           { /*****  category sort  each view have 2 category  in row  *******/}

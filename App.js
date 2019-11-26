@@ -100,6 +100,8 @@ import Home1 from'./screens_home/Home'
 import HOMEX from'./screens_home/Home_ex'
 import EXCHANGE from './screens_exchange/exchange'
 import BUYLIST from './screens_buysell/list'
+import WRITE from './screens_buysell/write'
+import ITEM from './screens_buysell/item'
 
 import NIGHT from './screens_night/seperate'
 import Clublist from './screens_night/nightlife'
@@ -317,6 +319,14 @@ const HomeStack = createStackNavigator({
    
 
   }},BUYLIST: { screen: BUYLIST , navigationOptions: {
+    header: null,
+   
+
+  }},WRITE: { screen: WRITE , navigationOptions: {
+    header: null,
+   
+
+  }},ITEM: { screen: ITEM , navigationOptions: {
     header: null,
    
 

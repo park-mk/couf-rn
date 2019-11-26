@@ -43,21 +43,21 @@ class CHOSEarea extends React.Component {
       >
            <TouchableOpacity
          onPress={()=> this.choosearea(1)}>
-     <Image  style={{ resizeMode:'cover', marginLeft:120,marginTop:10,padding:0.5 ,width:120, height:39, borderRadius:10 }} source={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2Farea%201.png?alt=media&token=71eadde1-f1b7-4ecd-b7c6-8ab0e62ab502"}} />
+     <Image  style={{ resizeMode:'cover', marginLeft:120,marginTop:10,padding:0.5 ,width:120, height:39, borderRadius:10 }} source={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2FMore%20-%20Icons%2Farea%201.png?alt=media&token=6e60cd73-5c4c-46e1-904d-c65c4050cf07"}} />
      </TouchableOpacity>
      <TouchableOpacity
         onPress={()=> this.choosearea(2)}>
     
-     <Image  style={{  resizeMode:'cover', marginLeft:120,marginTop:20,padding:0.5 ,width:120, height:39, borderRadius:10 }} source={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2Farea%202.png?alt=media&token=364cf838-d93a-4183-bcbb-f456105f766d"}} />
+     <Image  style={{  resizeMode:'cover', marginLeft:120,marginTop:20,padding:0.5 ,width:120, height:39, borderRadius:10 }} source={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2FMore%20-%20Icons%2Farea%202.png?alt=media&token=6674c090-df82-40b9-8585-378476ec5113"}} />
      </TouchableOpacity>
      <TouchableOpacity
          onPress={()=> this.choosearea(3)}>
     
-     <Image  style={{  resizeMode:'cover',marginLeft:120, marginTop:20,padding:0.5 ,width:120, height:39, borderRadius:10 }} source={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2Farea%203.png?alt=media&token=1b8a44d2-4dfc-437d-8e5a-9ff0d8a36f0a"}} />
+     <Image  style={{  resizeMode:'cover',marginLeft:120, marginTop:20,padding:0.5 ,width:120, height:39, borderRadius:10 }} source={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2FMore%20-%20Icons%2Farea%203.png?alt=media&token=9eb041e2-3747-4cf8-8bfd-7e1ea120d91c"}} />
      </TouchableOpacity>
          <TouchableOpacity
            onPress={()=> this.choosearea(4)}>
-     <Image  style={{ resizeMode:'cover', marginLeft:120,marginTop:20,padding:0.5 ,width:120, height:39, borderRadius:10 }} source={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2Farea%204.png?alt=media&token=9f42a327-15cd-433f-9fe7-df89cb418525"}} />
+     <Image  style={{ resizeMode:'cover', marginLeft:120,marginTop:20,padding:0.5 ,width:120, height:39, borderRadius:10 }} source={{uri:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2FMore%20-%20Icons%2Farea%204.png?alt=media&token=f7502cd4-96a3-4c3f-8a7e-41f978c1cc0d"}} />
      </TouchableOpacity>
         </View>
     );

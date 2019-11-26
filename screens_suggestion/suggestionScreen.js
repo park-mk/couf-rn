@@ -54,6 +54,38 @@ class SuggestionScreen extends React.Component {
     }
 
     deleteData= (item) => {
+        if(!(item.images)){
+            Alert.alert(
+                'Delete Popup',
+                'Are you sure you want to delete this?',
+                [
+                    {text: 'Delete', onPress: () => {
+                            let ref = firebase.storage().ref();
+                            let deleteData = firebase.database().ref().child('comment/suggestion/'+item.uid);
+    
+                            Promise.all([
+                             
+                                deleteData.set(null)
+                            ]).then(function(values) {
+                                console.log(values);
+    
+                            }).catch((error) => {
+                                console.log(error);
+                            });
+                            this.setData();
+    
+                        }
+                    },
+                    {
+                        text: 'Cancel',
+                        onPress: () => console.log('Cancel Pressed'),
+                        style: 'cancel',
+                    },
+                ],
+                {cancelable: false},
+            );
+        }
+        else{
         Alert.alert(
             'Delete Popup',
             'Are you sure you want to delete this?',
@@ -83,6 +115,7 @@ class SuggestionScreen extends React.Component {
             ],
             {cancelable: false},
         );
+        }
     };
 
     setData = () => {

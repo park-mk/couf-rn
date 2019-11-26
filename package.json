@@ -37,13 +37,13 @@
     "react-native-image-slider": "^2.0.3",
     "react-native-phone-call": "^1.0.9",
     "react-native-simple-dialogs": "^1.2.0",
+    "react-native-vector-icons": "latest",
     "react-native-youtube": "^1.1.0",
     "react-navigation": "^3.0.9",
     "rn-progress-loader": "^1.0.8",
     "semver": "^6.3.0",
     "styled-components": "^4.4.0",
-    "watchman": "^1.0.0",
-    "react-native-vector-icons": "latest"
+    "watchman": "^1.0.0"
   },
   "devDependencies": {
     "babel-preset-expo": "^5.0.0",

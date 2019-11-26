@@ -45,6 +45,7 @@ class BUYLIST extends React.Component {
             cameraBrowserOpen: false,
             photos: [],
             comment:'',
+            show:' ',
             title:'',
             loadVisible:false,
         };
@@ -122,6 +123,21 @@ class BUYLIST extends React.Component {
             console.log(error);
         });
     };
+    showDescription = (comment) => {
+        if(comment.length>20){
+            this.setState(
+                {
+                  show:comment.substring(0,30)+"......"
+                });
+        }
+        else 
+        this.setState(
+            {
+              show:comment
+            });
+
+      return this.state.show;
+    };
 
     uploadImage = async (item, data,i) => {
         if(!item || !item.uri) return true;
@@ -131,45 +147,6 @@ class BUYLIST extends React.Component {
         let imageName = data.uid+'-'+i;
         data.images.push(imageName);
         return firebase.storage().ref().child("buyNsell/" + imageName).put(blob);
-    };
-
-    createData=()=> {
-        if(!this.state.comment) return;
-        let user = firebase.auth().currentUser;
-        let newPostKey = firebase.database().ref().child('comment/buyNsell').push().key;
-        let createData = {
-            title: this.state.title,
-            content: this.state.comment,
-            user: user.uid,
-            uid: newPostKey,
-            useremail:user.email,
-            displayName:user.displayName,
-            photoURL:user.photoURL,
-            timestamp:Date.now(),
-            images: [], // firebase image 이름
-            imageUrl : [], //이미지 donwload url ( 보여주기용 url )
-            tags:{
-                'buyNsell':true
-            },
-        };
-
-        this.setState({loadVisible:true});
-        this.uploadMultiImage(createData).then(function(){
-            return this.setImageData(createData);
-
-        }.bind(this)).then((response)=>{
-            createData.imageUrl = response;
-            return firebase.database().ref('comment/buyNsell/'+ newPostKey).set(createData);
-
-        }).then(function(){
-            this.clearData();
-
-        }.bind(this)).catch((error) => {
-            console.log('error',error);
-        }).finally(() => {
-            this.setState({loadVisible:false});
-            console.log('final');
-        });
     };
 
 
@@ -211,9 +188,9 @@ class BUYLIST extends React.Component {
     renderHeader = () => {
         return (
             <SearchBar
-                // placeholder="Type Here..."
-                lightTheme
-                round
+                placeholder="Type Here..."
+                backgroundColor="white"
+              
                 //  onChangeText={(text) => this.searchFilterFunction(text)}
                 onChangeText={this.updateSearch}
                 autoCorrect={false}
@@ -227,18 +204,48 @@ class BUYLIST extends React.Component {
         let dimensions=Dimensions.get("window");
         let imageheight=5*dimensions.height/10;
         //let imageheight =Math.round((dimensions.width*9)/12);
-        let imagewidth =dimensions.width;
+        let imagewidth = dimensions.width;
 
         return (
-            <TouchableOpacity style={{borderWidth:2,borderColor:'grey',borderRadius:5}}>
+            <TouchableOpacity style={{ borderTopWidth: 1, borderColor: 'grey', borderRadius: 5 }}
+                onPress={() => {
+                    this.props.navigation.navigate('ITEM', {
+                        title: item.title,
+                        content: item.content,
+                        price: item.price,
+                        location: item.location,
+                        contact: item.contact,
+                        user: item.user,
+                        uid: item.uid,
+                        useremail: item.useremail,
+                        displayName: item.displayName,
+                        photoURL: item.photoURL,
+                        timestamp: item.timestamp,
+                        images: item.images,
+                        imageUrl: item.imageUrl,
+
+                    });
+
+
+
+                }
+
+                }
+
+
+
+            >
                 <Text   style={{fontFamily:'title-font' ,fontSize:30, marginLeft:20,marginTop:10}}>
                     {item.title}
                 </Text>
-                <Text   style={{fontFamily:'content-font' ,fontSize:15, marginLeft:10}}>
-                    {item.displayName}
+                <Text   style={{fontFamily:'content-font' ,fontSize:15, marginLeft:20}}>
+                    {item.location}
                 </Text>
-                <Text   style={{fontFamily:'content-font' ,fontSize:13, marginLeft:14}}>
-                    {item.content}
+                <Text   style={{fontFamily:'content-font' ,fontSize:15, marginLeft:20}}>
+                   {item.content.substring(0,30)+"....."}
+                </Text>
+                <Text   style={{fontFamily:'content-font' ,fontSize:20, marginLeft:14,color:'green'}}>
+                    {'$'+item.price}
                 </Text>
                 <View style={{ flex: 1, marginBottom: 0, borderColor: 'black' }} >
                     <Image style={{height:imageheight,width:imagewidth }} source={{ uri: item.imageUrl[0] }} />
@@ -270,7 +277,7 @@ class BUYLIST extends React.Component {
         console.log(this.state.search)
 
 
-        var usersRef =firebase.database().ref('A1WTE');       //   bring the database tips
+        var usersRef =firebase.database().ref('comment/buyNsell');       //   bring the database tips
         usersRef.once('value', (snapshot) => {                     //    tips database resort
 
             var m=snapshot.val()
@@ -283,7 +290,7 @@ class BUYLIST extends React.Component {
 
 
             const newData = this.state.datasource.filter(item => {
-                const itemData = `${item.name.toUpperCase()} `;
+                const itemData = `${item.title.toUpperCase()} `;
 
                 const textData = text.toUpperCase();
 
@@ -407,28 +414,31 @@ class BUYLIST extends React.Component {
                     }
                     rightComponent={
                         <TouchableOpacity
-                            onPress={()=> this.props.navigation.navigate('Home')}
+                            onPress={()=> this.props.navigation.navigate('WRITE')}
                         >
-                            <Image source={require('../assets/baseline-chat-24px.png')}
+                            <Image source={require('../assets/write.png')}
 
-                                   style={{width:35,height:40,marginLeft:-15,resizeMode:'cover'}}
+                                   style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
                             />
                         </TouchableOpacity>
                     }
                     backgroundColor={'#fff'}
                     borderBottomColor={'#fff'}
-                    centerComponent={{ text: 'BUY & SELL', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#56B8FF' } }}
+                    centerComponent={{ text: 'BUY & SELL', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#67DBFF' } }}
 
                 />
                 <ScrollView>
                     <View  horizontal={true}>
                         <SearchBar
-                            // placeholder="Type Here..."
-
-                            lightTheme
-                            round
+                           
+                              
+                             inputStyle={{backgroundColor: 'white'}}
+                             containerStyle={{backgroundColor: 'white', borderBottomWidth: 0,borderTopWidth:0 }}
+                             inputContainerStyle={{backgroundColor: 'white'}}
                             onChangeText={(text) => this.searchFilterFunction(text)}
-                            // onChangeText={this.updateSearch}
+                          style={{ borderBottomColor: 'transparent',
+                         
+                                 borderTopColor: 'transparent'}}
                             autoCorrect={false}
                             value={this.state.search}
                         />
@@ -438,7 +448,7 @@ class BUYLIST extends React.Component {
                         data={this.state.datasource}
                         // (item =  tips ) here
                         renderItem={this.renderItem}
-                        keyExtractor={item => item.name}
+                        keyExtractor={item => item.uid}
                         //  ListHeaderComponent={this.renderHeader}
                         //  ListFooterComponent={this.renderFooter}
                         //   onRefresh={this.handleRefresh}
@@ -447,63 +457,7 @@ class BUYLIST extends React.Component {
                         // onEndReachedThreshold={30}
                     />
 
-                    <View>
-                        { this.state.toggleWriteForm && firebase.auth().currentUser &&
-                        <View>
-                            <ScrollView>
-                                {this.state.photos.map((item,i) => this.renderImage(item,i))}
-                            </ScrollView>
-                            <WrapTextInput>
-                                <TextInput
-                                    onChangeText={(title) => this.changeTitle(title)}
-                                    value={this.state.title}
-                                    placeholder='Title'
-                                    textAlignVertical='top'
-                                />
-                                <TextInput
-                                    multiline={true}
-                                    onChangeText={(suggestion) => this.changeComment(suggestion)}
-                                    value={this.state.comment}
-                                    placeholder='Description'
-                                    numberOfLines={6}
-                                    textAlignVertical='top'
-                                />
-                            </WrapTextInput>
-                            <Buttons style={{alignSelf: 'flex-end'}}>
-                                <Button type="clear" buttonStyle={{width: 50, marginRight: 10}}
-                                        icon={<Icon name="close" size={15} color="grey"/>}
-                                        onPress={() => this.clearData()}
-                                        title="close"
-                                />
-                                <Button type="clear" buttonStyle={{width: 50, marginRight: 10}}
-                                        icon={<Icon name="camera" size={15} color="grey"/>}
-                                        onPress={() => this.setState({imageBrowserOpen: true})}
-                                        title="camera"
-                                />
-                                <Button type="solid" buttonStyle={{width: 50}}
-                                        icon={<Icon name="check" size={15} color="white"/>}
-                                        onPress={() => {
-                                            this.createData();
-                                        }}
-                                        title="submit"
-                                />
-                            </Buttons>
-                        </View>
-                        }
-                        {!this.state.toggleWriteForm && firebase.auth().currentUser &&
-                        <View>
-                            <Buttons style={{alignSelf: 'flex-end'}}>
-                                <Button type="solid" buttonStyle={{width: 50}}
-                                        title="write"
-                                        icon={<Icon name="pencil" size={15} color="white"/>}
-                                        onPress={() => {
-                                            this.toggleWriteForm();
-                                        }}
-                                />
-                            </Buttons>
-                        </View>
-                        }
-                    </View>
+                  
 
                     <Button
                         title="Refresh"

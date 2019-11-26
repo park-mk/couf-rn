@@ -762,6 +762,7 @@ class Home1 extends React.Component {
 
             <View>
                 <Modal
+                // nno pressed 
                     animationType="slide"
                     transparent={true}
                     visible={this.state.commentVisib}
@@ -791,7 +792,7 @@ class Home1 extends React.Component {
                                         width: imagewidth/2,
                                         height: imageheight * 5/2,
                                     }}
-                                source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2Fdonate.jpg?alt=media&token=53e3013e-499d-460a-8b74-49c97897bd6f" }}
+                                source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2Fmore-alarm%2F73413249_526896888161576_1310299238160138240_n.png?alt=media&token=090432bd-6323-4d8b-9814-3e4b35b37eec" }}
 
                             />
                        </TouchableOpacity>
@@ -799,6 +800,7 @@ class Home1 extends React.Component {
                    
                 </Modal>
                 <Modal
+                //  new user
                     animationType="slide"
                     transparent={false}
                     visible={this.state.commentVisible}
@@ -815,35 +817,49 @@ class Home1 extends React.Component {
                                     height: imageheight * 5,
                                     borderBottomWidth: 3,
                                 }}
-                                source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/category%2Fabout%20us.png?alt=media&token=0cdfd383-1dd5-40f2-8d19-a1fb03904478" }}
+                                source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2Fmore-alarm%2F73413249_526896888161576_1310299238160138240_n.png?alt=media&token=090432bd-6323-4d8b-9814-3e4b35b37eec" }}
 
                             />
                         </TouchableOpacity>
                     </View>
                 </Modal>
                 <Modal
+                // version update
                     animationType="slide"
                     transparent={false}
                     visible={this.state.commentVisibl}
                     onRequestClose={() => {
                         console.log('Modal has been closed.');
                     }}>
-                    <View>
-                        <TouchableOpacity
-                        //  onPress={() =>this.onClickCommen()}
+                    <View
+                         style={{
+                            alignItems: 'center',
+                          
+                            backgroundColor: '#00000080',
+                            justifyContent: 'center',
+                           
+                        }}
+                    >
+                         <TouchableOpacity
+                        
                         >
+                       
                             <Image
-                                style={{
-                                    width: imagewidth,
-                                    height: imageheight * 5,
-                                    borderBottomWidth: 3,
-                                }}
-                                source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/Home%2Fupdate.jpg?alt=media&token=10e28bac-6dcd-4891-a01c-39f04dc052f9" }}
+                                      style={{
+                                      marginTop:imageheight * 5/4,
+                                      marginBottom:imageheight * 5/4,
+                                        width: imagewidth/2,
+                                        height: imageheight * 5/2,
+                                    }}
+                                source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2Fmore-alarm%2F76765590_514660999264502_1871015718393217024_n.png?alt=media&token=b2bb3f77-8737-4456-bb8b-f255c9ce5905" }}
 
                             />
-                        </TouchableOpacity>
+                       </TouchableOpacity>
                     </View>
                 </Modal>
+                {
+                    // modal the picture what i want z push alarm 
+                }
                 <Modal
                     animationType="slide"
                     transparent={true}
@@ -881,6 +897,8 @@ class Home1 extends React.Component {
                     </View>
                    
                 </Modal>
+                {// dialog ask to donate or not 
+                }
                 <Dialog
                     visible={this.state.dialogVisible}
                     title="DEAR USER"
