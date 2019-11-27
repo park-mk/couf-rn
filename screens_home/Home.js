@@ -77,7 +77,7 @@ class Home1 extends React.Component {
 
 
     registerForPushNotifications = async () => {
-        //check
+       console.log("notification")
         const { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
         let finalStauts = status;
 
@@ -92,8 +92,8 @@ class Home1 extends React.Component {
 
 
         if (finalStauts != 'granted') {
-
-            return;
+          
+           return;
         }
 
 
@@ -800,7 +800,7 @@ class Home1 extends React.Component {
                    
                 </Modal>
                 <Modal
-                //  new user
+                //  new
                     animationType="slide"
                     transparent={false}
                     visible={this.state.commentVisible}
@@ -824,37 +824,26 @@ class Home1 extends React.Component {
                     </View>
                 </Modal>
                 <Modal
-                // version update
                     animationType="slide"
                     transparent={false}
                     visible={this.state.commentVisibl}
                     onRequestClose={() => {
                         console.log('Modal has been closed.');
                     }}>
-                    <View
-                         style={{
-                            alignItems: 'center',
-                          
-                            backgroundColor: '#00000080',
-                            justifyContent: 'center',
-                           
-                        }}
-                    >
-                         <TouchableOpacity
-                        
+                    <View>
+                        <TouchableOpacity
+                        //  onPress={() =>this.onClickCommen()}
                         >
-                       
                             <Image
-                                      style={{
-                                      marginTop:imageheight * 5/4,
-                                      marginBottom:imageheight * 5/4,
-                                        width: imagewidth/2,
-                                        height: imageheight * 5/2,
-                                    }}
+                                style={{
+                                    width: imagewidth,
+                                    height: imageheight * 5,
+                                    borderBottomWidth: 3,
+                                }}
                                 source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2Fmore-alarm%2F76765590_514660999264502_1871015718393217024_n.png?alt=media&token=b2bb3f77-8737-4456-bb8b-f255c9ce5905" }}
 
                             />
-                       </TouchableOpacity>
+                        </TouchableOpacity>
                     </View>
                 </Modal>
                 {

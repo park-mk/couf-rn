@@ -9,7 +9,9 @@ import {
     SafeAreaView,
     ScrollView,
     Dimensions,
-    TextInput
+    TextInput,
+    StyleSheet,
+    Modal,
 } from 'react-native';
 import { List, ListItem, SearchBar, Header } from "react-native-elements";
 import firebase from "../firebase";
@@ -19,6 +21,9 @@ import Icon from "../screens_suggestion/suggestionScreen";
 import styled from "styled-components";
 import ProgressLoader from 'rn-progress-loader';
 import ImageBrowser from '../components/multiple-imagepicker/src/ImageBrowser';
+import { Notifications } from 'expo';
+import * as Permissions from 'expo-permissions'
+
 
 
 
@@ -39,6 +44,7 @@ class BUYLIST extends React.Component {
             error: null,
             refreshing: false,
             search: '',
+            Search: '',
             images: '',
             toggleWriteForm: false,
             imageBrowserOpen: false,
@@ -48,6 +54,7 @@ class BUYLIST extends React.Component {
             show: ' ',
             title: '',
             loadVisible: false,
+            commentVisible:false,
         };
     }
 
@@ -185,20 +192,70 @@ class BUYLIST extends React.Component {
 
 
     //   header not used yet but im gonna use it as searching
-    renderHeader = () => {
-        return (
-            <SearchBar
-                placeholder="Type Here..."
-                backgroundColor="white"
-
-                //  onChangeText={(text) => this.searchFilterFunction(text)}
-                onChangeText={this.updateSearch}
-                autoCorrect={false}
-                value={this.state.search}
-            />
-        );
+    onChangeText1 = (text) => {
+        this.setState({
+            Search: text,
+        });
+      
     };
+    NavigateToWrite=()=>{
 
+        if (firebase.auth().currentUser != null) {
+        this.props.navigation.navigate('WRITE')}
+        if (firebase.auth().currentUser == null) {
+            alert("please login")}
+
+    }
+
+    regist = async () => {
+
+        this.setState({
+            commentVisible :false,
+        });
+        
+        console.log("notification")
+        const { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
+        let finalStauts = status;
+
+        if (status != 'granted') {
+
+            const { status } = await Permissions.askAsync(Permissions.USER_FACING_NOTIFICATIONS);
+            const { status2 } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+            finalStatus = status2 ? status2 : status;
+
+
+        }
+
+
+        if (finalStauts != 'granted') {
+            alert("please  make sure you've allow the access of push alarm");
+           return;
+        }
+
+
+        let token = await Notifications.getExpoPushTokenAsync();
+
+        //  alert(token);
+
+        token1 = token.substring(18, 40)
+
+        if (firebase.auth().currentUser != null) {
+            firebase.database().ref('buyNsellwait/' + token1).update({
+                name: firebase.auth().currentUser.displayName,
+                uid: token,
+                wait: this.state.Search,
+            }, function () {
+
+            });
+            console.log(token, "my name");
+        }
+        else{
+            alert("please login first");
+        }
+      
+
+      alert("your keyword is   "+ this.state.Search+"    we'll let you know when a new sell is uploaded");
+    };
 
     renderItem = ({ item }) => {
         let dimensions = Dimensions.get("window");
@@ -302,7 +359,7 @@ class BUYLIST extends React.Component {
 
 
 
-
+       
 
 
 
@@ -382,9 +439,23 @@ class BUYLIST extends React.Component {
         this.setState({ comment: comment });
     };
 
+    onClickComment = (value) => {
+       
+            this.setState({
+              
+                    commentVisible: value || !this.state.commentVisible,
+           
+            });
+        
+    };
+
 
     // start to draw whole screen
     render() {
+        let dimensions = Dimensions.get("window");
+        let imageheight = dimensions.height ;
+        let imagewidth = dimensions.width;
+
         if (this.state.imageBrowserOpen) {
             return (<ImageBrowser max={10} callback={this.imageBrowserCallback} />);
         } else if (this.state.cameraBrowserOpen) {
@@ -393,8 +464,86 @@ class BUYLIST extends React.Component {
 
         return (
             // flat list data= datasoucr= firebase.tips        details please look upper
-
+           
             <View>
+                      <Modal
+                // nno pressed 
+                    animationType="slide"
+                    transparent={true}
+                    visible={this.state.commentVisible}
+                    backdropColor = {'white'}
+                    backdropOpacity = {0.5}
+                    onRequestClose={() => {
+                        console.log('Modal has been closed.');
+                    }}>
+                        
+                    <View
+                         style={{
+                            alignItems: 'center',
+                            height:imageheight,
+                            width:imagewidth,
+                            backgroundColor: '#00000080',
+                            justifyContent: 'center',
+
+                        }}
+                    >
+
+                     <TouchableOpacity
+                                onPress={() => this.onClickComment()}
+                            >
+
+                        <View
+                            style={{
+                                marginTop: 2.6 * imageheight / 8.5,
+                                marginBottom: 3 * imageheight / 8.5,
+                                marginLeft: imagewidth / 10,
+                                marginRight:imagewidth/10,
+                                backgroundColor: 'white',
+                                height:imageheight*1.9/8,
+                                width:imagewidth*8/10,
+                                alignItems: 'center',
+                                justifyContent: 'center',
+
+                                }}>
+                                <Text style={{
+                                    alignItems: 'center',
+                                    justifyContent: 'center', fontFamily: 'title-font', fontSize: 30, marginTop: 3, color: '#67DBFF'
+                                }}>
+                                    KEYWORD
+                       </Text>
+                                <View style={{ flexDirection: "row" }}>
+                                    <Image source={require('../assets/search.png')}
+
+                                        style={{ marginTop:33,width: 20, height: 20, marginLeft: -15, resizeMode: 'cover' }}
+                                    />
+                                    <TextInput  
+                                        style={{ height: 30, width: 4 * imagewidth / 10,fontFamily: 'title-font', fontSize:25, borderColor: 'gray', marginTop: 27, borderBottomWidth: 2 }}
+                                        onChangeText={text => this.onChangeText1(text)}
+                                        placeholder={"looking for..."}
+                                        value={this.state.Search}
+                                    />
+                           </View>
+                       <Text style={{  alignItems: 'center',
+                                justifyContent: 'center',fontFamily: 'title-font', fontSize: 15, marginTop: 3 }}>
+                           WE'LL LET LET YOU KNOW WHEN A NEW SELL IS UPLOADED
+                       </Text>
+                       <TouchableOpacity
+                            onPress={() => this.regist()}
+                        >
+                            <Image source={require('../assets/submit.png')}
+
+                                style={{marginTop:10, width: 60, height: 24 ,marginLeft:4*imagewidth / 10,resizeMode: 'cover' }}
+                            />
+                        </TouchableOpacity>
+                       
+
+                            
+
+                       </View>
+                       </TouchableOpacity>
+                    </View>
+                   
+                </Modal>
                 <ProgressLoader
                     visible={this.state.loadVisible}
                     isModal={true} isHUD={true}
@@ -414,11 +563,11 @@ class BUYLIST extends React.Component {
                     }
                     rightComponent={
                         <TouchableOpacity
-                            onPress={() => this.props.navigation.navigate('WRITE')}
+                            onPress={() => this.onClickComment()}
                         >
-                            <Image source={require('../assets/write.png')}
+                            <Image source={require('../assets/alarm.png')}
 
-                                style={{ width: 70, height: 80, marginLeft: -15, resizeMode: 'cover' }}
+                                style={{ width: 35, height: 40, marginLeft: -15, resizeMode: 'cover' }}
                             />
                         </TouchableOpacity>
                     }
@@ -444,6 +593,7 @@ class BUYLIST extends React.Component {
                             autoCorrect={false}
                             value={this.state.search}
                         />
+                        
 
                     </View>
                     <FlatList
@@ -460,31 +610,28 @@ class BUYLIST extends React.Component {
                     />
 
 
-                    <TouchableOpacity
-
-                        style={{
-                         alignContent: 'center',
-                        }}
-                        onPress={() =>
-
-                            this.renderagain()}
-
-                    >
-                        <Image
-                            style={{
-                                width: 80, flex: 1,
-                                height: 80, alignContent: 'center',
-                            }}
-                            resizeMode={'contain'}
-                            source={require('../assets/refresh.png')}
-                        />
-                    </TouchableOpacity>
+                 
                     <View
                         style={{ height: 100 }}
                     >
                     </View>
                 </ScrollView>
+                <View style={{ position: 'absolute', bottom: 80, right: 8, }}>
+                    <TouchableOpacity
+                     onPress={() => this.NavigateToWrite()
+                        
+                       }
+                    >
+                        <Image
+                            style={{ width: 70, height: 80, resizeMode: 'cover' }}
+                            resizeMode={'contain'}
+                            source={require('../assets/write_.png')}
+                        />
+                    </TouchableOpacity>
+                </View>
+
             </View>
+
         );
     }
 }
@@ -500,6 +647,17 @@ const Buttons = styled.View`
   display:flex;
   flex-direction: row;
 `
+const styles = StyleSheet.create(theme => ({
+    floatingActionButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    bottom: 10,
+    left: 10,
+    right: 10,
+    borderRadius: 10,
+  }
+}));
 
 
 export default BUYLIST;

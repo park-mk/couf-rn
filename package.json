@@ -37,6 +37,7 @@
     "react-native-image-slider": "^2.0.3",
     "react-native-phone-call": "^1.0.9",
     "react-native-simple-dialogs": "^1.2.0",
+    "react-native-sticky-header-footer-scroll-view": "^2.1.3",
     "react-native-vector-icons": "latest",
     "react-native-youtube": "^1.1.0",
     "react-navigation": "^3.0.9",

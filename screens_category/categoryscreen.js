@@ -230,9 +230,9 @@ class CategoryScreen extends React.Component {
               onPress={() => this.props.navigation.navigate('BUYLIST')}
             />
              
-            <Category imageURI={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2FMore%20-%20Icons%2Fcontact%20us.png?alt=media&token=e719f7a2-cf50-438e-8fb5-a55c2b57d305" }}
-              name='TOUR'
-              onPress={() => this.props.navigation.navigate('UNDEVELOP1')}
+            <Category imageURI={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2FMore%20-%20Icons%2Ftips.png?alt=media&token=815782d1-a7cd-4882-9704-9159ebd6848a" }}
+              name='TIPS'
+              onPress={() => this.props.navigation.navigate('TIP')}
               />
                </View>
           { /*****  category sort  each view have 2 category  in row  *******/}

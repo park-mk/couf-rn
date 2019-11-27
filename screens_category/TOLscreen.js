@@ -1,25 +1,25 @@
 import React from 'react';
-import {   View , FlatList,Image,Button,TouchableOpacity,Text,SafeAreaView,ScrollView} from 'react-native';
-import { List, ListItem, SearchBar,Header } from "react-native-elements";
-import  firebase from "../firebase";
+import { View, FlatList, Image, Button, TouchableOpacity, Text, SafeAreaView, ScrollView } from 'react-native';
+import { List, ListItem, SearchBar, Header } from "react-native-elements";
+import firebase from "../firebase";
 import call from 'react-native-phone-call';
 
 
 
 
-  //load the firebase.database in order to simplfy
-  database=firebase.database();
-  
+//load the firebase.database in order to simplfy
+database = firebase.database();
+
 //tip of liFE
 class TOLScreen extends React.Component {
 
-    //constuct  the state first in order to show which state i am in  certain function
+  //constuct  the state first in order to show which state i am in  certain function
   constructor(props) {
     super(props);
     this.state = {
       loading: false,
       datasource: [],
-      pause:false,
+      pause: false,
       error: null,
       refreshing: false,
       search: '',
@@ -31,26 +31,26 @@ class TOLScreen extends React.Component {
     console.log(this.state.search);
     this.makeRemoteRequest();
   }
- // real refresh function 
+  // real refresh function 
   makeRemoteRequest = () => {
-    
+
     this.setState({ loading: true });                    //because while this function is working = loading 
-    var usersRef =firebase.database().ref('Phonebook');       //   bring the database tips
+    var usersRef = firebase.database().ref('Phonebook');       //   bring the database tips
     usersRef.on('value', (snapshot) => {                     //    tips database resort
-    
-     var m=snapshot.val() 
-     var keys= Object.values(m);
-  this.setState({
-    datasource:  keys                                   // datasource of list 
-  })
-});
-    
+
+      var m = snapshot.val()
+      var keys = Object.values(m);
+      this.setState({
+        datasource: keys                                   // datasource of list 
+      })
+    });
+
   };
-      
-      //  up scroll to refresh
+
+  //  up scroll to refresh
   handleRefresh = () => {
     this.setState(
-      {  
+      {
         refreshing: false
       },
       () => {
@@ -58,9 +58,9 @@ class TOLScreen extends React.Component {
       }
     );
   };
-   // if approached end also refresh 
+  // if approached end also refresh 
   handleLoadMore = () => {
-   
+
     this.setState(
       {
         loading: false
@@ -71,73 +71,73 @@ class TOLScreen extends React.Component {
     );
   };
 
-  
- //   header not used yet but im gonna use it as searching 
- renderHeader = () => {    
-  return (      
-    <SearchBar        
-     // placeholder="Type Here..."        
-      lightTheme        
-      round        
-    //  onChangeText={(text) => this.searchFilterFunction(text)}
-      onChangeText={this.updateSearch}
-      autoCorrect={false}             
-      value={this.state.search}
-    />    
-  );  
-};
+
+  //   header not used yet but im gonna use it as searching 
+  renderHeader = () => {
+    return (
+      <SearchBar
+        // placeholder="Type Here..."        
+        lightTheme
+        round
+        //  onChangeText={(text) => this.searchFilterFunction(text)}
+        onChangeText={this.updateSearch}
+        autoCorrect={false}
+        value={this.state.search}
+      />
+    );
+  };
 
 
-updateSearch = search => {
-  this.setState({ search });
-  
-};
+  updateSearch = search => {
+    this.setState({ search });
+
+  };
 
 
-searchFilterFunction = text => {    
-  this.setState({
-    search: text,
-  });
-  console.log(this.state.search)
+  searchFilterFunction = text => {
+    this.setState({
+      search: text,
+    });
+    console.log(this.state.search)
 
 
-  var usersRef =firebase.database().ref('Phonebook');       //   bring the database tips
-  usersRef.once('value', (snapshot) => {                     //    tips database resort
-  
-   var m=snapshot.val() 
-   var keys= Object.values(m);
-this.setState({
-  datasource:  keys                                   // datasource of list 
-})
-}).then((m)=>{
-           
-   
+    var usersRef = firebase.database().ref('Phonebook');       //   bring the database tips
+    usersRef.once('value', (snapshot) => {                     //    tips database resort
 
- const newData = this.state.datasource.filter(item => {      
-  const itemData = `${item.name.toUpperCase()} ${item.number.toUpperCase()}   `;
-  
-   const textData = text.toUpperCase();
-    
-   return itemData.indexOf(textData) > -1;    
-});
-
-this.setState({ datasource: newData });  
-})
+      var m = snapshot.val()
+      var keys = Object.values(m);
+      this.setState({
+        datasource: keys                                   // datasource of list 
+      })
+    }).then((m) => {
 
 
 
+      const newData = this.state.datasource.filter(item => {
+        const itemData = `${item.name.toUpperCase()} ${item.number.toUpperCase()}   `;
+
+        const textData = text.toUpperCase();
+
+        return itemData.indexOf(textData) > -1;
+      });
+
+      this.setState({ datasource: newData });
+    })
 
 
 
 
 
 
-  //this.makeRemoteRequest();
-};
- // not used also but gonna use when there is more info 
+
+
+
+    //this.makeRemoteRequest();
+  };
+  // not used also but gonna use when there is more info 
   renderFooter = () => {
     if (!this.state.loading) return null;
-   //start to draw  footer 
+    //start to draw  footer 
     return (
       <View
         style={{
@@ -146,8 +146,8 @@ this.setState({ datasource: newData });
           borderColor: "#CED0CE"
         }}
       >
-      <ActivityIndicator animating size="large" />
-     
+        <ActivityIndicator animating size="large" />
+
       </View>
     );
   };
@@ -164,7 +164,7 @@ this.setState({ datasource: newData });
 
   // don't use also 
   renderSeparator = () => {
-   
+
     return (
       <View
         style={{
@@ -175,88 +175,93 @@ this.setState({ datasource: newData });
         }}
       />
     );
-  }; 
+  };
 
   renderagain = () => {
     this.setState({
       search: '',
     });
     this.makeRemoteRequest();
-  }; 
+  };
 
 
 
-   // start to draw whole screen 
+  // start to draw whole screen 
   render() {
-     
+
     return (
-        // flat list data= datasoucr= firebase.tips        details please look upper 
-          
-    <View> 
-       <Header
-    leftComponent={  <TouchableOpacity 
-     onPress={()=> this.props.navigation.navigate('Category')}
-     >
-     <Image source={require('../assets/back.png')}
-                 
-    style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
-/> 
-</TouchableOpacity>} 
-   backgroundColor={'#fff'}
-  borderBottomColor={'#fff'}
-    centerComponent={{ text: 'Phonebook', style: {fontFamily:'title-font' ,fontSize:30,marginLeft:10,color:'#67DBFF' } }}
-   
-     />
-      <ScrollView>
-     <View  horizontal={true}> 
-        <SearchBar        
-        // placeholder="Type Here..." 
-          
-         lightTheme        
-         round        
-         onChangeText={(text) => this.searchFilterFunction(text)}
-        // onChangeText={this.updateSearch}
-         autoCorrect={false}             
-         value={this.state.search}
-       />    
-        
-         </View> 
-     <FlatList
-          data={this.state.datasource}
-            // (item =  tips ) here
-          renderItem={({ item }) => (
-              
-            <ListItem
-                onPress={() => this.call(item.number)}
-               // rightAvatar
-                title={item.name} 
-                subtitle={item.number}
-             // avatar={{ uri: item.picture.thumbnail }}
-                containerStyle={{ borderBottomWidth: 3 }}
+      // flat list data= datasoucr= firebase.tips        details please look upper 
+
+      <View>
+        <Header
+          leftComponent={<TouchableOpacity
+            onPress={() => this.props.navigation.navigate('Category')}
+          >
+            <Image source={require('../assets/back.png')}
+
+              style={{ width: 70, height: 80, marginLeft: -15, resizeMode: 'cover' }}
             />
-          )
-          
-        }
-              keyExtractor={item => item.number}         
+          </TouchableOpacity>}
+          backgroundColor={'#fff'}
+          borderBottomColor={'#fff'}
+          centerComponent={{ text: 'Phonebook', style: { fontFamily: 'title-font', fontSize: 30, marginLeft: 10, color: '#67DBFF' } }}
+
+        />
+        <ScrollView>
+          <View horizontal={true}>
+            <SearchBar
+
+
+              inputStyle={{ backgroundColor: '#EAEAEA' }}
+              containerStyle={{ backgroundColor: 'white', borderBottomWidth: 0, borderTopWidth: 0 }}
+              inputContainerStyle={{ backgroundColor: '#EAEAEA' }}
+              onChangeText={(text) => this.searchFilterFunction(text)}
+              style={{
+                borderBottomColor: 'transparent',
+
+                borderTopColor: 'transparent'
+              }}
+              autoCorrect={false}
+              value={this.state.search}
+            />
+
+          </View>
+          <FlatList
+            data={this.state.datasource}
+            // (item =  tips ) here
+            renderItem={({ item }) => (
+
+              <ListItem
+                onPress={() => this.call(item.number)}
+                // rightAvatar
+                title={item.name}
+                subtitle={item.number}
+                // avatar={{ uri: item.picture.thumbnail }}
+                containerStyle={{ borderBottomWidth: 3 }}
+              />
+            )
+
+            }
+            keyExtractor={item => item.number}
           //  ListHeaderComponent={this.renderHeader}
           //  ListFooterComponent={this.renderFooter}
           //   onRefresh={this.handleRefresh}
-            // refreshing={this.state.refreshing}
-            // onEndReached={this.handleLoadMore}
-            // onEndReachedThreshold={30}
-      /> 
-      
-     <Button
-  title="Refresh"
-  type="outline"
-  onPress={  ()=> this.renderagain()}
-        />
-      <View
-       style={{height:100}}
-      >
+          // refreshing={this.state.refreshing}
+          // onEndReached={this.handleLoadMore}
+          // onEndReachedThreshold={30}
+          />
+
+          <Button
+            title="Refresh"
+            type="outline"
+            onPress={() => this.renderagain()}
+          />
+          <View
+            style={{ height: 100 }}
+          >
+          </View>
+        </ScrollView>
       </View>
-      </ScrollView>
-       </View>
     );
   }
 }
@@ -275,7 +280,7 @@ const styles = StyleSheet.create({
 
 
 
- {/*
+{/*
 var num;          //means counts of TOL lists                       
 var ref= database.ref('number');    // adding the firebase category number(counts of different components)
 ref.on('value',gotData,errData);      // declare the functiong 

@@ -35,6 +35,7 @@ class WRITE extends React.Component {
         this.state = {
             loading: false,
             datasource: [],
+            datasource1: [],
             pause:false,
             error: null,
             refreshing: false,
@@ -219,11 +220,13 @@ class WRITE extends React.Component {
         firebase.database().ref('userinfo/' + code).update({
           user_buysell: this.state.origin + "," + newPostKey,
         }, function () {
-  
+              
         })
     
           });
 
+         
+          this.sendpush2();
          
 
 
@@ -365,23 +368,62 @@ class WRITE extends React.Component {
 
         //this.makeRemoteRequest();
     };
-    // not used also but gonna use when there is more info
-    renderFooter = () => {
-        if (!this.state.loading) return null;
-        //start to draw  footer
-        return (
-            <View
-                style={{
-                    paddingVertical: 20,
-                    borderTopWidth: 1,
-                    borderColor: "#CED0CE"
-                }}
-            >
-                <ActivityIndicator animating size="large" />
+   
+    sendpush2=()=>{
 
-            </View>
-        );
-    };
+        var usersRef111 = firebase.database().ref('buyNsellwait');
+        usersRef111.once('value', (snapshot) => {
+
+
+            var m=snapshot.val()
+            var keys= Object.values(m);
+            this.setState({
+                datasource1:  keys                                   // datasource of list
+            })
+         
+       
+        }).then((m)=>{
+
+
+            console.log(this.state.datasource1,"kkkkkk",this.state.title,"biiii");
+
+                const newData = this.state.datasource1.filter(item => {
+                    const itemData = `${this.state.title.toUpperCase()} `;
+    
+                    const textData = item.wait.toUpperCase();
+    
+                    return itemData.indexOf(textData) > -1;
+                });
+                   console.log(this.state.datasource1,"biiiithc",this.state.title,"biiii");
+                this.setState({ datasource1: newData });
+           
+        console.log(this.state.datasource1,"data");
+        ob=Object.assign({}, this.state.datasource1)
+        
+        Object.keys(ob).map(function(key, index) {
+            console.log("this",ob[key].uid);
+            let response=fetch('https://exp.host/--/api/v2/push/send',{
+
+                method:'POST',
+                headers:{
+                    Accept:'application/json',
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify({
+                    to:ob[key].uid,
+                    sound:'default',
+                    title:"Dear user",
+                    body:"someone has uploaded the item you looked for ",
+                })
+               });
+
+
+
+          });
+        });
+  
+     }
+
 
     call = (number1) => {
         //handler to make a call
@@ -430,7 +472,9 @@ class WRITE extends React.Component {
     };
 
     changeTitle=(title) => {
+       
         this.setState({title: title});
+      
     };
 
     changeComment=(comment) => {
