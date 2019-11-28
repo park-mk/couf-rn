@@ -517,12 +517,17 @@ class BUYLIST extends React.Component {
                                         style={{ marginTop:33,width: 20, height: 20, marginLeft: -15, resizeMode: 'cover' }}
                                     />
                                     <TextInput  
-                                        style={{ height: 30, width: 4 * imagewidth / 10,fontFamily: 'title-font', fontSize:25, borderColor: 'gray', marginTop: 27, borderBottomWidth: 2 }}
+                                        style={{ height: 30, width: 4 * imagewidth / 10,fontFamily: 'title-font', fontSize:25, marginTop: 27}}
                                         onChangeText={text => this.onChangeText1(text)}
                                         placeholder={"looking for..."}
+                                        placeholderTextColor = "#c5c5c5"
                                         value={this.state.Search}
                                     />
                            </View>
+                           <View
+                           style={{borderColor:"#c5c5c5",borderWidth:1,width:30+4 * imagewidth / 10,height:1}}
+                           ></View>
+                           
                        <Text style={{  alignItems: 'center',
                                 justifyContent: 'center',fontFamily: 'title-font', fontSize: 15, marginTop: 3 }}>
                            WE'LL LET LET YOU KNOW WHEN A NEW SELL IS UPLOADED
@@ -532,7 +537,7 @@ class BUYLIST extends React.Component {
                         >
                             <Image source={require('../assets/submit.png')}
 
-                                style={{marginTop:10, width: 60, height: 24 ,marginLeft:4*imagewidth / 10,resizeMode: 'cover' }}
+                                style={{marginTop:10, width: 60, height: 24 ,marginLeft:5*imagewidth / 10,resizeMode: 'cover' }}
                             />
                         </TouchableOpacity>
                        
@@ -567,7 +572,7 @@ class BUYLIST extends React.Component {
                         >
                             <Image source={require('../assets/alarm.png')}
 
-                                style={{ width: 35, height: 40, marginLeft: -15, resizeMode: 'cover' }}
+                                style={{ width: 28, height: 32, marginLeft: -15, resizeMode: 'cover' }}
                             />
                         </TouchableOpacity>
                     }
@@ -616,14 +621,14 @@ class BUYLIST extends React.Component {
                     >
                     </View>
                 </ScrollView>
-                <View style={{ position: 'absolute', bottom: 80, right: 8, }}>
+                <View style={{ position: 'absolute', bottom: 105, right: 20, }}>
                     <TouchableOpacity
                      onPress={() => this.NavigateToWrite()
                         
                        }
                     >
                         <Image
-                            style={{ width: 70, height: 80, resizeMode: 'cover' }}
+                            style={{ width: 50, height: 57, resizeMode: 'cover' }}
                             resizeMode={'contain'}
                             source={require('../assets/write_.png')}
                         />

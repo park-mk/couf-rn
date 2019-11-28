@@ -107,7 +107,7 @@ usersRef.on('value', (snapshot) => {
         style={{
           paddingVertical: 20,
           borderTopWidth: 1,
-          borderColor: "#67DBFF"
+          borderColor: "#56B8FF"
         }}
       >
       
@@ -124,7 +124,7 @@ usersRef.on('value', (snapshot) => {
         style={{
           height: 1,
           width: "86%",
-          backgroundColor: "#67DBFF",
+          backgroundColor: "#56B8FF",
           marginLeft: "14%"
         }}
       />
@@ -136,6 +136,7 @@ usersRef.on('value', (snapshot) => {
 
     return(
       <TouchableOpacity
+     
       onPress={() => {
         this.props.navigation.navigate('NEWSS', {
           title : item.title,
@@ -202,10 +203,10 @@ usersRef.on('value', (snapshot) => {
          // refreshing={this.state.refreshing}
         //  onEndReached={this.handleLoadMore}
           maxToRenderPerBatch={1}
-          initialNumToRender={1}
+          initialNumToRender={1}  
         
        //   onEndReachedThreshold={3000000000000000000000090909090909090}
-
+        
         />
         </View>
         

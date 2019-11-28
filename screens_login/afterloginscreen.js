@@ -294,6 +294,14 @@ class Profile extends React.Component {
                                     var code = firebase.auth().currentUser.email.substring(0, 4) + '_' + firebase.auth().currentUser.displayName;
                                     var change1 = "," + item.uid;
                                     var change2 = this.state.origin.replace(change1, '')
+                                    var myArray=this.state.datasource2
+          
+                                    for( var i = 0; i < myArray.length; i++){ 
+                                        if ( myArray[i].uid === itemuid) {
+                                          myArray.splice(i, 1); 
+                                        }
+                                     }
+                                    this.setState({ datasource2: myArray })
                                     firebase.database().ref('userinfo/' + code).update({
 
                                         user_buysell: change2,
@@ -306,6 +314,8 @@ class Profile extends React.Component {
                                         item.images.map((item) => ref.child("buyNsell/" + item).delete()),
                                         deleteData.set(null)
                                     ]).then(function (values) {
+                                      
+
                                         console.log(values);
 
                                     }).catch((error) => {
@@ -313,7 +323,8 @@ class Profile extends React.Component {
                                     });
 
                                     
-                                    this.SortBUY();
+                                   
+                                   
                                 }
                             },
                             {
@@ -530,6 +541,11 @@ class Profile extends React.Component {
 
 
 
+    }
+    deletebuy(){
+
+        var beforedelte=this.state.datasource2;
+        console.log("before delte",this.state.datasource2);
     }
     SortBUY() {
         var code = firebase.auth().currentUser.email.substring(0, 4) + '_' + firebase.auth().currentUser.displayName;
@@ -814,14 +830,9 @@ class Profile extends React.Component {
                                 this.SortBUY()}
 
                         >
-                            <Image
-                                style={{
-                                    width: 30, flex: 1, marginLeft: 18,
-                                    height: 30, alignContent: 'center',
-                                }}
-                                resizeMode={'contain'}
-                                source={require('../assets/refresh.png')}
-                            />
+                            
+            
+                        
                         </TouchableOpacity>
 
 

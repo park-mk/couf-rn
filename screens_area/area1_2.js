@@ -15,252 +15,230 @@ const color = {
 
 class Area1_2Screen extends React.Component {
 
-  
+  _isMounted = false;
   constructor(props) {
     super(props);
-     
+
     this.state = {
-      loading: false,
-      datasource: [],
-      datasource1: [],
-      pause:false,
-      error: null,
-      refreshing: false,
-      fontLoaded:true,
+      keys: [],
+      up: 0,
+      voted: false,
+      commentVisible: false,
+      article:[],
+      
+    
     };
   }
 
 
 
+   renderScreen=() =>{
+    const { navigation } = this.props;
+    const description = navigation.getParam('description', 'NO-ID');
+    var number_of_pagraph=0;
+    var sentence= description;
+    var sen;
+    number_of_pagraph=sentence.split("/*/").length - 1;
+     
+    
+     for(let i=0;i<number_of_pagraph;i++){
+        var  info ={
+            text:"fuck",
+            color: "grey",
+            size: 20,
+            fontweight: 'bold',
+            fontstyle: 'normal',
+            textDecorationLine: 'normal',
+            uri: "http",
+            urimove:"http",
+            type:0,
+            margin:0,
+            
+     }
+    var term= sentence.indexOf("/*/");
   
-
-
+    if(sentence.substring(term+3,term+4)=='0'){
+          
+        info.text=" ";
+        info.type=0;
+    }
+    if(sentence.substring(term+3,term+4)=='1'){
+           
+        info.text=sentence.substring(0,term); //+9      
+        info.type=1; 
+     
   
+       }
+    if(sentence.substring(term+3,term+4)=='2'){
+       
+       // 2 000 20 
+       info.text=sentence.substring(0,term);
+       var number = parseInt(sentence.substring(term+6,term+9) , 10 ) ;
+       info.size=number;
+       console.log("size is",info.size);
+       info.type=2;
 
+        }
+        if(sentence.substring(term+3,term+4)=='3'){
+           
+          var words = sentence.substring(0,term).split('|');
+           info.text=words[0];
+           info.uri=words[1];
+           var number = parseInt(sentence.substring(term+6,term+9) , 10 ) ;
+           console.log("size is that",info.size);
+           console.log("uri is",words[1],"s");
+           info.size=number;
+          info.type=3;
+    
+         }
+        if(sentence.substring(term+3,term+4)=='4'){
+            
+            info.text=sentence.substring(0,term);
+            info.type=4;
 
-  componentDidMount() {
-   
-    this.makeRemoteRequest();
+          
+            }
+        
+
+            
+     if(info.text!="fuck"){
+      
+    this.state.article.push(info);
+  
+    sentence=sentence.substring(term+10,sentence.length);
+     
+    
   }
+    }
 
-  makeRemoteRequest = () => {
+
+
+   
+
+         
     
      
 
-    this.setState({ loading: true });
-    const { navigation } = this.props;
+   }
+
+
+
+
+
+
    
-    var usersRef = firebase.database().ref('food/soup');
- 
-
-     usersRef.on('value', (snapshot) => {
+    render() {
+       let dimensions=Dimensions.get("window");
+       let imageheight=6*dimensions.height/10
+       //let imageheight =Math.round((dimensions.width*9)/12);
+        let imagewidth =dimensions.width;
+      const { navigation } = this.props;
+      const name = navigation.getParam('name', 'NO-ID');
+      const description = navigation.getParam('description', 'NO-ID');
+  
+      const location = navigation.getParam('location', 'NO-ID');
+      const topimage = navigation.getParam('topimage', 'NO-ID');
+   
+      
+   
+     
+      const upvote = navigation.getParam('upvote', 'NO-ID');
+      var number_of_pagraph=0; 
+     
+     
+      var sen;
+   
     
+       var vivid =JSON.stringify(description);
+       var res = vivid.substring(1, 4);
     
-     var m=snapshot.val() 
-     var keys= Object.values(m);
-  this.setState({
-    datasource:  keys
-  })
-}); 
-usersRef = firebase.database().ref('food/dessert');
+      return ( 
 
-
-usersRef.on('value', (snapshot) => {
-    
-    
-  var m=snapshot.val() 
-  var keys= Object.values(m);
-this.setState({
- datasource1:  keys
-})
-}); 
-
-    
-
-    
-  };
-
-
-
-
-
-  _keyExtractor = (item, index) => item.key;
-
-  render() {
-
-    let dimensions = Dimensions.get("window");
-  //  let imageheight = Math.round((dimensions.width * 9) / 12);
-    let imagewidth = dimensions.width;
-
-
-    return ( 
-      <View>
-      <Header
-      leftComponent={  <TouchableOpacity 
-        onPress={()=> this.props.navigation.navigate('Area')}
-        >
-        <Image source={require('../assets/back.png')}
-                    
-       style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
+        <View>
+          
+        <Header
+      leftComponent={  
+       <TouchableOpacity 
+       onPress={()=> this.props.navigation.navigate('Area1_1')}
+       >
+       <Image source={require('../assets/back.png')}
+                   
+      style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
   /> 
-  </TouchableOpacity> } 
+  </TouchableOpacity>
+  } 
      backgroundColor={'#fff'}
     borderBottomColor={'#fff'}
       centerComponent={{ text: 'AREA1', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#67DBFF' } }}
      
-       />
-      <ScrollView>   
-      <View>
-      <View style ={{ flexDirection:"row" ,flex:3}}>
-      <TouchableOpacity style={{flex:1}}
-      
-      onPress={()=> this.props.navigation.navigate('Area1')}>
-      <Text   style={{fontFamily:'title-font' ,fontSize:23,marginTop:20,marginLeft:10,color:'#7f8182'}}  >THINGS TO EAT</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={{flex:1}}
-        onPress={()=> this.props.navigation.navigate('Area1_1')}>
-      <Text style={{fontFamily:'title-font' ,fontSize:23, marginTop:20,marginLeft:15,color:'#7f8182'}}>WHAT TO DO</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={{flex:1}}
-        onPress={()=> this.props.navigation.navigate('Area1_2')}>
-      <Text style={{fontFamily:'title-font' ,fontSize:23, marginTop:20,color:'#67DBFF'}}>BUS SCHEDULE</Text>
-      </TouchableOpacity>
-    
-   </View> 
-     
-          <View>
+/>
 
-         
-            
-         
-      
-        
-        <View style={{
-    borderBottomColor: '#67DBFF',
-    borderBottomWidth: 1,
-    marginTop:3,
-         }}    />
-         <View  style={{flexDirection:'row'}}>
-            <View style={{
-            width:  imagewidth/3-5,
-            height:3,
-           
-         }}    >
-         
-           </View>
-           <View style={{
-            width:  imagewidth/3-5,
-            height:3,
-           
-         }}    >
-         
-           </View>
-               <View style={{
-            width:  imagewidth/3,
-            height:3,
-            backgroundColor: '#67DBFF',
-         }}    >
-         </View>
-         </View>
-         
-<View style={{
-    borderBottomColor: '#67DBFF',
-    borderBottomWidth: 1,
+    <ScrollView>
 
-         }}    /> 
+        {this.renderScreen()}
+         { this.state.article.map((item, key)=>(  
+              
+            <View key={key}>
 
-   
-      </View > 
-        
+               < Sorttype   typeof={item.type}   size={item.size} 
+                           text={item.text}    uri={item.uri}
+                       
+          />  
+         {/*    <Text
+               style={{fontFamily:'content-font',fontSize:item.size,marginLeft:20,marginRight:20}}
+         >{item.text}</Text>*/}
+            </View>
+         )  
        
-    
-        
-      <View style ={{ flex:3}}>
-      <TouchableOpacity style={{flex:1}}
-      
-      onPress={()=> this.props.navigation.navigate('Area1')}>
-      <Text   style={{fontFamily:'title-font' ,fontSize:50,marginLeft:10,color:'#7f8182'}}  >H221</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={{flex:1}}>
-      <Text style={{fontFamily:'title-font' ,fontSize:50,marginLeft:15,color:'#67DBFF'}}>TMC</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={{flex:1}}
-        onPress={()=> this.props.navigation.navigate('Area1_2')}>
-      <Text style={{fontFamily:'title-font' ,fontSize:50,color:'#7f8182'}}>HOVEY</Text>
-      </TouchableOpacity>
-    
-   </View> 
-      
-     
+         )}
+          <View
+     style={{height:300}}>
+    </View>
+    </ScrollView>
 
-
-         
-   
-
-      </View>
-     
-      </ScrollView>   
-      <View
-                  
-      style={{width:70,height:80,marginLeft:-15}}
- /> 
-      </View>
-    );
+       
+        </View>
+      );
+    }
   }
-}
-
-
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    padding: 10,
-    borderBottomWidth: 1  , /// PixelRatio.get(),
-   // borderColor: color.border,
-    backgroundColor: 'white',
-  },
-  icon: {
-    width: 260,
-    height: 160,
-    borderRadius: 5,
-   
-   // alignContent:'center',
-  },
-  rightContainer: {
-    flex: 1,
-    paddingLeft: 20,
-    paddingRight: 10,
-  },
-  price: {
-    marginTop:30,
-    color: color.theme,
-    
-  },
-  h1: {
-    fontSize: 40,
-    fontFamily:'Raley-balck',
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#222222',
-    
-  },
-  p: {
-    fontSize: 15,
-    //marginLeft:30,
-    //textAlign: 'center',
-    color: 'grey',
-  },
-  backgroundImage:{
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
-    width: null,
-    height: null,
-    opacity:0.5,
-    resizeMode: 'cover',
-},
-})
+  
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+    },
+    scrollViewContainer: {
+      flexDirection: 'row',
+      backgroundColor: '#222',
+    },
+    image: {
+      width: 200,
+      height:100,
+      height: '100%',
+    },
+    buttons: {
+      height: 15,
+      marginTop: 0,
+      marginBottom: 10,
+      justifyContent: 'center',
+      alignItems: 'center',
+      flexDirection: 'row',
+    },
+    button: {
+      margin: 3,
+      width: 8,
+      height: 8,
+      borderRadius: 8 / 2,
+      backgroundColor: '#ccc',
+      opacity: 0.9,
+    },
+    buttonSelected: {
+      opacity: 1,
+      backgroundColor: '#67DBFF',
+      borderRadius: 8 / 2,
+       marginRight:3,
+      width: 8,
+      height: 8,
+    },
+  });
 
 export default Area1_2Screen;

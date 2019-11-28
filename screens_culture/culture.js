@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, FlatList, ActivityIndicator,Button,Text,Fragmen,TouchableOpacity,Image} from "react-native";
+import { View, FlatList, ActivityIndicator,Button,Text,Fragmen,TouchableOpacity,Image,Linking} from "react-native";
 import { List, ListItem, SearchBar,Header } from "react-native-elements";
 import  firebase,{storage}  from "../firebase";
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
@@ -69,6 +69,8 @@ class CULTUREScreen extends React.Component {
         }
 
         if(item.cate==2){
+          Linking.openURL(JSON.stringify(item.description).replace(/^"(.+)"$/,'$1')).catch((err) => console.error('An error occurred', err))
+
 
         }
 

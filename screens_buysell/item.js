@@ -146,24 +146,24 @@ class ITEM extends React.Component {
                       </ProfileTopImage>
                       <ProfileTopRight>
 
-                          <Text style={{ fontFamily: 'title-font', fontSize: 28 }}>
+                          <Text style={{ fontFamily: 'title-font', fontSize: 18 }}>
                               {displayName}
                           </Text>
 
 
                       </ProfileTopRight>
                   </ProfileTopWrap>
-                  <Text   style={{fontFamily:'title-font' ,fontSize:50, marginLeft:20,marginTop:10}}>
+                  <Text   style={{fontFamily:'title-font' ,fontSize:30, marginLeft:20,marginTop:10}}>
                     {title}
                 </Text>
-                <Text   style={{fontFamily:'content-font' ,fontSize:30, marginLeft:14,color:'green'}}>
+                <Text   style={{fontFamily:'content-font' ,fontSize:18, marginLeft:14,color:'green'}}>
                     {'$'+price}
                 </Text> 
                 <Text   style={{fontFamily:'content-font' ,fontSize:20, marginLeft:20,marginTop:10}}>
                     {location}
                 </Text> 
 
-                <Text   style={{fontFamily:'content-font' ,fontSize:20, marginLeft:20,marginTop:10,color:'grey'}}>
+                <Text   style={{fontFamily:'content-font' ,fontSize:18, marginLeft:20,marginTop:10,color:'grey'}}>
                     {contact}
                 </Text>
                 <FlatList

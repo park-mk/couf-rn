@@ -64,6 +64,7 @@ class Home1 extends React.Component {
             alarmcontent: "In order to continue our hard work, we have encountered financial difficulties considering server fees.  Those who would like to support us, please click yes to donate. Thank you!",
             palarmcontent: "",
             palarmimage: "",
+            tutorial:"",
             dialogVisible: false,
             dialogVisible1: false,
             checked: false,
@@ -309,32 +310,6 @@ class Home1 extends React.Component {
     }
 
 
-    _dataextract = () => {
-
-        var usersRef = firebase.database().ref('Home');
-
-
-        usersRef.on('value', (snapshot) => {
-
-
-            var m = snapshot.val()
-
-
-            this.setState({
-                description1: m.p_1.description,
-                description2: m.p_2.description,
-                description3: m.p_3.description,
-                description4: m.p_4.description,
-
-                image1: m.p_1.image,
-                image2: m.p_2.image,
-                image3: m.p_3.image,
-                image4: m.p_4.image,
-            })
-        });
-
-        console.log(this.state.image1);
-    }
 
     _keyExtractor = (item, index) => item.key;
 
@@ -414,7 +389,7 @@ class Home1 extends React.Component {
                 console.log("현재 버젼 firebase", m);
                 if (m != expo.expo.version) {
                     this.setState({
-                        commentVisibl: true,
+                  //      commentVisibl: true,
                     });
 
                     //  alert("New version of the app is available. For more experience and better performance, please keep the app up to date! 12.3!!!!!!! ");
@@ -649,18 +624,21 @@ class Home1 extends React.Component {
         //function to save the value in AsyncStorage
         if (value == null) {
             //To check the input not empty
-            AsyncStorage.setItem('che', "e");
+            AsyncStorage.setItem('welcome', "first!");
             //Setting a data to a AsyncStorage with respect to a key 
             // this.setState({ textInputData: '' })
             //Resetting the TextInput
-            alert('Data Saved');
+          
             //alert to confirm
-            this.setState({ commentVisible: true })
+            this.setState({ 
+                
+                commentVisible: true,
+                tutorial:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2Ftutorial.png?alt=media&token=798449cd-6f6f-4baf-a473-5716b46e0e1d",
+               
+            })
 
         } else {
-            let dimensions = Dimensions.get("window");
-            let imageheight = dimensions.height;
-            let imagewidth = dimensions.width;
+           
 
 
 
@@ -668,32 +646,40 @@ class Home1 extends React.Component {
 
 
         }
-    };
+    }; 
+    imageheightca=()=>{
+        let dimensions = Dimensions.get("window");
+        let imageheight = dimensions.height ;
+        if (Platform.OS === 'android') {
+          
+
+        }
+        return imageheight;
+    }
     onClickComment = (value) => {
-        if (this.state.imagechange == 0) {
+    
+         if (this.state.imagechange == 0) {
+
             this.setState({
                 imagechange: 1,
+                tutorial:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2Ftutorial2.png?alt=media&token=9d56252e-7f3b-484c-8f07-da0b3726dac6",
             });
         }
         else if (this.state.imagechange == 1) {
-
             this.setState({
                 imagechange: 2,
+                tutorial:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2Ftutorial3.png?alt=media&token=f3a3c8e9-b637-4b07-84a2-1da1ce610d78",
             });
+
         }
         else if (this.state.imagechange == 2) {
             this.setState({
                 imagechange: 3,
+                tutorial:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2Ftutorial4.png?alt=media&token=9403281e-d093-4279-81c4-50d9bf0a5cae",
             });
 
         }
         else if (this.state.imagechange == 3) {
-            this.setState({
-                imagechange: 4,
-            });
-
-        }
-        else if (this.state.imagechange == 4) {
 
             this.setState({
                 commentVisible: value || !this.state.commentVisible,
@@ -725,7 +711,7 @@ class Home1 extends React.Component {
         let imageheight = dimensions.height;
         let imagewidth = dimensions.width;
         //function to get the value from AsyncStorage
-        AsyncStorage.getItem('che').then(value =>
+        AsyncStorage.getItem('welcome').then(value =>
             //AsyncStorage returns a promise so adding a callback to get the value
             this.saveValueFunction(value)
             //Setting the value in Text 
@@ -753,7 +739,7 @@ class Home1 extends React.Component {
             </View>
         );
 
-        //  {this.getValueFunction()}
+          {this.getValueFunction()}
       
 
         return (
@@ -791,6 +777,7 @@ class Home1 extends React.Component {
                                       marginBottom:imageheight * 5/4,
                                         width: imagewidth/2,
                                         height: imageheight * 5/2,
+                                        resizeMode:'cover'
                                     }}
                                 source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2Fmore-alarm%2F73413249_526896888161576_1310299238160138240_n.png?alt=media&token=090432bd-6323-4d8b-9814-3e4b35b37eec" }}
 
@@ -800,7 +787,7 @@ class Home1 extends React.Component {
                    
                 </Modal>
                 <Modal
-                //  new
+                //  new tutorial
                     animationType="slide"
                     transparent={false}
                     visible={this.state.commentVisible}
@@ -815,9 +802,12 @@ class Home1 extends React.Component {
                                 style={{
                                     width: imagewidth,
                                     height: imageheight * 5,
+                                  
+                                   
                                     borderBottomWidth: 3,
+                                    resizeMode:'contain'
                                 }}
-                                source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2Fmore-alarm%2F73413249_526896888161576_1310299238160138240_n.png?alt=media&token=090432bd-6323-4d8b-9814-3e4b35b37eec" }}
+                                source={{ uri: this.state.tutorial}}
 
                             />
                         </TouchableOpacity>
@@ -839,6 +829,8 @@ class Home1 extends React.Component {
                                     width: imagewidth,
                                     height: imageheight * 5,
                                     borderBottomWidth: 3,
+                                   
+                                    resizeMode:'cover'
                                 }}
                                 source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2Fmore-alarm%2F76765590_514660999264502_1871015718393217024_n.png?alt=media&token=b2bb3f77-8737-4456-bb8b-f255c9ce5905" }}
 
@@ -878,6 +870,7 @@ class Home1 extends React.Component {
                                       marginBottom:imageheight * 5/4,
                                         width: imagewidth/2,
                                         height: imageheight * 5/2,
+                                        resizeMode:'cover',
                                     }}
                                 source={{ uri:this.state.palarmimage }}
 
