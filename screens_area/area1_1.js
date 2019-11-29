@@ -89,10 +89,13 @@ class Area1_1Screen extends React.Component {
         this.setState({
           datasource2: keys
         })
+        console.log(this.state.datasource2,"keys")
       });
 
-
+   
     });
+
+
 
 
 
@@ -101,38 +104,22 @@ class Area1_1Screen extends React.Component {
 
   };
   renderItem3 = ({ item }) => {
+    let dimensions = Dimensions.get("window");
+    let imageheight = 4 * dimensions.height / 10;
+    let imagewidth = dimensions.width;
 
     return (
 
-      <View style={{ flex: 1, flexDirection: 'row', marginBottom: 6 }} >
+      <View  >
         <Image style={{
-          width: 120,
-          height: 120,
-          borderRadius: 5,
-          marginRight: 10
+          width: imagewidth+10,
+          height: item.height,
+      
         }}
           source={{ uri: item.topimage }}
 
         />
-        <View  >
-          <Text style={{
-            fontSize: 15,
-            fontFamily: 'title-font',
-            fontWeight: 'bold',
-            textAlign: 'center',
-            color: '#222222'
-          }}
-
-          >{item.name}</Text>
-          <Text style={{
-            fontSize: 15,
-            //marginLeft:30,
-            //textAlign: 'center',
-            color: 'grey',
-          }} >{item.type}</Text>
-          <Text style={{ marginTop: 30, color: color.theme }} >{item.location}</Text>
-
-        </View>
+      
 
       </View>
 
@@ -292,7 +279,7 @@ class Area1_1Screen extends React.Component {
                 onRefresh={this.handleRefresh}
                 refreshing={this.state.refreshing}
 
-                onEndReachedThreshold={10000000}
+              
 
 
               />
@@ -386,15 +373,12 @@ class Area1_1Screen extends React.Component {
             </View>
 
             <FlatList
+            style={{marginTop: 30}}
               data={this.state.datasource2}
-
+               horizontal
               renderItem={this.renderItem3}
+              keyExtractor={item => item.topimage}
 
-
-              keyExtractor={item => item.name}
-
-
-              // ListHeaderComponent={this.renderHeader}
               ListFooterComponent={this.renderFooter}
               onRefresh={this.handleRefresh}
               refreshing={this.state.refreshing}

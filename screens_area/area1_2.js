@@ -1,11 +1,14 @@
 import React from 'react';
-import { Button, FlatList,Text, View ,TouchableOpacity,Image,StyleSheet,ScrollView,Linking,Dimensions,ImageBackground } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { List, ListItem, SearchBar,Header } from "react-native-elements";
-import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
+
+import { Button, View, Text, ScrollView, Image, Dimensions, ImageBackground, StyleSheet, TouchableOpacity, TouchableHighlight, SafeAreaView, Linking, Modal } from 'react-native';
+import { createStackNavigator, createAppContainer } from 'react-navigation'; 
+import ImageSlider from 'react-native-image-slider';
+import { List, ListItem, SearchBar ,Header} from "react-native-elements";
+import { Ionicons,MaterialIcons ,Entypo,Feather, FontAwesome } from '@expo/vector-icons';
+import Texteditor from  '../components/Textedit'
 import  firebase,{storage}  from "../firebase";
-import A1WTD from '../screens_wtd/area1_wtd';
-import A1WTE from '../screens_wte/area1_wte'
+import Comment from '../components/comment'
+import Sorttype from '../components/Sortype'
 
 const color = {
   theme: '#06C1AE',

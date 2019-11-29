@@ -190,9 +190,9 @@ usersRef.on('value', (snapshot) => {
      
        />
         <FlatList
-        //inverted
-          data={this.state.datasource}
-          
+       
+          data={this.state.datasource.reverse()}
+         
           renderItem={this.renderItem}
           keyExtractor={item => item.title}
         

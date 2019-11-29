@@ -26,6 +26,7 @@
     "native-base": "^2.12.0",
     "react": "16.8.3",
     "react-native": "^0.59.8",
+    "react-native-autoscroll-flatlist": "^1.4.0",
     "react-native-awesome-alert": "^0.4.5",
     "react-native-datepicker": "^1.7.2",
     "react-native-elastic-image-slider": "^1.0.0",
