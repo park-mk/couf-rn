@@ -574,7 +574,7 @@ class BUYLIST extends React.Component {
                         >
                             <Image source={require('../assets/alarm.png')}
 
-                                style={{ width: 28, height: 32, marginLeft: -15, resizeMode: 'cover' }}
+                                style={{ width: 24, height: 24, marginLeft: -15, resizeMode: 'cover' }}
                             />
                         </TouchableOpacity>
                     }

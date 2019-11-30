@@ -254,7 +254,7 @@ usersRef.on('value', (snapshot) => {
          
          renderItem={this.renderItem}
          
-       
+          
          keyExtractor={item => item.name}
        
          

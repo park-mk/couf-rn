@@ -1,5 +1,5 @@
 
-import React, { Component }from "react";
+import React, { Component } from "react";
 import {
     Button,
     Text,
@@ -19,6 +19,7 @@ import {
     Alert,
     AsyncStorage,
     Modal,
+   ImageBackground ,
 
 
 } from 'react-native';
@@ -44,7 +45,7 @@ const color = {
 //need push alarm
 class Home1 extends React.Component {
 
-   
+
     constructor(props) {
         super(props);
 
@@ -55,16 +56,16 @@ class Home1 extends React.Component {
             count_buy: 0,
             count_youtube: 0,
             count_suggestion: 0,
-            checkalarm:0,
+            checkalarm: 0,
             alarmname: '',
             palarmname: '',
-            palarmheight:0,
-            palarmwidth:0,
+            palarmheight: 0,
+            palarmwidth: 0,
             alarmed: false,
             alarmcontent: "In order to continue our hard work, we have encountered financial difficulties considering server fees.  Those who would like to support us, please click yes to donate. Thank you!",
             palarmcontent: "",
             palarmimage: "",
-            tutorial:"",
+            tutorial: "",
             dialogVisible: false,
             dialogVisible1: false,
             checked: false,
@@ -78,7 +79,7 @@ class Home1 extends React.Component {
 
 
     registerForPushNotifications = async () => {
-       console.log("notification")
+        console.log("notification")
         const { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
         let finalStauts = status;
 
@@ -93,8 +94,8 @@ class Home1 extends React.Component {
 
 
         if (finalStauts != 'granted') {
-          
-           return;
+
+            return;
         }
 
 
@@ -369,8 +370,8 @@ class Home1 extends React.Component {
     }
 
     check2 = () => {
- 
-         
+
+
         if (this.state.alarmed == false) {
 
             var m;
@@ -389,7 +390,7 @@ class Home1 extends React.Component {
                 console.log("현재 버젼 firebase", m);
                 if (m != expo.expo.version) {
                     this.setState({
-                  //      commentVisibl: true,
+                        //      commentVisibl: true,
                     });
 
                     //  alert("New version of the app is available. For more experience and better performance, please keep the app up to date! 12.3!!!!!!! ");
@@ -423,89 +424,89 @@ class Home1 extends React.Component {
                                 console.log("현재 서버  push알람 ", mm.name)
 
                                 this.state.palarmname = mm.name;
-                               this.state.checkalarm=mm.check;
-                             
+                                this.state.checkalarm = mm.check;
+
                                 this.setState({ palarmimage: mm.image })
-                             
+
                             }).then(() => {
 
                                 var code = firebase.auth().currentUser.email.substring(0, 4) + '_' + firebase.auth().currentUser.displayName;
                                 var usersRef5 = firebase.database().ref('userinfo/' + code + '/alarmpush');
                                 usersRef5.once('value', (snapshot) => {
                                     dd = snapshot.val()
-                                    console.log("유저의 push", dd, this.state.palarmname,this.state.checkalarm);
+                                    console.log("유저의 push", dd, this.state.palarmname, this.state.checkalarm);
                                 }
-                                ).then(() => { 
-                                    if(this.state.alarmed==false){
+                                ).then(() => {
+                                    if (this.state.alarmed == false) {
 
-                                    if (d == this.state.alarmname&&dd==this.state.palarmname) {
-                                        console.log("both-same");
-                                        this.setState({ alarmed: true })
-        
-                                    }
-                                    else if (d != this.state.alarmname&&dd==this.state.palarmname) {
-                                        console.log("no danation");
-
-                                        this.setState({ alarmed: true })
-                                         this.setState({ dialogVisible: true })
-                                    }
-                                    else if (d == this.state.alarmname&&dd!=this.state.palarmname) {
-                                        console.log("일헤라");
-                                        if(this.state.checkalarm===0){
-                                            console.log("danationed0");
+                                        if (d == this.state.alarmname && dd == this.state.palarmname) {
+                                            console.log("both-same");
                                             this.setState({ alarmed: true })
+
                                         }
-                                        if(this.state.checkalarm===1){
-                                            console.log("danationed1");
+                                        else if (d != this.state.alarmname && dd == this.state.palarmname) {
+                                            console.log("no danation");
 
-                                        this.setState({ alarmed: true })
-                                         this.setState({ dialogVisible1: true })
-                                         var code = firebase.auth().currentUser.email.substring(0, 4) + '_' + firebase.auth().currentUser.displayName;
-                                         firebase.database().ref('userinfo/' + code).update({
-                                             alarmpush: this.state.palarmname
-                                         }, function () {
-                             
-                                         });
-                                        }
-                                        if(this.state.checkalarm===2){
-                                            console.log("danationed2");
-
-                                        this.setState({ alarmed: true })
-                                         this.setState({ dialogVisible1: true })
-                                       
-                                        }
-
-
-                                    }
-
-                                    else if (d != this.state.alarmname&&dd!=this.state.palarmname) {
-                                        if(this.state.checkalarm===0){
                                             this.setState({ alarmed: true })
                                             this.setState({ dialogVisible: true })
-                                            console.log("danation!!0");
+                                        }
+                                        else if (d == this.state.alarmname && dd != this.state.palarmname) {
+                                            console.log("일헤라");
+                                            if (this.state.checkalarm === 0) {
+                                                console.log("danationed0");
+                                                this.setState({ alarmed: true })
+                                            }
+                                            if (this.state.checkalarm === 1) {
+                                                console.log("danationed1");
+
+                                                this.setState({ alarmed: true })
+                                                this.setState({ dialogVisible1: true })
+                                                var code = firebase.auth().currentUser.email.substring(0, 4) + '_' + firebase.auth().currentUser.displayName;
+                                                firebase.database().ref('userinfo/' + code).update({
+                                                    alarmpush: this.state.palarmname
+                                                }, function () {
+
+                                                });
+                                            }
+                                            if (this.state.checkalarm === 2) {
+                                                console.log("danationed2");
+
+                                                this.setState({ alarmed: true })
+                                                this.setState({ dialogVisible1: true })
+
+                                            }
+
 
                                         }
-                                        if(this.state.checkalarm===1){
-                                            console.log("danation!!1");
 
-                                        this.setState({ alarmed: true })
-                                         this.setState({ dialogVisible1: true })
-                                         var code = firebase.auth().currentUser.email.substring(0, 4) + '_' + firebase.auth().currentUser.displayName;
-                                         firebase.database().ref('userinfo/' + code).update({
-                                             alarmpush: this.state.palarmname
-                                         }, function () {
-                             
-                                         });
-                                        }
-                                        if(this.state.checkalarm===2){
-                                            console.log("danatione!!2");
+                                        else if (d != this.state.alarmname && dd != this.state.palarmname) {
+                                            if (this.state.checkalarm === 0) {
+                                                this.setState({ alarmed: true })
+                                                this.setState({ dialogVisible: true })
+                                                console.log("danation!!0");
 
-                                        this.setState({ alarmed: true })
-                                         this.setState({ dialogVisible1: true })
-                                       
+                                            }
+                                            if (this.state.checkalarm === 1) {
+                                                console.log("danation!!1");
+
+                                                this.setState({ alarmed: true })
+                                                this.setState({ dialogVisible1: true })
+                                                var code = firebase.auth().currentUser.email.substring(0, 4) + '_' + firebase.auth().currentUser.displayName;
+                                                firebase.database().ref('userinfo/' + code).update({
+                                                    alarmpush: this.state.palarmname
+                                                }, function () {
+
+                                                });
+                                            }
+                                            if (this.state.checkalarm === 2) {
+                                                console.log("danatione!!2");
+
+                                                this.setState({ alarmed: true })
+                                                this.setState({ dialogVisible1: true })
+
+                                            }
                                         }
                                     }
-                                }
 
 
 
@@ -525,7 +526,7 @@ class Home1 extends React.Component {
 
 
 
-                           
+
 
 
 
@@ -538,36 +539,40 @@ class Home1 extends React.Component {
                     //지워    
                     this.registerForPushNotifications();
                 }
-                if (firebase.auth().currentUser == null) {
-                     var check;
-                     var mmm;
+                if (firebase.auth().currentUser == null)    {
+                    var check;
+                    var mmm;
                     var usersRef4 = firebase.database().ref('zpushalarm');
-                            usersRef4.once('value', (snapshot) => {
-                                mmm = snapshot.val()
-                             
-                                console.log("현재 서버  push알람 ", mmm.name)
+                    usersRef4.once('value', (snapshot) => {
+                        mmm = snapshot.val()
 
-                                this.state.palarmname = mmm.name;
-                                check=mmm.check;
-                              
-                                this.setState({ palarmimage: mmm.image })
-                             
-                            }).then(()=>{
-                                if(check==0){
-                                this.setState({ dialogVisible: true })
-                                this.setState({ alarmed: true })
-                                }
-                                if(check==1||2){
-                                this.setState({ dialogVisible1: true })
-                                this.setState({ alarmed: true })
-                                }
-                                 
+                        console.log("현재 서버  push알람 ", mmm.name)
+
+                        this.state.palarmname = mmm.name;
+                        check = mmm.check;
+                        
+
+                        this.setState({ palarmimage: mmm.image })
+
+                    }).then(() => {
+                        console.log("check 1 ",check);
+                        if (check == 0) {
+                            this.setState({ dialogVisible: true })
+                            this.setState({ alarmed: true })
+                            this.setState({ dialogVisible1: false })
+                        }
+                        if (check == 1 || check==2) {
+                            console.log("check is?D????? ",check);
+                            this.setState({ dialogVisible1: true })
+                            this.setState({ alarmed: true })
+                        }
 
 
-                            })
- 
 
-                     
+                    })
+
+
+
                 }
 
 
@@ -577,7 +582,7 @@ class Home1 extends React.Component {
 
 
         }
- 
+
     }
 
     notshow = () => {
@@ -624,21 +629,21 @@ class Home1 extends React.Component {
         //function to save the value in AsyncStorage
         if (value == null) {
             //To check the input not empty
-            AsyncStorage.setItem('welcome', "first!");
+            AsyncStorage.setItem('welcomeuser', "first!");
             //Setting a data to a AsyncStorage with respect to a key 
             // this.setState({ textInputData: '' })
             //Resetting the TextInput
-          
+
             //alert to confirm
-            this.setState({ 
-                
+            this.setState({
+
                 commentVisible: true,
-                tutorial:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2Ftutorial.png?alt=media&token=798449cd-6f6f-4baf-a473-5716b46e0e1d",
-               
+                tutorial: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2Ftutorial.png?alt=media&token=798449cd-6f6f-4baf-a473-5716b46e0e1d",
+
             })
 
         } else {
-           
+
 
 
 
@@ -646,40 +651,85 @@ class Home1 extends React.Component {
 
 
         }
-    }; 
-    imageheightca=()=>{
+    };
+    imageheightca = () => {
         let dimensions = Dimensions.get("window");
-        let imageheight = dimensions.height ;
+        let imageheight = dimensions.height;
         if (Platform.OS === 'android') {
-          
+
 
         }
         return imageheight;
     }
     onClickComment = (value) => {
-    
-         if (this.state.imagechange == 0) {
+
+        if (this.state.imagechange == 0) {
 
             this.setState({
                 imagechange: 1,
-                tutorial:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2Ftutorial2.png?alt=media&token=9d56252e-7f3b-484c-8f07-da0b3726dac6",
+                tutorial: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2Ftutorial2.png?alt=media&token=9d56252e-7f3b-484c-8f07-da0b3726dac6",
             });
         }
         else if (this.state.imagechange == 1) {
             this.setState({
                 imagechange: 2,
-                tutorial:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2Ftutorial3.png?alt=media&token=f3a3c8e9-b637-4b07-84a2-1da1ce610d78",
+                tutorial: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2Ftutorial3.png?alt=media&token=f3a3c8e9-b637-4b07-84a2-1da1ce610d78",
             });
 
         }
         else if (this.state.imagechange == 2) {
             this.setState({
                 imagechange: 3,
-                tutorial:"https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2Ftutorial4.png?alt=media&token=9403281e-d093-4279-81c4-50d9bf0a5cae",
+                tutorial: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2Ftutorial4.png?alt=media&token=9403281e-d093-4279-81c4-50d9bf0a5cae",
             });
 
         }
         else if (this.state.imagechange == 3) {
+            this.setState({
+                imagechange: 4,
+                tutorial: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2Ftips.png?alt=media&token=850436d5-bbfb-4bb2-a315-ff274ea5c772",
+            });
+
+        }
+        else if (this.state.imagechange == 4) {
+
+            this.setState({
+                commentVisible: value || !this.state.commentVisible,
+            });
+        }
+
+    };
+    onClickCommentleft = (value) => {
+
+        if (this.state.imagechange == 1) {
+
+            this.setState({
+                imagechange: 0,
+                tutorial: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2Ftutorial.png?alt=media&token=798449cd-6f6f-4baf-a473-5716b46e0e1d",
+            });
+        }
+        else if (this.state.imagechange == 2) {
+            this.setState({
+                imagechange: 1,
+                tutorial: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2Ftutorial2.png?alt=media&token=9d56252e-7f3b-484c-8f07-da0b3726dac6",
+            });
+
+        }
+        else if (this.state.imagechange == 3) {
+            this.setState({
+                imagechange: 2,
+                tutorial: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2Ftutorial3.png?alt=media&token=f3a3c8e9-b637-4b07-84a2-1da1ce610d78",
+            });
+
+        }
+        else if (this.state.imagechange == 4) {
+            this.setState({
+                imagechange: 3,
+                tutorial: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2Ftutorial4.png?alt=media&token=9403281e-d093-4279-81c4-50d9bf0a5cae",
+            });
+
+        }
+        else if (this.state.imagechange == 4) {
 
             this.setState({
                 commentVisible: value || !this.state.commentVisible,
@@ -711,7 +761,7 @@ class Home1 extends React.Component {
         let imageheight = dimensions.height;
         let imagewidth = dimensions.width;
         //function to get the value from AsyncStorage
-        AsyncStorage.getItem('welcome').then(value =>
+        AsyncStorage.getItem('welcomeuser').then(value =>
             //AsyncStorage returns a promise so adding a callback to get the value
             this.saveValueFunction(value)
             //Setting the value in Text 
@@ -739,8 +789,8 @@ class Home1 extends React.Component {
             </View>
         );
 
-          {this.getValueFunction()}
-      
+        { this.getValueFunction() }
+
 
         return (
 
@@ -748,70 +798,113 @@ class Home1 extends React.Component {
 
             <View>
                 <Modal
-                // nno pressed 
+                    // nno pressed 
                     animationType="slide"
                     transparent={true}
                     visible={this.state.commentVisib}
-                    backdropColor = {'white'}
-                    backdropOpacity = {0.5}
+                    backdropColor={'white'}
+                    backdropOpacity={0.5}
                     onRequestClose={() => {
                         console.log('Modal has been closed.');
                     }}>
-                        
+
                     <View
-                         style={{
+                        style={{
                             alignItems: 'center',
-                          
+
                             backgroundColor: '#00000080',
                             justifyContent: 'center',
-                           
+
                         }}
                     >
-                         <TouchableOpacity
+                        <TouchableOpacity
                             onPress={() => this.onClickComme()}
                         >
-                       
+
                             <Image
-                                      style={{
-                                      marginTop:imageheight * 5/4,
-                                      marginBottom:imageheight * 5/4,
-                                        width: imagewidth/2,
-                                        height: imageheight * 5/2,
-                                        resizeMode:'cover'
-                                    }}
+                                style={{
+                                    marginTop: imageheight * 5 / 4,
+                                    marginBottom: imageheight * 5 / 4,
+                                    width: imagewidth / 2,
+                                    height: imageheight * 5 / 2,
+                                    resizeMode: 'contain'
+                                }}
                                 source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2Fmore-alarm%2F73413249_526896888161576_1310299238160138240_n.png?alt=media&token=090432bd-6323-4d8b-9814-3e4b35b37eec" }}
 
                             />
-                       </TouchableOpacity>
+                        </TouchableOpacity>
                     </View>
-                   
+
                 </Modal>
                 <Modal
-                //  new tutorial
+                    //  new tutorial
                     animationType="slide"
                     transparent={false}
                     visible={this.state.commentVisible}
                     onRequestClose={() => {
                         console.log('Modal has been closed.');
                     }}>
-                    <View>
-                        <TouchableOpacity
-                            onPress={() => this.onClickComment()}
-                        >
-                            <Image
-                                style={{
-                                    width: imagewidth,
-                                    height: imageheight * 5,
-                                  
-                                   
-                                    borderBottomWidth: 3,
-                                    resizeMode:'contain'
-                                }}
-                                source={{ uri: this.state.tutorial}}
+                        <ImageBackground
+                         resizeMode= 'contain'
+                        style={{
+                            width: imagewidth,
+                            height: imageheight * 5,
 
-                            />
-                        </TouchableOpacity>
+
+                            borderBottomWidth: 3,
+                           
+                        }}
+                        source={{ uri: this.state.tutorial }}
+                        >
+                    <View>
+                  
+                      <View style={{flexDirection:"row"}}>
+                          
+                              <TouchableOpacity
+                                onPress={() => this.onClickCommentleft()}
+                            >
+                                <View
+                                    style={{
+                                        width: imagewidth / 2,
+                                        height: imageheight * 5,
+
+                                        
+                                        borderBottomWidth: 3,
+
+                                    }}
+                                >
+                                  
+
+                                </View>
+
+
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => this.onClickComment()}
+                            >
+                            <View
+                                    style={{
+                                        width: imagewidth / 2,
+                                        height: imageheight * 5,
+
+                                     
+                                        borderBottomWidth: 3,
+
+                                    }}
+                                >
+                                  
+
+                                </View>
+                                </TouchableOpacity>
+                    
+                          
+                          
+
+                        
                     </View>
+                    </View>
+                    </ImageBackground>
+
                 </Modal>
                 <Modal
                     animationType="slide"
@@ -829,8 +922,8 @@ class Home1 extends React.Component {
                                     width: imagewidth,
                                     height: imageheight * 5,
                                     borderBottomWidth: 3,
-                                   
-                                    resizeMode:'cover'
+
+                                    resizeMode: 'cover'
                                 }}
                                 source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2Fmore-alarm%2F76765590_514660999264502_1871015718393217024_n.png?alt=media&token=b2bb3f77-8737-4456-bb8b-f255c9ce5905" }}
 
@@ -842,42 +935,43 @@ class Home1 extends React.Component {
                     // modal the picture what i want z push alarm 
                 }
                 <Modal
+                // custom push alarm
                     animationType="slide"
                     transparent={true}
                     visible={this.state.dialogVisible1}
-                    backdropColor = {'white'}
-                    backdropOpacity = {0.5}
+                    backdropColor={'white'}
+                    backdropOpacity={0.5}
                     onRequestClose={() => {
                         console.log('Modal has been closed.');
                     }}>
-                        
+
                     <View
-                         style={{
+                        style={{
                             alignItems: 'center',
-                          
+
                             backgroundColor: '#00000080',
                             justifyContent: 'center',
-                           
+
                         }}
                     >
-                         <TouchableOpacity
-                            onPress={() =>this.setState({ dialogVisible1: false }) }
+                        <TouchableOpacity
+                            onPress={() => this.setState({ dialogVisible1: false })}
                         >
-                       
+
                             <Image
-                                      style={{
-                                      marginTop:imageheight * 5/4,
-                                      marginBottom:imageheight * 5/4,
-                                        width: imagewidth/2,
-                                        height: imageheight * 5/2,
-                                        resizeMode:'cover',
-                                    }}
-                                source={{ uri:this.state.palarmimage }}
+                                style={{
+                                    marginTop: imageheight * 5 / 4,
+                                    marginBottom: imageheight * 5 / 4,
+                                    width: imagewidth / 2,
+                                    height: imageheight * 5 / 2,
+                                    resizeMode: 'cover',
+                                }}
+                                source={{ uri: this.state.palarmimage }}
 
                             />
-                       </TouchableOpacity>
+                        </TouchableOpacity>
                     </View>
-                   
+
                 </Modal>
                 {// dialog ask to donate or not 
                 }

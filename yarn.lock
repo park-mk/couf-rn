@@ -12072,6 +12072,11 @@ react-lifecycles-compat@^3.0.0, react-lifecycles-compat@^3.0.4:
   resolved "http://r.cnpmjs.org/react-lifecycles-compat/download/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha1-TxonOv38jzSIqMUWv9p4+HI1I2I=
 
+react-native-autoscroll-flatlist@^1.4.0:
+  version "1.4.0"
+  resolved "http://r.cnpmjs.org/react-native-autoscroll-flatlist/download/react-native-autoscroll-flatlist-1.4.0.tgz#67d2c3ee45fbf7c27417e9e1340ce2c6bff8e37f"
+  integrity sha1-Z9LD7kX798J0F+nhNAzixr/4438=
+
 react-native-awesome-alert@^0.4.5:
   version "0.4.5"
   resolved "http://r.cnpmjs.org/react-native-awesome-alert/download/react-native-awesome-alert-0.4.5.tgz#39a8bec96f803df0719340e6c82bb002577de014"

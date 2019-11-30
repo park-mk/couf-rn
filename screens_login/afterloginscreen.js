@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, StyleSheet, Image, TouchableHighlight, Dimensions, FlatList, Alert, } from 'react-native';
+import { Text, View, StyleSheet, Image, TouchableHighlight, Dimensions, FlatList, Alert} from 'react-native';
 import firebase from "../firebase";
 import { FormLabel, FormInput } from 'react-native-elements'
 import { createStackNavigator, createBottomTabNavigator, createAppContainer, withNavigation } from 'react-navigation';
