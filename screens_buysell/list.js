@@ -69,6 +69,7 @@ class BUYLIST extends React.Component {
         firebase.database().ref('comment/buyNsell').on('value', function (snapshot) {
             let returnVal = snapshot.val() || {};
             this.setState({ datasource: Object.values(returnVal).reverse() });
+            console.log('다시 읽어오냐 !!!!!!!!!!!!!!!!!!!!!!!!!!',Object.values(returnVal).reverse());
         }.bind(this), function (error) {
             console.error(error);
         });
@@ -280,6 +281,7 @@ class BUYLIST extends React.Component {
                         timestamp: item.timestamp,
                         images: item.images,
                         imageUrl: item.imageUrl,
+                        data:item,
 
                     });
 
