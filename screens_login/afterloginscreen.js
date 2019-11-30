@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, StyleSheet, Image, TouchableHighlight, Dimensions, FlatList, Alert} from 'react-native';
+import { Text, View, StyleSheet, Image, TouchableHighlight, Dimensions, FlatList, Alert, } from 'react-native';
 import firebase from "../firebase";
 import { FormLabel, FormInput } from 'react-native-elements'
 import { createStackNavigator, createBottomTabNavigator, createAppContainer, withNavigation } from 'react-navigation';
@@ -297,7 +297,7 @@ class Profile extends React.Component {
                                     var myArray=this.state.datasource2
           
                                     for( var i = 0; i < myArray.length; i++){ 
-                                        if ( myArray[i].uid === itemuid) {
+                                        if ( myArray[i].uid === item.uid) {
                                           myArray.splice(i, 1); 
                                         }
                                      }

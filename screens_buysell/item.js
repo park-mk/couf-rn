@@ -60,6 +60,7 @@ class ITEM extends React.Component {
             up: 0,
             voted: false,
             commentVisible: false,
+            origin:" ",
         };
     }
 
@@ -74,6 +75,7 @@ class ITEM extends React.Component {
 
                         let ref = firebase.storage().ref();
                         let deleteData = firebase.database().ref().child('comment/buyNsell/'+dataObj.uid);
+                       
 
                         Promise.all([
                             dataObj.images.map((item) => ref.child("buyNsell/"+item).delete()),
@@ -88,6 +90,31 @@ class ITEM extends React.Component {
                             this.props.navigation.navigate('BUYLIST');
 
                         }.bind(this));
+
+                        var code = firebase.auth().currentUser.email.substring(0, 4) + '_' + firebase.auth().currentUser.displayName;
+                        var usersRef0 = firebase.database().ref('userinfo/' + code + '/user_buysell');
+                        usersRef0.once('value', (snapshot) => {
+                            var m = snapshot.val()
+                            this.setState({ origin: m })
+                            //  console.log(this.state.origin);
+                        }).then((m)=>{
+                            var change1 = "," + dataObj.uid;
+                            var change2 = this.state.origin.replace(change1, '');
+                             this.setState({ origin: change2})
+
+
+                        }).then(()=>{
+                        firebase.database().ref('userinfo/' + code).update({
+
+                            user_buysell: this.state.origin,
+                        }, function () {
+
+                        });
+                    
+                    });
+
+
+
 
                     }
                 },

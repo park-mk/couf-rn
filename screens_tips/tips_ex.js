@@ -165,7 +165,7 @@ class TIP_EX extends React.Component {
   } 
      backgroundColor={'#fff'}
     borderBottomColor={'#fff'}
-      centerComponent={{ text: 'TRAVEL', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#67DBFF' } }}
+      centerComponent={{ text: 'TIPS', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,color:'#67DBFF' } }}
      
 />
 
