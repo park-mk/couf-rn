@@ -467,7 +467,7 @@ class Travelitem extends React.Component {
         </View>
      <ImageSlider
           loopBothSides
-           autoPlayWithInterval={30}
+         //  autoPlayWithInterval={30}
            images={images}
            style={{height:imageheight,width:imagewidth }}
            customButtons={(position, move) => (

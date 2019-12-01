@@ -12085,6 +12085,11 @@ react-native-awesome-alert@^0.4.5:
     prop-types "^15.6.0"
     react-native-check-box "^2.0.2"
 
+react-native-banner-carousel@^1.0.3:
+  version "1.0.3"
+  resolved "http://r.cnpmjs.org/react-native-banner-carousel/download/react-native-banner-carousel-1.0.3.tgz#83d760233cd7496b595a3c1e51399ffcb16edcb2"
+  integrity sha1-g9dgIzzXSWtZWjweUTmf/LFu3LI=
+
 react-native-branch@~3.0.1:
   version "3.0.1"
   resolved "http://r.cnpmjs.org/react-native-branch/download/react-native-branch-3.0.1.tgz#5b07b61cbd290168cd3c3662e017ebe0f356d2ca"
@@ -12270,6 +12275,13 @@ react-native-view-shot@2.6.0:
   version "2.6.0"
   resolved "http://r.cnpmjs.org/react-native-view-shot/download/react-native-view-shot-2.6.0.tgz#3b23675826f67658366352c4b97b59a6aded2f43"
   integrity sha1-OyNnWCb2dlg2Y1LEuXtZpq3tL0M=
+
+react-native-whc-banner@^1.0.1:
+  version "1.0.1"
+  resolved "http://r.cnpmjs.org/react-native-whc-banner/download/react-native-whc-banner-1.0.1.tgz#b78b43d44e8ee61a3e3c746386f9bc86bcbcc7f9"
+  integrity sha1-t4tD1E6O5ho+PHRjhvm8hry8x/k=
+  dependencies:
+    prop-types "^15.5.10"
 
 react-native-youtube@^1.1.0:
   version "1.1.0"

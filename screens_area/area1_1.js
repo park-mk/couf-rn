@@ -6,12 +6,20 @@ import { createStackNavigator, createBottomTabNavigator, createAppContainer } fr
 import firebase, { storage } from "../firebase";
 import A1WTD from '../screens_wtd/area1_wtd';
 import A1WTE from '../screens_wte/area1_wte'
+import Carousel from 'react-native-banner-carousel';
 
 const color = {
   theme: '#06C1AE',
   border: '#e0e0e0',
   background: '#f3f3f3'
 }
+/*
+const images = [
+  "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2Fsauna.png?alt=media&token=5b28d7c5-326e-4c89-b493-680568910cb6",
+  "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2FYOUTUBE.png?alt=media&token=5cf3d21f-3e2c-495a-8299-29867da8fe72",
+  "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2FComponent%208.png?alt=media&token=7660c171-a0f5-4a56-b6c9-7d7e17b28a23"
+];
+*/
 
 class Area1_1Screen extends React.Component {
 
@@ -176,6 +184,18 @@ class Area1_1Screen extends React.Component {
 
   }
 
+  renderPage(image, index) {
+    let dimensions = Dimensions.get("window");
+    //  let imageheight = Math.round((dimensions.width * 9) / 12);
+    let imageheight =  dimensions.height / 10;
+    let imagewidth = dimensions.width;
+
+    return (
+        <View key={index}>
+            <Image style={{ width: imagewidth , height: imageheight  }} source={{ uri: image }} />
+        </View>
+    );
+}
 
 
   _keyExtractor = (item, index) => item.key;
@@ -184,6 +204,7 @@ class Area1_1Screen extends React.Component {
 
     let dimensions = Dimensions.get("window");
     //  let imageheight = Math.round((dimensions.width * 9) / 12);
+    let imageheight = 4 * dimensions.height / 10;
     let imagewidth = dimensions.width;
 
 
@@ -366,25 +387,29 @@ class Area1_1Screen extends React.Component {
           refreshing={this.state.refreshing}
           onEndReached={this.handleLoadMore}
           onEndReachedThreshold={40}
+          const images = [
+    "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2Fsauna.png?alt=media&token=5b28d7c5-326e-4c89-b493-680568910cb6",
+    "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2FYOUTUBE.png?alt=media&token=5cf3d21f-3e2c-495a-8299-29867da8fe72",
+    "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2FYOUTUBE.png?alt=media&token=5cf3d21f-3e2c-495a-8299-29867da8fe72"
+];
+
         />
     */}
 
 
             </View>
-
-            <FlatList
-            style={{marginTop: 30}}
-              data={this.state.datasource2}
-               horizontal
-              renderItem={this.renderItem3}
-              keyExtractor={item => item.topimage}
-
-              ListFooterComponent={this.renderFooter}
-              onRefresh={this.handleRefresh}
-              refreshing={this.state.refreshing}
-              onEndReached={this.handleLoadMore}
-              onEndReachedThreshold={40}
-            />
+    {       /*
+            <Carousel
+              
+                    autoplay
+                    autoplayTimeout={5000}
+                    loop
+                    index={0}
+                    pageSize={imagewidth}
+                >
+                    {images.map((image, index) => this.renderPage(image, index))}
+                </Carousel>
+    */}
 
             <Text style={{ fontFamily: 'title-font', fontSize: 40, marginLeft: 20, marginTop: 30 }}
 
@@ -533,6 +558,11 @@ const styles = StyleSheet.create({
     //textAlign: 'center',
     color: 'grey',
   },
+  banner: {
+    marginTop:1,
+    flexGrow: 1,
+    marginTop:40,
+},
   backgroundImage: {
     position: 'absolute',
     top: 0,
