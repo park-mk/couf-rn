@@ -629,7 +629,7 @@ class Home1 extends React.Component {
         //function to save the value in AsyncStorage
         if (value == null) {
             //To check the input not empty
-            AsyncStorage.setItem('welcomeuser', "first!");
+            AsyncStorage.setItem('welcomeuserff', "first!");
             //Setting a data to a AsyncStorage with respect to a key 
             // this.setState({ textInputData: '' })
             //Resetting the TextInput
@@ -664,13 +664,14 @@ class Home1 extends React.Component {
     onClickComment = (value) => {
 
         if (this.state.imagechange == 0) {
-
+ 
             this.setState({
                 imagechange: 1,
                 tutorial: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2Ftutorial2.png?alt=media&token=9d56252e-7f3b-484c-8f07-da0b3726dac6",
             });
         }
         else if (this.state.imagechange == 1) {
+        
             this.setState({
                 imagechange: 2,
                 tutorial: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2Ftutorial3.png?alt=media&token=f3a3c8e9-b637-4b07-84a2-1da1ce610d78",
@@ -678,13 +679,14 @@ class Home1 extends React.Component {
 
         }
         else if (this.state.imagechange == 2) {
+         
             this.setState({
                 imagechange: 3,
                 tutorial: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2Ftutorial4.png?alt=media&token=9403281e-d093-4279-81c4-50d9bf0a5cae",
             });
 
         }
-        else if (this.state.imagechange == 3) {
+        else if (this.state.imagechange == 3) {  
             this.setState({
                 imagechange: 4,
                 tutorial: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2Ftips.png?alt=media&token=850436d5-bbfb-4bb2-a315-ff274ea5c772",
@@ -761,7 +763,7 @@ class Home1 extends React.Component {
         let imageheight = dimensions.height;
         let imagewidth = dimensions.width;
         //function to get the value from AsyncStorage
-        AsyncStorage.getItem('welcomeuser').then(value =>
+        AsyncStorage.getItem('welcomeuserff').then(value =>
             //AsyncStorage returns a promise so adding a callback to get the value
             this.saveValueFunction(value)
             //Setting the value in Text 

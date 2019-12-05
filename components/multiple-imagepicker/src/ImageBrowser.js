@@ -7,12 +7,15 @@ import {
   FlatList,
   Dimensions,
   Button,
+  Platform,
   TouchableOpacity,
   Image,
 } from 'react-native';
 import * as FileSystem from 'expo-file-system';
 // import { FileSystem } from 'expo';
 import ImageTile from './ImageTile';
+import { timestamp } from 'rxjs/operators';
+
 const { width } = Dimensions.get('window')
 
 export default class ImageBrowser extends React.Component {
@@ -43,7 +46,10 @@ export default class ImageBrowser extends React.Component {
   }
 
   getPhotos = () => {
-    let params = { first: 500, mimeTypes: ['image/jpeg'] };
+   
+    let params = { first: 500, mimeTypes: ['image/jpeg'],assetType: "Photos" };
+    
+  
     if (this.state.after) params.after = this.state.after
     if (!this.state.has_next_page) return
     CameraRoll
@@ -53,7 +59,10 @@ export default class ImageBrowser extends React.Component {
 
   processPhotos = (r) => {
     if (this.state.after === r.page_info.end_cursor) return;
-    let uris = r.edges.map(i => i.node).map(i => i.image).map(i => i.uri)
+   let uris = r.edges.map(i => i.node).map(i => i.image).map(i => i.uri)
+
+   let uriss = r.edges.map(i =>i.node).map(i=>i.timestamp);
+     console.log(uris,uriss,"imaaa") ;
     this.setState({
       photos: [...this.state.photos, ...uris],
       after: r.page_info.end_cursor,
