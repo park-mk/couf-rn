@@ -46,23 +46,30 @@ export default class ImageBrowser extends React.Component {
   }
 
   getPhotos = () => {
-   
+
     let params = { first: 500, mimeTypes: ['image/jpeg'],assetType: "Photos" };
-    
-  
+
+
     if (this.state.after) params.after = this.state.after
     if (!this.state.has_next_page) return
     CameraRoll
-      .getPhotos(params)
-      .then(this.processPhotos)
+        .getPhotos(params)
+        .then(this.processPhotos)
   }
 
   processPhotos = (r) => {
     if (this.state.after === r.page_info.end_cursor) return;
-   let uris = r.edges.map(i => i.node).map(i => i.image).map(i => i.uri)
+    r.edges.sort(function (a, b) {
+      if (a.node.timestamp < b.node.timestamp) {
+        return 1;
+      }
+      if (a.node.timestamp > b.node.timestamp) {
+        return -1;
+      }
+      return 0;
+    });
+    let uris = r.edges.map(i => i.node).map(i => i.image).map(i => i.uri);
 
-   let uriss = r.edges.map(i =>i.node).map(i=>i.timestamp);
-     console.log(uris,uriss,"imaaa") ;
     this.setState({
       photos: [...this.state.photos, ...uris],
       after: r.page_info.end_cursor,
@@ -82,14 +89,14 @@ export default class ImageBrowser extends React.Component {
     });
 
     let files = selectedPhotos
-      .map(i => FileSystem.getInfoAsync(i, { md5: true }))
+        .map(i => FileSystem.getInfoAsync(i, { md5: true }))
     let callbackResult = Promise
-      .all(files)
-      .then(imageData => {
-        return imageData.map((data, i) => {
-          return { file: selectedPhotos[i], ...data }
+        .all(files)
+        .then(imageData => {
+          return imageData.map((data, i) => {
+            return { file: selectedPhotos[i], ...data }
+          })
         })
-      })
     this.props.callback(callbackResult)
   }
 
@@ -98,87 +105,87 @@ export default class ImageBrowser extends React.Component {
     let headerText = selectedCount + ' Selected';
     if (selectedCount === this.props.max) headerText = headerText + ' (Max)';
     return (
-      <View style={styles.header}>
-     
+        <View style={styles.header}>
+
           <TouchableOpacity
 
-onPress={() => this.props.callback(Promise.resolve([]))}
+              onPress={() => this.props.callback(Promise.resolve([]))}
 
->
-<Image
-  style={{
-    width: 90, flex: 1,
-    height: 90, alignContent: 'center',
-  }}
-  resizeMode={'contain'}
-  source={require('../../../assets/clear.png')}
-/>
-</TouchableOpacity>
-        <Text
-          style={{
-            fontSize: 30,
-            fontFamily: 'title-font'
-          }}
-        >{headerText}</Text>
+          >
+            <Image
+                style={{
+                  width: 90, flex: 1,
+                  height: 90, alignContent: 'center',
+                }}
+                resizeMode={'contain'}
+                source={require('../../../assets/clear.png')}
+            />
+          </TouchableOpacity>
+          <Text
+              style={{
+                fontSize: 30,
+                fontFamily: 'title-font'
+              }}
+          >{headerText}</Text>
 
-        <TouchableOpacity
+          <TouchableOpacity
 
 
-          onPress={() => this.prepareCallback()}
+              onPress={() => this.prepareCallback()}
 
-        >
-          <Image
-            style={{
-              width: 90, flex: 1, marginLeft: 18,
-              height: 90, alignContent: 'center',
-            }}
-            resizeMode={'contain'}
-            source={require('../../../assets/submit.png')}
-          />
-        </TouchableOpacity>
-      </View>
+          >
+            <Image
+                style={{
+                  width: 90, flex: 1, marginLeft: 18,
+                  height: 90, alignContent: 'center',
+                }}
+                resizeMode={'contain'}
+                source={require('../../../assets/submit.png')}
+            />
+          </TouchableOpacity>
+        </View>
     )
   }
 
   renderImageTile = ({ item, index }) => {
     let selected = this.state.selected[index] ? true : false
     return (
-      <ImageTile
-        item={item}
-        index={index}
-        camera={false}
-        selected={selected}
-        selectImage={this.selectImage}
-      />
+        <ImageTile
+            item={item}
+            index={index}
+            camera={false}
+            selected={selected}
+            selectImage={this.selectImage}
+        />
     )
   }
   renderImages() {
     return (
-      <FlatList
-        data={this.state.photos}
-        numColumns={4}
-        renderItem={this.renderImageTile}
-        keyExtractor={(_, index) => index}
-        onEndReached={() => { this.getPhotos() }}
-        onEndReachedThreshold={0.5}
-        ListEmptyComponent={
+        <FlatList
+            data={this.state.photos}
+            numColumns={4}
+            renderItem={this.renderImageTile}
+            keyExtractor={(_, index) => index}
+            onEndReached={() => { this.getPhotos() }}
+            onEndReachedThreshold={0.5}
+            ListEmptyComponent={
 
-          <Text style={{ fontSize: 20, marginLeft: 10, marginTop: 30, fontFamily: 'content-font', color: 'grey', marginRight: 20 }}>if this screen is not changing ,please go to the "settings" and allow this app to access your storage space, and restart the app</Text>
+              <Text style={{ fontSize: 20, marginLeft: 10, marginTop: 30, fontFamily: 'content-font', color: 'grey', marginRight: 20 }}>if this screen is not changing ,please go to the "settings" and allow this app to access your storage space, and restart the app</Text>
 
 
-        }
-        initialNumToRender={24}
-        getItemLayout={this.getItemLayout}
-      />
+            }
+            initialNumToRender={24}
+            getItemLayout={this.getItemLayout}
+        />
     )
   }
 
   render() {
     return (
-      <View style={styles.container}>
-        {this.renderHeader()}
-        {this.renderImages()}
-      </View>
+        <View style={styles.container}>
+          {this.renderHeader()}
+          {this.renderImages()}
+        </View>
     );
   }
 }
