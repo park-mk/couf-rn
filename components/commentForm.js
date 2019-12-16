@@ -3,9 +3,6 @@ import {Image, Text, TextInput, View, CameraRoll} from 'react-native';
 import styled from 'styled-components'
 import { List, ListItem, Button, Avatar  } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/FontAwesome';
-import firebase from "../firebase";
-// import ImagePicker from 'react-native-image-picker';
-// import { ImagePicker } from 'expo';
 
 class CommentForm extends React.Component {
     constructor(props){
@@ -24,10 +21,12 @@ class CommentForm extends React.Component {
                     placeholder='Input your comment'
                 />
                 <Buttons style={{alignSelf: 'flex-end'}}>
+{/*
                     <Button type="clear" buttonStyle={{width: 50, marginRight: 10}}
                             icon={<Icon name="camera" size={15} color="grey"/>}
                             onPress={() => this.props.getImage()}
                     />
+*/}
                     <Button type="clear" buttonStyle={{width: 50, marginRight: 10}}
                             icon={<Icon name="close" size={15} color="grey"/>}
                             onPress={() => this.props.clearData()}

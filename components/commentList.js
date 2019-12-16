@@ -84,7 +84,7 @@ class CommentList extends React.Component {
                                     containerStyle={{alignSelf: 'flex-start'}}
                                     rounded
                                     source={{
-                                        uri:'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+                                        uri:this.state.modifyItem.thumbNail,
                                     }}
                                 />
                             }
@@ -132,7 +132,7 @@ class CommentList extends React.Component {
                                           containerStyle={{alignSelf: 'flex-start'}}
                                           rounded
                                           source={{
-                                              uri:'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+                                              uri:item.thumbNail,
                                           }}
                                       />
                                   }
@@ -151,7 +151,7 @@ class CommentList extends React.Component {
                                       (firebase.auth().currentUser && item.useremail == firebase.auth().currentUser.email) && <Buttons style={{alignSelf: 'flex-start'}}>
                                           <Button type="clear" buttonStyle={{width: 30}}
                                                   icon={<Icon name="trash" size={15} color="black"/>}
-                                                  onPress={() => this.props.deleteData(item)}
+                                                  onPress={() => this.props.deleteData(item.uid)}
                                           />
                                           <Button type="clear" buttonStyle={ { width: 30 } }
                                                   icon={<Icon name="edit" size={15} color="black" /> }

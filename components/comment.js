@@ -68,6 +68,7 @@ class Comment extends React.Component {
             displayName:user.displayName,
             timestamp:Date.now(),
             tags:{},
+            thumbNail:user.photoURL,
         };
 
         if(this.props.tag) createData.tags[this.props.tag] = true;
