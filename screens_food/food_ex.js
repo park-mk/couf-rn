@@ -261,16 +261,16 @@ class Fooditem extends React.Component {
           />
           <ScrollView>
 
-            
+
             <View style={{ flex: 10 }}>
-              <ImageBackground source={{ uri: topimage.toString() }} style={{ height: imageheight, width: imagewidth }}>
+              <ImageBackground source={{ uri: topimage.toString() }} style={{ height: imageheight, width: imagewidth }} resizeMode="contain">
                 <View style={{ top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center' }}></View>
               </ImageBackground>
               <View style={{ marginTop:30}}></View>
               <View style={{ marginTop:0}}>
                 <View style={{ flexDirection: 'row', flex: 2 }} >
-                
-                 
+
+
 
                   <View style={{marginLeft:80,flex:1}}>
                     {this.state.voted ? (
@@ -309,9 +309,9 @@ class Fooditem extends React.Component {
                     )}
                   </View>
 
-                 
-                
-                
+
+
+
                   <View style={{flex:1,alignItems:'flex-end',marginRight:80}}>
                   <TouchableHighlight
                       onPress={() => {
@@ -332,7 +332,7 @@ class Fooditem extends React.Component {
 
                 </View>
 
-                
+
                 <View style={{ marginTop:30}}>
 
                 </View>
@@ -342,50 +342,18 @@ class Fooditem extends React.Component {
 
               </View>
 
-               
+
 
               <Texteditor text={vivid} />
 
             </View>
-          {
-             //<SafeAreaView style={styles.container}>
-              } 
               <View style={styles.content1}>
 
               </View>
-         {/*     <ImageSlider
-                  loopBothSides
-                  autoPlayWithInterval={3000}
-                  images={images}
-                  style={{ height: imageheight, width: imagewidth }}
-                  customButtons={(position, move) => (
-                      <View style={styles.buttons}>
-
-                        {images.map((image, index) => {
-                          return (
-                              <TouchableHighlight
-                                  key={index}
-                                  underlayColor="#f00"
-                                  onPress={() => move(index)}
-                                  style={styles.button}
-                              >
-                                <Text style={position === index && styles.buttonSelected}>
-
-                                </Text>
-                              </TouchableHighlight>
-                          );
-                        })}
-                      </View>
-                  )}
-                      />*/}
-
-           {
-            //  </SafeAreaView>
-           }
             <View style={{ marginLeft: 20, flexDirection: 'row', marginRight: 20 }} >
 
         </View>
-        <View 
+        <View
         style={{height:100}}
        >
        </View>
@@ -394,7 +362,7 @@ class Fooditem extends React.Component {
 
 
 
-          
+
           </ScrollView>
         </View>
     );
