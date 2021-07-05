@@ -1,28 +1,69 @@
 {
   "expo": {
-    "name": "camp1",
-    "slug": "camp1",
-    "version": "1.0.0",
+    "name": "camp korea",
+    "slug": "nn",
+    
+    "version": "3.8.0",
+    "platforms": [
+      "ios",
+      "android"
+    ],
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/images/ico.png",
+    "facebookScheme":"fb1998302263810491",
+    "facebookAppId": "1998302263810491",
+    "facebookDisplayName": "Camp Korea",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/images/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 0,
+      "enabled":false
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "usesAppleSignIn": true,
+      "supportsTablet": true,
+      "bundleIdentifier": "com.nn.couf",
+      "infoPlist": {
+        "facebookScheme":"fb1998302263810491",
+        "facebookAppId": "1998302263810491",
+        "facebookDisplayName": "Camp Korea",
+        "NSCameraUsageDescription": "This app uses the photos to upload your buy and sell.",
+        "NSPhotoLibraryUsageDescription":"This app uses the photos to upload your buy and sell. ^^",
+        "facebookAutoInitEnabled": true
+      }
     },
+    
+
+    "facebookAutoInitEnabled": true,
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/ico.png",
         "backgroundColor": "#FFFFFF"
+
+      },
+      "versionCode": 25,
+      "package": "com.nn.coufproject"
+    },
+     
+  
+    "extra": {
+      "firebase": {
+        "apiKey": "AIzaSyDaIX_KfCGuoNwvsZkMKZpjRTq9wket-G8",
+    "authDomain": "react-nativedb-4eb41.firebaseapp.com",
+    "databaseURL": "https://react-nativedb-4eb41.firebaseio.com",
+    "projectId": "react-nativedb-4eb41",
+    "storageBucket": "react-nativedb-4eb41.appspot.com",
+    "messagingSenderId": "851136914068"
+      },
+      "facebook": {
+        "appId": "1998302263810491"
+        
       }
     },
     "web": {
