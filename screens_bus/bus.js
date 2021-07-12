@@ -1348,7 +1348,7 @@ class BUSScreen extends React.Component {
 
                                 }}
                             >
-                                <Text style={{/*fontFamily:'title-font' ,*/fontSize: 23 }}  >HUMPHREY</Text>
+                                <Text style={{/*fontFamily:'Bebas Neue Regular' ,*/fontSize: 23 }}  >HUMPHREY</Text>
                                 <View style={{ borderWidth: 1, marginTop: 5, borderRightWidth: imagewidth / 2 - 30, borderColor: "black" }} />
                                 <TouchableOpacity
                                     onPress={() =>   this.updateview_taxi('  HUMPHREYS',1) }
@@ -1461,7 +1461,7 @@ class BUSScreen extends React.Component {
 
                                 alignItems: 'center',
                             }}>
-                                <Text style={{/*fontFamily:'title-font' ,*/fontSize: 23 }}  >CASEY</Text>
+                                <Text style={{/*fontFamily:'Bebas Neue Regular' ,*/fontSize: 23 }}  >CASEY</Text>
                                 <View style={{ borderWidth: 1, marginTop: 5, borderRightWidth: imagewidth / 2 - 30, borderColor: "black" }} />
                                 <TouchableOpacity
                                     onPress={() =>   this.updateview_taxi('      CASEY',2) }

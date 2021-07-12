@@ -462,7 +462,7 @@ style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
 backgroundColor={'#fff'}
 borderBottomColor={'#fff'}
 height={80}
-centerComponent={{ text: 'BUS', style: {fontFamily:'title-font' ,fontSize:40,marginLeft:10,marginTop:17,color:'#67DBFF' } }}
+centerComponent={{ text: 'BUS', style: {fontFamily:'Bebas Neue Regular' ,fontSize:40,marginLeft:10,marginTop:17,color:'#67DBFF' } }}
 
  >
      
@@ -477,18 +477,18 @@ centerComponent={{ text: 'BUS', style: {fontFamily:'title-font' ,fontSize:40,mar
 
   <View   style={{  marginLeft:imagewidth,flexDirection:"row"}}>
 
-  <Text  style={{fontSize:30,fontFamily:'title-font',textAlign:'center'}}>{this.state.currentDay.toString()}</Text>
+  <Text  style={{fontSize:30,fontFamily:'Bebas Neue Regular',textAlign:'center'}}>{this.state.currentDay.toString()}</Text>
           
-  <Text  style={{fontSize:30,fontFamily:'title-font',textAlign:'center'}}>,</Text>
-  <Text  style={{fontSize:30,textAlign:'center',fontFamily:'title-font'}}>{this.getMonthName()}</Text>
-  <Text  style={{fontSize:30,textAlign:'center',fontFamily:'title-font'}}> </Text>
-  <Text  style={{fontSize:30,textAlign:'center',fontFamily:'title-font'}}>{new Date().getDay() }</Text>
+  <Text  style={{fontSize:30,fontFamily:'Bebas Neue Regular',textAlign:'center'}}>,</Text>
+  <Text  style={{fontSize:30,textAlign:'center',fontFamily:'Bebas Neue Regular'}}>{this.getMonthName()}</Text>
+  <Text  style={{fontSize:30,textAlign:'center',fontFamily:'Bebas Neue Regular'}}> </Text>
+  <Text  style={{fontSize:30,textAlign:'center',fontFamily:'Bebas Neue Regular'}}>{new Date().getDay() }</Text>
 
  
   
 
          </View>
-         <Text  style={{marginTop:20,fontSize:30,textAlign:'center',fontFamily:'title-font',color:"#d11f1f"}}>HOVEY BUS ROUTE</Text>
+         <Text  style={{marginTop:20,fontSize:30,textAlign:'center',fontFamily:'Bebas Neue Regular',color:"#d11f1f"}}>HOVEY BUS ROUTE</Text>
   
 
 
@@ -497,11 +497,11 @@ centerComponent={{ text: 'BUS', style: {fontFamily:'title-font' ,fontSize:40,mar
        
            onPress={this.onPress}
          >
-         <Text  style={{marginTop:20,fontSize:20,textAlign:'center',fontFamily:'content-font',color:"grey"}}>{this.state.explain}</Text>
+         <Text  style={{marginTop:20,fontSize:20,textAlign:'center',fontFamily:'Bayon',color:"grey"}}>{this.state.explain}</Text>
          </TouchableOpacity>
         
-         <Text  style={{fontSize:10,textAlign:'center',fontFamily:'content-font'}}>click to change schedule</Text>
-         <Text  style={{marginTop:10,fontSize:10,textAlign:'center',fontFamily:'content-font'}}>location  of the bus is based on timetable, minor differences plausible</Text>
+         <Text  style={{fontSize:10,textAlign:'center',fontFamily:'Bayon'}}>click to change schedule</Text>
+         <Text  style={{marginTop:10,fontSize:10,textAlign:'center',fontFamily:'Bayon'}}>location  of the bus is based on timetable, minor differences plausible</Text>
 
       
             

@@ -68,7 +68,7 @@ class OTHERBUSScreen extends React.Component {
 
               }}
             >
-              <Text style={{/*fontFamily:'title-font' ,*/fontSize: 23 , marginTop:30}}  >OTHER BUS ROUTES</Text>
+              <Text style={{/*fontFamily:'Bebas Neue Regular' ,*/fontSize: 23 , marginTop:30}}  >OTHER BUS ROUTES</Text>
               <View style={{ borderWidth: 1, marginTop: 5, borderRightWidth: imagewidth / 2 - 30, borderColor: "black" }} />
               <TouchableOpacity
                 onPress={() => Linking.openURL("https://home.army.mil/humphreys/application/files/2116/0911/3274/CP_Casey_-_CP_Humps_Bus_Schedule_28Dec2020.jpg").catch((err) => console.error('An error occurred', err))}

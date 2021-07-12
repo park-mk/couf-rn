@@ -14,7 +14,7 @@ import {
 import * as FileSystem from 'expo-file-system';
 // import { FileSystem } from 'expo';
 import ImageTile from './ImageTile';
-import { timestamp } from 'rxjs/operators';
+
 import CameraRoll from "@react-native-community/cameraroll";
 import * as MediaLibrary from 'expo-media-library'
 

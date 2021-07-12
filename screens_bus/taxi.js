@@ -322,7 +322,7 @@ class TAXI extends React.Component {
         return (
             <View>
                <Text 
-              style={ {marginTop:8,fontFamily: 'content-font', fontSize: 17}}
+              style={ {marginTop:8,fontFamily: 'Bayon', fontSize: 17}}
               >Your history will make it easier for you to call a cab at once.</Text>
             </View>
         )
@@ -330,7 +330,7 @@ class TAXI extends React.Component {
             return (
                 <View>
                    <Text 
-                  style={ {marginTop:8,fontFamily: 'content-font', fontSize: 17}}
+                  style={ {marginTop:8,fontFamily: 'Bayon', fontSize: 17}}
                   >Your history will make it easier for you to call a cab at once.SO Please login First</Text>
                 </View>
             )
@@ -346,13 +346,13 @@ class TAXI extends React.Component {
             <View style={{ flex: 1, marginLeft: 10, marginBottom: 6, borderColor: 'black' ,borderBottomWidth:1}} >
               <View style={{flexDirection:'row'}}>
               <Text 
-              style={ {marginTop:8,fontFamily: 'content-font', fontSize: 17}}
+              style={ {marginTop:8,fontFamily: 'Bayon', fontSize: 17}}
               >{item.from}</Text>
                <Text 
-              style={ {fontFamily: 'content-font', fontSize: 25 ,color:'grey'}}
+              style={ {fontFamily: 'Bayon', fontSize: 25 ,color:'grey'}}
               >   --  </Text>
                <Text 
-              style={ {marginTop:8,fontFamily: 'content-font', fontSize: 17 }}
+              style={ {marginTop:8,fontFamily: 'Bayon', fontSize: 17 }}
               >{item.destination}</Text>
               </View>
             </View>
@@ -436,7 +436,7 @@ class TAXI extends React.Component {
             
                backgroundColor={'#fff'}
                borderBottomColor={'#fff'}
-               centerComponent={{ text: 'TAXI', style: { fontFamily: 'title-font', fontSize: 40, marginLeft: 10, marginTop:17,color: '#67DBFF' } }}
+               centerComponent={{ text: 'TAXI', style: { fontFamily: 'Bebas Neue Regular', fontSize: 40, marginLeft: 10, marginTop:17,color: '#67DBFF' } }}
 
            />
         
@@ -450,7 +450,7 @@ class TAXI extends React.Component {
                      
                    <View   style={{marginLeft:28,flexDirection:"row",borderBottomWidth:2,borderBottomColor:'#C5C5C5',marginRight:28}}>
                        <Text
-                         style={{ marginTop:30,fontFamily:'title-font',fontSize:24}}
+                         style={{ marginTop:30,fontFamily:'Bebas Neue Regular',fontSize:24}}
                        >FROM</Text>
                            <TextInput
                                
@@ -458,7 +458,7 @@ class TAXI extends React.Component {
                                value={this.state.pickup}
                                placeholder=' '
                                textAlignVertical='top'
-                               style={{ marginLeft:8,marginTop:30,fontFamily:'content-font',fontSize:24,width:imagewidth}}
+                               style={{ marginLeft:8,marginTop:30,fontFamily:'Bayon',fontSize:24,width:imagewidth}}
                            />
                  </View>
                  <TouchableOpacity
@@ -475,7 +475,7 @@ class TAXI extends React.Component {
                  </TouchableOpacity>
                  <View   style={{  marginTop:-30,marginLeft:28,flexDirection:"row",borderBottomWidth:2,borderBottomColor:'#C5C5C5',marginRight:28}}>
                        <Text
-                         style={{ marginTop:30,fontFamily:'title-font',fontSize:24}}
+                         style={{ marginTop:30,fontFamily:'Bebas Neue Regular',fontSize:24}}
                        >TO</Text>
                            <TextInput
                                
@@ -483,7 +483,7 @@ class TAXI extends React.Component {
                              value={this.state.dropoff}
                                placeholder=' '
                                textAlignVertical='top'
-                               style={{ marginLeft:8,marginTop:30,fontFamily:'content-font',fontSize:24,width:imagewidth}}
+                               style={{ marginLeft:8,marginTop:30,fontFamily:'Bayon',fontSize:24,width:imagewidth}}
                            />
                  </View>
                 
@@ -496,7 +496,7 @@ class TAXI extends React.Component {
                        source={require('../assets/alarm.png')}
                    />
                     <Text
-                         style={{ fontFamily:'title-font',fontSize:24}}
+                         style={{ fontFamily:'Bebas Neue Regular',fontSize:24}}
                        >HISTORY</Text>
                  </View>  
            <View
@@ -536,7 +536,7 @@ class TAXI extends React.Component {
              onPress={() =>  this.setState({   dialogVisible:true}) }
                >
                     
-                     <Text style={{width: imagewidth/2,marginTop:10, height:67 ,fontFamily: 'title-font', fontSize: 40  }} > {this.state.camp} </Text>
+                     <Text style={{width: imagewidth/2,marginTop:10, height:67 ,fontFamily: 'Bebas Neue Regular', fontSize: 40  }} > {this.state.camp} </Text>
                    
                  
                </TouchableOpacity>
