@@ -4,7 +4,9 @@
   "summary": "Notifications module",
   "description": "Notifications module",
   "license": "MIT",
-  "authors": "650 Industries, Inc.",
+  "authors": {
+    "name": "650 Industries, Inc."
+  },
   "homepage": "https://docs.expo.io/versions/latest/sdk/notifications/",
   "platforms": {
     "ios": "11.0"
@@ -20,6 +22,5 @@
 
     ]
   },
-  "source_files": "EXNotifications/**/*.h",
-  "vendored_frameworks": "EXNotifications.xcframework"
+  "source_files": "EXNotifications/**/*.{h,m}"
 }

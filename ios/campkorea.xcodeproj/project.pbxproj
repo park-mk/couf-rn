@@ -39,6 +39,8 @@
 		85A454DFD875475B810439C5 /* rubicon-icon-font.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F1641D7B432F428EB06DC2F4 /* rubicon-icon-font.ttf */; };
 		210B646F16134CE688F6EA05 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F86F26258CD347D6B9E9F438 /* SimpleLineIcons.ttf */; };
 		1C73A03748AB4DD7997E91D1 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A318A3E79244A2296E8E2C3 /* Zocial.ttf */; };
+		10140DA83BD0476FAC043E2A /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36DD0E064BE54807BE9A84C8 /* Roboto-Bold.ttf */; };
+		4197D373E9AF4786AA6A48DB /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 792AF18FA0DE45AA85CF73B3 /* Roboto-Light.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +84,8 @@
 		F1641D7B432F428EB06DC2F4 /* rubicon-icon-font.ttf */ = {isa = PBXFileReference; name = "rubicon-icon-font.ttf"; path = "../node_modules/native-base/Fonts/rubicon-icon-font.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		F86F26258CD347D6B9E9F438 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; name = "SimpleLineIcons.ttf"; path = "../node_modules/native-base/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		0A318A3E79244A2296E8E2C3 /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/native-base/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		36DD0E064BE54807BE9A84C8 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; name = "Roboto-Bold.ttf"; path = "../assets/fonts/Roboto-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		792AF18FA0DE45AA85CF73B3 /* Roboto-Light.ttf */ = {isa = PBXFileReference; name = "Roboto-Light.ttf"; path = "../assets/fonts/Roboto-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +202,8 @@
 				F1641D7B432F428EB06DC2F4 /* rubicon-icon-font.ttf */,
 				F86F26258CD347D6B9E9F438 /* SimpleLineIcons.ttf */,
 				0A318A3E79244A2296E8E2C3 /* Zocial.ttf */,
+				36DD0E064BE54807BE9A84C8 /* Roboto-Bold.ttf */,
+				792AF18FA0DE45AA85CF73B3 /* Roboto-Light.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -292,6 +298,8 @@
 				85A454DFD875475B810439C5 /* rubicon-icon-font.ttf in Resources */,
 				210B646F16134CE688F6EA05 /* SimpleLineIcons.ttf in Resources */,
 				1C73A03748AB4DD7997E91D1 /* Zocial.ttf in Resources */,
+				10140DA83BD0476FAC043E2A /* Roboto-Bold.ttf in Resources */,
+				4197D373E9AF4786AA6A48DB /* Roboto-Light.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

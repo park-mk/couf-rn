@@ -1,11 +1,11 @@
 import React from 'react';
-import { Button, Text, View ,TouchableOpacity,Image,ScrollView,Linking,Animated,StyleSheet,Dimensions} from 'react-native';
+import { Modal,Button,  SafeAreaView ,Text, View ,TouchableOpacity,Image,ScrollView,Linking,Animated,StyleSheet,Dimensions} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { List, ListItem, SearchBar,Header } from "react-native-elements";
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import Circle from '../components/circle'
 
-
+import ImageViewer from 'react-native-image-zoom-viewer';
 
 const Square = () => {
    return <View style={styles.square} />;
@@ -13,12 +13,12 @@ const Square = () => {
  
 
 class H221 extends React.Component {
-
+    
     constructor(props) {
         super(props);    
         this.state={
             timeofcircle:17.25,   
-            
+            map:false,
               // 32+34 =66  일분을 길이 66으로 치환 한다 
             // 한바퀴 돌때 걸리는 시간 17.25
             circlelength:2070,//  한바퀴 다돌려면 17.25 분 걸림 17.25분 * 120 길이 즉 총길이는 2070임 
@@ -418,7 +418,9 @@ getCurrentTime = () =>
     })        
 }
 
-
+onClickMap = () =>{ 
+  this.setState({map: true});
+}
 
   onPress = () =>{ 
     
@@ -443,11 +445,60 @@ getCurrentTime = () =>
     
     return ( 
         <View>
-     
-     <Header
-leftComponent={  
- <TouchableOpacity 
- onPress={()=> this.props.navigation.navigate('Home')}
+               <Modal
+                    // nno pressed 
+                    animationType="slide"
+                    transparent={true}
+                    visible={this.state.map}
+                    backdropColor={'black'}
+                    backdropOpacity={0}
+                    onRequestClose={() => {
+                        console.log('Modal has been closed.');
+          }}>
+
+          <View
+            style={{
+              alignItems: 'center',
+
+              backgroundColor: '#00000080',
+              justifyContent: 'center',
+
+            }}
+          > 
+
+
+
+            <SafeAreaView style={{ flex: 1 }}>
+         
+            <View
+            
+             style={{width:dimensions.width,height:dimensions.height}}
+            >
+                 <TouchableOpacity
+            style={{backgroundColor:'black'}}
+              onPress={() => this.props.navigation.navigate('Home')}
+ >
+ <Image source={require('../assets/back.png')}
+             
+style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
+  />
+</TouchableOpacity>
+
+
+                <ImageViewer
+                  imageUrls={images}
+                  renderIndicator={() => null}
+                />
+           </View>
+            </SafeAreaView>
+
+          </View>
+
+        </Modal>
+        <Header
+          leftComponent={
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate('Home')}
  >
  <Image source={require('../assets/back.png')}
              
@@ -477,18 +528,29 @@ centerComponent={{ text: 'BUS', style: {  fontFamily:'Bebas Neue Regular', fontS
           
   <Text  style={{fontSize:30, fontFamily:'Bebas Neue Regular',textAlign:'center'}}>,</Text>
   <Text  style={{fontSize:30,textAlign:'center', fontFamily:'Bebas Neue Regular'}}>{this.getMonthName()}</Text>
-  <Text  style={{fontSize:30,textAlign:'center' , fontFamily:'Bebas Neue Regular'}}> </Text>
-  <Text  style={{fontSize:30,textAlign:'center' , fontFamily:'Bebas Neue Regular'}}>{new Date().getDay() }</Text>
-
- 
-  
-
-         </View>
-         <Text  style={{marginTop:20,fontSize:30,textAlign:'center', fontFamily:'Bebas Neue Regular',color:"#d11f1f"}}>H221 BUS ROUTE</Text>
-  
+              <Text style={{ fontSize: 30, textAlign: 'center', fontFamily: 'Bebas Neue Regular' }}> </Text>
+              <Text style={{ fontSize: 30, textAlign: 'center', fontFamily: 'Bebas Neue Regular' }}>{new Date().getDay()}</Text>
 
 
-   
+
+
+            </View>
+            <View style={{ alignItems: 'center' }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <Text style={{ marginTop: 20, fontSize: 30, textAlign: 'center', fontFamily: 'Bebas Neue Regular', color: "#d11f1f" }}>H221 BUS ROUTE</Text>
+                <TouchableOpacity
+                  onPress={() => this.onClickMap()}
+                >
+                  <Image source={require('../assets/map.png')}
+
+                    style={{ width: 70, height: 40, marginLeft: 15, resizeMode: 'cover' }}
+                  />
+                </TouchableOpacity>
+
+              </View>
+            </View>
+
+
          <TouchableOpacity
        
            onPress={this.onPress}
@@ -869,6 +931,17 @@ centerComponent={{ text: 'BUS', style: {  fontFamily:'Bebas Neue Regular', fontS
   }
 }
 export default H221;
+
+const images = [
+  {
+    url:
+      'https://campkorea.s3.us-west-1.amazonaws.com/Screen+Shot+2021-07-04+at+1.33.37+AM.png',
+  },
+  {
+    url:
+      'https://raw.githubusercontent.com/AboutReact/sampleresource/master/old_logo.png',
+  },
+];
 
 const styles = StyleSheet.create({
      animation:{

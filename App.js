@@ -61,6 +61,10 @@ import ITEM from './screens_buysell/item'
 import BOARDLIST from './screens_board/list'
 import WRITE_B from './screens_board/write'
 import ITEM_B from './screens_board/item'
+//coupon
+import COUPONLIST from './screens_coupon/list'
+import COUPON from './screens_coupon/coupon'
+import COUPON_EX from './screens_coupon/coupon_ex'
 //suggestion
 import SuggestionScreen from './screens_suggestion/suggestionScreen'
 import SuggestionModify from './screens_suggestion/suggestionModify'
@@ -193,7 +197,8 @@ class HomeScreen extends React.Component {
   renderScreen() {
    
 
-    return <View>
+    return <View
+    >
       
   
       <BUSScreen
@@ -291,8 +296,8 @@ const HomeStack = createStackNavigator({
 });
 const MenuStack = createStackNavigator({
 
-  Menu: {
-    screen:Home1,
+  COUPONLIST: {
+    screen:COUPONLIST,
    navigationOptions: {
     title: 'Menu',    // HEADER DELETE
     
@@ -303,6 +308,26 @@ const MenuStack = createStackNavigator({
     },
     }
   },
+  COUPON: {
+    screen:COUPON,
+   navigationOptions: {  
+    
+      header: null,       // HEADER DELETE
+    
+ 
+    }
+  },
+  COUPON_EX: {
+    screen:COUPON_EX,
+   navigationOptions: {  
+    
+      header: null,       // HEADER DELETE
+    
+ 
+    }
+  },
+
+
 
   Home1: { screen: Home1 },
   HOMEX: { screen: HOMEX },
@@ -426,8 +451,8 @@ const MenuStack = createStackNavigator({
 
 
 const CategoryStack = createStackNavigator({
-  Category: {
-    screen: CategoryScreen, navigationOptions: {
+  UNDEVELOP1 : {
+    screen: UNDEVELOP1 , navigationOptions: {
       header: null,
 
     }
