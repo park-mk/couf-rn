@@ -391,10 +391,9 @@ const styles = StyleSheet.create({
 };
 
   navigation_need=(value)=>{
-    if(value!=null){
-     
-      this.props.navigation.navigate('Home');
-     this.setState({ once: false,Visible:false});
+    if(value!=null&&this.state.once){
+      this.setState({ once: false,Visible:false});
+     // this.props.navigation.navigate('Home');
     }
   }
   changeEmail=(email) => {     

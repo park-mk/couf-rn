@@ -1,17 +1,26 @@
 import React from 'react';
-import { Button, Text, View ,TouchableOpacity,Image,ScrollView,Linking,Animated,StyleSheet,Dimensions} from 'react-native';
+import { Modal,Button,  SafeAreaView , Text, View ,TouchableOpacity,Image,ScrollView,Linking,Animated,StyleSheet,Dimensions} from 'react-native';
 import { List, ListItem, SearchBar,Header } from "react-native-elements";
 import { Ionicons } from '@expo/vector-icons';
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import Circle from '../components/circle'
-
+import ImageViewer from 'react-native-image-zoom-viewer';
 
 
 const Square = () => {
     return <View style={styles.square} />;
   };
 
-
+  const images = [
+   {
+      url: '',
+      props: {
+          // Or you can set source directory.
+          source: require('../assets/map_view.png')
+      }
+   }
+ ];
+ 
 class GREEN extends React.Component {
 
     constructor(props) {
@@ -23,7 +32,7 @@ class GREEN extends React.Component {
             //  한바퀴 총길이 
             springVal: new Animated.Value(1),
             moveAnimation : new Animated.ValueXY({ x: 10, y: 450 }),
-
+            map:false,
 
 
             yvalue1:new Animated.Value(0),
@@ -884,6 +893,56 @@ getCurrentTime = () =>
     
     return ( 
         <View>
+            <Modal
+                    // nno pressed 
+                    animationType="slide"
+                    transparent={true}
+                    visible={this.state.map}
+                    backdropColor={'black'}
+                    backdropOpacity={0}
+                    onRequestClose={() => {
+                        console.log('Modal has been closed.');
+          }}>
+
+          <View
+            style={{
+              alignItems: 'center',
+
+              backgroundColor: '#00000080',
+              justifyContent: 'center',
+
+            }}
+          > 
+
+
+
+            <SafeAreaView style={{ flex: 1 }}>
+         
+            <View
+            
+             style={{width:dimensions.width,height:dimensions.height}}
+            >
+                 <TouchableOpacity
+            style={{backgroundColor:'black'}}
+              onPress={() => this.setState({map:false})}
+ >
+ <Image source={require('../assets/back.png')}
+             
+style={{width:70,height:80,marginLeft:-15,resizeMode:'cover'}}
+  />
+</TouchableOpacity>
+
+
+                <ImageViewer
+                  imageUrls={images}
+                  renderIndicator={() => null}
+                />
+           </View>
+            </SafeAreaView>
+
+          </View>
+
+        </Modal>
                <Header
 leftComponent={  
  <TouchableOpacity 
@@ -924,8 +983,20 @@ centerComponent={{ text: 'BUS', style: {fontFamily:'Bebas Neue Regular' ,fontSiz
         
   
                </View>
-               <Text  style={{marginTop:20,fontSize:30,textAlign:'center',fontFamily:'Bebas Neue Regular',color:"#21dd21"}}>GREEN BUS ROUTE</Text>
-        
+               <View style={{ alignItems: 'center' }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <Text style={{ marginTop: 20, fontSize: 30, textAlign: 'center', fontFamily: 'Bebas Neue Regular', color: "green" }}>GREEN BUS ROUTE</Text>
+                <TouchableOpacity
+                  onPress={() => this.setState({map: true})}
+                >
+                  <Image source={require('../assets/map.png')}
+
+                    style={{ width: 70, height: 40, marginLeft: 15, resizeMode: 'cover' }}
+                  />
+                </TouchableOpacity>
+
+              </View>
+            </View>
 
   
          

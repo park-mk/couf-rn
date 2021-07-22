@@ -72,45 +72,45 @@ class COUPONLIST extends React.Component {
             humphrey: true,
             casey: false,
             osna: false,
-            current_camp:"Humphreys",
+            current_camp: "Humphreys",
         };
     }
 
- 
+
     componentDidMount() {
 
         this.makeRemoteRequest();
-    }   
+    }
     sortFilterFunction = () => {
         console.log(this.state.current_camp);
         this.setState({
             datasource: []                                 // datasource of list
         })
-         var usersRef = firebase.database().ref('COUPONS/'+this.state.current_camp);
-            usersRef.once('value', (snapshot) => {                     //    tips database resort
+        var usersRef = firebase.database().ref('COUPONS/' + this.state.current_camp);
+        usersRef.once('value', (snapshot) => {                     //    tips database resort
 
-                var m = snapshot.val()
-                var keys = Object.values(m);
-                this.setState({
-                    datasource: keys                                   // datasource of list
-                })
-            }).then((m) => {
-
-
-              
-                const newData = this.state.datasource.sort(function(a,b) {
-                    return a.date - b.date;
-                });
-                const newData2 = this.state.datasource.sort(function(a,b) {
-                    return a.visit - b.visit;
-                });
-
-                this.setState({ datasource: newData.reverse().slice(-4) });
-                this.setState({ datasource2: newData2.reverse().slice(-4) });
+            var m = snapshot.val()
+            var keys = Object.values(m);
+            this.setState({
+                datasource: keys                                   // datasource of list
             })
+        }).then((m) => {
 
-          
-        
+
+
+            const newData = this.state.datasource.sort(function (a, b) {
+                return a.date - b.date;
+            });
+            const newData2 = this.state.datasource.sort(function (a, b) {
+                return a.visit - b.visit;
+            });
+
+            this.setState({ datasource: newData.reverse().slice(-4) });
+            this.setState({ datasource2: newData2.reverse().slice(-4) });
+        })
+
+
+
     }
 
 
@@ -118,7 +118,7 @@ class COUPONLIST extends React.Component {
     makeRemoteRequest = () => {
         const { navigation } = this.props;
         const from = navigation.getParam('from', 'NO-ID');
-     
+
         this.sortFilterFunction();
         // var usersRef = firebase.database().ref('COUPONS/Osan');
 
@@ -137,50 +137,50 @@ class COUPONLIST extends React.Component {
     }
 
 
-   renderItem =({item})=>{
+    renderItem = ({ item }) => {
 
-    return(
-      <TouchableOpacity
-      onPress={() =>  this.props.navigation.navigate('COUPON_EX', {
-        location:item.location ,
-        description:item.description,
-        from:"COUPONLIST",
-        image:item.link
-    })
-
-        
-   
-     }
-      >
-     <View  style={{  flex:1,  marginRight:20,marginLeft:20,flexDirection:'row',marginBottom:6,marginTop:6,borderColor:'black'}} >
-         
-               <Image
-                                style={{ width: 150, height: 150, resizeMode: 'cover' }}
-                                resizeMode={'contain'}
-                                source={{ uri: item.link}}
-                            />
-             <View  >
-    
-             </View>
-            
-           </View>
-           </TouchableOpacity>   
+        return (
+            <TouchableOpacity
+                onPress={() => this.props.navigation.navigate('COUPON_EX', {
+                    location: item.location,
+                    description: item.description,
+                    from: "COUPONLIST",
+                    image: item.link
+                })
 
 
 
+                }
+            >
+                <View style={{ flex: 1, marginRight: 20, marginLeft: 20, flexDirection: 'row', marginBottom: 6, marginTop: 6, borderColor: 'black' }} >
 
-    )
+                    <Image
+                        style={{ width: 150, height: 150, resizeMode: 'cover' }}
+                        resizeMode={'contain'}
+                        source={{ uri: item.link }}
+                    />
+                    <View  >
+
+                    </View>
+
+                </View>
+            </TouchableOpacity>
 
 
 
-}
+
+        )
+
+
+
+    }
 
     click_humphrey = () => {
         this.setState({
             humphrey: true,
             osan: false,
             casey: false,
-            current_camp:"Humphreys"
+            current_camp: "Humphreys"
         })
         // this.sortFilterFunction();
         var usersRef = firebase.database().ref('COUPONS/Humphreys');
@@ -194,11 +194,11 @@ class COUPONLIST extends React.Component {
         }).then((m) => {
 
 
-          
-            const newData = this.state.datasource.sort(function(a,b) {
+
+            const newData = this.state.datasource.sort(function (a, b) {
                 return a.date - b.date;
             });
-            const newData2 = this.state.datasource.sort(function(a,b) {
+            const newData2 = this.state.datasource.sort(function (a, b) {
                 return a.visit - b.visit;
             });
 
@@ -213,7 +213,7 @@ class COUPONLIST extends React.Component {
             humphrey: false,
             osan: true,
             casey: false,
-            current_camp:"Osan"
+            current_camp: "Osan"
         })
         // this.sortFilterFunction();
         var usersRef = firebase.database().ref('COUPONS/Osan');
@@ -227,11 +227,11 @@ class COUPONLIST extends React.Component {
         }).then((m) => {
 
 
-          
-            const newData = this.state.datasource.sort(function(a,b) {
+
+            const newData = this.state.datasource.sort(function (a, b) {
                 return a.date - b.date;
             });
-            const newData2 = this.state.datasource.sort(function(a,b) {
+            const newData2 = this.state.datasource.sort(function (a, b) {
                 return a.visit - b.visit;
             });
 
@@ -246,7 +246,7 @@ class COUPONLIST extends React.Component {
             humphrey: false,
             osan: false,
             casey: true,
-            current_camp:"Casey"
+            current_camp: "Casey"
         })
         var usersRef = firebase.database().ref('COUPONS/Casey');
         usersRef.once('value', (snapshot) => {                     //    tips database resort
@@ -259,11 +259,11 @@ class COUPONLIST extends React.Component {
         }).then((m) => {
 
 
-          
-            const newData = this.state.datasource.sort(function(a,b) {
+
+            const newData = this.state.datasource.sort(function (a, b) {
                 return a.date - b.date;
             });
-            const newData2 = this.state.datasource.sort(function(a,b) {
+            const newData2 = this.state.datasource.sort(function (a, b) {
                 return a.visit - b.visit;
             });
 
@@ -277,20 +277,20 @@ class COUPONLIST extends React.Component {
         if (this.state.humphrey) {
             this.props.navigation.navigate('COUPON', {
                 name: "Humphreys",
-                from:"new"
+                from: "new"
 
             })
         }
         if (this.state.osan) {
             this.props.navigation.navigate('COUPON', {
                 name: "OSAN",
-                from:"new"
+                from: "new"
             })
         }
         if (this.state.casey) {
             this.props.navigation.navigate('COUPON', {
                 name: "Casey",
-                from:"new"
+                from: "new"
             })
         }
 
@@ -300,20 +300,20 @@ class COUPONLIST extends React.Component {
         if (this.state.humphrey) {
             this.props.navigation.navigate('COUPON', {
                 name: "Humphreys",
-                from:"rank"
+                from: "rank"
 
             })
         }
         if (this.state.osan) {
             this.props.navigation.navigate('COUPON', {
                 name: "OSAN",
-                from:"rank"
+                from: "rank"
             })
         }
         if (this.state.casey) {
             this.props.navigation.navigate('COUPON', {
                 name: "Casey",
-                from:"rank"
+                from: "rank"
             })
         }
 
@@ -339,57 +339,61 @@ class COUPONLIST extends React.Component {
                     <View horizontal={true}>
 
 
-                        <Text style={{ fontFamily: 'Roboto Bold', fontSize: 30, marginLeft: 13, marginTop: 30 }}>Restaurant Vouchers</Text>
+                        <Text style={{ fontFamily: 'Roboto Bold', fontSize: 30, marginLeft: 13, marginTop: 80 }}>Restaurant Vouchers</Text>
                         <View
-                            style={{ backgroundColor: 'white', height: 60, marginTop: 13, marginLeft: 15, flexDirection: 'row' }}
+                          style={{ alignItems:'center'}}
                         >
+                            <View
+                                style={{ backgroundColor: 'white', height: 60, marginTop: 13, marginLeft: 15, flexDirection: 'row' }}
+                            >
 
 
-                            {this.state.humphrey ? (
-                                <TouchableOpacity
-                                    onPress={() => this.click_humphrey()}>
-                                    <Text style={{ fontFamily: 'Roboto Bold', fontSize: 17, marginTop: 10 }}> Humphreys</Text>
-                                    <Text style={{ fontFamily: 'Roboto Bold', fontSize: 17, marginTop: -5 }}>_____________</Text>
-                                </TouchableOpacity>
-                            ) : (
-                                <TouchableOpacity
-                                    onPress={() => this.click_humphrey()}>
-                                    <Text style={{ fontFamily: 'Roboto Bold', fontSize: 17, color: 'grey', marginTop: 10 }}> Humphreys</Text>
-                                    <Text style={{ fontFamily: 'Roboto Bold', fontSize: 17, color: 'grey', marginTop: -5 }}>_____________</Text>
-                                </TouchableOpacity>)
-                            }
+                                {this.state.humphrey ? (
+                                    <TouchableOpacity
+                                        onPress={() => this.click_humphrey()}>
+                                        <Text style={{ fontFamily: 'Roboto Bold', fontSize: 17, marginTop: 10 }}> Humphreys</Text>
+                                        <Text style={{ fontFamily: 'Roboto Bold', fontSize: 17, marginTop: -5 }}>_____________</Text>
+                                    </TouchableOpacity>
+                                ) : (
+                                    <TouchableOpacity
+                                        onPress={() => this.click_humphrey()}>
+                                        <Text style={{ fontFamily: 'Roboto Bold', fontSize: 17, color: 'grey', marginTop: 10 }}> Humphreys</Text>
+                                        <Text style={{ fontFamily: 'Roboto Bold', fontSize: 17, color: 'grey', marginTop: -5 }}>_____________</Text>
+                                    </TouchableOpacity>)
+                                }
 
-                            {this.state.osan ? (
-                                <TouchableOpacity
-                                    onPress={() => this.click_osan()}>
-                                    <Text style={{ fontFamily: 'Roboto Bold', fontSize: 17, marginTop: 10 }}>     OSAN     </Text>
-                                    <Text style={{ fontFamily: 'Roboto Bold', fontSize: 17, marginTop: -5 }}>_____________</Text>
-                                </TouchableOpacity>
-                            ) : (
-                                <TouchableOpacity
-                                    onPress={() => this.click_osan()}>
-                                    <Text style={{ fontFamily: 'Roboto Bold', fontSize: 17, color: 'grey', marginTop: 10 }}>     OSAN     </Text>
-                                    <Text style={{ fontFamily: 'Roboto Bold', fontSize: 17, color: 'grey', marginTop: -5 }}>_____________</Text>
-                                </TouchableOpacity>)
-                            }
+                                {this.state.osan ? (
+                                    <TouchableOpacity
+                                        onPress={() => this.click_osan()}>
+                                        <Text style={{ fontFamily: 'Roboto Bold', fontSize: 17, marginTop: 10 }}>     OSAN     </Text>
+                                        <Text style={{ fontFamily: 'Roboto Bold', fontSize: 17, marginTop: -5 }}>_____________</Text>
+                                    </TouchableOpacity>
+                                ) : (
+                                    <TouchableOpacity
+                                        onPress={() => this.click_osan()}>
+                                        <Text style={{ fontFamily: 'Roboto Bold', fontSize: 17, color: 'grey', marginTop: 10 }}>     OSAN     </Text>
+                                        <Text style={{ fontFamily: 'Roboto Bold', fontSize: 17, color: 'grey', marginTop: -5 }}>_____________</Text>
+                                    </TouchableOpacity>)
+                                }
 
-                            {this.state.casey ? (
-                                <TouchableOpacity
-                                    onPress={() => this.click_casey()}>
-                                    <Text style={{ fontFamily: 'Roboto Bold', fontSize: 17, marginTop: 10 }}>     Casey    </Text>
-                                    <Text style={{ fontFamily: 'Roboto Bold', fontSize: 17, marginTop: -5 }}>_____________</Text>
+                                {this.state.casey ? (
+                                    <TouchableOpacity
+                                        onPress={() => this.click_casey()}>
+                                        <Text style={{ fontFamily: 'Roboto Bold', fontSize: 17, marginTop: 10 }}>     Casey    </Text>
+                                        <Text style={{ fontFamily: 'Roboto Bold', fontSize: 17, marginTop: -5 }}>_____________</Text>
 
-                                </TouchableOpacity>
-                            ) : (
-                                <TouchableOpacity
-                                    onPress={() => this.click_casey()}>
-                                    <Text style={{ fontFamily: 'Roboto Bold', color: 'grey', fontSize: 17, marginTop: 10 }}>     Casey    </Text>
-                                    <Text style={{ fontFamily: 'Roboto Bold', color: 'grey', fontSize: 17, marginTop: -5 }}>_____________</Text>
+                                    </TouchableOpacity>
+                                ) : (
+                                    <TouchableOpacity
+                                        onPress={() => this.click_casey()}>
+                                        <Text style={{ fontFamily: 'Roboto Bold', color: 'grey', fontSize: 17, marginTop: 10 }}>     Casey    </Text>
+                                        <Text style={{ fontFamily: 'Roboto Bold', color: 'grey', fontSize: 17, marginTop: -5 }}>_____________</Text>
 
-                                </TouchableOpacity>)
-                            }
+                                    </TouchableOpacity>)
+                                }
 
 
+                            </View>
 
 
 
@@ -398,17 +402,17 @@ class COUPONLIST extends React.Component {
 
                     </View>
                     <Text style={{ fontFamily: 'Roboto Bold', fontSize: 17, marginTop: 10 }}>    What's   HOT   </Text>
-                    <View style={{ alignItems:'center'}}>
-                         <FlatList
-                        data={this.state.datasource}
-                        numColumns={2}
-                        renderItem={this.renderItem}
-                        keyExtractor={item => item.uid}
-                        ListEmptyComponent={<Text style={{ fontFamily: 'Bayon', fontSize: 20, marginTop: 10 }}>{this.state.board_reason}</Text>}
-              
-                    /> 
+                    <View style={{ alignItems: 'center' }}>
+                        <FlatList
+                            data={this.state.datasource}
+                            numColumns={2}
+                            renderItem={this.renderItem}
+                            keyExtractor={item => item.uid}
+                            ListEmptyComponent={<Text style={{ fontFamily: 'Bayon', fontSize: 20, marginTop: 10 }}>{this.state.board_reason}</Text>}
+
+                        />
                         <TouchableOpacity
-                            onPress={() =>  this.navigate_to_coupon_rank()}>
+                            onPress={() => this.navigate_to_coupon_rank()}>
 
                             <Image
                                 style={{ marginTop: 20, width: 320, height: 50, resizeMode: 'cover' }}
@@ -418,17 +422,17 @@ class COUPONLIST extends React.Component {
                         </TouchableOpacity>
                     </View>
                     <Text style={{ fontFamily: 'Roboto Bold', fontSize: 17, marginTop: 14 }}>    What's   NEW   </Text>
-                    <View style={{ alignItems:'center'}}>
-                         <FlatList
-                        data={this.state.datasource2}
-                        numColumns={2}
-                        renderItem={this.renderItem}
-                        keyExtractor={item => item.uid}
-                        ListEmptyComponent={<Text style={{ fontFamily: 'Bayon', fontSize: 20, marginTop: 10 }}>{this.state.board_reason}</Text>}
-              
-                    /> 
+                    <View style={{ alignItems: 'center' }}>
+                        <FlatList
+                            data={this.state.datasource2}
+                            numColumns={2}
+                            renderItem={this.renderItem}
+                            keyExtractor={item => item.uid}
+                            ListEmptyComponent={<Text style={{ fontFamily: 'Bayon', fontSize: 20, marginTop: 10 }}>{this.state.board_reason}</Text>}
+
+                        />
                         <TouchableOpacity
-                            onPress={() =>  this.navigate_to_coupon_rank()}>
+                            onPress={() => this.navigate_to_coupon_rank()}>
 
                             <Image
                                 style={{ marginTop: 20, width: 320, height: 50, resizeMode: 'cover' }}
@@ -436,7 +440,7 @@ class COUPONLIST extends React.Component {
                                 source={require('../assets/see_all.png')}
                             />
                         </TouchableOpacity>
-                        </View>
+                    </View>
                     {/* <FlatList
                         data={this.state.datasource}
                       

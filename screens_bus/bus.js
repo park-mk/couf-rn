@@ -20,36 +20,23 @@ class BUSScreen extends React.Component {
         super(props);
 
         this.state = {
-            loading: false,
             datasource: [],
             datasource1: [],
-            pause: false,
-            error: null,
-            refreshing: false,
-            fontLoaded: true,
-            checkalarm: 0,
             callvan:false,
             alarmname: '',
-            palarmname: '',
-            palarmheight: 0,
-            palarmwidth: 0,
             alarmed: false,
-            board_opened:true,
             alarmcontent: "In order to continue our hard work, we have encountered financial difficulties considering server fees.  Those who would like to support us, please click yes to donate. Thank you!",
-            palarmcontent: "",
+
             palarmimage: "",
-            tutorial: "",
+          
             login_check:false,
-            dialogVisible: false,
-            dialogVisible1: false,
-            dialogVisible_no: false,
+            alarmVisible: false,
+           
             checked: false,
-            commentVisible: false,
-            commentVisib: false,
-            commentVisibl: false,
-            image: "",
-            imagechange: 0,
-            update: " ",
+         
+  
+            updateVisible: false,
+
         };
     }
 
@@ -106,7 +93,7 @@ class BUSScreen extends React.Component {
             });
         })
      
-        this.props.navigation.navigate('BOARDLIST');
+        this.props.navigation.navigate('COUPONLIST');
       
     }
 
@@ -410,60 +397,6 @@ class BUSScreen extends React.Component {
     }
 
 
-    fundplease = () => {
-        let user = firebase.auth().currentUser;
-        var show = true;
-        firebase.auth().onAuthStateChanged(function (user) {
-            var date = new Date().getDate(); //Current Date
-            var month = new Date().getMonth() + 1; //Current Month
-            var year = new Date().getFullYear();
-            if (user) {
-
-                if (firebase.auth().currentUser != null) {
-                    var m;
-                    var code = firebase.auth().currentUser.uid
-                    code = this.replaceAll(code, ".", "-");
-                    code = this.replaceAll(code, "#", "-");
-                    code = this.replaceAll(code, "$", "-");
-                    code = this.replaceAll(code, "[", "-");
-                    code = this.replaceAll(code, "]", "-");
-                    var usersRef = firebase.database().ref('userinfo/' + code + '/user_watched');
-                    usersRef.on('value', (snapshot) => {
-                        m = snapshot.val()
-                        console.log("이거", m);
-                        if (m == date + month + year) {
-                            console.log("아니", m, date + month + year);
-                            show = false;
-                        }
-
-
-
-                    });
-
-
-
-                }
-
-
-                const MyStatusBar = ({ backgroundColor, ...props }) => (
-                    <View style={[styles.statusBar, { backgroundColor }]}>
-                        <StatusBar backgroundColor="yellow" barStyle="dark-content" />
-                    </View>
-                );
-            } else {
-                console.log(Date(Date.now()).toString())
-                console.log("no user")
-
-
-            }
-        });
-
-
-
-        return show;
-
-
-    }
 
     call = () => {
         //handler to make a call
@@ -506,19 +439,19 @@ class BUSScreen extends React.Component {
             var keys;
             console.log(expo.expo.version);
 
-
+            
             var d;
             var dd;
-            var usersRef = firebase.database().ref('version2');
+            var usersRef = firebase.database().ref('version4');
             usersRef.once('value', (snapshot) => {
                 m = snapshot.val()
 
-                console.log("현재 버젼 firebase", m);
+                console.log("현재 버젼 firebase", m ,expo.expo.version);
                 if (m !== expo.expo.version) {
 
                     this.setState({
 
-                        commentVisibl: true,
+                        updateVisible: true,
                     });
 
                     //  alert("New version of the app is available. For more experience and better performance, please keep the app up to date! 12.3!!!!!!! ");
@@ -551,8 +484,8 @@ class BUSScreen extends React.Component {
                         //   alert(m.content);
                         console.log("현재 서버알람 ", m.name)
 
-                        this.state.alarmname = m.name;
-                        this.setState({ alarmcontent: m.dialog_content })
+                       
+                        this.setState({ alarmname : m.name })
                     }).then((m) => {
                         var code = firebase.auth().currentUser.uid
                         code = this.replaceAll(code, ".", "-");
@@ -567,141 +500,22 @@ class BUSScreen extends React.Component {
 
 
 
-                        }).then(() => {
-                            var usersRef4 = firebase.database().ref('zpushalarm');
-                            usersRef4.once('value', (snapshot) => {
-                                mm = snapshot.val()
-                                //   alert(m.content);
-                                console.log("현재 서버  push알람 ", mm.name)
+                        }).then(() => {//////////DURKWL 
 
-                                this.state.palarmname = mm.name;
-                                this.setState({ palarmname: mm.alarm_or_not})
-                                this.state.checkalarm = mm.check;
-                             
-                                this.setState({ palarmimage: mm.image })
-
-                            }).then(() => {
-                                if (this.state.palarmname != "nos") {
-                                    var code = firebase.auth().currentUser.uid
-                                    code = this.replaceAll(code, ".", "-");
-                                    code = this.replaceAll(code, "#", "-");
-                                    code = this.replaceAll(code, "$", "-");
-                                    code = this.replaceAll(code, "[", "-");
-                                    code = this.replaceAll(code, "]", "-");
-                                    var usersRef5 = firebase.database().ref('userinfo/' + code + '/alarmpush');
-                                    usersRef5.once('value', (snapshot) => {
-                                        dd = snapshot.val()
-                                        console.log("유저의 push", dd, this.state.palarmname, this.state.checkalarm);
-                                    }
-                                    ).then(() => {
-                                        if (this.state.alarmed == false) {
-
-                                            if (d == this.state.alarmname && dd == this.state.palarmname) {
-                                                console.log("both-same");
-                                                this.setState({ alarmed: true })
-
-                                            }
-                                            else if (d != this.state.alarmname && dd == this.state.palarmname) {
-                                                console.log("no danation");
-
-                                                this.setState({ alarmed: true })
-                                                this.setState({ dialogVisible: true })
-                                            }
-                                            else if (d == this.state.alarmname && dd != this.state.palarmname) {
-                                                console.log("일헤라");
-                                                if (this.state.checkalarm === 0) {
-                                                    console.log("danationed0");
-                                                    this.setState({ alarmed: true })
-                                                }
-                                                if (this.state.checkalarm === 1) {
-                                                    console.log("danationed1");
-
-                                                    this.setState({ alarmed: true })
-                                                    this.setState({ dialogVisible1: true })
-                                                    var code = firebase.auth().currentUser.uid
-                                                    code = this.replaceAll(code, ".", "-");
-                                                    code = this.replaceAll(code, "#", "-");
-                                                    code = this.replaceAll(code, "$", "-");
-                                                    code = this.replaceAll(code, "[", "-");
-                                                    code = this.replaceAll(code, "]", "-");
-                                                    firebase.database().ref('userinfo/' + code).update({
-                                                        alarmpush: this.state.palarmname
-                                                    }, function () {
-
-                                                    });
-                                                }
-                                                if (this.state.checkalarm === 2) {
-                                                    console.log("danationed2");
-
-                                                    this.setState({ alarmed: true })
-                                                    this.setState({ dialogVisible1: true })
-
-                                                }
-
-
-                                            }
-
-                                            else if (d != this.state.alarmname && dd != this.state.palarmname) {
-                                                if (this.state.checkalarm === 0) {
-                                                    this.setState({ alarmed: true })
-                                                    this.setState({ dialogVisible: true })
-                                                    console.log("danation!!0");
-
-                                                }
-                                                if (this.state.checkalarm === 1) {
-                                                    console.log("danation!!1");
-
-                                                    this.setState({ alarmed: true })
-                                                    this.setState({ dialogVisible1: true })
-                                                    var code = firebase.auth().currentUser.uid
-                                                    code = this.replaceAll(code, ".", "-");
-                                                    code = this.replaceAll(code, "#", "-");
-                                                    code = this.replaceAll(code, "$", "-");
-                                                    code = this.replaceAll(code, "[", "-");
-                                                    code = this.replaceAll(code, "]", "-");
-                                                    firebase.database().ref('userinfo/' + code).update({
-                                                        alarmpush: this.state.palarmname
-                                                    }, function () {
-
-                                                    });
-                                                }
-                                                if (this.state.checkalarm === 2) {
-                                                    console.log("danatione!!2");
-
-                                                    this.setState({ alarmed: true })
-                                                    this.setState({ dialogVisible1: true })
-
-                                                }
-                                            }
-                                        }
-
-
-
-
-
-
-                                    });
-
-
-
-
-
-                                }
-                                else {
-                                    this.setState({ alarmed: true })
-                                }
+                            if (d != this.state.alarmname) { //  만약 이미 해당 서버 알람이 유저의 알람에 등록 되어 있지 않다면 ? 
+                                this.setState({
+                                
+                                    alarmVisible: true
+                                });
 
 
                             }
 
-                            );
 
-                            //start
-
-
-
-
-
+                            this.setState({
+                                
+                                alarmed: true,
+                            });
 
 
 
@@ -711,44 +525,9 @@ class BUSScreen extends React.Component {
 
 
                     });
-                    //지워    
-                    this.registerForPushNotifications();
+                  
                 }
-                if (firebase.auth().currentUser == null) {
-                    // var check;
-                    // var mmm;
-                    // var usersRef4 = firebase.database().ref('zpushalarm');
-                    // usersRef4.once('value', (snapshot) => {
-                    //     mmm = snapshot.val()
-
-                    //     console.log("현재 서버  push알람 ", mmm.name)
-
-                    //     this.state.palarmname = mmm.name;
-                    //     check = mmm.check;
-
-
-                    //     this.setState({ palarmimage: mmm.image })
-
-                    // }).then(() => {
-                    //     console.log("check 1 ", check);
-                    //     if (check == 0) {
-                    //         this.setState({ dialogVisible: false })
-                    //         this.setState({ alarmed: true })
-                    //         this.setState({ dialogVisible1: false })
-                    //     }
-                    //     if (check == 1 || check == 2) {
-                    //         console.log("check is?D????? ", check);
-                    //         this.setState({ dialogVisible1: true })
-                    //         this.setState({ alarmed: true })
-                    //     }
-
-
-
-                    // })
-
-
-
-                }
+           
 
 
             });
@@ -762,7 +541,16 @@ class BUSScreen extends React.Component {
     replaceAll(str, searchStr, replaceStr) {
         return str.split(searchStr).join(replaceStr);
     }
+    ClosePressed = () =>{
 
+        if(this.state.checked){
+            this.notshow();
+        }
+      
+        this.setState({alarmVisible:false})
+
+
+    }
     notshow = () => {
         console.log('notshow')
         if (firebase.auth().currentUser != null) {
@@ -789,7 +577,7 @@ class BUSScreen extends React.Component {
 
 
     go_to_update() {
-        this.setState({ commentVisibl: false })
+        this.setState({ updateVisible: false })
         if (Platform.OS === 'android') {
             Linking.openURL("https://play.google.com/store/apps/details?id=com.nn.coufproject").catch((err) => console.error('An error occurred', err));
 
@@ -803,54 +591,8 @@ class BUSScreen extends React.Component {
     }
    
 
-    Show_Custom_Alert() {
-        console.log("setting visible")
-        this.setState({ dialogVisible: true })
-        this.setState({ alarmed: true })
-        this.setState({ dialogVisible1: true })
-    }
-    Yespressed = () => {
-        console.log("yes")
-        this.setState({ dialogVisible: false })
+ 
 
-
-        if (firebase.auth().currentUser != null) {
-            if (this.state.checked) {
-                this.notshow();
-
-            }
-
-
-        }
-        if (firebase.auth().currentUser == null) {
-            if (this.state.checked) {
-                this.setState({ dialogVisible_no: true })
-            }
-        }
-      //  Linking.openURL("https://www.paypal.me/coufKR?locale.x=ko_KR").catch((err) => console.error('An error occurred', err));
-
-    }
-    Nopressed = () => {
-        console.log("yno!!!")
-        this.setState({ dialogVisible: false })
-
-        if (firebase.auth().currentUser != null) {
-            if (this.state.checked) {
-                this.notshow();
-           //     this.setState({ commentVisib: true })
-            }
-
-        }
-        if (firebase.auth().currentUser == null) {
-            if (this.state.checked) {
-                this.setState({ dialogVisible_no: true })
-            }
-
-
-        }
-        console.log("no pressed!!!")
-
-    }
     login_need = (value) => {
 
         if (value == null) {
@@ -863,27 +605,8 @@ class BUSScreen extends React.Component {
 
         }
     }
-    saveValueFunction = (value) => {
-        console.log("save man man~");
-        //function to save the value in AsyncStorage
-        if (value == null) {
-            //To check the input not empty
-            AsyncStorage.setItem('show_tutoria12', "first!");
-            //Setting a data to a AsyncStorage with respect to a key 
-            // this.setState({ textInputData: '' })
-            //Resetting the TextInput
-
-            //alert to confirm
-            console.log("hey show them ");
-            this.setState({
-
-                commentVisible: true,
-                tutorial: require("../assets/images/tu1.png")
-
-            })
-
-        } else {
-            console.log("check2 man~");
+    saveValueFunction = () => {
+     
             if (firebase.auth().currentUser == null) {
                AsyncStorage.getItem('logind').then(value =>
                
@@ -896,134 +619,18 @@ class BUSScreen extends React.Component {
             else{
             this.check2();
             }
-        }
+        
     };
-    imageheightca = () => {
-        let dimensions = Dimensions.get("window");
-        let imageheight = dimensions.height;
-        if (Platform.OS === 'android') {
 
 
-        }
-        return imageheight;
-    }
-    onClickComment = (value) => {
 
-        if (this.state.imagechange == 0) {
-
-            this.setState({
-                imagechange: 1,
-                tutorial: require("../assets/images/tu2.png"),
-            });
-        }
-        else if (this.state.imagechange == 1) {
-
-            this.setState({
-                imagechange: 2,
-                tutorial: require("../assets/images/tu3.png"),
-            });
-
-        }
-        else if (this.state.imagechange == 2) {
-
-            this.setState({
-                imagechange: 3,
-                tutorial: require("../assets/images/tu4.png"),
-            });
-
-        }
-        // else if (this.state.imagechange == 3) {
-        //     this.setState({
-        //         imagechange: 4,
-        //         tutorial: require("../assets/images/tu5.png"),
-        //     });
-
-        // }
-        // else if (this.state.imagechange == 4) {
-        //     this.setState({
-        //         imagechange: 5,
-        //         tutorial: require("../assets/images/tu6.png"),
-        //     });
-
-        // }
-        else if (this.state.imagechange == 3) {
-
-            this.setState({
-                commentVisible: value || !this.state.commentVisible,
-            });
-        }
-
-    };
-    onClickCommentleft = (value) => {
-
-        if (this.state.imagechange == 1) {
-
-            this.setState({
-                imagechange: 0,
-                tutorial: require("../assets/images/tu1.png"),
-            });
-        }
-        else if (this.state.imagechange == 2) {
-            this.setState({
-                imagechange: 1,
-                tutorial: require("../assets/images/tu2.png"),
-            });
-
-        }
-        else if (this.state.imagechange == 3) {
-            this.setState({
-                imagechange: 2,
-                tutorial: require("../assets/images/tu3.png"),
-            });
-
-        }
-        // else if (this.state.imagechange == 4) {
-        //     this.setState({
-        //         imagechange: 3,
-        //         tutorial: require("../assets/images/tu4.png"),
-        //     });
-
-        // }
-        // else if (this.state.imagechange == 5) {
-        //     this.setState({
-        //         imagechange: 4,
-        //         tutorial: require("../assets/images/tu5.png"),
-        //     });
-
-        // }
-
-
-    };
-    onClickCommen = (value) => {
-
-
-        this.setState({
-            commentVisibl: value || !this.state.commentVisibl,
-        });
-
-
-    };
-    onClickComme = (value) => {
-
-
-        this.setState({
-            commentVisib: false,
-        });
-
-
-    };
 
     getValueFunction = () => {
         let dimensions = Dimensions.get("window");
         let imageheight = dimensions.height;
         let imagewidth = dimensions.width;
         //function to get the value from AsyncStorage
-        AsyncStorage.getItem('show_tutoria12').then(value =>
-            //AsyncStorage returns a promise so adding a callback to get the value
-            this.saveValueFunction(value)
-            //Setting the value in Text 
-
-        );
+        this.saveValueFunction();
      
         return <View>
 
@@ -1051,119 +658,12 @@ class BUSScreen extends React.Component {
                 style={{ backgroundColor: '#ffffff' }}
             >
                 <StatusBar backgroundColor="white" barStyle="dark-content" />
-                <Modal
-                    // nno pressed 
-                    animationType="slide"
-                    transparent={true}
-                    visible={this.state.commentVisib}
-                    backdropColor={'white'}
-                    backdropOpacity={0.5}
-                    onRequestClose={() => {
-                        console.log('Modal has been closed.');
-                    }}>
-
-                    <View
-                        style={{
-                            alignItems: 'center',
-
-                            backgroundColor: '#00000080',
-                            justifyContent: 'center',
-
-                        }}
-                    >
-                        <TouchableOpacity
-                            onPress={() => this.onClickComme()}
-                        >
-
-                            <Image
-                                style={{
-                                    marginTop: imageheight * 5 / 4,
-                                    marginBottom: imageheight * 5 / 4,
-                                    width: imagewidth / 2,
-                                    height: imageheight * 5 / 2,
-                                    resizeMode: 'contain'
-                                }}
-                                source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-nativedb-4eb41.appspot.com/o/V%202%20main%20pngs%20combined%2Fmore-alarm%2F73413249_526896888161576_1310299238160138240_n.png?alt=media&token=090432bd-6323-4d8b-9814-3e4b35b37eec" }}
-
-                            />
-                        </TouchableOpacity>
-                    </View>
-
-                </Modal>
-                <Modal
-                    //  new tutorial
-                    animationType="slide"
-                    transparent={false}
-                    visible={this.state.commentVisible}
-                    onRequestClose={() => {
-                        console.log('Modal has been closed.');
-                    }}>
-                    <ImageBackground
-                        resizeMode='contain'
-                        style={{
-                            width: imagewidth,
-                            height: imageheight * 5,
-
-
-                            borderBottomWidth: 3,
-
-                        }}
-                        source={this.state.tutorial}
-                    >
-                        <View>
-
-                            <View style={{ flexDirection: "row" }}>
-
-                                <TouchableOpacity
-                                    onPress={() => this.onClickCommentleft()}
-                                >
-                                    <View
-                                        style={{
-                                            width: imagewidth / 2,
-                                            height: imageheight * 5,
-
-
-                                            borderBottomWidth: 3,
-
-                                        }}
-                                    >
-
-
-                                    </View>
-
-
-                                </TouchableOpacity>
-                                <TouchableOpacity
-                                    onPress={() => this.onClickComment()}
-                                >
-                                    <View
-                                        style={{
-                                            width: imagewidth / 2,
-                                            height: imageheight * 5,
-
-
-                                            borderBottomWidth: 3,
-
-                                        }}
-                                    >
-
-
-                                    </View>
-                                </TouchableOpacity>
-
-
-
-
-
-                            </View>
-                        </View>
-                    </ImageBackground>
-
-                </Modal>
+                
+           
                 <Modal
                     animationType="slide"
                     transparent={false}
-                    visible={this.state.commentVisibl}
+                    visible={this.state.updateVisible}
                     onRequestClose={() => {
                         console.log('Modal has been closed.');
                     }}>
@@ -1188,53 +688,32 @@ class BUSScreen extends React.Component {
                 {
                     // modal the picture what i want z push alarm 
                 }
-                <Modal
-                    // custom push alarm
-                    animationType="slide"
-                    transparent={true}
-                    visible={this.state.dialogVisible1}
-                    backdropColor={'white'}
-                    backdropOpacity={0.5}
-                    onRequestClose={() => {
-                        console.log('Modal has been closed.');
-                    }}>
-
-                    <View
-                        style={{
-                            alignItems: 'center',
-
-                            backgroundColor: '#00000080',
-                            justifyContent: 'center',
-
-                        }}
-                    >
-                        <TouchableOpacity
-                            onPress={() => this.setState({ dialogVisible1: false })}
-                        >
-
-                            <Image
-                                style={{
-                                    marginTop: imageheight * 5 / 4,
-                                    marginBottom: imageheight * 5 / 4,
-                                    width: imagewidth / 2,
-                                    height: imageheight * 5 / 2,
-                                    resizeMode: 'cover',
-                                }}
-                                source={{ uri: this.state.palarmimage }}
-
-                            />
-                        </TouchableOpacity>
-                    </View>
-
-                </Modal>
+              
                 {// dialog ask to donate or not 
                 }
                 <Dialog
-                    visible={this.state.dialogVisible}
-                   
-                    onTouchOutside={() => this.setState({ dialogVisible: false })} >
-                    <View>
-                        <Text style={{ fontSize: 20 }}>{this.state.alarmcontent}</Text>
+                  visible={this.state.alarmVisible}
+              
+                  width={imagewidth}
+                  
+                    onTouchOutside={() => this.setState({ alarmVisible: false })} >
+                    <View 
+                    style={{alignItems:'center'}}
+                    >
+                    <Image
+                                style={{
+
+                                    width: imagewidth,
+                                    height: imagewidth,
+                                    marginTop:-30,
+                                 
+                                    alignContent: 'flex-start',
+                                    resizeMode: 'contain'
+                                }}
+                                source={{ uri: "https://campkorea.s3.us-west-1.amazonaws.com/uploads/1626765032647" }}
+
+                            />
+
 
                         <CheckBox
                             center
@@ -1243,15 +722,13 @@ class BUSScreen extends React.Component {
                             onPress={() => this.setState({ checked: !this.state.checked })}
                         />
                         <View
-                            style={{ flexDirection: 'row' }}
+                         
                         >
 
                             <TouchableOpacity
-                                onPress={() => this.Nopressed()}
-                                style={{
-                                    marginLeft: 150, marginTop: 30
-                                }}  >
-                                <Text style={{ fontSize: 20, color: '#67DBFF' }}>YES</Text>
+                                onPress={() => this.ClosePressed()}
+                                 >
+                                <Text style={{ fontSize: 20, color: '#67DBFF' }}>CLOSE</Text>
                             </TouchableOpacity>
 
                             {/* <TouchableOpacity
@@ -1267,32 +744,7 @@ class BUSScreen extends React.Component {
                     </View>
 
                 </Dialog>
-                <Dialog
-                    visible={this.state.dialogVisible_no}
-                    title="DEAR USER "
-                    onTouchOutside={() => this.setState({ dialogVisible_no: false })} >
-                    <View>
-
-                        <Text style={{ fontSize: 20 }}>If you don't want it to pop up again, please log in first.</Text>
-
-
-
-                    </View>
-
-                </Dialog>
-                <Dialog
-                    visible={this.state.callvan}
-                    title="DEAR USER "
-                    onTouchOutside={() => this.setState({ callvan: false })} >
-                    <View>
-
-                        <Text style={{ fontSize: 20 }}>File a complaint to the AAFES if you want all call vans on base to be available for the US army officially..</Text>
-
-
-
-                    </View>
-
-                </Dialog>
+      
                 <ScrollView
                     style={{ backgroundColor: '#ffffff' }}
                 >

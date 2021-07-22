@@ -579,10 +579,10 @@ export default createAppContainer(createBottomTabNavigator(
         }
 
         if (routeName === 'Menu'&&focused===true) {
-          iconName = require("./assets/home.png");
+          iconName = require("./assets/coupon.png");
         }
         if (routeName === 'Menu'&&focused===false) {
-          iconName =require("./assets/homeg.png");
+          iconName =require("./assets/coupon_g.png");
         }
 
 

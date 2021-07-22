@@ -538,15 +538,7 @@ centerComponent={{ text: 'BUS', style: {  fontFamily:'Bebas Neue Regular', fontS
             <View style={{ alignItems: 'center' }}>
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <Text style={{ marginTop: 20, fontSize: 30, textAlign: 'center', fontFamily: 'Bebas Neue Regular', color: "#d11f1f" }}>H221 BUS ROUTE</Text>
-                <TouchableOpacity
-                  onPress={() => this.onClickMap()}
-                >
-                  <Image source={require('../assets/map.png')}
-
-                    style={{ width: 70, height: 40, marginLeft: 15, resizeMode: 'cover' }}
-                  />
-                </TouchableOpacity>
-
+              
               </View>
             </View>
 
