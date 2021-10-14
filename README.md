@@ -1,16 +1,16 @@
-#CAMP KOREA PROJECT
+# CAMP KOREA PROJECT
 캠프 코리아 앱
 
 
-#info
+# info
 We are KATUSAs and we’ve watched many of our battle buddies leave without fully experiencing what Korea has to offer. Personally, I am thankful for US soldiers who have reported to duty to a country that they are not familiar with. That is why I would like to take the initiative to show them this beautiful country and help them create memories that they can take back home. However, there are many soldiers on this peninsula that we can not personally reach out to, so that is why we have decided to create this APP.
 
 주한 미군의 한국생활을 위한 어플
 
-####CURRENT USER (2021-10):3000~3500 
+#### CURRENT USER (2021-10):3000~3500 
 ### download from playstore(android )and app store (ios)
 
-##VERSION 1  
+## VERSION 1  
 
 concentrate on travel , introducing  korea, more functions for life  convenient , buy and sell and so so on but not activated the app very well 
 <center class ="half">
@@ -23,7 +23,7 @@ concentrate on travel , introducing  korea, more functions for life  convenient 
 </center> 
 
 
-##VERSION 2
+## VERSION 2
 
 
 according the user visit data, delete most of functions of travel and put the bus station info on the front of the app and try to sustain buy & sell function and communication function
@@ -35,7 +35,7 @@ according the user visit data, delete most of functions of travel and put the bu
 </center> 
 
 
-##VERSION 3
+## VERSION 3
 
 according the user visit data and survey , delete buy & sell function and communication function , add the discount information of the restaurants and bar around the camp .
 
